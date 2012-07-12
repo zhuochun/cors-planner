@@ -1,0 +1,990 @@
+{
+ "query": {
+  "count": 6,
+  "created": "2012-06-25T07:14:34Z",
+  "lang": "en-US",
+  "results": {
+   "tr": [
+    {
+     "td": {
+      "align": "left",
+      "height": "300",
+      "valign": "top",
+      "table": [
+       {
+        "border": "0",
+        "cellpadding": "5",
+        "cellspacing": "0",
+        "width": "90%",
+        "tr": [
+         {
+          "td": {
+           "h2": {
+            "br": null,
+            "strong": [
+             {
+              "br": null,
+              "content": "Module Detailed Information for [ACC1002X]\n                "
+             },
+             {
+              "br": null,
+              "content": "Academic Year : 2011/2012 Semester : 2\n                "
+             }
+            ],
+            "content": "\n                 \n                 \n                 Correct as at 25 Jan 2012 11:25"
+           }
+          }
+         },
+         {
+          "td": {
+           "table": [
+            {
+             "border": "1",
+             "cellpadding": "2",
+             "cellspacing": "0",
+             "class": "tableframe",
+             "width": "100%",
+             "tr": [
+              {
+               "bgcolor": "#CCCCCC",
+               "class": "tableheader",
+               "td": {
+                "colspan": "2",
+                "strong": "Module Information"
+               }
+              },
+              {
+               "td": [
+                {
+                 "p": "Module Title :"
+                },
+                {
+                 "p": "Financial Accounting"
+                }
+               ]
+              },
+              {
+               "td": [
+                {
+                 "valign": "top",
+                 "p": "Module Description :"
+                },
+                {
+                 "valign": "top",
+                 "p": "The course provides an introduction to financial accounting. It examines accounting from an external user's perspective: an external user being an investor or a creditor. Such users would need to understand financial accounting in order to make investing or lending decisions. However, to attain a good understanding, it is also necessary to be familiar with how the information are derived. Therefore, students would learn how to prepare the reports or statements resulting from financial accounting and how to use them for decision-making."
+                }
+               ]
+              },
+              {
+               "td": [
+                {
+                 "p": "Module Examinable :"
+                },
+                {
+                 "p": "-"
+                }
+               ]
+              },
+              {
+               "td": [
+                {
+                 "p": "Exam Date :"
+                },
+                {
+                 "p": {
+                  "br": null,
+                  "content": "03-05-2012 AM\n                    "
+                 }
+                }
+               ]
+              },
+              {
+               "td": [
+                {
+                 "p": "Modular Credits :"
+                },
+                {
+                 "p": "4"
+                }
+               ]
+              },
+              {
+               "td": [
+                {
+                 "p": "Pre-requisite :"
+                },
+                {
+                 "p": "Nil"
+                }
+               ]
+              },
+              {
+               "td": [
+                {
+                 "p": "Preclusion :"
+                },
+                {
+                 "p": "Students who have passed CS1304 or EC3212 or BK1003 or BZ1002 or BH1002 or BZ1002E or BH1002E or FNA1002E or FNA1002X are not allowed to take ACC1002X."
+                }
+               ]
+              },
+              {
+               "td": [
+                {
+                 "p": "Module Workload (A-B-C-D-E)* :"
+                },
+                {
+                 "p": "null"
+                }
+               ]
+              },
+              {
+               "td": [
+                {
+                 "valign": "top",
+                 "p": "Remarks :"
+                },
+                {
+                 "valign": "top",
+                 "p": "Nil"
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "tr": [
+              {
+               "td": [
+                {
+                 "valign": "top",
+                 "p": "*"
+                },
+                {
+                 "valign": "top",
+                 "p": {
+                  "br": [
+                   null,
+                   null,
+                   null,
+                   null,
+                   null
+                  ],
+                  "content": "A: no. of lecture hours per week\n                     B: no. of tutorial hours per week\n                     C: no. of laboratory hours per week\n                     D: no. of hours for projects, assignments, fieldwork etc per week\n                     E: no. of hours for preparatory work by a student per week\n                    "
+                 }
+                }
+               ]
+              },
+              {
+               "bgcolor": "#CCCCCC",
+               "class": "tableheader",
+               "td": {
+                "colspan": "4",
+                "strong": "Lecture Time Table"
+               }
+              },
+              {
+               "td": {
+                "div": {
+                 "align": "left",
+                 "table": [
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "LECTURE Class [X1]\n                           TUESDAY From 900 hrs to 1100 hrs in BZ/LT16,\n                           Week(s): EVERY WEEK.\n                          "
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "LECTURE Class [X2]\n                           TUESDAY From 1300 hrs to 1500 hrs in BZ/LT16,\n                           Week(s): EVERY WEEK.\n                          "
+                     }
+                    }
+                   }
+                  }
+                 ],
+                 "br": [
+                  null,
+                  null,
+                  null,
+                  null
+                 ]
+                }
+               }
+              }
+             ]
+            },
+            {
+             "border": "1",
+             "cellpadding": "2",
+             "cellspacing": "0",
+             "class": "tableframe",
+             "width": "100%",
+             "tr": [
+              {
+               "bgcolor": "#CCCCCC",
+               "class": "tableheader",
+               "td": {
+                "a": {
+                 "id": "TutorialTimeTable",
+                 "name": "TutorialTimeTable",
+                 "strong": {
+                  "span": {
+                   "class": "tableheader",
+                   "font": {
+                    "color": "FF6600",
+                    "content": "Tutorial Time Table"
+                   }
+                  }
+                 }
+                }
+               }
+              },
+              {
+               "td": {
+                "div": {
+                 "align": "left",
+                 "table": [
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "TUTORIAL Class [X1]\n                           FRIDAY From 900 hrs to 1000 hrs in BZ2/B1-4,\n                           Week(s): EVERY WEEK.\n                          \n                           Available in Tutorial Balloting [Iteration 2]."
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "TUTORIAL Class [X10]\n                           MONDAY From 1000 hrs to 1100 hrs in BZ2/3-2,\n                           Week(s): EVERY WEEK.\n                          \n                           Available in Tutorial Balloting [Iteration 2]."
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "TUTORIAL Class [X11]\n                           MONDAY From 1200 hrs to 1300 hrs in BZ2/1-12,\n                           Week(s): EVERY WEEK.\n                          \n                           Available in Tutorial Balloting [Iteration 2]."
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "TUTORIAL Class [X12]\n                           MONDAY From 1300 hrs to 1400 hrs in BZ2/1-12,\n                           Week(s): EVERY WEEK.\n                          \n                           Available in Tutorial Balloting [Iteration 2]."
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "TUTORIAL Class [X13]\n                           WEDNESDAY From 1000 hrs to 1100 hrs in BZ2/2-24,\n                           Week(s): EVERY WEEK.\n                          \n                           Available in Tutorial Balloting [Iteration 2]."
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "TUTORIAL Class [X14]\n                           WEDNESDAY From 1100 hrs to 1200 hrs in BZ2/2-24,\n                           Week(s): EVERY WEEK.\n                          \n                           Available in Tutorial Balloting [Iteration 2]."
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "TUTORIAL Class [X15]\n                           WEDNESDAY From 1300 hrs to 1400 hrs in BZ2/1-15,\n                           Week(s): EVERY WEEK.\n                          \n                           Available in Tutorial Balloting [Iteration 2]."
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "TUTORIAL Class [X16]\n                           WEDNESDAY From 1400 hrs to 1500 hrs in BZ2/1-15,\n                           Week(s): EVERY WEEK.\n                          \n                           Available in Tutorial Balloting [Iteration 2]."
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "TUTORIAL Class [X17]\n                           TUESDAY From 1600 hrs to 1700 hrs in BZ2/2-24,\n                           Week(s): EVERY WEEK.\n                          \n                           Available in Tutorial Balloting [Iteration 2]."
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "TUTORIAL Class [X18]\n                           TUESDAY From 1700 hrs to 1800 hrs in BZ2/2-24,\n                           Week(s): EVERY WEEK.\n                          \n                           Available in Tutorial Balloting [Iteration 2]."
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "TUTORIAL Class [X19]\n                           THURSDAY From 1600 hrs to 1700 hrs in BZ2/1-16,\n                           Week(s): EVERY WEEK.\n                          \n                           Available in Tutorial Balloting [Iteration 2]."
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "TUTORIAL Class [X2]\n                           FRIDAY From 1000 hrs to 1100 hrs in BZ2/B1-4,\n                           Week(s): EVERY WEEK.\n                          \n                           Available in Tutorial Balloting [Iteration 2]."
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "TUTORIAL Class [X20]\n                           THURSDAY From 1700 hrs to 1800 hrs in BZ2/1-16,\n                           Week(s): EVERY WEEK.\n                          \n                           Available in Tutorial Balloting [Iteration 2]."
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "TUTORIAL Class [X21]\n                           FRIDAY From 1300 hrs to 1400 hrs in BZ2/1-15,\n                           Week(s): EVERY WEEK.\n                          \n                           Available in Tutorial Balloting [Iteration 2]."
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "TUTORIAL Class [X22]\n                           FRIDAY From 1400 hrs to 1500 hrs in BZ2/1-15,\n                           Week(s): EVERY WEEK.\n                          \n                           Available in Tutorial Balloting [Iteration 2]."
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "TUTORIAL Class [X23]\n                           FRIDAY From 1500 hrs to 1600 hrs in BZ2/1-15,\n                           Week(s): EVERY WEEK.\n                          \n                           Available in Tutorial Balloting [Iteration 2]."
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "TUTORIAL Class [X24]\n                           FRIDAY From 1600 hrs to 1700 hrs in BZ2/1-15,\n                           Week(s): EVERY WEEK.\n                          \n                           Available in Tutorial Balloting [Iteration 2]."
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "TUTORIAL Class [X3]\n                           FRIDAY From 1100 hrs to 1200 hrs in BZ2/B1-4,\n                           Week(s): EVERY WEEK.\n                          \n                           Available in Tutorial Balloting [Iteration 2]."
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "TUTORIAL Class [X4]\n                           FRIDAY From 1200 hrs to 1300 hrs in BZ2/B1-4,\n                           Week(s): EVERY WEEK.\n                          \n                           Available in Tutorial Balloting [Iteration 2]."
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "TUTORIAL Class [X5]\n                           FRIDAY From 1400 hrs to 1500 hrs in BZ2/B1-4,\n                           Week(s): EVERY WEEK.\n                          \n                           Available in Tutorial Balloting [Iteration 2]."
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "TUTORIAL Class [X6]\n                           FRIDAY From 1500 hrs to 1600 hrs in BZ2/B1-4,\n                           Week(s): EVERY WEEK.\n                          \n                           Available in Tutorial Balloting [Iteration 2]."
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "TUTORIAL Class [X7]\n                           FRIDAY From 1600 hrs to 1700 hrs in BZ2/B1-4,\n                           Week(s): EVERY WEEK.\n                          \n                           Available in Tutorial Balloting [Iteration 2]."
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "TUTORIAL Class [X8]\n                           FRIDAY From 1700 hrs to 1800 hrs in BZ2/B1-4,\n                           Week(s): EVERY WEEK.\n                          \n                           Available in Tutorial Balloting [Iteration 2]."
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "border": "1",
+                   "cellpadding": "0",
+                   "cellspacing": "0",
+                   "width": "80%",
+                   "tr": {
+                    "bgcolor": "#FFD1A4",
+                    "td": {
+                     "colspan": "4",
+                     "p": {
+                      "br": [
+                       null,
+                       null,
+                       null,
+                       null
+                      ],
+                      "content": "TUTORIAL Class [X9]\n                           MONDAY From 900 hrs to 1000 hrs in BZ2/3-2,\n                           Week(s): EVERY WEEK.\n                          \n                           Available in Tutorial Balloting [Iteration 2]."
+                     }
+                    }
+                   }
+                  }
+                 ],
+                 "br": [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                 ]
+                }
+               }
+              }
+             ]
+            }
+           ],
+           "br": [
+            null,
+            null,
+            null,
+            null,
+            null
+           ]
+          }
+         }
+        ]
+       },
+       {
+        "border": "0",
+        "cellpadding": "0",
+        "cellspacing": "0",
+        "height": "38",
+        "width": "100%",
+        "tr": {
+         "td": {
+          "height": "19",
+          "table": {
+           "border": "0",
+           "cellpadding": "0",
+           "cellspacing": "0",
+           "height": "19",
+           "width": "100%",
+           "tr": {
+            "td": {
+             "bgcolor": "#666666",
+             "img": {
+              "border": "0",
+              "height": "19",
+              "name": "footer",
+              "src": "/cors/images/footerv2.gif",
+              "usemap": "#m_footermap",
+              "width": "755"
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      ],
+      "br": [
+       null,
+       null,
+       null
+      ],
+      "script": {
+       "type": "text/javascript",
+       "xml:space": "preserve",
+       "content": "\n \n        function privacy() {\n                window.open(\"http://www.nus.edu.sg/corporate/privacy.htm\")\n        }\n          "
+      }
+     }
+    },
+    {
+     "td": {
+      "a": {
+       "href": "javascript:history.back%20();",
+       "content": "Back to Module Information Listing"
+      }
+     }
+    },
+    {
+     "td": [
+      {
+       "div": {
+        "align": "left",
+        "p": "Module Code :"
+       }
+      },
+      {
+       "width": "70%",
+       "p": "ACC1002X"
+      }
+     ]
+    },
+    {
+     "td": null
+    },
+    {
+     "class": "tableheader",
+     "td": {
+      "font": {
+       "color": "#FF0000",
+       "content": "Attention: The tutorial timetables could be updated from time to time. Students are advised to check regularly for the latest update on the change of tutorial timing."
+      }
+     }
+    },
+    {
+     "td": {
+      "height": "19",
+      "p": {
+       "map": {
+        "id": "m_footerMap",
+        "name": "m_footerMap",
+        "area": [
+         {
+          "alt": "NUS Help",
+          "coords": "269,0,325,19",
+          "href": "http://www.nus.edu.sg/help/",
+          "shape": "rect",
+          "target": "_self",
+          "title": "NUS Help"
+         },
+         {
+          "alt": "NUS Home",
+          "coords": "10,0,94,19",
+          "href": "http://www.nus.edu.sg/",
+          "shape": "rect",
+          "target": "_self",
+          "title": "NUS Home"
+         },
+         {
+          "alt": "Search",
+          "coords": "95,0,142,19",
+          "href": "http://www.nus.edu.sg/search",
+          "shape": "rect",
+          "target": "_self",
+          "title": "Search"
+         },
+         {
+          "alt": "Site Map",
+          "coords": "143,0,194,19",
+          "href": "http://www.nus.edu.sg/corporate/sitemap.htm",
+          "shape": "rect",
+          "target": "_self",
+          "title": "Site Map"
+         },
+         {
+          "alt": "Contact NUS",
+          "coords": "195,0,266,19",
+          "href": "http://www.nus.edu.sg/corporate/contact.htm",
+          "shape": "rect",
+          "target": "_self",
+          "title": "Contact NUS"
+         },
+         {
+          "alt": "Legal",
+          "coords": "683,1,745,19",
+          "href": "http://www.nus.edu.sg/corporate/legal.htm",
+          "shape": "rect",
+          "target": "_self",
+          "title": "Legal"
+         }
+        ]
+       },
+       "content": "  \n                "
+      }
+     }
+    }
+   ]
+  }
+ }
+}

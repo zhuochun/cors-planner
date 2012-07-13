@@ -1,0 +1,900 @@
+{
+    "query": {
+        "count": 9,
+            "created": "2012-07-11T07:12:01Z",
+            "lang": "en-US",
+            "results": {
+                "table": [
+                {
+                    "border": "0",
+                    "cellpadding": "0",
+                    "cellspacing": "0",
+                    "width": "100%",
+                    "tr": [
+                    {
+                        "td": [
+                        {
+                            "align": "left",
+                            "rowspan": "3",
+                            "valign": "bottom",
+                            "width": "10",
+                            "p": " "
+                        },
+                        {
+                            "align": "left",
+                            "height": "40",
+                            "valign": "middle",
+                            "width": "776",
+                            "p": "    "
+                        }
+                        ]
+                    },
+                    {
+                        "td": {
+                            "align": "left",
+                            "height": "300",
+                            "valign": "top",
+                            "br": [
+                                null,
+                            null,
+                            null
+                                ],
+                            "script": {
+                                "type": "text/javascript",
+                                "xml:space": "preserve",
+                                "content": "\n \n        function privacy() {\n                window.open(\"http://www.nus.edu.sg/corporate/privacy.htm\")\n        }\n          "
+                            }
+                        }
+                    }
+                    ]
+                },
+                {
+                    "border": "0",
+                    "cellpadding": "5",
+                    "cellspacing": "0",
+                    "width": "90%",
+                    "tr": [
+                    {
+                        "td": {
+                            "h2": {
+                                "br": null,
+                                "strong": [
+                                {
+                                    "br": null,
+                                    "content": "Module Detailed Information for [ACC1002]\n                "
+                                },
+                                {
+                                    "br": null,
+                                    "content": "Academic Year : 2012/2013 Semester : 1\n                "
+                                }
+                                ],
+                                    "content": "\n                 \n                 \n                 Correct as at 10 Jul 2012 18:45"
+                            }
+                        }
+                    },
+                    {
+                        "td": {
+                            "a": {
+                                "href": "javascript:history.back%20();",
+                                "content": "Back to Module Information Listing"
+                            }
+                        }
+                    },
+                    {
+                        "td": {
+                            "br": [
+                                null,
+                            null,
+                            null,
+                            null,
+                            null
+                                ]
+                        }
+                    }
+                    ]
+                },
+                {
+                    "border": "1",
+                    "cellpadding": "2",
+                    "cellspacing": "0",
+                    "class": "tableframe",
+                    "width": "100%",
+                    "tr": [
+                    {
+                        "bgcolor": "#CCCCCC",
+                        "class": "tableheader",
+                        "td": {
+                            "colspan": "3",
+                            "strong": "Module Information"
+                        }
+                    },
+                    {
+                        "td": [
+                        {
+                            "div": {
+                                "align": "left",
+                                "p": "Module Code :"
+                            }
+                        },
+                        {
+                            "width": "65%",
+                            "p": "ACC1002"
+                        },
+                        {
+                            "width": "5%",
+                            "a": {
+                                "href": "http://ivle.nus.edu.sg/lms/public/list_course_public.aspx?code=ACC1002&acadyear=2012/2013&semester=1",
+                                "content": "IVLE"
+                            }
+                        }
+                        ]
+                    },
+                    {
+                        "td": [
+                        {
+                            "p": "Module Title :"
+                        },
+                        {
+                            "colspan": "2",
+                            "p": "Financial Accounting"
+                        }
+                        ]
+                    },
+                    {
+                        "td": [
+                        {
+                            "valign": "top",
+                            "p": "Module Description :"
+                        },
+                        {
+                            "colspan": "2",
+                            "valign": "top",
+                            "p": "The course provides an introduction to financial accounting. It examines accounting from an external user's perspective: an external user being an investor or a creditor. Such users would need to understand financial accounting in order to make investing or lending decisions. However, to attain a good understanding, it is also necessary to be familiar with how the information is derived. Therefore, students would learn how to prepare the reports or statements resulting from financial accounting and how to use them for decision-making."
+                        }
+                        ]
+                    },
+                    {
+                        "td": [
+                        {
+                            "p": "Module Examinable :"
+                        },
+                        {
+                            "colspan": "2",
+                            "p": "-"
+                        }
+                        ]
+                    },
+                    {
+                        "td": [
+                        {
+                            "p": "Exam Date :"
+                        },
+                        {
+                            "colspan": "2",
+                            "p": {
+                                "br": null,
+                                "content": "03-12-2012 EVENING\n                    "
+                            }
+                        }
+                        ]
+                    },
+                    {
+                        "td": [
+                        {
+                            "p": "Modular Credits :"
+                        },
+                        {
+                            "colspan": "2",
+                            "p": "4"
+                        }
+                        ]
+                    },
+                    {
+                        "td": [
+                        {
+                            "p": "Pre-requisite :"
+                        },
+                        {
+                            "colspan": "2",
+                            "p": "Nil"
+                        }
+                        ]
+                    },
+                    {
+                        "td": [
+                        {
+                            "p": "Preclusion :"
+                        },
+                        {
+                            "colspan": "2",
+                            "p": "Students who have passed FNA1002 are not allowed to take ACC1002."
+                        }
+                        ]
+                    },
+                    {
+                        "td": [
+                        {
+                            "p": "Module Workload (A-B-C-D-E)* :"
+                        },
+                        {
+                            "colspan": "2",
+                            "p": "2-2-0-3-4"
+                        }
+                        ]
+                    },
+                    {
+                        "td": [
+                        {
+                            "valign": "top",
+                            "p": "Remarks :"
+                        },
+                        {
+                            "colspan": "2",
+                            "valign": "top",
+                            "p": "Nil"
+                        }
+                        ]
+                    }
+                    ]
+                },
+                {
+                    "tr": [
+                    {
+                        "td": [
+                        {
+                            "valign": "top",
+                            "p": "*"
+                        },
+                        {
+                            "valign": "top",
+                            "p": {
+                                "br": [
+                                    null,
+                                null,
+                                null,
+                                null,
+                                null
+                                    ],
+                                "content": "A: no. of lecture hours per week\n                     B: no. of tutorial hours per week\n                     C: no. of laboratory hours per week\n                     D: no. of hours for projects, assignments, fieldwork etc per week\n                     E: no. of hours for preparatory work by a student per week\n                    "
+                            }
+                        }
+                        ]
+                    },
+                    {
+                        "td": null
+                    },
+                    {
+                        "bgcolor": "#CCCCCC",
+                        "class": "tableheader",
+                        "td": {
+                            "colspan": "4",
+                            "strong": "Lecture Time Table"
+                        }
+                    },
+                    {
+                        "td": {
+                            "div": {
+                                "align": "left"
+                            }
+                        }
+                    }
+                    ]
+                },
+                {
+                    "border": "1",
+                    "cellpadding": "0",
+                    "cellspacing": "0",
+                    "width": "100%",
+                    "tr": [
+                    {
+                        "bgcolor": "#FFD1A4",
+                        "td": [
+                        {
+                            "strong": "Class"
+                        },
+                        {
+                            "strong": "Type"
+                        },
+                        {
+                            "strong": "Week Type"
+                        },
+                        {
+                            "strong": "Week Day"
+                        },
+                        {
+                            "strong": "Start"
+                        },
+                        {
+                            "strong": "End"
+                        },
+                        {
+                            "strong": "Room"
+                        }
+                        ]
+                    },
+                    {
+                        "bgcolor": "#EEEEEE",
+                        "td": [
+                        {
+                            "p": "V1"
+                        },
+                        {
+                            "p": "LECTURE"
+                        },
+                        {
+                            "p": "EVERY WEEK"
+                        },
+                        {
+                            "p": "WEDNESDAY"
+                        },
+                        {
+                            "p": "1100"
+                        },
+                        {
+                            "p": "1300"
+                        },
+                        {
+                            "p": "LT17"
+                        }
+                        ]
+                    }
+                    ]
+                },
+                {
+                    "border": "1",
+                    "cellpadding": "2",
+                    "cellspacing": "0",
+                    "class": "tableframe",
+                    "width": "100%",
+                    "tr": [
+                    {
+                        "bgcolor": "#CCCCCC",
+                        "class": "tableheader",
+                        "td": {
+                            "a": {
+                                "id": "TutorialTimeTable",
+                                "name": "TutorialTimeTable",
+                                "strong": {
+                                    "span": {
+                                        "class": "tableheader",
+                                        "font": {
+                                            "color": "FF6600",
+                                            "content": "Tutorial Time Table"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "class": "tableheader",
+                        "td": {
+                            "font": {
+                                "color": "#FF0000",
+                                "content": "Attention: The tutorial timetables could be updated from time to time. Students are advised to check regularly for the latest update on the change of tutorial timing."
+                            }
+                        }
+                    },
+                    {
+                        "td": {
+                            "div": {
+                                "align": "left"
+                            }
+                        }
+                    }
+                    ]
+                },
+                {
+                    "border": "1",
+                    "cellpadding": "0",
+                    "cellspacing": "0",
+                    "width": "100%",
+                    "tr": [
+                    {
+                        "bgcolor": "#FFD1A4",
+                        "td": [
+                        {
+                            "strong": "Class"
+                        },
+                        {
+                            "strong": "Type"
+                        },
+                        {
+                            "strong": "Week Type"
+                        },
+                        {
+                            "strong": "Week Day"
+                        },
+                        {
+                            "strong": "Start"
+                        },
+                        {
+                            "strong": "End"
+                        },
+                        {
+                            "strong": "Room"
+                        },
+                        {
+                            "strong": "Iteration"
+                        }
+                        ]
+                    },
+                    {
+                        "bgcolor": "#EEEEEE",
+                        "td": [
+                        {
+                            "p": "V01"
+                        },
+                        {
+                            "p": "TUTORIAL"
+                        },
+                        {
+                            "p": "EVERY WEEK"
+                        },
+                        {
+                            "p": "MONDAY"
+                        },
+                        {
+                            "p": "900"
+                        },
+                        {
+                            "p": "1100"
+                        },
+                        {
+                            "p": "BIZ2-0404"
+                        },
+                        {
+                            "p": "Not Available in Tutorial Balloting yet."
+                        }
+                        ]
+                    },
+                    {
+                        "bgcolor": "#ffffff",
+                        "td": [
+                        {
+                            "p": "V02"
+                        },
+                        {
+                            "p": "TUTORIAL"
+                        },
+                        {
+                            "p": "EVERY WEEK"
+                        },
+                        {
+                            "p": "MONDAY"
+                        },
+                        {
+                            "p": "1100"
+                        },
+                        {
+                            "p": "1300"
+                        },
+                        {
+                            "p": "BIZ2-0404"
+                        },
+                        {
+                            "p": "Not Available in Tutorial Balloting yet."
+                        }
+                        ]
+                    },
+                    {
+                        "bgcolor": "#EEEEEE",
+                        "td": [
+                        {
+                            "p": "V03"
+                        },
+                        {
+                            "p": "TUTORIAL"
+                        },
+                        {
+                            "p": "EVERY WEEK"
+                        },
+                        {
+                            "p": "MONDAY"
+                        },
+                        {
+                            "p": "1400"
+                        },
+                        {
+                            "p": "1600"
+                        },
+                        {
+                            "p": "BIZ2-0404"
+                        },
+                        {
+                            "p": "Not Available in Tutorial Balloting yet."
+                        }
+                        ]
+                    },
+                    {
+                        "bgcolor": "#ffffff",
+                        "td": [
+                        {
+                            "p": "V04"
+                        },
+                        {
+                            "p": "TUTORIAL"
+                        },
+                        {
+                            "p": "EVERY WEEK"
+                        },
+                        {
+                            "p": "TUESDAY"
+                        },
+                        {
+                            "p": "1300"
+                        },
+                        {
+                            "p": "1500"
+                        },
+                        {
+                            "p": "BIZ2-0114"
+                        },
+                        {
+                            "p": "Not Available in Tutorial Balloting yet."
+                        }
+                        ]
+                    },
+                    {
+                        "bgcolor": "#EEEEEE",
+                        "td": [
+                        {
+                            "p": "V05"
+                        },
+                        {
+                            "p": "TUTORIAL"
+                        },
+                        {
+                            "p": "EVERY WEEK"
+                        },
+                        {
+                            "p": "THURSDAY"
+                        },
+                        {
+                            "p": "900"
+                        },
+                        {
+                            "p": "1100"
+                        },
+                        {
+                            "p": "BIZ2-0413C"
+                        },
+                        {
+                            "p": "Not Available in Tutorial Balloting yet."
+                        }
+                        ]
+                    },
+                    {
+                        "bgcolor": "#ffffff",
+                        "td": [
+                        {
+                            "p": "V06"
+                        },
+                        {
+                            "p": "TUTORIAL"
+                        },
+                        {
+                            "p": "EVERY WEEK"
+                        },
+                        {
+                            "p": "THURSDAY"
+                        },
+                        {
+                            "p": "1500"
+                        },
+                        {
+                            "p": "1700"
+                        },
+                        {
+                            "p": "BIZ2-0301"
+                        },
+                        {
+                            "p": "Not Available in Tutorial Balloting yet."
+                        }
+                        ]
+                    },
+                    {
+                        "bgcolor": "#EEEEEE",
+                        "td": [
+                        {
+                            "p": "V07"
+                        },
+                        {
+                            "p": "TUTORIAL"
+                        },
+                        {
+                            "p": "EVERY WEEK"
+                        },
+                        {
+                            "p": "TUESDAY"
+                        },
+                        {
+                            "p": "900"
+                        },
+                        {
+                            "p": "1100"
+                        },
+                        {
+                            "p": "BIZ2-B104"
+                        },
+                        {
+                            "p": "Not Available in Tutorial Balloting yet."
+                        }
+                        ]
+                    },
+                    {
+                        "bgcolor": "#ffffff",
+                        "td": [
+                        {
+                            "p": "V08"
+                        },
+                        {
+                            "p": "TUTORIAL"
+                        },
+                        {
+                            "p": "EVERY WEEK"
+                        },
+                        {
+                            "p": "FRIDAY"
+                        },
+                        {
+                            "p": "1100"
+                        },
+                        {
+                            "p": "1300"
+                        },
+                        {
+                            "p": "BIZ2-0302"
+                        },
+                        {
+                            "p": "Not Available in Tutorial Balloting yet."
+                        }
+                        ]
+                    },
+                    {
+                        "bgcolor": "#EEEEEE",
+                        "td": [
+                        {
+                            "p": "V09"
+                        },
+                        {
+                            "p": "TUTORIAL"
+                        },
+                        {
+                            "p": "EVERY WEEK"
+                        },
+                        {
+                            "p": "FRIDAY"
+                        },
+                        {
+                            "p": "1300"
+                        },
+                        {
+                            "p": "1500"
+                        },
+                        {
+                            "p": "BIZ2-0201"
+                        },
+                        {
+                            "p": "Not Available in Tutorial Balloting yet."
+                        }
+                        ]
+                    },
+                    {
+                        "bgcolor": "#ffffff",
+                        "td": [
+                        {
+                            "p": "V10"
+                        },
+                        {
+                            "p": "TUTORIAL"
+                        },
+                        {
+                            "p": "EVERY WEEK"
+                        },
+                        {
+                            "p": "FRIDAY"
+                        },
+                        {
+                            "p": "1500"
+                        },
+                        {
+                            "p": "1700"
+                        },
+                        {
+                            "p": "BIZ2-0201"
+                        },
+                        {
+                            "p": "Not Available in Tutorial Balloting yet."
+                        }
+                        ]
+                    },
+                    {
+                        "bgcolor": "#EEEEEE",
+                        "td": [
+                        {
+                            "p": "V11"
+                        },
+                        {
+                            "p": "TUTORIAL"
+                        },
+                        {
+                            "p": "EVERY WEEK"
+                        },
+                        {
+                            "p": "FRIDAY"
+                        },
+                        {
+                            "p": "1400"
+                        },
+                        {
+                            "p": "1600"
+                        },
+                        {
+                            "p": "BIZ2-0302"
+                        },
+                        {
+                            "p": "Not Available in Tutorial Balloting yet."
+                        }
+                        ]
+                    },
+                    {
+                        "bgcolor": "#ffffff",
+                        "td": [
+                        {
+                            "p": "V12"
+                        },
+                        {
+                            "p": "TUTORIAL"
+                        },
+                        {
+                            "p": "EVERY WEEK"
+                        },
+                        {
+                            "p": "THURSDAY"
+                        },
+                        {
+                            "p": "900"
+                        },
+                        {
+                            "p": "1100"
+                        },
+                        {
+                            "p": "BIZ2-0301"
+                        },
+                        {
+                            "p": "Not Available in Tutorial Balloting yet."
+                        }
+                        ]
+                    },
+                    {
+                        "bgcolor": "#EEEEEE",
+                        "td": [
+                        {
+                            "p": "V13"
+                        },
+                        {
+                            "p": "TUTORIAL"
+                        },
+                        {
+                            "p": "EVERY WEEK"
+                        },
+                        {
+                            "p": "THURSDAY"
+                        },
+                        {
+                            "p": "1100"
+                        },
+                        {
+                            "p": "1300"
+                        },
+                        {
+                            "p": "BIZ2-0301"
+                        },
+                        {
+                            "p": "Not Available in Tutorial Balloting yet."
+                        }
+                        ]
+                    }
+                    ]
+                },
+                {
+                    "border": "0",
+                    "cellpadding": "0",
+                    "cellspacing": "0",
+                    "height": "38",
+                    "width": "100%",
+                    "tr": [
+                    {
+                        "td": {
+                            "height": "19"
+                        }
+                    },
+                    {
+                        "td": {
+                            "height": "19",
+                            "p": {
+                                "map": {
+                                    "id": "m_footerMap",
+                                    "name": "m_footerMap",
+                                    "area": [
+                                    {
+                                        "alt": "NUS Help",
+                                        "coords": "269,0,325,19",
+                                        "href": "http://www.nus.edu.sg/help/",
+                                        "shape": "rect",
+                                        "target": "_self",
+                                        "title": "NUS Help"
+                                    },
+                                    {
+                                        "alt": "NUS Home",
+                                        "coords": "10,0,94,19",
+                                        "href": "http://www.nus.edu.sg/",
+                                        "shape": "rect",
+                                        "target": "_self",
+                                        "title": "NUS Home"
+                                    },
+                                    {
+                                        "alt": "Search",
+                                        "coords": "95,0,142,19",
+                                        "href": "http://www.nus.edu.sg/search",
+                                        "shape": "rect",
+                                        "target": "_self",
+                                        "title": "Search"
+                                    },
+                                    {
+                                        "alt": "Site Map",
+                                        "coords": "143,0,194,19",
+                                        "href": "http://www.nus.edu.sg/corporate/sitemap.htm",
+                                        "shape": "rect",
+                                        "target": "_self",
+                                        "title": "Site Map"
+                                    },
+                                    {
+                                        "alt": "Contact NUS",
+                                        "coords": "195,0,266,19",
+                                        "href": "http://www.nus.edu.sg/corporate/contact.htm",
+                                        "shape": "rect",
+                                        "target": "_self",
+                                        "title": "Contact NUS"
+                                    },
+                                    {
+                                        "alt": "Legal",
+                                        "coords": "683,1,745,19",
+                                        "href": "http://www.nus.edu.sg/corporate/legal.htm",
+                                        "shape": "rect",
+                                        "target": "_self",
+                                        "title": "Legal"
+                                    }
+                                    ]
+                                },
+                                "content": "  \n                "
+                            }
+                        }
+                    }
+                    ]
+                },
+                {
+                    "border": "0",
+                    "cellpadding": "0",
+                    "cellspacing": "0",
+                    "height": "19",
+                    "width": "100%",
+                    "tr": {
+                        "td": {
+                            "bgcolor": "#666666",
+                            "img": {
+                                "border": "0",
+                                "height": "19",
+                                "name": "footer",
+                                "src": "/cors/images/footerv2.gif",
+                                "usemap": "#m_footermap",
+                                "width": "755"
+                            }
+                        }
+                    }
+                }
+                ]
+            }
+    }
+}

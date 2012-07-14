@@ -54,7 +54,7 @@ define(function(require, exports) {
     }
 
     // a module request for yql, return a Module object
-    exports.module = function(module, callback) {
+    exports.request = function(module, callback) {
         if (typeof module === "string") {
             module = { modCode : module };
         }

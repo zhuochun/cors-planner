@@ -1,0 +1,137 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+
+	<title>CORS Planner</title>
+	<meta name="description" content="Course planner tool for NUS studens">
+	<meta name="author" content="Wang Zhuochun">
+
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+  <!-- Le fav and touch icons -->
+  <link href="favicon.ico" rel="shortcut icon">
+
+  <!-- Le styles using less -->
+	<link rel="stylesheet/less" href="less/style.less">
+	<script src="js/libs/less-1.3.0.min.js"></script>
+	
+	<!-- Use SimpLESS (Win/Linux/Mac) or LESS.app (Mac) to compile your .less files
+	to style.css, and replace the 2 lines above by this one:
+
+	<link rel="stylesheet" href="less/style.css">
+	 -->
+
+  <!-- Le javascript -->
+  <!-- pre-load third party scripts that do not want be async loaded. -->
+	<script src="js/libs/modernizr-2.5.3.min.js"></script>
+  <script src="js/libs/jquery-1.7.2.js"></script>
+
+  <!-- load jquery from CDN
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
+  -->
+
+  <!-- all other application scripts are loaded through require.
+  <script src="js/libs/require.js" data-main="js/main"></script>
+  -->
+
+  <script src="js/libs/bootstrap/bootstrap.min.js"></script>
+  <script src="js/script.js"></script>
+
+</head>
+<body>
+
+  <div class="navbar navbar-fixed-top" id="nav">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <a class="brand" href="/ivle-wander/"><img id="wander" src="img/wander-small.png" alt="WaNDER!"> CORS Planner</a>
+        <ul class="nav pull-right">
+          <li><a href="http://www.nus.edu.sg/cors/index.html" rel="tooltip" title="NUS CORS" target="_blank"><i class="icon-calendar"></i></a></li>
+          <li><a href="https://aces01.nus.edu.sg/cors/jsp/report/ModuleInfoListing.jsp" rel="tooltip" title="CORS Module Listing" target="_blank"><i class="icon-bookmark"></i></a></li>
+          <li><a href="http://exchange.nus.edu.sg/" rel="tooltip" title="NUS Email" target="_blank"><i class="icon-envelope-alt"></i></a></li>
+          <li><a href="http://www.lib.nus.edu.sg/" rel="tooltip" title="Library" target="_blank"><i class="icon-paper-clip"></i></a></li>
+          <li class="divider-vertical"></li>
+          <li><a href="#" rel="tooltip" title="IVLE WaNDER" target="_blank"><i class="icon-briefcase"></i></a></li>
+          <li class="divider-vertical"></li>
+          <li class="dropdown">
+            <a href="#help" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="icon-question-sign"></i> Helps <b class="caret"></b>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li><a href="#/settings/"><i class="icon-wrench"></i> Settings</a></li>
+              <li class="divider"></li>
+              <li><a href="#/feedback/"><i class="icon-edit"></i> Feedback</a></li>
+              <li><a href="#/about/"><i class="icon-heart"></i> About</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div> <!-- /nav -->
+
+  <div class="container-fluid" id="main">
+
+    <div class="tabbable tabs-left">
+      <ul class="nav nav-tabs height-resize" id="primary">
+        <!-- initial pages for all -->
+        <li class="active"><a href="#/home/"><i class="icon-home icon-white"></i> Home</a></li>
+        <li><a href="#/timetable/" rel="tooltip" title="Next Lesson"><i class="icon-calendar"></i> Timetable</a></li>
+        <li class="divider"></li>
+        <!-- modules related -->
+        <li>
+        <a href="#/module/cg2007/" rel="tooltip" title="Microprocessor"><i class="icon-folder-close"></i> CG2007</a>
+        </li>
+        <li>
+        <a href="#/module/cp3108b/" rel="tooltip" title="Mozilla Project"><i class="icon-folder-close"></i> CP3108B</a>
+        </li>
+        <li>
+        <a href="#/module/gek1531/" rel="tooltip" title="Module Title"><i class="icon-folder-close"></i> GEK1531</a>
+        </li>
+        <li>
+        <a href="#/module/ssa2211/" rel="tooltip" title="Singapore History"><i class="icon-folder-close"></i> SSA2211</a>
+        </li>
+        <li>
+        <a href="#/module/st2334/" rel="tooltip" title="Statistics"><i class="icon-folder-close"></i> ST2334</a>
+        </li>
+      </ul> <!-- ./primary -->
+
+      <div class="tab-content" id="secondary">
+        <!--[if lt IE 9]>
+        <div class="alert alert-error">
+          <button class="close" data-dismiss="alert">×</button>
+          If I was you, I would have used <a href="https://www.google.com/intl/en/chrome/browser/">Google Chrome</a> or <a href="http://www.mozilla.org/en-US/firefox/new/">Mozilla Firefox</a>.
+        </div>
+        <![endif]-->
+
+        <div id="content" class="tab-pane active">
+          <div class="row-fluid">
+            <div class="span8 height-resize">
+
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lacus ligula, accumsan id imperdiet rhoncus, dapibus vitae arcu. Nulla non quam erat, luctus consequat nisi. Integer hendrerit lacus sagittis erat fermentum tincidunt. Cras vel dui neque. In sagittis commodo luctus. Mauris non metus dolor, ut suscipit dui. Aliquam mauris lacus, laoreet et consequat quis, bibendum id ipsum. Donec gravida, diam id imperdiet cursus, nunc nisl bibendum sapien, eget tempor neque elit in tortor.
+
+            </div>
+            <div class="span4 height-resize">
+
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lacus ligula, accumsan id imperdiet rhoncus, dapibus vitae arcu. Nulla non quam erat, luctus consequat nisi. Integer hendrerit lacus sagittis erat fermentum tincidunt. Cras vel dui neque. In sagittis commodo luctus. Mauris non metus dolor, ut suscipit dui. Aliquam mauris lacus, laoreet et consequat quis, bibendum id ipsum. Donec gravida, diam id imperdiet cursus, nunc nisl bibendum sapien, eget tempor neque elit in tortor.
+
+            </div>
+          </div>
+        </div> <!-- .../content -->
+      </div> <!-- ../secondary -->
+    </div>
+
+  </div> <!-- /main -->
+
+  <div id="footer" class="container-fluid navbar-fixed-bottom">
+    <div class="container-fluid">
+      <h6>CORS Planner &copy; 2012 by WANG ZHUOCHUN | Github | Facebook</h6>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+@import "bootstrap/bootstrap.less";
+@import "spacelab.less";
+
+body {
+  padding: 60px 0 40px;
+  cursor: default;
+}
+
+@import "bootstrap/responsive.less";
+
+/* ========================================
+ * Author: Wang Zhuochun
+ * Last Edit: 14/Jul/2012 01:45 PM
+ * ======================================== */
+
+/* Variables */
+@logoColor: #4A64BC;
+@pinkColor: #E21149;
+
+
+/* Nav */
+#nav {
+    #wander {
+        display: inline-block;
+        margin: -5px 5px 0 0;
+        width: 20px;
+        height: 19px;
+    }
+
+    .brand {
+        color: @logoColor;
+
+        &:hover {
+            color: lighten(@logoColor, 15%);
+        }
+    }
+}
+
+/* footer */
+#footer {
+    #gradient > .vertical(@navbarBackgroundHighlight, @navbarBackground);
+    .box-shadow(0 1px 0 rgba(255,255,255,0.4)~", "0 0 10px rgba(0,0,0,0.1));
+
+    padding: 10px;
+    text-align: center;
+}

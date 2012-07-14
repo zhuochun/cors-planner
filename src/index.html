@@ -71,58 +71,41 @@
 
   <div class="container-fluid" id="main">
 
-    <div class="tabbable tabs-left">
-      <ul class="nav nav-tabs height-resize" id="primary">
-        <!-- initial pages for all -->
-        <li class="active"><a href="#/home/"><i class="icon-home icon-white"></i> Home</a></li>
-        <li><a href="#/timetable/" rel="tooltip" title="Next Lesson"><i class="icon-calendar"></i> Timetable</a></li>
-        <li class="divider"></li>
-        <!-- modules related -->
-        <li>
-        <a href="#/module/cg2007/" rel="tooltip" title="Microprocessor"><i class="icon-folder-close"></i> CG2007</a>
-        </li>
-        <li>
-        <a href="#/module/cp3108b/" rel="tooltip" title="Mozilla Project"><i class="icon-folder-close"></i> CP3108B</a>
-        </li>
-        <li>
-        <a href="#/module/gek1531/" rel="tooltip" title="Module Title"><i class="icon-folder-close"></i> GEK1531</a>
-        </li>
-        <li>
-        <a href="#/module/ssa2211/" rel="tooltip" title="Singapore History"><i class="icon-folder-close"></i> SSA2211</a>
-        </li>
-        <li>
-        <a href="#/module/st2334/" rel="tooltip" title="Statistics"><i class="icon-folder-close"></i> ST2334</a>
-        </li>
-      </ul> <!-- ./primary -->
+    <div id="planner">
 
-      <div class="tab-content" id="secondary">
-        <!--[if lt IE 9]>
-        <div class="alert alert-error">
-          <button class="close" data-dismiss="alert">×</button>
-          If I was you, I would have used <a href="https://www.google.com/intl/en/chrome/browser/">Google Chrome</a> or <a href="http://www.mozilla.org/en-US/firefox/new/">Mozilla Firefox</a>.
+      <div class="row-fluid" id="board">
+
+        <form id="add-mod" class="form-inline">
+          <input id="mod-code" type="text" placeholder="Module Code" value="" />
+          <button id="add-btn" type="submit" class="btn btn-primary">Add</button>
+        </form>
+
+        <ul class="unstyled" id="basket">
+        </ul>
+
+      </div> <!-- ../basket -->
+
+      <div class="row-fluid" id="timetable">
+
+        <div id="table-grid">
+
         </div>
-        <![endif]-->
 
-        <div id="content" class="tab-pane active">
-          <div class="row-fluid">
-            <div class="span8 height-resize">
+        <div id="table-slot">
 
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lacus ligula, accumsan id imperdiet rhoncus, dapibus vitae arcu. Nulla non quam erat, luctus consequat nisi. Integer hendrerit lacus sagittis erat fermentum tincidunt. Cras vel dui neque. In sagittis commodo luctus. Mauris non metus dolor, ut suscipit dui. Aliquam mauris lacus, laoreet et consequat quis, bibendum id ipsum. Donec gravida, diam id imperdiet cursus, nunc nisl bibendum sapien, eget tempor neque elit in tortor.
-
-            </div>
-            <div class="span4 height-resize">
-
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lacus ligula, accumsan id imperdiet rhoncus, dapibus vitae arcu. Nulla non quam erat, luctus consequat nisi. Integer hendrerit lacus sagittis erat fermentum tincidunt. Cras vel dui neque. In sagittis commodo luctus. Mauris non metus dolor, ut suscipit dui. Aliquam mauris lacus, laoreet et consequat quis, bibendum id ipsum. Donec gravida, diam id imperdiet cursus, nunc nisl bibendum sapien, eget tempor neque elit in tortor.
-
-            </div>
+          <div class="bar lecture">
+            CS2010
           </div>
-        </div> <!-- .../content -->
-      </div> <!-- ../secondary -->
-    </div>
+
+        </div>
+
+      </div> <!-- ../timetable -->
+
+    </div> <!-- ./planner -->
 
   </div> <!-- /main -->
 
-  <div id="footer" class="container-fluid navbar-fixed-bottom">
+  <div id="footer">
     <div class="container-fluid">
       <h6>CORS Planner &copy; 2012 by WANG ZHUOCHUN | Github | Facebook</h6>
     </div>

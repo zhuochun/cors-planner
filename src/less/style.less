@@ -13,12 +13,13 @@ body {
  * Last Edit: 14/Jul/2012 01:45 PM
  * ======================================== */
 
-/* Variables */
+
+/* nav */
+
+/* nav variables */
 @logoColor: #4A64BC;
 @pinkColor: #E21149;
-
-
-/* Nav */
+/* nav styles */
 #nav {
     #wander {
         display: inline-block;
@@ -31,16 +32,74 @@ body {
         color: @logoColor;
 
         &:hover {
-            color: lighten(@logoColor, 15%);
+            color: darken(@logoColor, 15%);
         }
     }
 }
 
+/* planner */
+#main {
+  margin-bottom: 10px;
+}
+
+#timetable {
+  position: relative;
+
+   th {
+     text-align: center;
+   }
+
+   .weekday { 
+     text-align: left;
+   }
+}
+
+/* module item bar */
+@barRedColor: #78436D;
+@barRedBgColor: #F9C4E1;
+@barGreenColor: #778461;
+@barGreenBgColor: #D8EDA3;
+@barOrangeColor: #714715;
+@barOrangeBgColor: #FCD39A;
+
+@defaultBarColor: @barRedColor;
+@defaultBarBgColor: @barRedBgColor;
+
+.bar {
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.25) inset;
+
+  font-size: 11px;
+  font-height: 10px;
+
+  position: absolute;
+  padding-top: 2px;
+  height: 30px;
+
+  text-align: center;
+  line-height: 15px;
+
+  opacity: .8;
+
+  &.lecture {
+    color: @barRedColor;
+    background-color: @barRedBgColor;
+  }
+
+  &.tutorial {
+    color: @barGreenColor;
+    background-color: @barGreenBgColor;
+  }
+
+  &.lab {
+    color: @barOrangeColor;
+    background-color: @barOrangeBgColor;
+  }
+}
+
+
+
 /* footer */
 #footer {
-    #gradient > .vertical(@navbarBackgroundHighlight, @navbarBackground);
-    .box-shadow(0 1px 0 rgba(255,255,255,0.4)~", "0 0 10px rgba(0,0,0,0.1));
-
     padding: 10px;
     text-align: center;
 }

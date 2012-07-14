@@ -19,9 +19,7 @@
 	<link rel="stylesheet/less" href="less/style.less">
 	<script src="js/libs/less-1.3.0.min.js"></script>
 	
-	<!-- Use SimpLESS (Win/Linux/Mac) or LESS.app (Mac) to compile your .less files
-	to style.css, and replace the 2 lines above by this one:
-
+	<!-- compile .less files to style.css, and replace the 2 lines above by this one:
 	<link rel="stylesheet" href="less/style.css">
 	 -->
 
@@ -35,13 +33,8 @@
   <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
   -->
 
-  <!-- all other application scripts are loaded through require.
+  <!-- all other application scripts are loaded through require.  -->
   <script src="js/libs/require.js" data-main="js/main"></script>
-  -->
-
-  <script src="js/libs/bootstrap/bootstrap.min.js"></script>
-  <script src="js/script.js"></script>
-
 </head>
 <body>
 
@@ -58,8 +51,8 @@
           <li><a href="#" rel="tooltip" title="IVLE WaNDER" target="_blank"><i class="icon-briefcase"></i></a></li>
           <li class="divider-vertical"></li>
           <li class="dropdown">
-            <a href="#help" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="icon-question-sign"></i> Helps <b class="caret"></b>
+            <a href="#more" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="icon-chevron-down"></i>
             </a>
 
             <ul class="dropdown-menu">
@@ -67,6 +60,8 @@
               <li class="divider"></li>
               <li><a href="#/feedback/"><i class="icon-edit"></i> Feedback</a></li>
               <li><a href="#/about/"><i class="icon-heart"></i> About</a></li>
+              <li class="divider"></li>
+              <li><a href="#/help/"><i class="icon-pushpin"></i> Quick How-to</a></li>
             </ul>
           </li>
         </ul>

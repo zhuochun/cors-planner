@@ -111,11 +111,14 @@
     }
 
     function setLatestUpdate(data) {
-        var tStr, tArr;
-        // set data latest update date
-        tStr = JSON.stringify(data);
-        tArr = (/Correct as at (\d\d \w{3} \d{4} \d\d:\d\d)\"/).exec(tStr);
-        Module.correctAsAt = tArr[1];
+        //var tStr, tArr;
+        //// set data latest update date
+        //tStr = JSON.stringify(data);
+        //tArr = (/Correct as at (\d\d \w{3} \d{4} \d\d:\d\d)\"/).exec(tStr);
+        //Module.correctAsAt = tArr[1];
+        //Module.correctAsAt = (/Correct as at (\d\d \w{3} \d{4} \d\d:\d\d)\"/).exec(JSON.stringify(data))[1];
+        var result = (/Correct as at (\d\d \w{3} \d{4} \d\d:\d\d)\"/).exec(JSON.stringify(data));
+        Module.correctAsAt = result ? result[1] : undefined;
         log("Correct As At = " + Module.correctAsAt);
     }
 

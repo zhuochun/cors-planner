@@ -15,7 +15,8 @@
   <!-- Le fav and touch icons -->
   <link href="favicon.ico" rel="shortcut icon">
 
-  <!-- Le styles using less -->
+  <!-- Le styles using less
+  -->
 	<link rel="stylesheet/less" href="less/style.less">
 	<script src="js/libs/less-1.3.0.min.js"></script>
 	
@@ -71,38 +72,33 @@
 
   <div class="container-fluid" id="main">
 
-    <div id="planner">
+    <div class="row-fluid">
+      <div class="span8" id="planner">
+        <div class="row-fluid" id="board">
+          <form id="add-mod" class="form-inline">
+            <input id="mod-code" type="text" placeholder="Module Code" value="" />
+            <button id="add-btn" type="submit" class="btn btn-primary">Add</button>
+          </form>
+          <ul class="unstyled" id="basket">
+          </ul>
+        </div> <!-- ../board -->
 
-      <div class="row-fluid" id="board">
-
-        <form id="add-mod" class="form-inline">
-          <input id="mod-code" type="text" placeholder="Module Code" value="" />
-          <button id="add-btn" type="submit" class="btn btn-primary">Add</button>
-        </form>
-
-        <ul class="unstyled" id="basket">
-        </ul>
-
-      </div> <!-- ../basket -->
-
-      <div class="row-fluid" id="timetable">
-
-        <div id="table-grid">
-
-        </div>
-
-        <div id="table-slot">
-
-          <div class="bar lecture">
-            CS2010
+        <div class="row-fluid" id="timetable">
+          <div id="table-grid">
           </div>
+          <div id="table-slot">
+            <!-- TODO: remove this after tests -->
+            <div class="bar lecture">
+              CS2010
+            </div>
+          </div>
+        </div> <!-- ../timetable -->
+      </div> <!-- ./planner -->
 
-        </div>
-
-      </div> <!-- ../timetable -->
-
-    </div> <!-- ./planner -->
-
+      <div class="span4" id="detail">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lacus ligula, accumsan id imperdiet rhoncus, dapibus vitae arcu. Nulla non quam erat, luctus consequat nisi. Integer hendrerit lacus sagittis erat fermentum tincidunt. Cras vel dui neque. In sagittis commodo luctus. Mauris non metus dolor, ut suscipit dui. Aliquam mauris lacus, laoreet et consequat quis, bibendum id ipsum. Donec gravida, diam id imperdiet cursus, nunc nisl bibendum sapien, eget tempor neque elit in tortor.
+      </div> <!-- ./detail -->
+    </div> <!-- /.row-fluid-->
   </div> <!-- /main -->
 
   <div id="footer">

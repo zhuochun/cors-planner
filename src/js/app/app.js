@@ -7,6 +7,13 @@
  * <License>
  * ======================================== */
 
+// Features: (No place to track, put here temporary)
+// TODO: [HIGH] separate functions into modules soon after prototyping
+// TODO: [HIGH] duplicated module slot over-lapping detection!!
+// TODO: [HIGH] right side bar for information display
+// TODO: [LOW] tabs for holding different plans
+// TODO: [LOW] allow user to save plans online -> more coding :(
+
 define(function(require, exports) {
 
     "use strict";
@@ -108,6 +115,7 @@ define(function(require, exports) {
 
               if (module !== null) {
                 if (module.isAvailable) {
+                    // TODO: should not allow duplicated module
                   modules.push(module);
                   $basket.trigger("update");
                 } else {

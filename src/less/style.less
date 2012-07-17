@@ -1,5 +1,4 @@
 @import "bootstrap/bootstrap.less";
-@import "spacelab.less";
 
 body {
   padding: 60px 0 40px;
@@ -27,6 +26,7 @@ body {
     }
 
     .brand {
+        font-weight: bold;
         color: @logoColor;
 
         &:hover {
@@ -34,6 +34,31 @@ body {
         }
     }
 }
+
+/* board */
+@moduleBgColor: #efefef;
+@moduleHeight: 130px;
+@moduleWidth: 150px;
+@addModuleWidth: 150px;
+
+#add {
+    display: inline-block;
+    width: @addModuleWidth;
+    ///height: @moduleHeight;
+    padding: 10px 10px 10px;
+    background: @moduleBgColor;
+
+    form {
+        margin-top: 50px;
+    }
+}
+
+    .module {
+        display: inline-block;
+        width: @addModuleWidth;
+        height: @moduleHeight;
+        
+    }
 
 /* planner */
 #main {

@@ -11,6 +11,7 @@
 // TODO: [HIGH] separate functions into modules soon after prototyping
 // TODO: [HIGH] duplicated module slot over-lapping detection!!
 // TODO: [HIGH] right side bar for information display
+// TODO: [NORMAL] re-draw slots when browser resized
 // TODO: [LOW] tabs for holding different plans
 // TODO: [LOW] allow user to save plans online -> more coding :(
 

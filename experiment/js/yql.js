@@ -1,4 +1,4 @@
-(function($) {
+(function($, window) {
     var $module = $("#module")
     , tryAgain = 3
     , moduleName
@@ -40,8 +40,8 @@
 
         log("<b>URL</b> = " + finalUrl);
 
-        $.getJSON(finalUrl, processRaw);
-        //$.getJSON("jsonNew/" + module + ".json", processRaw);
+        //$.getJSON(finalUrl, processRaw);
+        $.getJSON("jsonNew/" + module + ".json", processRaw);
     }
 
     function processRaw(result) {
@@ -92,6 +92,10 @@
         } else {
             log("** module not available **");
         }
+
+
+window.Module = Module;
+
     }
 
     Object.size = function(obj) {
@@ -166,8 +170,7 @@
         //log(JSON.stringify(data));
 
         for (i = 1; i < dataLength; i++) {
-            var lecture = {}
-            , lectureClass = data[i].td[0].p;
+            var lecture = {}, lectGroup;
 
             for (j = 0; j < infoLength; j++) {
                 lecture[info[j]] = data[i].td[j].p;
@@ -175,11 +178,13 @@
 
             log("LECTURE " + i + " : " + JSON.stringify(lecture));
 
-            if (!lectures[lectureClass]) {
-                lectures[lectureClass] = [];
+            lectGroup = lecture.weekDay + "-" + lecture.startTime + "-" + lecture.endTime;
+
+            if (!lectures[lectGroup]) {
+                lectures[lectGroup] = [];
             }
 
-            lectures[lectureClass].push(lecture);
+            lectures[lectGroup].push(lecture);
         }
     }
 
@@ -195,8 +200,7 @@
     
         for (i = 1; i < dataLength; i++) {
             var tutorial = {}
-            , classNo = data[i].td[0].p
-            , type = data[i].td[1].p;
+            , classGroup, type = data[i].td[1].p;
 
             for (j = 0; j < infoLength; j++) {
                 tutorial[info[j]] = data[i].td[j].p;
@@ -204,14 +208,16 @@
 
             log(type + " " + i + " : " + JSON.stringify(tutorial));
 
+            classGroup = tutorial.weekDay + "-" + tutorial.startTime + "-" + tutorial.endTime;
+
             if (type === "TUTORIAL") {
-                tutorials[classNo] = tutorials[classNo] || [];
-                tutorials[classNo].push(tutorial);
+                tutorials[classGroup] = tutorials[classGroup] || [];
+                tutorials[classGroup].push(tutorial);
             } else {
-                labs[classNo] = labs[classNo] || [];
-                labs[classNo].push(tutorial);
+                labs[classGroup] = labs[classGroup] || [];
+                labs[classGroup].push(tutorial);
             }
         }
     }
 
-})(jQuery);
+})(jQuery, window);

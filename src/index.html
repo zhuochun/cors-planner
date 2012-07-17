@@ -4,36 +4,24 @@
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
 
-	<title>CORS Planner</title>
-	<meta name="description" content="Course planner tool for NUS studens">
-	<meta name="author" content="Wang Zhuochun">
+  <title>CORS Planner</title>
+  <meta name="description" content="Course planner tool for NUS studens">
+  <meta name="author" content="Wang Zhuochun">
 
-	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
   <!-- Le fav and touch icons -->
   <link href="favicon.ico" rel="shortcut icon">
 
-  <!-- Le styles using less
-  -->
-	<link rel="stylesheet/less" href="less/style.less">
-	<script src="js/libs/less-1.3.0.min.js"></script>
-	
-	<!-- compile .less files to style.css, and replace the 2 lines above by this one:
-	<link rel="stylesheet" href="less/style.css">
-	 -->
-
+  <!-- Le stylesheets -->
+  <link rel="stylesheet/less" href="less/style.less">
+  <script src="js/libs/less-1.3.0.min.js"></script>
   <!-- Le javascript -->
   <!-- pre-load third party scripts that do not want be async loaded. -->
-	<script src="js/libs/modernizr-2.5.3.min.js"></script>
+  <script src="js/libs/modernizr-2.5.3.min.js"></script>
   <script src="js/libs/jquery-1.7.2.js"></script>
-
-  <!-- load jquery from CDN
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
-  -->
-
   <!-- all other application scripts are loaded through require.  -->
   <script src="js/libs/require.js" data-main="js/main"></script>
 </head>
@@ -72,17 +60,35 @@
 
   <div class="container-fluid" id="main">
 
+    <div class="row-fluid" id="board">
+      <div id="add" class="module">
+        <form class="form-inline module module-form">
+          <div class="input-append">
+            <input id="mod-code" type="text" class="input-small" placeholder="Module Code" value="" />
+            <button id="add-btn" type="submit" class="btn btn-primary">Add</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="basket">
+        <div class="module">
+          <h4>CS1010</h4>
+          <span>LECT</span>
+          <span>TUT</span>
+          <span>LAB</span>
+        </div>
+
+        <div class="module">
+          <h4>CS1010</h4>
+          <span>LECT</span>
+          <span>TUT</span>
+          <span>LAB</span>
+        </div>
+      </div>
+    </div> <!-- ../board -->
+
     <div class="row-fluid">
       <div class="span8" id="planner">
-        <div class="row-fluid" id="board">
-          <form id="add-mod" class="form-inline">
-            <input id="mod-code" type="text" placeholder="Module Code" value="" />
-            <button id="add-btn" type="submit" class="btn btn-primary">Add</button>
-          </form>
-          <ul class="unstyled" id="basket">
-          </ul>
-        </div> <!-- ../board -->
-
         <div class="row-fluid" id="timetable">
           <div id="table-grid">
           </div>

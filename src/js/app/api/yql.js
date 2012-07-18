@@ -5,7 +5,7 @@
  * http://developer.yahoo.com/yql/
  *
  * Author: Wang Zhuochun
- * Last Edit: 14/Jul/2012 04:35 PM
+ * Last Edit: 18/Jul/2012 02:41 PM
  * ========================================
  * <License>
  * ======================================== */
@@ -18,10 +18,10 @@ define(function(require, exports) {
     // module default options
     var defaults = (function() {
         var acadYear, semester
-          , today = new Date()
-          , year = today.getFullYear()
-          , month = today.getMonth() // month is 0 ~ 11
-          ;
+        , today = new Date()
+        , year = today.getFullYear()
+        , month = today.getMonth() // month is 0 ~ 11
+        ;
 
         if (month < 6) { // less than July (Month 6)
             acadYear = (year - 1) + "/" + year;
@@ -38,14 +38,6 @@ define(function(require, exports) {
         };
     })();
 
-    // a generalized request
-    function request(query, callback) {
-        var yql = "http://query.yahooapis.com/v1/public/yql?q=" +
-            encodeURIComponent(query) + "&format=json&callback=";
-
-        $.getJSON(yql, callback);
-    }
-
     // return a valid CORS url
     function getCORSurl(module) {
         return "https://aces01.nus.edu.sg/cors/jsp/report/ModuleDetailedInfo.jsp?" +
@@ -53,8 +45,19 @@ define(function(require, exports) {
             "&mod_c=" + module.modCode.toUpperCase();
     }
 
+    // return a valid yql url with query
+    function getYQLurl(query) {
+        return "http://query.yahooapis.com/v1/public/yql?q=" +
+            encodeURIComponent(query) + "&format=json&callback=";
+    }
+
+    // a generalized request
+    exports.request = function(query, callback) {
+        $.getJSON(getYQLurl(query), callback);
+    };
+
     // a module request for yql, return a Module object
-    exports.request = function(module, callback) {
+    exports.requestModule = function(module, callback) {
         if (typeof module === "string") {
             module = { modCode : module };
         }
@@ -63,7 +66,7 @@ define(function(require, exports) {
           , cors = getCORSurl(mod)
           , query = "select * from html where url='" + cors + "' and xpath='//table'";
 
-        request(query, callback);
+        $.getJSON(getYQLurl(query), callback);
     };
 
 });

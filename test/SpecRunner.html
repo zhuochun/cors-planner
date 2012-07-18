@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>CORS Planner - Jasmine Spec Runner</title>
+
+  <link rel="shortcut icon" type="image/png" href="lib/jasmine-1.2.0/jasmine_favicon.png">
+  <link rel="stylesheet" type="text/css" href="lib/jasmine-1.2.0/jasmine.css">
+  <script type="text/javascript" src="lib/jasmine-1.2.0/jasmine.js"></script>
+  <script type="text/javascript" src="lib/jasmine-1.2.0/jasmine-html.js"></script>
+
+  <!-- include libs and requirejs files here... -->
+  <script src="../src/js/libs/modernizr-2.5.3.min.js"></script>
+  <script src="../src/js/libs/jquery-1.7.2.js"></script>
+  <!-- all other application scripts are loaded through require.  -->
+  <script src="../src/js/libs/require.js"></script>
+
+  <script type="text/javascript">
+      require.config({
+          baseUrl : "../src/js"
+
+          , paths : {
+              "bootstrap" : "libs/bootstrap/boostrap.min"
+              , "api" : "app/api"
+            // RequireJS Plugins
+              , "text" : "libs/requirejs-plugins/text"
+              , "json" : "libs/requirejs-plugins/json"
+            // Jasmine Specs
+              , "spec" : "../../test/spec"
+              , "testData" : "../../test/json"
+          }
+      });
+
+      // include all the test specs here
+      require([
+          "spec/api"
+      ], function() {
+          $(function() {
+              var jasmineEnv = jasmine.getEnv()
+              , htmlReporter = new jasmine.HtmlReporter();
+
+              jasmineEnv.updateInterval = 1000;
+              jasmineEnv.addReporter(htmlReporter);
+              jasmineEnv.specFilter = function(spec) {
+                return htmlReporter.specFilter(spec);
+              };
+
+            jasmineEnv.execute();
+          });
+      });
+  </script>
+
+</head>
+
+<body>
+</body>
+</html>

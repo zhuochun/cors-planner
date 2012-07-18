@@ -1,7 +1,7 @@
 {
     "query": {
         "count": 9,
-            "created": "2012-07-11T09:31:49Z",
+            "created": "2012-07-11T07:12:01Z",
             "lang": "en-US",
             "results": {
                 "table": [
@@ -61,7 +61,7 @@
                                 "strong": [
                                 {
                                     "br": null,
-                                    "content": "Module Detailed Information for [ACC1002X]\n                "
+                                    "content": "Module Detailed Information for [ACC1002]\n                "
                                 },
                                 {
                                     "br": null,
@@ -118,12 +118,12 @@
                         },
                         {
                             "width": "65%",
-                            "p": "ACC1002X"
+                            "p": "ACC1002"
                         },
                         {
                             "width": "5%",
                             "a": {
-                                "href": "http://ivle.nus.edu.sg/lms/public/list_course_public.aspx?code=ACC1002X&acadyear=2012/2013&semester=1",
+                                "href": "http://ivle.nus.edu.sg/lms/public/list_course_public.aspx?code=ACC1002&acadyear=2012/2013&semester=1",
                                 "content": "IVLE"
                             }
                         }
@@ -149,7 +149,7 @@
                         {
                             "colspan": "2",
                             "valign": "top",
-                            "p": "The course provides an introduction to financial accounting. It examines accounting from an external user's perspective: an external user being an investor or a creditor. Such users would need to understand financial accounting in order to make investing or lending decisions. However, to attain a good understanding, it is also necessary to be familiar with how the information are derived. Therefore, students would learn how to prepare the reports or statements resulting from financial accounting and how to use them for decision-making."
+                            "p": "The course provides an introduction to financial accounting. It examines accounting from an external user's perspective: an external user being an investor or a creditor. Such users would need to understand financial accounting in order to make investing or lending decisions. However, to attain a good understanding, it is also necessary to be familiar with how the information is derived. Therefore, students would learn how to prepare the reports or statements resulting from financial accounting and how to use them for decision-making."
                         }
                         ]
                     },
@@ -173,7 +173,7 @@
                             "colspan": "2",
                             "p": {
                                 "br": null,
-                                "content": "24-11-2012 PM\n                    "
+                                "content": "03-12-2012 EVENING\n                    "
                             }
                         }
                         ]
@@ -207,7 +207,7 @@
                         },
                         {
                             "colspan": "2",
-                            "p": "Students who have passed CS1304 or EC3212 or BK1003 or BZ1002 or BH1002 or BZ1002E or BH1002E or FNA1002E or FNA1002X are not allowed to take ACC1002X."
+                            "p": "Students who have passed FNA1002 are not allowed to take ACC1002."
                         }
                         ]
                     },
@@ -218,7 +218,7 @@
                         },
                         {
                             "colspan": "2",
-                            "p": "null"
+                            "p": "2-2-0-3-4"
                         }
                         ]
                     },
@@ -316,7 +316,7 @@
                         "bgcolor": "#EEEEEE",
                         "td": [
                         {
-                            "p": "X1"
+                            "p": "V1"
                         },
                         {
                             "p": "LECTURE"
@@ -325,42 +325,16 @@
                             "p": "EVERY WEEK"
                         },
                         {
-                            "p": "FRIDAY"
+                            "p": "WEDNESDAY"
                         },
                         {
-                            "p": "1000"
+                            "p": "1100"
                         },
                         {
-                            "p": "1200"
+                            "p": "1300"
                         },
                         {
-                            "p": "LT16"
-                        }
-                        ]
-                    },
-                    {
-                        "bgcolor": "#ffffff",
-                        "td": [
-                        {
-                            "p": "X2"
-                        },
-                        {
-                            "p": "LECTURE"
-                        },
-                        {
-                            "p": "EVERY WEEK"
-                        },
-                        {
-                            "p": "FRIDAY"
-                        },
-                        {
-                            "p": "1400"
-                        },
-                        {
-                            "p": "1600"
-                        },
-                        {
-                            "p": "LT16"
+                            "p": "LT17"
                         }
                         ]
                     }
@@ -449,7 +423,7 @@
                         "bgcolor": "#EEEEEE",
                         "td": [
                         {
-                            "p": "X01"
+                            "p": "V01"
                         },
                         {
                             "p": "TUTORIAL"
@@ -458,16 +432,16 @@
                             "p": "EVERY WEEK"
                         },
                         {
-                            "p": "TUESDAY"
+                            "p": "MONDAY"
                         },
                         {
                             "p": "900"
                         },
                         {
-                            "p": "1000"
+                            "p": "1100"
                         },
                         {
-                            "p": "BIZ2-0115"
+                            "p": "BIZ2-0404"
                         },
                         {
                             "p": "Not Available in Tutorial Balloting yet."
@@ -478,7 +452,7 @@
                         "bgcolor": "#ffffff",
                         "td": [
                         {
-                            "p": "X02"
+                            "p": "V02"
                         },
                         {
                             "p": "TUTORIAL"
@@ -487,74 +461,16 @@
                             "p": "EVERY WEEK"
                         },
                         {
-                            "p": "TUESDAY"
-                        },
-                        {
-                            "p": "1000"
+                            "p": "MONDAY"
                         },
                         {
                             "p": "1100"
                         },
                         {
-                            "p": "BIZ2-0115"
-                        },
-                        {
-                            "p": "Not Available in Tutorial Balloting yet."
-                        }
-                        ]
-                    },
-                    {
-                        "bgcolor": "#EEEEEE",
-                        "td": [
-                        {
-                            "p": "X03"
-                        },
-                        {
-                            "p": "TUTORIAL"
-                        },
-                        {
-                            "p": "EVERY WEEK"
-                        },
-                        {
-                            "p": "TUESDAY"
-                        },
-                        {
-                            "p": "1100"
-                        },
-                        {
-                            "p": "1200"
-                        },
-                        {
-                            "p": "BIZ2-0115"
-                        },
-                        {
-                            "p": "Not Available in Tutorial Balloting yet."
-                        }
-                        ]
-                    },
-                    {
-                        "bgcolor": "#ffffff",
-                        "td": [
-                        {
-                            "p": "X04"
-                        },
-                        {
-                            "p": "TUTORIAL"
-                        },
-                        {
-                            "p": "EVERY WEEK"
-                        },
-                        {
-                            "p": "TUESDAY"
-                        },
-                        {
-                            "p": "1200"
-                        },
-                        {
                             "p": "1300"
                         },
                         {
-                            "p": "BIZ2-0115"
+                            "p": "BIZ2-0404"
                         },
                         {
                             "p": "Not Available in Tutorial Balloting yet."
@@ -565,7 +481,7 @@
                         "bgcolor": "#EEEEEE",
                         "td": [
                         {
-                            "p": "X05"
+                            "p": "V03"
                         },
                         {
                             "p": "TUTORIAL"
@@ -574,74 +490,16 @@
                             "p": "EVERY WEEK"
                         },
                         {
-                            "p": "TUESDAY"
-                        },
-                        {
-                            "p": "1300"
+                            "p": "MONDAY"
                         },
                         {
                             "p": "1400"
-                        },
-                        {
-                            "p": "BIZ2-0115"
-                        },
-                        {
-                            "p": "Not Available in Tutorial Balloting yet."
-                        }
-                        ]
-                    },
-                    {
-                        "bgcolor": "#ffffff",
-                        "td": [
-                        {
-                            "p": "X06"
-                        },
-                        {
-                            "p": "TUTORIAL"
-                        },
-                        {
-                            "p": "EVERY WEEK"
-                        },
-                        {
-                            "p": "TUESDAY"
-                        },
-                        {
-                            "p": "1400"
-                        },
-                        {
-                            "p": "1500"
-                        },
-                        {
-                            "p": "BIZ2-0115"
-                        },
-                        {
-                            "p": "Not Available in Tutorial Balloting yet."
-                        }
-                        ]
-                    },
-                    {
-                        "bgcolor": "#EEEEEE",
-                        "td": [
-                        {
-                            "p": "X07"
-                        },
-                        {
-                            "p": "TUTORIAL"
-                        },
-                        {
-                            "p": "EVERY WEEK"
-                        },
-                        {
-                            "p": "TUESDAY"
                         },
                         {
                             "p": "1600"
                         },
                         {
-                            "p": "1700"
-                        },
-                        {
-                            "p": "BIZ2-0115"
+                            "p": "BIZ2-0404"
                         },
                         {
                             "p": "Not Available in Tutorial Balloting yet."
@@ -652,7 +510,7 @@
                         "bgcolor": "#ffffff",
                         "td": [
                         {
-                            "p": "X08"
+                            "p": "V04"
                         },
                         {
                             "p": "TUTORIAL"
@@ -664,187 +522,13 @@
                             "p": "TUESDAY"
                         },
                         {
-                            "p": "1700"
-                        },
-                        {
-                            "p": "1800"
-                        },
-                        {
-                            "p": "BIZ2-0115"
-                        },
-                        {
-                            "p": "Not Available in Tutorial Balloting yet."
-                        }
-                        ]
-                    },
-                    {
-                        "bgcolor": "#EEEEEE",
-                        "td": [
-                        {
-                            "p": "X09"
-                        },
-                        {
-                            "p": "TUTORIAL"
-                        },
-                        {
-                            "p": "EVERY WEEK"
-                        },
-                        {
-                            "p": "WEDNESDAY"
-                        },
-                        {
-                            "p": "900"
-                        },
-                        {
-                            "p": "1000"
-                        },
-                        {
-                            "p": "BIZ2-0224"
-                        },
-                        {
-                            "p": "Not Available in Tutorial Balloting yet."
-                        }
-                        ]
-                    },
-                    {
-                        "bgcolor": "#ffffff",
-                        "td": [
-                        {
-                            "p": "X10"
-                        },
-                        {
-                            "p": "TUTORIAL"
-                        },
-                        {
-                            "p": "EVERY WEEK"
-                        },
-                        {
-                            "p": "WEDNESDAY"
-                        },
-                        {
-                            "p": "1000"
-                        },
-                        {
-                            "p": "1100"
-                        },
-                        {
-                            "p": "BIZ2-0224"
-                        },
-                        {
-                            "p": "Not Available in Tutorial Balloting yet."
-                        }
-                        ]
-                    },
-                    {
-                        "bgcolor": "#EEEEEE",
-                        "td": [
-                        {
-                            "p": "X11"
-                        },
-                        {
-                            "p": "TUTORIAL"
-                        },
-                        {
-                            "p": "EVERY WEEK"
-                        },
-                        {
-                            "p": "WEDNESDAY"
-                        },
-                        {
-                            "p": "1100"
-                        },
-                        {
-                            "p": "1200"
-                        },
-                        {
-                            "p": "BIZ2-0224"
-                        },
-                        {
-                            "p": "Not Available in Tutorial Balloting yet."
-                        }
-                        ]
-                    },
-                    {
-                        "bgcolor": "#ffffff",
-                        "td": [
-                        {
-                            "p": "X12"
-                        },
-                        {
-                            "p": "TUTORIAL"
-                        },
-                        {
-                            "p": "EVERY WEEK"
-                        },
-                        {
-                            "p": "WEDNESDAY"
-                        },
-                        {
-                            "p": "1200"
-                        },
-                        {
                             "p": "1300"
-                        },
-                        {
-                            "p": "BIZ2-0224"
-                        },
-                        {
-                            "p": "Not Available in Tutorial Balloting yet."
-                        }
-                        ]
-                    },
-                    {
-                        "bgcolor": "#EEEEEE",
-                        "td": [
-                        {
-                            "p": "X13"
-                        },
-                        {
-                            "p": "TUTORIAL"
-                        },
-                        {
-                            "p": "EVERY WEEK"
-                        },
-                        {
-                            "p": "FRIDAY"
-                        },
-                        {
-                            "p": "1300"
-                        },
-                        {
-                            "p": "1400"
-                        },
-                        {
-                            "p": "BIZ2-0115"
-                        },
-                        {
-                            "p": "Not Available in Tutorial Balloting yet."
-                        }
-                        ]
-                    },
-                    {
-                        "bgcolor": "#ffffff",
-                        "td": [
-                        {
-                            "p": "X14"
-                        },
-                        {
-                            "p": "TUTORIAL"
-                        },
-                        {
-                            "p": "EVERY WEEK"
-                        },
-                        {
-                            "p": "FRIDAY"
-                        },
-                        {
-                            "p": "1400"
                         },
                         {
                             "p": "1500"
                         },
                         {
-                            "p": "BIZ2-0115"
+                            "p": "BIZ2-0114"
                         },
                         {
                             "p": "Not Available in Tutorial Balloting yet."
@@ -855,65 +539,7 @@
                         "bgcolor": "#EEEEEE",
                         "td": [
                         {
-                            "p": "X15"
-                        },
-                        {
-                            "p": "TUTORIAL"
-                        },
-                        {
-                            "p": "EVERY WEEK"
-                        },
-                        {
-                            "p": "FRIDAY"
-                        },
-                        {
-                            "p": "1500"
-                        },
-                        {
-                            "p": "1600"
-                        },
-                        {
-                            "p": "BIZ2-0115"
-                        },
-                        {
-                            "p": "Not Available in Tutorial Balloting yet."
-                        }
-                        ]
-                    },
-                    {
-                        "bgcolor": "#ffffff",
-                        "td": [
-                        {
-                            "p": "X16"
-                        },
-                        {
-                            "p": "TUTORIAL"
-                        },
-                        {
-                            "p": "EVERY WEEK"
-                        },
-                        {
-                            "p": "FRIDAY"
-                        },
-                        {
-                            "p": "1600"
-                        },
-                        {
-                            "p": "1700"
-                        },
-                        {
-                            "p": "BIZ2-0115"
-                        },
-                        {
-                            "p": "Not Available in Tutorial Balloting yet."
-                        }
-                        ]
-                    },
-                    {
-                        "bgcolor": "#EEEEEE",
-                        "td": [
-                        {
-                            "p": "X17"
+                            "p": "V05"
                         },
                         {
                             "p": "TUTORIAL"
@@ -928,10 +554,10 @@
                             "p": "900"
                         },
                         {
-                            "p": "1000"
+                            "p": "1100"
                         },
                         {
-                            "p": "BIZ2-0226"
+                            "p": "BIZ2-0413C"
                         },
                         {
                             "p": "Not Available in Tutorial Balloting yet."
@@ -942,7 +568,7 @@
                         "bgcolor": "#ffffff",
                         "td": [
                         {
-                            "p": "X18"
+                            "p": "V06"
                         },
                         {
                             "p": "TUTORIAL"
@@ -954,13 +580,13 @@
                             "p": "THURSDAY"
                         },
                         {
-                            "p": "1000"
+                            "p": "1500"
                         },
                         {
-                            "p": "1100"
+                            "p": "1700"
                         },
                         {
-                            "p": "BIZ2-0226"
+                            "p": "BIZ2-0301"
                         },
                         {
                             "p": "Not Available in Tutorial Balloting yet."
@@ -971,7 +597,7 @@
                         "bgcolor": "#EEEEEE",
                         "td": [
                         {
-                            "p": "X19"
+                            "p": "V07"
                         },
                         {
                             "p": "TUTORIAL"
@@ -980,16 +606,16 @@
                             "p": "EVERY WEEK"
                         },
                         {
-                            "p": "THURSDAY"
+                            "p": "TUESDAY"
+                        },
+                        {
+                            "p": "900"
                         },
                         {
                             "p": "1100"
                         },
                         {
-                            "p": "1200"
-                        },
-                        {
-                            "p": "BIZ2-0226"
+                            "p": "BIZ2-B104"
                         },
                         {
                             "p": "Not Available in Tutorial Balloting yet."
@@ -1000,7 +626,7 @@
                         "bgcolor": "#ffffff",
                         "td": [
                         {
-                            "p": "X20"
+                            "p": "V08"
                         },
                         {
                             "p": "TUTORIAL"
@@ -1009,16 +635,16 @@
                             "p": "EVERY WEEK"
                         },
                         {
-                            "p": "THURSDAY"
+                            "p": "FRIDAY"
                         },
                         {
-                            "p": "1200"
+                            "p": "1100"
                         },
                         {
                             "p": "1300"
                         },
                         {
-                            "p": "BIZ2-0226"
+                            "p": "BIZ2-0302"
                         },
                         {
                             "p": "Not Available in Tutorial Balloting yet."
@@ -1029,7 +655,7 @@
                         "bgcolor": "#EEEEEE",
                         "td": [
                         {
-                            "p": "X21"
+                            "p": "V09"
                         },
                         {
                             "p": "TUTORIAL"
@@ -1038,16 +664,74 @@
                             "p": "EVERY WEEK"
                         },
                         {
-                            "p": "THURSDAY"
+                            "p": "FRIDAY"
+                        },
+                        {
+                            "p": "1300"
+                        },
+                        {
+                            "p": "1500"
+                        },
+                        {
+                            "p": "BIZ2-0201"
+                        },
+                        {
+                            "p": "Not Available in Tutorial Balloting yet."
+                        }
+                        ]
+                    },
+                    {
+                        "bgcolor": "#ffffff",
+                        "td": [
+                        {
+                            "p": "V10"
+                        },
+                        {
+                            "p": "TUTORIAL"
+                        },
+                        {
+                            "p": "EVERY WEEK"
+                        },
+                        {
+                            "p": "FRIDAY"
+                        },
+                        {
+                            "p": "1500"
+                        },
+                        {
+                            "p": "1700"
+                        },
+                        {
+                            "p": "BIZ2-0201"
+                        },
+                        {
+                            "p": "Not Available in Tutorial Balloting yet."
+                        }
+                        ]
+                    },
+                    {
+                        "bgcolor": "#EEEEEE",
+                        "td": [
+                        {
+                            "p": "V11"
+                        },
+                        {
+                            "p": "TUTORIAL"
+                        },
+                        {
+                            "p": "EVERY WEEK"
+                        },
+                        {
+                            "p": "FRIDAY"
                         },
                         {
                             "p": "1400"
                         },
                         {
-                            "p": "1500"
+                            "p": "1600"
                         },
                         {
-                            "p": "BIZ2-0226"
+                            "p": "BIZ2-0302"
                         },
                         {
                             "p": "Not Available in Tutorial Balloting yet."
@@ -1058,7 +742,7 @@
                         "bgcolor": "#ffffff",
                         "td": [
                         {
-                            "p": "X22"
+                            "p": "V12"
                         },
                         {
                             "p": "TUTORIAL"
@@ -1070,13 +754,13 @@
                             "p": "THURSDAY"
                         },
                         {
-                            "p": "1500"
+                            "p": "900"
                         },
                         {
-                            "p": "1600"
+                            "p": "1100"
                         },
                         {
-                            "p": "BIZ2-0226"
+                            "p": "BIZ2-0301"
                         },
                         {
                             "p": "Not Available in Tutorial Balloting yet."
@@ -1087,7 +771,7 @@
                         "bgcolor": "#EEEEEE",
                         "td": [
                         {
-                            "p": "X23"
+                            "p": "V13"
                         },
                         {
                             "p": "TUTORIAL"
@@ -1099,42 +783,13 @@
                             "p": "THURSDAY"
                         },
                         {
-                            "p": "1600"
+                            "p": "1100"
                         },
                         {
-                            "p": "1700"
+                            "p": "1300"
                         },
                         {
-                            "p": "BIZ2-0226"
-                        },
-                        {
-                            "p": "Not Available in Tutorial Balloting yet."
-                        }
-                        ]
-                    },
-                    {
-                        "bgcolor": "#ffffff",
-                        "td": [
-                        {
-                            "p": "X24"
-                        },
-                        {
-                            "p": "TUTORIAL"
-                        },
-                        {
-                            "p": "EVERY WEEK"
-                        },
-                        {
-                            "p": "THURSDAY"
-                        },
-                        {
-                            "p": "1700"
-                        },
-                        {
-                            "p": "1800"
-                        },
-                        {
-                            "p": "BIZ2-0226"
+                            "p": "BIZ2-0301"
                         },
                         {
                             "p": "Not Available in Tutorial Balloting yet."

@@ -2,10 +2,10 @@
  * CORS Planner - Parser
  * 
  * Parse result come from YQL query
- * Return a module object, null if failed
+ * Return an object contains all data, null if failed
  *
  * Author: Wang Zhuochun
- * Last Edit: 14/Jul/2012 04:35 PM
+ * Last Edit: 18/Jul/2012 10:46 PM
  * ========================================
  * <License>
  * ======================================== */
@@ -15,11 +15,16 @@ define(function(require, exports) {
     "use strict";
     /*jshint jquery:true, laxcomma:true, maxerr:50*/
 
-    var Module = {};
+    var Module;
 
     // trim unwanted \n and \s
     function trim(str) {
         return $.trim(str.replace(/\\n\s*/g, " "));
+    }
+
+    // check whether data passed in is valid
+    function isDataValid(data) {
+        return (data && data.query && data.query.results && data.query.results.table) ? true : false;
     }
 
     // check whether module is available in the semester
@@ -69,24 +74,24 @@ define(function(require, exports) {
 
     // retrieve and set the module lectures
     function setModuleLecture(data) {
-        var lectures = Module.lectures
+        var lect, lectGrp, lects = Module.lectures
         , info = [ "classNo", "type", "weekType", "weekDay", "startTime", "endTime", "room" ]
-        , i, j, dataLength = data.length, infoLength = info.length;
+        , i, j, dataLen = data.length, infoLen = info.length;
 
-        //log(JSON.stringify(data));
-
-        for (i = 1; i < dataLength; i++) {
-            var lecture = {}, lectureClass = data[i].td[0].p;
-
-            for (j = 0; j < infoLength; j++) {
-                lecture[info[j]] = data[i].td[j].p;
+        for (i = 1; i < dataLen; i++) {
+            lect = {};
+            // assign values to this lecture
+            for (j = 0; j < infoLen; j++) {
+                lect[info[j]] = data[i].td[j].p;
             }
-
-            if (!lectures[lectureClass]) {
-                lectures[lectureClass] = [];
+            // find this lecture's group weekday-startTime-endTime
+            lectGrp = lect.weekDay + "-" + lect.startTime + "-" + lect.endTime;
+            // if the lecture group does not exist, create it
+            if (!lects[lectGrp]) {
+                lects[lectGrp] = [];
             }
-
-            lectures[lectureClass].push(lecture);
+            // push lecture to its group
+            lects[lectGrp].push(lect);
         }
     }
 
@@ -97,38 +102,35 @@ define(function(require, exports) {
 
     // retrieve and set the module tutorials and labs
     function setModuleTutorial(data) {
-        var tutorials = Module.tutorials, labs = Module.labs
+        var klass, classType, classGrp, tuts = Module.tutorials, labs = Module.labs
         , info = [ "classNo", "type", "weekType", "weekDay", "startTime", "endTime", "room" ]
-        , i, j, dataLength = data.length, infoLength = info.length;
-    
-        for (i = 1; i < dataLength; i++) {
-            var tutorial = {} // here tutorial = tutorial/lab
-            , classNo = data[i].td[0].p
-            , type = data[i].td[1].p;
+        , i, j, dataLen = data.length, infoLen = info.length;
 
-            for (j = 0; j < infoLength; j++) {
-                tutorial[info[j]] = data[i].td[j].p;
+        for (i = 1; i < dataLen; i++) {
+            klass = {};
+            classType = data[i].td[1].p; // Tutorial or Labs
+            // assign values to this class
+            for (j = 0; j < infoLen; j++) {
+                klass[info[j]] = data[i].td[j].p;
             }
-
-            if (type === "TUTORIAL") {
-                tutorials[classNo] = tutorials[classNo] || [];
-                tutorials[classNo].push(tutorial);
+            // find this class's group weekday-startTime-endTime
+            classGrp = klass.weekDay + "-" + klass.startTime + "-" + klass.endTime;
+            // add class to its type group
+            if (classType === "TUTORIAL") {
+                tuts[classGrp] = tuts[classGrp] || [];
+                tuts[classGrp].push(klass);
             } else {
-                labs[classNo] = labs[classNo] || [];
-                labs[classNo].push(tutorial);
+                labs[classGrp] = labs[classGrp] || [];
+                labs[classGrp].push(klass);
             }
         }
     }
 
     // ========================================
-    // Return true if module available and exists
+    // Return true if module exists and available
     // ========================================
     exports.tryParse = function(data) {
-        if (!data.query.results) {
-            return false;
-        }
-        
-        return moduleIsAvailable(data.query.results.table[1].tr[1]);
+        return isDataValid(data) && moduleIsAvailable(data.query.results.table[1].tr[1]);
     };
 
     // ========================================
@@ -142,24 +144,24 @@ define(function(require, exports) {
     // ========================================
     exports.parse = function(data) {
         // check whether data has wanted results
-        if (!data.query.results) {
+        if (!isDataValid(data)) {
             return null;
         }
 
         // ready to parse data 
         var result = data.query.results.table;
 
-        /* ========================================
-            result[0] - -
-            result[1] - Module Head - Module Availibility
-            result[2] - Module Information
-            result[3] - Lecture Availibility + Workload Explain
-            result[4] - Lectures
-            result[5] - Tutorial Availibility
-            result[6] - Tutorials/Labs
-         * ======================================== */
+        // ========================================
+        // result[0] - -
+        // result[1] - Module Head - Module Availibility
+        // result[2] - Module Information
+        // result[3] - Lecture Availibility + Workload Explain
+        // result[4] - Lectures
+        // result[5] - Tutorial Availibility
+        // result[6] - Tutorials/Labs
+        // ========================================
 
-         Module = {};
+        Module = {}; // initialize a new Module object
 
         // check whether the module exists
         if (moduleIsAvailable(result[1].tr[1])) {

@@ -22,6 +22,7 @@
           , paths : {
               "bootstrap" : "libs/bootstrap/boostrap.min"
               , "api" : "app/api"
+              , "modal" : "app/modals"
             // RequireJS Plugins
               , "text" : "libs/requirejs-plugins/text"
               , "json" : "libs/requirejs-plugins/json"
@@ -33,7 +34,9 @@
 
       // include all the test specs here
       require([
-          "spec/api"
+          "spec/apiTest"
+        , "spec/moduleTest"
+        , "spec/modulesTest"
       ], function() {
           $(function() {
               var jasmineEnv = jasmine.getEnv()

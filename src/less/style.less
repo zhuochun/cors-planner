@@ -105,19 +105,22 @@ body {
 
 /* planner */
 #main {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 #timetable {
-  position: relative;
+    position: relative;
 
-   th {
-     text-align: center;
-   }
+    th {
+        text-align: center;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
 
-   .weekday { 
-     text-align: right;
-   }
+    .weekday { 
+        max-width: 50px;
+        text-align: right;
+    }
 }
 
 /* module slot bar */
@@ -133,34 +136,34 @@ body {
 @defaultBarBgColor: @barRedBgColor;
 // module slot bar styles
 .bar {
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.25) inset;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.25) inset;
 
-  font-size: 11px;
-  font-height: 10px;
+    font-size: 11px;
+    font-height: 10px;
 
-  position: absolute;
-  padding-top: 2px;
-  height: 30px;
+    position: absolute;
+    padding-top: 2px;
+    height: 30px;
 
-  text-align: center;
-  line-height: 15px;
+    text-align: center;
+    line-height: 15px;
 
-  opacity: .8;
+    opacity: .8;
 
-  &.lecture {
-    color: @barRedColor;
-    background-color: @barRedBgColor;
-  }
+    &.lecture {
+        color: @barRedColor;
+        background-color: @barRedBgColor;
+    }
 
-  &.tutorial {
-    color: @barGreenColor;
-    background-color: @barGreenBgColor;
-  }
+    &.tutorial {
+        color: @barGreenColor;
+        background-color: @barGreenBgColor;
+    }
 
-  &.lab {
-    color: @barOrangeColor;
-    background-color: @barOrangeBgColor;
-  }
+    &.lab {
+        color: @barOrangeColor;
+        background-color: @barOrangeBgColor;
+    }
 }
 
 /* footer */

@@ -56,6 +56,8 @@ define(function(require, exports) {
 
       $slot.detach();
 
+      var $width = $tbody[0].offsetWidth;
+
       for (key in mod.lectures) {
         // TODO test key is property of lectures
 
@@ -68,6 +70,7 @@ define(function(require, exports) {
 
           top = $tbody[weekDays[lecture.weekDay]].offsetTop + 2;
 
+
           // TODO: deal with class at same time but different room
           time = parseInt(lecture.startTime, 10);
           left = time % 100 === 30 ? $tbody.find("td")[(time/100 - 8) * 2 + 1].offsetLeft : $tbody.find("td")[(time/100 - 8) * 2 + 2].offsetLeft;
@@ -75,6 +78,9 @@ define(function(require, exports) {
           time = parseInt(lecture.endTime, 10);
           width = time % 100 === 30 ? $tbody.find("td")[(time/100 - 8) * 2 + 1].offsetLeft : $tbody.find("td")[(time/100 - 8) * 2 + 2].offsetLeft;
           width = width - left;
+
+          left = (left / $width) * 100 + "%";
+          width = (width / $width) * 100 + "%";
 
           $div.css({"top" : top, "left" : left, "width" : width});
           $div.appendTo($slot);
@@ -111,7 +117,7 @@ define(function(require, exports) {
 
           // TODO: check modCode is valid
 
-          yql.request(modCode, function(result) {
+          yql.requestModule(modCode, function(result) {
               var module = parser.parse(result);
 
               if (module !== null) {
@@ -137,8 +143,8 @@ define(function(require, exports) {
         var i, j, k, table = ["<table class='table table-striped table-bordered'><thead>"], thead = [], tbody = [];
         // generate table head
         for (i = 8, j = 0; i < 21; i++) {
-          thead[j++] = "<th colspan='2'>" + ((i < 10) ? "0" + i : i) +
-            "<span class='visible-desktop'> " + ((i < 13) ? "AM" : "PM") + "</span></th>";
+          thead[j++] = "<th colspan='2'>" + ((i < 10) ? "0" + i : i) + "</th>";
+            //"<span class='visible-desktop'> " + ((i < 13) ? "AM" : "PM") + "</span></th>";
         }
 
         table.push("<tr><th></th>" + thead.join(" ") + "</tr></thead>");

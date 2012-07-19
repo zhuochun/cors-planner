@@ -2,12 +2,12 @@
  * CORS Planner - API Units Tests
  *
  * Author: Wang Zhuochun
- * Last Edit: 18/Jul/2012 05:32 PM
+ * Last Edit: 19/Jul/2012 02:55 PM
  * ========================================
  * <License>
  * ======================================== */
 
-define(function(require, exports, nullModData) {
+define(function(require, exports) {
 
     "use strict";
     /*jshint browser:true, jquery:true, laxcomma:true, maxerr:50*/
@@ -65,6 +65,7 @@ define(function(require, exports, nullModData) {
         // include JSON test data
         , modNull = require("json!testData/null.json")
         , modACC1002 = require("json!testData/acc1002.json")
+        , modACC1002parsed = require("json!testData/acc1002parsed.json")
         , modCS1010 = require("json!testData/cs1010.json");
 
         describe("Parser tryParse() method", function() {
@@ -112,7 +113,7 @@ define(function(require, exports, nullModData) {
                 expect(parser.parse(modCS1010).isAvailable).toBe(true);
             });
 
-            it("will return a Module object if module exists", function() {
+            it("will return a Module object if module exists (I) - general", function() {
                 var cs1010 = parser.parse(modCS1010);
                 // module is defined
                 expect(cs1010).toBeDefined();
@@ -134,6 +135,15 @@ define(function(require, exports, nullModData) {
                 }
                 expect(size).toEqual(24);
             });
+
+            it("will return a Module object if module exists (II) - lect + tut", function() {
+                var acc1002 = parser.parse(modACC1002);
+                // module is defined
+                expect(acc1002).toBeDefined();
+                // module is correct
+                expect(acc1002).toEqual(modACC1002parsed);
+            });
+
         });
 
     });

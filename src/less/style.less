@@ -36,29 +36,72 @@ body {
 }
 
 /* board */
-@moduleBgColor: #efefef;
-@moduleHeight: 130px;
-@moduleWidth: 150px;
-@addModuleWidth: 150px;
+@moduleWidth: 140px;
+@moduleHeight: 101px;
 
 #add {
-    display: inline-block;
-    width: @addModuleWidth;
-    ///height: @moduleHeight;
-    padding: 10px 10px 10px;
-    background: @moduleBgColor;
+    label {
+        font-weight: bold;
+        margin-right: 10px;
+    }
 
-    form {
-        margin-top: 50px;
+    i {
+        margin-right: 4px;
     }
 }
 
-    .module {
-        display: inline-block;
-        width: @addModuleWidth;
-        height: @moduleHeight;
-        
+#basket {
+    position: relative;
+    overflow: auto;
+}
+
+#basket-scroll {
+    position: relative;
+    width: 1500px;
+    height: @moduleHeight
+}
+
+#basket-scroll div:last-child {
+    margin-right: 0px;
+}
+
+.module {
+    float: left;
+    display: block;
+
+    padding: 5px;
+    margin-right: 10px;
+
+    overflow: hidden;
+
+    background-color: @navbarBackgroundHighlight;
+
+    border: 1px solid @grayLight; 
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+
+    -moz-box-shadow: 0px 2px 5px rgba(0,0,0,.1);
+    -webkit-box-shadow: 0px 2px 5px rgba(0,0,0,.1);
+    box-shadow: 0px 2px 5px rgba(0,0,0,.1);
+
+    width: @moduleWidth;
+    height: @moduleHeight;
+
+    h4 {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
+
+    .module-class {
+        margin-top: 20px;
+    }
+
+    .label {
+        padding: 13px 10px;
+    }
+}
 
 /* planner */
 #main {
@@ -73,7 +116,7 @@ body {
    }
 
    .weekday { 
-     text-align: left;
+     text-align: right;
    }
 }
 

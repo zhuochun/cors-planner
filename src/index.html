@@ -59,52 +59,107 @@
   </div> <!-- /nav -->
 
   <div class="container-fluid" id="main">
-
-    <div class="row-fluid" id="board">
-      <div id="add" class="module">
-        <form class="form-inline module module-form">
-          <div class="input-append">
-            <input id="mod-code" type="text" class="input-small" placeholder="Module Code" value="" />
-            <button id="add-btn" type="submit" class="btn btn-primary">Add</button>
-          </div>
-        </form>
-      </div>
-
-      <div id="basket">
-        <div class="module">
-          <h4>CS1010</h4>
-          <span>LECT</span>
-          <span>TUT</span>
-          <span>LAB</span>
-        </div>
-
-        <div class="module">
-          <h4>CS1010</h4>
-          <span>LECT</span>
-          <span>TUT</span>
-          <span>LAB</span>
-        </div>
-      </div>
-    </div> <!-- ../board -->
-
     <div class="row-fluid">
-      <div class="span8" id="planner">
-        <div class="row-fluid" id="timetable">
-          <div id="table-grid">
-          </div>
-          <div id="table-slot">
-            <!-- TODO: remove this after tests -->
-            <div class="bar lecture">
-              CS2010
-            </div>
-          </div>
-        </div> <!-- ../timetable -->
-      </div> <!-- ./planner -->
 
-      <div class="span4" id="detail">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lacus ligula, accumsan id imperdiet rhoncus, dapibus vitae arcu. Nulla non quam erat, luctus consequat nisi. Integer hendrerit lacus sagittis erat fermentum tincidunt. Cras vel dui neque. In sagittis commodo luctus. Mauris non metus dolor, ut suscipit dui. Aliquam mauris lacus, laoreet et consequat quis, bibendum id ipsum. Donec gravida, diam id imperdiet cursus, nunc nisl bibendum sapien, eget tempor neque elit in tortor.
-      </div> <!-- ./detail -->
-    </div> <!-- /.row-fluid-->
+      <div id="primary-panel" class="span8">
+        <div class="row-fluid" id="board">
+          <div id="add">
+            <form class="form-inline">
+              <div class="input-append">
+                <label for="mod-code"><i class="icon-bolt"></i> Enter Module Code : </label>
+                <input id="mod-code" type="text" class="input-large" placeholder="Module Code" value="" />
+                <button id="add-btn" type="submit" class="btn btn-danger">Add<span class="visible-desktop"> Module</span></button>
+                <button id="preview-btn" type="button" class="btn btn-primary">Preview<span class="visible-desktop"> Module</span></button>
+              </div>
+            </form>
+          </div> <!-- ../add -->
+
+          <div id="basket" class="well">
+            <div id="basket-scroll">
+
+              <div class="module">
+                <h3>CS1010</h3>
+                <h4>Financial Accounting Accounting Accounting</h4>
+                <div class="module-class">
+                  <span class="label label-warning lecture-basket">LECT</span>
+                  <span class="label label-success tutorial-basket">TUT</span>
+                  <span class="label label-info lab-basket">LAB</span>
+                </div>
+              </div>
+              <div class="module">
+                <h4>CS1010</h4>
+                <span>LECT</span>
+                <span>TUT</span>
+                <span>LAB</span>
+              </div>
+              <div class="module">
+                <h4>CS1010</h4>
+                <span>LECT</span>
+                <span>TUT</span>
+                <span>LAB</span>
+              </div>
+              <div class="module">
+                <h4>CS1010</h4>
+                <span>LECT</span>
+                <span>TUT</span>
+                <span>LAB</span>
+              </div>
+              <div class="module">
+                <h4>CS1010</h4>
+                <span>LECT</span>
+                <span>TUT</span>
+                <span>LAB</span>
+              </div>
+              <div class="module">
+                <h4>CS1010</h4>
+                <span>LECT</span>
+                <span>TUT</span>
+                <span>LAB</span>
+              </div>
+              <div class="module">
+                <h4>CS1010</h4>
+                <span>LECT</span>
+                <span>TUT</span>
+                <span>LAB</span>
+              </div>
+              <div class="module">
+                <h4>CS1010</h4>
+                <span>LECT</span>
+                <span>TUT</span>
+                <span>LAB</span>
+              </div>
+              <div class="module">
+                <h4>CS1010</h4>
+                <span>LECT</span>
+                <span>TUT</span>
+                <span>LAB</span>
+              </div>
+
+            </div> <!-- .../basket-scroll -->
+          </div> <!-- ../basket -->
+        </div> <!-- ./board -->
+
+        <div class="row-fluid" id="planner">
+          <div class="row-fluid" id="timetable">
+            <div id="table-grid">
+            </div>
+            <div id="table-slot">
+            </div>
+          </div> <!-- ../timetable -->
+        </div> <!-- ./planner -->
+      </div> <!-- /primary-panel -->
+
+      <div class="span4" id="secondary-panel">
+        <div id="detail">
+
+          <h3>Module Details</h3>
+
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lacus ligula, accumsan id imperdiet rhoncus, dapibus vitae arcu. Nulla non quam erat, luctus consequat nisi. Integer hendrerit lacus sagittis erat fermentum tincidunt. Cras vel dui neque. In sagittis commodo luctus. Mauris non metus dolor, ut suscipit dui. Aliquam mauris lacus, laoreet et consequat quis, bibendum id ipsum. Donec gravida, diam id imperdiet cursus, nunc nisl bibendum sapien, eget tempor neque elit in tortor.
+
+        </div> <!-- ./detail -->
+      </div> <!-- /secondary-panel -->
+
+    </div>
   </div> <!-- /main -->
 
   <div id="footer">

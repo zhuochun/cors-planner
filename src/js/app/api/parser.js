@@ -43,7 +43,9 @@ define(function(require, exports) {
         var i = 1 // starting from 2nd td
         , tFun = function(data) { return data.p; }
         , infos = {
-            "code" : tFun
+            "code" : function(data) {
+                return data.p.split(" ")[0];
+            }
             , "title" : tFun
             , "description" : tFun
             , "examinable" : tFun

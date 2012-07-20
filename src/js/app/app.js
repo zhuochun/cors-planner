@@ -68,37 +68,32 @@ define(function(require, exports) {
         , "FRIDAY": 4
       };
 
+      var getIndex = function(t) {
+          t = parseInt(t, 10);
+          return (Math.floor(t / 100) - 8) * 2 + 1 + (t % 100 ? 1 : 0) ;
+      };
+
       $slot.detach();
 
       var $width = $tbody[0].offsetWidth;
 
       for (key in mod.lectures) {
-        // TODO test key is property of lectures
+          var info = key.split("-"); // key is in format: "MONDAY-0900-1000"
 
-        length = mod.lectures[key].length;
+          // create the div to hold this lecture slot
+          $div = $("<div>").addClass("bar lecture").text(mod.code + " (L)");
 
-        for (i = 0; i < length; i++) {
-          lecture = mod.lectures[key][i];
+          // set top, according to its weekDay
+          top = $tbody[weekDays[info[0]]].offsetTop + 2;
 
-          $div = $("<div>").addClass("bar lecture").text(mod.code + " (L) " + lecture.room);
-
-          top = $tbody[weekDays[lecture.weekDay]].offsetTop + 2;
-
-
-          // TODO: deal with class at same time but different room
-          time = parseInt(lecture.startTime, 10);
-          left = time % 100 === 30 ? $tbody.find("td")[(time/100 - 8) * 2 + 1].offsetLeft : $tbody.find("td")[(time/100 - 8) * 2 + 2].offsetLeft;
-
-          time = parseInt(lecture.endTime, 10);
-          width = time % 100 === 30 ? $tbody.find("td")[(time/100 - 8) * 2 + 1].offsetLeft : $tbody.find("td")[(time/100 - 8) * 2 + 2].offsetLeft;
-          width = width - left;
+          left = $tbody.find("td")[getIndex(info[1])].offsetLeft;
+          width = $tbody.find("td")[getIndex(info[2])].offsetLeft - left;
 
           left = (left / $width) * 100 + "%";
           width = (width / $width) * 100 + "%";
 
           $div.css({"top" : top, "left" : left, "width" : width});
           $div.appendTo($slot);
-        }
       }
 
       $slot.appendTo("#timetable");

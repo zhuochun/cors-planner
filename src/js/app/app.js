@@ -2,7 +2,7 @@
  * CORS Planner - App Main
  *
  * Author: Wang Zhuochun
- * Last Edit: 14/Jul/2012 04:13 PM
+ * Last Edit: 19/Jul/2012 09:51 PM
  * ========================================
  * <License>
  * ======================================== */
@@ -11,9 +11,8 @@
 // TODO: [HIGH] separate functions into modules soon after prototyping
 // TODO: [HIGH] duplicated module slot over-lapping detection!!
 // TODO: [HIGH] right side bar for information display
-// TODO: [NORMAL] re-draw slots when browser resized
-// TODO: [LOW] tabs for holding different plans
-// TODO: [LOW] allow user to save plans online -> more coding :(
+// TODO: [LOW] tabs on table for holding different plans
+// TODO: [LOW] FUTURE: allow user to save plans online -> more coding :(
 
 define(function(require, exports) {
 
@@ -25,7 +24,8 @@ define(function(require, exports) {
 
     // include other components
     var yql = require("api/yql")
-        , parser = require("api/parser");
+        , parser = require("api/parser")
+        , storage = require("util/storage");
     
     // declare private variables
     var version = "0.0.1";
@@ -36,9 +36,23 @@ define(function(require, exports) {
     // exports module
     exports.init = function() {
         // code here
+        initTypeahead();
         initInterface();
         bindEvents();
     };
+
+    function initTypeahead() {
+        var cors = storage.get("cors-modules");
+
+        if (cors) {
+            $("#mod-code").typeahead({source:cors});
+        } else {
+            $.getScript("js/data/corsmodules.min.js", function() {
+                storage.save("cors-modules", window.corsModules);
+                $("#mod-code").typeahead({source:window.corsModules});
+            });
+        }
+    }
 
     function allocateModuleSlots(mod) {
       var $div, $tr, i, length, key, lecture, top, left, width, time;
@@ -113,23 +127,25 @@ define(function(require, exports) {
       $("#add-btn").on("click", function(e) {
           e.preventDefault();
 
-          var modCode = $("#mod-code").val();
+          var modCode = $("#mod-code").val().split(" ")[0];
 
-          // TODO: check modCode is valid
+          if (modCode && /^[a-zA-Z]{2,3}\d{4}$/.test(modCode)) {
+              $("#mod-code").val(""); // empty the val
 
-          yql.requestModule(modCode, function(result) {
-              var module = parser.parse(result);
+              yql.requestModule(modCode, function(result) {
+                  var module = parser.parse(result);
 
-              if (module !== null) {
-                if (module.isAvailable) {
-                    // TODO: should not allow duplicated module
-                  modules.push(module);
-                  $basket.trigger("update");
-                } else {
-                  window.alert("module : " + modCode + " is not available");
-                }
-              }
-          });
+                  if (module !== null) {
+                      if (module.isAvailable) {
+                          // TODO: should not allow duplicated module
+                          modules.push(module);
+                          $basket.trigger("update");
+                      } else {
+                          window.alert("module : " + modCode + " is not available");
+                      }
+                  }
+              });
+          }
       });
         
 

@@ -30,6 +30,6 @@
     ]
 
 // Exclude less folder
-  , fileExclusionRegExp: /^.*(less|modernizr).*$/
+  , fileExclusionRegExp: /^.*(less|modernizr|data).*$/
 
 })

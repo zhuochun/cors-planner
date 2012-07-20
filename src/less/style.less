@@ -113,13 +113,20 @@ body {
 
     th {
         text-align: center;
-        white-space: nowrap;
-        text-overflow: ellipsis;
     }
 
     .weekday { 
         max-width: 50px;
+        height: 50px;
+
+        vertical-align: middle;
+        white-space: nowrap;
+        font-weight: bold;
+
         text-align: right;
+        text-overflow: ellipsis;
+
+        overflow: hidden;
     }
 }
 
@@ -138,15 +145,17 @@ body {
 .bar {
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.25) inset;
 
-    font-size: 11px;
-    font-height: 10px;
-
     position: absolute;
-    padding-top: 2px;
+    overflow: hidden;
+
     height: 30px;
+    padding-top: 2px;
+
+    font-size: 11px;
+    line-height: 14px;
 
     text-align: center;
-    line-height: 15px;
+    text-overflow: ellipsis;
 
     opacity: .8;
 

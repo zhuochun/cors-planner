@@ -30,37 +30,51 @@ define(function(require, exports) {
         });
 
         it("will be an empty list at start", function() {
-            expect(modList.getSize()).toEqual(0);
+            expect(modList.length()).toEqual(0);
         });
 
         it("can add a module to list", function() {
             // add acc1002
-            expect(modList.add(acc1002)).toBe(true);
-            expect(modList.getSize()).toEqual(1);
+            modList.add(acc1002);
+            expect(modList.length()).toEqual(1);
 
             // add acc1002 again
-            expect(modList.add(acc1002)).toBe(false);
-            expect(modList.getSize()).toEqual(1);
+            modList.add(acc1002);
+            expect(modList.length()).toEqual(1);
 
             // add cs1020
-            expect(modList.add(cs1020)).toBe(true);
-            expect(modList.getSize()).toEqual(2);
+            modList.add(cs1020);
+            expect(modList.length()).toEqual(2);
         });
 
         it("can remove a module from list", function() {
             // add modules
-            expect(modList.add(acc1002)).toBe(true);
-            expect(modList.add(cs1020)).toBe(true);
+            modList.add(acc1002);
+            modList.add(cs1020);
             // check size
-            expect(modList.getSize()).toEqual(2);
+            expect(modList.length()).toEqual(2);
             // remove acc1002x (not exists)
             expect(modList.remove("acc1002x")).toBeNull();
             // remove acc1002 (exists)
             expect(modList.remove("acc1002").get("code")).toEqual("ACC1002");
             // check size again
-            expect(modList.getSize()).toEqual(1);
+            expect(modList.length()).toEqual(1);
             // remove acc1002 (not exists) again
             expect(modList.remove("acc1002")).toBeNull();
+        });
+
+        it("can get a module from list", function() {
+            // add modules
+            modList.add(acc1002);
+            modList.add(cs1020);
+            // check size
+            expect(modList.length()).toEqual(2);
+            // get acc1002x (not exists)
+            expect(modList.get("acc1002x")).toBeNull();
+            // get acc1002 (exists)
+            expect(modList.get("acc1002").get("code")).toEqual("ACC1002");
+            // get cs1020 (exists)
+            expect(modList.get("cs1020").get("code")).toEqual("CS1020");
         });
 
     });

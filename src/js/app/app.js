@@ -25,34 +25,23 @@ define(function(require, exports) {
     // include other components
     var yql = require("api/yql")
         , parser = require("api/parser")
-        , storage = require("util/storage");
+    // include app view
+        , appView = require("view/appView");
     
     // declare private variables
-    var version = "0.0.1";
+    var version = "0.0.5";
 
     // TODO: replace this, just for testing
     var modules = [], $basket = $("#basket"), $board = $("#board");
 
     // exports module
     exports.init = function() {
+        // initial app views
+        appView.render();
+
         // code here
-        initTypeahead();
-        initInterface();
         bindEvents();
     };
-
-    function initTypeahead() {
-        var cors = storage.get("cors-modules");
-
-        if (cors) {
-            $("#mod-code").typeahead({source:cors});
-        } else {
-            $.getScript("js/data/corsmodules.min.js", function() {
-                storage.save("cors-modules", window.corsModules);
-                $("#mod-code").typeahead({source:window.corsModules});
-            });
-        }
-    }
 
     function allocateModuleSlots(mod) {
       var $div, $tr, i, length, key, lecture, top, left, width, time;
@@ -119,62 +108,7 @@ define(function(require, exports) {
         $basket.appendTo($board);
       });
 
-      $("#add-btn").on("click", function(e) {
-          e.preventDefault();
 
-          var modCode = $("#mod-code").val().split(" ")[0];
-
-          if (modCode && /^[a-zA-Z]{2,3}\d{4}$/.test(modCode)) {
-              $("#mod-code").val(""); // empty the val
-
-              yql.requestModule(modCode, function(result) {
-                  var module = parser.parse(result);
-
-                  if (module !== null) {
-                      if (module.isAvailable) {
-                          // TODO: should not allow duplicated module
-                          modules.push(module);
-                          $basket.trigger("update");
-                      } else {
-                          window.alert("module : " + modCode + " is not available");
-                      }
-                  }
-              });
-          }
-      });
-        
-
-    }
-
-    function initInterface() {
-        // enable tooltips
-        $("#nav").tooltip({placement:"bottom", selector:"a[rel=tooltip]"});
-
-        // generate table
-        var i, j, k, table = ["<table class='table table-striped table-bordered'><thead>"], thead = [], tbody = [];
-        // generate table head
-        for (i = 8, j = 0; i < 21; i++) {
-          thead[j++] = "<th colspan='2'>" + ((i < 10) ? "0" + i : i) + "</th>";
-            //"<span class='visible-desktop'> " + ((i < 13) ? "AM" : "PM") + "</span></th>";
-        }
-
-        table.push("<tr><th></th>" + thead.join(" ") + "</tr></thead>");
-
-        // generate table body
-        var weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-        for (i = 0, j = 0; i < 5; i++) {
-          tbody[j] = "<tr><td class='weekday'>" + weekdays[i] + "</td>";
-
-          for (k = 8; k < 21; k++)
-            tbody[j] += "<td></td><td></td>";
-        
-          j++;
-        }
-
-        table.push("<tbody>" + tbody.join(" ") + "</tbody");
-
-        // append table to html
-        $("#table-grid").html(table.join(""));
     }
 
 });

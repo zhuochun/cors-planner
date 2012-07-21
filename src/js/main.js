@@ -2,20 +2,38 @@
  * Require Configurations for CORS Planner
  *
  * Author: Wang Zhuochun
- * Last Edit: 14/Jul/2012 04:09 PM
+ * Last Edit: 21/Jul/2012 04:35 PM
  * ======================================== */
+
+    /*jshint browser:true, jquery:true, laxcomma:true, maxerr:50*/
 
 /* RequireJs Configurations */
 require.config({
+
     baseUrl : "js/libs"
 
   , paths : {
+    // jQuery plugins
         "bootstrap" : "bootstrap/bootstrap.min"
+    // RequireJS plugins
+      , "hgn" : "requirejs-plugins/hgn"
+      , "text" : "requirejs-plugins/text"
+      , "hogan" : "requirejs-plugins/hogan"
+    // App directories
       , "app" : "../app"
       , "api" : "../app/api"
       , "modal" : "../app/modals"
+      , "view" : "../app/views"
+      , "controller" : "../app/controllers"
+    // Helper Utils
       , "util" : "../utils"
-      , "test" : "../../../test"
+    // Templates
+      , "template" : "../../templates"
+    }
+
+    // configure hgn! plugin
+  , hgn : {
+        templateExtension : '.mustache'
     }
 });
 

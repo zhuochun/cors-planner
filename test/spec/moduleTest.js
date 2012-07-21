@@ -52,13 +52,13 @@ define(function(require, exports) {
             , acc1002 = new Module(modACC1002);
 
             // lowercase
-            expect(cs1020.count("lecture")).toEqual(1);
-            expect(cs1020.count("tutorial")).toEqual(8);
-            expect(cs1020.count("lab")).toEqual(8);
+            expect(cs1020.count("lectures")).toEqual(1);
+            expect(cs1020.count("tutorials")).toEqual(8);
+            expect(cs1020.count("labs")).toEqual(8);
             // uppercase
-            expect(acc1002.count("LECTURE")).toEqual(1);
-            expect(acc1002.count("TUTORIAL")).toEqual(13);
-            expect(acc1002.count("LAB")).toEqual(0);
+            expect(acc1002.count("LECTURES")).toEqual(1);
+            expect(acc1002.count("TUTORIALS")).toEqual(13);
+            expect(acc1002.count("LABS")).toEqual(0);
         });
 
         it("only return TRUE is another module has the same code", function() {

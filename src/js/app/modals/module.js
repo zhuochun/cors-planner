@@ -4,7 +4,7 @@
  * a Module class
  *
  * Author: Wang Zhuochun
- * Last Edit: 18/Jul/2012 03:48 PM
+ * Last Edit: 21/Jul/2012 05:27 PM
  * ========================================
  * <License>
  * ======================================== */
@@ -74,11 +74,11 @@ define(function(require, exports) {
     Module.fn.count = function(type) {
         type = type.toLowerCase();
 
-        if (type === "lecture") {
+        if (type === "lectures") {
             return Module.Count(this.data.lectures);
-        } else if (type === "tutorial") {
+        } else if (type === "tutorials") {
             return Module.Count(this.data.tutorials);
-        } else if (type === "lab") {
+        } else if (type === "labs") {
             return Module.Count(this.data.labs);
         }
     };

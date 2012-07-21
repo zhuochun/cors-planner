@@ -10,11 +10,13 @@
 <a name="intro" />
 ## Introduction
 
+<a name="design" />
+## Design
+
 <a name="libs" />
 ## Libraries
 
 - jQuery 1.7.2
-- jQuery++ (Drag and Drop)
 - Yahoo Query Language
 
 <a name="oth" />

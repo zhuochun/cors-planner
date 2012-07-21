@@ -1,7 +1,8 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-  "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!doctype html>
+<html lang="en">
 <head>
+  <meta charset="utf-8">
+
   <title>CORS Planner - Jasmine Spec Runner</title>
 
   <link rel="shortcut icon" type="image/png" href="lib/jasmine-1.2.0/jasmine_favicon.png">
@@ -23,9 +24,15 @@
               "bootstrap" : "libs/bootstrap/boostrap.min"
               , "api" : "app/api"
               , "modal" : "app/modals"
+              , "view" : "app/views"
+              , "controller" : "app/controllers"
+              , "util" : "utils"
+              , "template" : "templates"
             // RequireJS Plugins
+              , "hgn" : "libs/requirejs-plugins/hgn"
               , "text" : "libs/requirejs-plugins/text"
               , "json" : "libs/requirejs-plugins/json"
+              , "hogan" : "libs/requirejs-plugins/hogan"
             // Jasmine Specs
               , "spec" : "../../test/spec"
               , "testData" : "../../test/json"
@@ -37,6 +44,7 @@
           "spec/apiTest"
         , "spec/moduleTest"
         , "spec/modulesTest"
+        //, "spec/templateTest"
       ], function() {
           $(function() {
               var jasmineEnv = jasmine.getEnv()

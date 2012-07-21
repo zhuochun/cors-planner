@@ -11,7 +11,7 @@ define(function(require, exports) {
     /*jshint browser:true, jquery:true, laxcomma:true, maxerr:50 */
 
     var localStorage = window.localStorage
-    , prefix = "ivle-wander-";
+    , prefix = "cors-planner-";
 
     // Export boolean whether localStorage is Supported
     exports.supported = (function isStorageSupported() {

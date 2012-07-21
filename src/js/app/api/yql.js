@@ -15,28 +15,10 @@ define(function(require, exports) {
     "use strict";
     /*jshint browser:true, jquery:true, laxcomma:true, maxerr:50*/
 
+    // include components
+    var helper = require("util/helper")
     // module default options
-    var defaults = (function() {
-        var acadYear, semester
-        , today = new Date()
-        , year = today.getFullYear()
-        , month = today.getMonth() // month is 0 ~ 11
-        ;
-
-        if (month < 6) { // less than July (Month 6)
-            acadYear = (year - 1) + "/" + year;
-            semester = 2;
-        } else {
-            acadYear = year + "/" + (year + 1);
-            semester = 1;
-        }
-
-        return {
-            acadYear : acadYear
-          , semester : semester
-          , modCode : "ACC1002X"
-        };
-    })();
+    , defaults = $.extend({}, { modCode : "ACC1002" }, helper.getSemester());
 
     // return a valid CORS url
     function getCORSurl(module) {

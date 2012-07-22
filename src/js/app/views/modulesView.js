@@ -22,10 +22,14 @@ define(function(require, exports) {
     , moduleView = require("view/moduleView")
     , detailView = require("view/detailView")
     // dom elements associated
-    , $el = $("#basket-scroll");
+    , $el = $("#basket-scroll")
+    , $width = $el.find(".module").outerWidth();
 
     exports.init = function() {
-
+        $el.tooltip({placement:"top", selector:"h3"});
+        $el.on("click", "h3", function() {
+            previewModule($(this).text());
+        });
     };
 
     function render() {
@@ -35,7 +39,16 @@ define(function(require, exports) {
             items[i] = moduleView.render(modules.get(i));
         }
 
-        $el.empty().append(items.join("")).css("width", moduleView.getWidth(i));
+        $el.empty().append(items.join("")).css("width", getElWidth());
+    }
+
+    function renderNew(mod) {
+        $el.prepend(moduleView.render(mod)).css("width", getElWidth());
+    }
+
+    function getElWidth() {
+        $width = $width || $el.find(".module").outerWidth();
+        return ($width + 10) * modules.length(); // 10 = margin of .module
     }
 
     exports.add = function(modCode) {
@@ -49,13 +62,15 @@ define(function(require, exports) {
             modules.getModule(modCode, function(m) {
                 // add modules to list
                 modules.add(m);
-                // re-render the basket
-                render();
+                // render the module in basket
+                renderNew(m);
             });
         }
     };
 
-    exports.preview = function(modCode) {
+    exports.preview = previewModule;
+
+    function previewModule(modCode) {
         var module = modules.get(modCode);
 
         if (module) {

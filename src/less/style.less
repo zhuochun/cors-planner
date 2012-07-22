@@ -88,6 +88,10 @@ body {
     width: @moduleWidth;
     height: @moduleHeight;
 
+    h3 {
+        cursor: pointer;
+    }
+
     h4 {
         overflow: hidden;
         white-space: nowrap;
@@ -97,9 +101,39 @@ body {
     .module-class {
         margin-top: 20px;
     }
+}
 
-    .label {
-        padding: 13px 10px;
+.label-large {
+    padding: 13px 10px;
+}
+
+.draggable {
+    cursor: pointer;
+
+    &.basket {
+        &-lecture {
+            background-color: @orange;
+
+            &:hover {
+                background-color: lighten(@orange, 10%);
+            }
+        }
+
+        &-tutorial {
+            background-color: @successText;
+
+            &:hover {
+                background-color: lighten(@successText, 10%);
+            }
+        }
+
+        &-lab {
+            background-color: @infoText;
+
+            &:hover {
+                background-color: lighten(@infoText, 10%);
+            }
+        }
     }
 }
 
@@ -125,6 +159,7 @@ body {
 
         text-align: right;
         text-overflow: ellipsis;
+        text-transform: capitalize;
 
         overflow: hidden;
     }
@@ -139,8 +174,6 @@ body {
 @barOrangeColor: #714715;
 @barOrangeBgColor: #FCD39A;
 
-@defaultBarColor: @barRedColor;
-@defaultBarBgColor: @barRedBgColor;
 // module slot bar styles
 .bar {
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.25) inset;
@@ -148,30 +181,46 @@ body {
     position: absolute;
     overflow: hidden;
 
-    height: 48px;
+    height: 45px;
     padding-top: 2px;
 
+    color: #fff;
     font-size: 11px;
     line-height: 14px;
 
     text-align: center;
     text-overflow: ellipsis;
 
-    opacity: .8;
+    opacity: .6;
 
-    &.lecture {
-        color: @barRedColor;
-        background-color: @barRedBgColor;
+    &.lectures {
+        background-color: lighten(@orange, 10%);
     }
 
-    &.tutorial {
-        color: @barGreenColor;
-        background-color: @barGreenBgColor;
+    &.tutorials {
+        background-color: lighten(@successText, 10%);
     }
 
-    &.lab {
-        color: @barOrangeColor;
-        background-color: @barOrangeBgColor;
+    &.labs {
+        background-color: lighten(@infoText, 10%);
+    }
+}
+
+.bar-hover {
+    opacity: 1;
+}
+
+/* secondary panel */
+#detail {
+    height: 480px;
+    overflow: auto;
+
+    th {
+        vertical-align: top;
+    }
+
+    .header {
+        color: @infoText;
     }
 }
 

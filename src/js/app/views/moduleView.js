@@ -15,26 +15,55 @@ define(function(require, exports) {
     /*jshint jquery:true, laxcomma:true, maxerr:50*/
 
     var template = require("hgn!template/module")
-    , defaultWidth = $("#basket-scroll").find(".module").outerWidth();
+    , plannerView = require("view/plannerView")
+    // draggable options
+    , dragOpts = {
+        cursor: "move"
+        , opacity: 0.6
+        , helper: "clone"
+        , appendTo: "#primary-panel"
+        , revert: "invalid"
+        , revertDuration: 200
+        , zIndex : 1000
+        , containment: "#primary-panel"
+        , start: dragStart
+        , stop: dragStop
+    }
+    // droppable options
+    , dropOpts = {
+    
+    };
+
+    function dragStart(event, ui) {
+        var $this = $(this)
+        , mod = $this.parents(".module").data("module")
+        , type = $this.attr("id").split("-")[1];
+
+        plannerView.createDroppableSlot(mod.get("code"), type, mod.get(type));
+    }
+
+    function dragStop(event, ui) {
+        $(".temp-slot").remove();
+    }
+
 
     // render will return the html generated
     // according to the Module passed in
     exports.render = function(module) {
         var context = {
-            "code" : module.get("code")
+            "id" : module.id
+            , "code" : module.get("code")
             , "title" : module.get("title")
             , "lectures" : module.count("lectures")
             , "tutorials" : module.count("tutorials")
             , "labs" : module.count("labs")
-        };
-
-        return template(context);
-    };
-
-    // get the width of .module * i
-    exports.getWidth = function(i) {
-        defaultWidth = defaultWidth || $("#basket-scroll").find(".module").outerWidth();
-        return (defaultWidth + 10) * i; // 10 = margin of .module
+        },
+        // get the jquery object
+        $module = $(template(context)).data("module", module);
+        // assign draggable events
+        $module.find(".draggable").draggable(dragOpts);
+        // return $module DOM
+        return $module;
     };
 
 });

@@ -2,7 +2,7 @@
  * CORS Planner - AppView Main
  *
  * Author: Wang Zhuochun
- * Last Edit: 21/Jul/2012 05:29 PM
+ * Last Edit: 22/Jul/2012 09:19 PM
  * ========================================
  * <License>
  * ======================================== */
@@ -20,15 +20,21 @@ define(function(require, exports) {
 
     // initial App View
     exports.render = function() {
-        initTooltips();
         addModuleView.init();
+        modulesView.init();
         plannerView.init();
+        initMisc();
     };
 
     // initial tooltips
-    function initTooltips() {
+    function initMisc() {
         // enable tooltips
         $("#nav").tooltip({placement:"bottom", selector:"a[rel=tooltip]"});
+        $("#footer").tooltip({placement:"top", selector:"a[rel=tooltip]"});
+        // detail height
+        $(window).bind("resize", function() {
+            $("#detail").css("height", $(window).height() - 108);
+        }).trigger("resize");
     }
 
 });

@@ -49,7 +49,7 @@ define(function(require, exports) {
             , "title" : tFun
             , "description" : tFun
             , "examinable" : tFun
-            , "examdate" : function(data) {
+            , "examDate" : function(data) {
                 if (data.p.content) {
                     return trim(data.p.content); // eg. 03-12-2012 EVENING
                 } else {

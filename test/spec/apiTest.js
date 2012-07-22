@@ -119,7 +119,7 @@ define(function(require, exports) {
                 expect(cs1010).toBeDefined();
                 // some basic checking
                 expect(cs1010.code).toEqual("CS1010");
-                expect(cs1010.examdate).toEqual("27-11-2012 AM");
+                expect(cs1010.examDate).toEqual("27-11-2012 AM");
                 // cs1010 lects = 4
                 expect(getObjSize(cs1010.lectures)).toEqual(4);
                 expect(cs1010.lectures["TUESDAY-1200-1500"].length).toEqual(3);

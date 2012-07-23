@@ -19,13 +19,30 @@ define(function(require, exports) {
     // dom elements associated
     , $el = $("#detail");
 
-    // render the detail pannel
-    exports.render = function(module) {
-        if (module) {
-            $el.empty().append(template(module.format()));
+    // subscribe to app greeting events
+    // TODO: separate to specific view
+    $.subscribe("app:newUser", function(e, version) {
+        // TODO
+        $el.empty().append("<p>Welcome! Your are using version " + version + "</p>");
+    });
+
+    $.subscribe("app:update", function(e, version) {
+        // TODO
+        $el.empty().append("<p>Welcome! Your just updated to version " + version + "</p>");
+    });
+
+    $.subscribe("app:intro", function(e, version) {
+        // TODO
+        $el.empty().append("<p>Welcome! Normal Intro message you will read from version " + version + "</p>");
+    });
+
+    // subscribe to module detail display event
+    $.subscribe("module:detail", function(m) {
+        if (m) {
+            $el.empty().append(template(m.format()));
         } else {
             $el.empty().append("<p>Module Details are not found. :(</p>");
         }
-    };
+    });
 
 });

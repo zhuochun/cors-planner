@@ -10,13 +10,13 @@
 define(function(require, exports) {
 
     "use strict";
-    /*jshint jquery:true, laxcomma:true, maxerr:50*/
+    /*jshint browser:true, jquery:true, laxcomma:true, maxerr:50*/
 
-    // get all the views
+    // load all the views
     var addModuleView = require("view/addModuleView")
-    , modulesView = require("view/modulesView")
-    , plannerView = require("view/plannerView")
-    ;
+      , modulesView = require("view/modulesView")
+      , plannerView = require("view/plannerView")
+      ;
 
     // initial App View
     exports.render = function() {

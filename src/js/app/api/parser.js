@@ -15,11 +15,23 @@ define(function(require, exports) {
     "use strict";
     /*jshint jquery:true, laxcomma:true, maxerr:50*/
 
-    var Module;
+    var Module
+      , infoLen = 7
+      , infoFun = function(m) { return m.p ? m.p : trim(m); }
+      , info = {
+          "classNo" : infoFun
+        , "type" : infoFun
+        , "weekType" : infoFun
+        , "weekDay" : infoFun
+        , "startTime" : infoFun
+        , "endTime" : infoFun
+        , "room" : function(m) { return m.content ? trim(m.content) : m.p ?  m.p : trim(m); }
+      };
 
     // trim unwanted \n and \s
     function trim(str) {
-        return $.trim(str.replace(/\\n\s*/g, " "));
+        if (typeof str === "object") { str = JSON.stringify(str); }
+        return $.trim(str.replace(/,?\\n\s*/g, " "));
     }
 
     // check whether data passed in is valid
@@ -76,24 +88,24 @@ define(function(require, exports) {
 
     // retrieve and set the module lectures
     function setModuleLecture(data) {
-        var lect, lectGrp, lects = Module.lectures
-        , info = [ "classNo", "type", "weekType", "weekDay", "startTime", "endTime", "room" ]
-        , i, j, dataLen = data.length, infoLen = info.length;
+        var lect, grp, lects = Module.lectures, i, j, k, dataLen = data.length;
 
         for (i = 1; i < dataLen; i++) {
-            lect = {};
-            // assign values to this lecture
-            for (j = 0; j < infoLen; j++) {
-                lect[info[j]] = data[i].td[j].p;
+            if (data[i].td && data[i].td.length >= infoLen) {
+                lect = {}; j = 0;
+                // assign values to this lecture
+                for (k in info) {
+                    lect[k] = info[k](data[i].td[j++]);
+                }
+                // find this lecture's group weekday-startTime-endTime
+                grp = lect.weekDay + "-" + lect.startTime + "-" + lect.endTime;
+                // if the lecture group does not exist, create it
+                if (!lects[grp]) {
+                    lects[grp] = [];
+                }
+                // push lecture to its group
+                lects[grp].push(lect);
             }
-            // find this lecture's group weekday-startTime-endTime
-            lectGrp = lect.weekDay + "-" + lect.startTime + "-" + lect.endTime;
-            // if the lecture group does not exist, create it
-            if (!lects[lectGrp]) {
-                lects[lectGrp] = [];
-            }
-            // push lecture to its group
-            lects[lectGrp].push(lect);
         }
     }
 
@@ -104,26 +116,27 @@ define(function(require, exports) {
 
     // retrieve and set the module tutorials and labs
     function setModuleTutorial(data) {
-        var klass, classType, classGrp, tuts = Module.tutorials, labs = Module.labs
-        , info = [ "classNo", "type", "weekType", "weekDay", "startTime", "endTime", "room" ]
-        , i, j, dataLen = data.length, infoLen = info.length;
+        var klass, type, grp, tuts = Module.tutorials
+          , labs = Module.labs, i, j, k, dataLen = data.length;
 
         for (i = 1; i < dataLen; i++) {
-            klass = {};
-            classType = data[i].td[1].p; // Tutorial or Labs
-            // assign values to this class
-            for (j = 0; j < infoLen; j++) {
-                klass[info[j]] = data[i].td[j].p;
-            }
-            // find this class's group weekday-startTime-endTime
-            classGrp = klass.weekDay + "-" + klass.startTime + "-" + klass.endTime;
-            // add class to its type group
-            if (classType === "TUTORIAL") {
-                tuts[classGrp] = tuts[classGrp] || [];
-                tuts[classGrp].push(klass);
-            } else {
-                labs[classGrp] = labs[classGrp] || [];
-                labs[classGrp].push(klass);
+            if (data[i].td && data[i].td.length >= infoLen) {
+                klass = {}; j = 0;
+                type = info.type(data[i].td[1]); // Tutorial or Labs
+                // assign values to this class
+                for (k in info) {
+                    klass[k] = info[k](data[i].td[j++]);
+                }
+                // find this class's group weekday-startTime-endTime
+                grp = klass.weekDay + "-" + klass.startTime + "-" + klass.endTime;
+                // add class to its type group
+                if (type === "TUTORIAL") {
+                    tuts[grp] = tuts[grp] || [];
+                    tuts[grp].push(klass);
+                } else {
+                    labs[grp] = labs[grp] || [];
+                    labs[grp].push(klass);
+                }
             }
         }
     }

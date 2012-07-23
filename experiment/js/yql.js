@@ -40,8 +40,8 @@
 
         log("<b>URL</b> = " + finalUrl);
 
-        //$.getJSON(finalUrl, processRaw);
-        $.getJSON("jsonNew/" + module + ".json", processRaw);
+        $.getJSON(finalUrl, processRaw);
+        //$.getJSON("jsonNew/" + module + ".json", processRaw);
     }
 
     function processRaw(result) {
@@ -94,8 +94,7 @@
         }
 
 
-window.Module = Module;
-
+        window.Module = Module;
     }
 
     Object.size = function(obj) {
@@ -173,7 +172,7 @@ window.Module = Module;
             var lecture = {}, lectGroup;
 
             for (j = 0; j < infoLength; j++) {
-                lecture[info[j]] = data[i].td[j].p;
+                lecture[info[j]] = data[i].td[j].p || data[i].td[j];
             }
 
             log("LECTURE " + i + " : " + JSON.stringify(lecture));
@@ -203,7 +202,7 @@ window.Module = Module;
             , classGroup, type = data[i].td[1].p;
 
             for (j = 0; j < infoLength; j++) {
-                tutorial[info[j]] = data[i].td[j].p;
+                tutorial[info[j]] = data[i].td[j].p || data[i].td[j];
             }
 
             log(type + " " + i + " : " + JSON.stringify(tutorial));

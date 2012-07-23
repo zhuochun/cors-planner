@@ -2,7 +2,7 @@
  * CORS Planner - AppModuleView
  *
  * Author: Wang Zhuochun
- * Last Edit: 21/Jul/2012 06:27 PM
+ * Last Edit: 23/Jul/2012 10:10 PM
  * ========================================
  * <License>
  * ======================================== */
@@ -13,14 +13,12 @@ define(function(require, exports) {
     /*jshint browser:true, jquery:true, laxcomma:true, maxerr:50*/
 
     // include components
-    var storage = require("util/storage")
-    , helper = require("util/helper")
-    // include other views
-    , modulesView = require("view/modulesView")
-    // associated $elements
-    , $input = $("#mod-code")
-    , $addBtn = $("#add-btn")
-    , $prevBtn = $("#preview-btn");
+    var store = require("util/store")
+      , sem = require("util/helper").getSemester()
+    // associated DOM elements
+      , $input = $("#mod-code")
+      , $addBtn = $("#add-btn")
+      , $prevBtn = $("#preview-btn");
 
     // init will attach all things related to #add
     exports.init = function() {
@@ -31,19 +29,18 @@ define(function(require, exports) {
 
     // update the semester text
     function updateSemester() {
-        var sem = helper.getSemester();
         $("#semester").text("Year " + sem.acadYear + " SEM" + sem.semester);
     }
 
     // attach typeahead to input
-    function attachTypeahead() {
-        var cors = storage.get("cors-modules");
+    function attachTypeahead(cors) {
+        cors = store.get("cors-modules");
 
         if (cors) {
             $input.typeahead({source:cors});
         } else {
             $.getScript("js/data/corsmodules.min.js", function() {
-                storage.save("cors-modules", window.corsModules);
+                store.set("cors-modules", window.corsModules);
                 $input.typeahead({source:window.corsModules});
             });
         }
@@ -53,8 +50,6 @@ define(function(require, exports) {
     function attachEvents() {
         // select input text when on focus
         $input.on("focus", function() { this.select(); });
-
-        // XXX use modulesView or modules controller to handle clickEvent??
 
         // bind add module event
         $addBtn.on("click", clickEvent(function(m) { modulesView.add(m); }));

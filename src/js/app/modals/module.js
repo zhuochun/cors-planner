@@ -37,15 +37,53 @@ define(function(require, exports) {
         var key, count = 0;
 
         for (key in klass) {
-            if (klass.hasOwnProperty(key)) {
-                if ($.isArray(klass[key])) {
-                    count += klass[key].length;
-                }
+            if (klass.hasOwnProperty(key) && $.isArray(klass[key])) {
+                count += klass[key].length;
             }
         }
 
         return count;
     };
+
+    // Module Format will return the modules data formatted
+    // according to classNo instead of timeslot
+    Module.Format = function(data) {
+        var m = $.extend({}, data); // avoid modify original data
+
+        if (!$.isEmptyObject(m.lectures)) {
+            m.hasLecture = true;
+            m.lectures = convertClass(m.lectures);
+        }
+
+        if (!$.isEmptyObject(m.tutorials)) {
+            m.hasTutorial = true;
+            m.tutorials = convertClass(m.tutorials);
+        }
+
+        if (!$.isEmptyObject(m.labs)) {
+            m.hasLab = true;
+            m.labs = convertClass(m.labs);
+        }
+
+        return m;
+    };
+
+    function convertClass(klass) {
+        var i, j = 0, length, key, result = [];
+
+        for (key in klass) {
+            if (klass.hasOwnProperty(key)) {
+                length = klass[key].length;
+
+                for (i = 0; i < length; i++) {
+                    result[j++] = klass[key][i];
+                }
+            }
+        }
+
+        return result;
+    }
+    
 
     /* MODULE CLASS METHODS
      * ======================================== */
@@ -59,10 +97,11 @@ define(function(require, exports) {
     };
 
     // set will change the Module's status
+    // key could be "allocated.lecture"
     Module.fn.set = function(key, val) {
-        var i, keys = key.split("."), length = keys.length, parent;
+        var i, keys = key.split(".")
+        , length = keys.length, parent = this.status;
 
-        parent = this.status;
         for (i = 0; i < length - 1; i++) {
             parent[keys[i]] = parent[keys[i]] || {};
             parent = parent[keys[i]];
@@ -83,9 +122,9 @@ define(function(require, exports) {
         }
     };
 
-    // update will cause the the Module to render
-    Module.fn.update = function() {
-        // TODO: 
+    // format the module
+    Module.fn.format = function() {
+        return Module.Format(this.data);
     };
 
     // isSame will check the module code is the same
@@ -94,7 +133,7 @@ define(function(require, exports) {
             return this.data.code === other.get("code");
         } else if (typeof other === "string") {
             return this.data.code === other.toUpperCase();
-        }
+        } else { return false; }
     };
 
     // isAllocated will check whether the klass is allocated
@@ -110,13 +149,13 @@ define(function(require, exports) {
     // toJSON will return a string contains all
     // the datas of the current Module
     Module.fn.toJSON = function() {
-        return JSON.stringify({
+        return {
             data : this.data
-            , status : this.status
-        });
+          , status : this.status
+        };
     };
 
-    // return the Constructor
+    // exports the constructor
     return Module;
 
 });

@@ -30,16 +30,6 @@ define(function(require, exports) {
             expect(fromHelper.semester).toEqual(sem);
         });
 
-        it("can convert module between formats", function() {
-            var converted = helper.convertModule(acc1002);
-            
-            expect(converted.code).toBe("ACC1002");
-            expect(converted.hasLecture).toBe(true);
-            expect(converted.lectures.length).toEqual(1);
-            expect(converted.hasTutorial).toBe(true);
-            expect(converted.tutorials.length).toEqual(13);
-        });
-
     });
 
 });

@@ -14,17 +14,15 @@ define(function(require, exports) {
     "use strict";
     /*jshint jquery:true, laxcomma:true, maxerr:50*/
 
-    // load components
-    var helper = require("util/helper")
     // load template
-    , template = require("hgn!template/moduleDetail")
+    var template = require("hgn!template/moduleDetail")
     // dom elements associated
     , $el = $("#detail");
 
     // render the detail pannel
     exports.render = function(module) {
         if (module) {
-            $el.empty().append(template(helper.convertModule(module.data)));
+            $el.empty().append(template(module.format()));
         } else {
             $el.empty().append("<p>Module Details are not found. :(</p>");
         }

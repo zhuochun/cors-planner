@@ -2,7 +2,7 @@
  * CORS Planner - Module Class modal Tests
  *
  * Author: Wang Zhuochun
- * Last Edit: 19/Jul/2012 03:48 PM
+ * Last Edit: 23/Jul/2012 09:21 PM
  * ========================================
  * <License>
  * ======================================== */
@@ -82,7 +82,7 @@ define(function(require, exports) {
 
             cs1020.set("hello", "world");
 
-            var jsonObj = JSON.parse(cs1020.toJSON());
+            var jsonObj = JSON.parse(JSON.stringify(cs1020.toJSON()));
             var newCS1020 = new Module(jsonObj.data, jsonObj.status);
 
             expect(cs1020).toEqual(newCS1020);
@@ -112,6 +112,17 @@ define(function(require, exports) {
             expect(cs1020.isAllocated("lab", "3")).toBe(true);
             expect(cs1020.isAllocated("tutorial", 3)).toBe(false);
             expect(cs1020.isAllocated("tutorial", "3")).toBe(false);
+        });
+
+        it("can get formated according to classNo", function() {
+            var acc1002 = new Module(modACC1002)
+            , formattedData = acc1002.format();
+            
+            expect(formattedData.code).toBe("ACC1002");
+            expect(formattedData.hasLecture).toBe(true);
+            expect(formattedData.lectures.length).toEqual(1);
+            expect(formattedData.hasTutorial).toBe(true);
+            expect(formattedData.tutorials.length).toEqual(13);
         });
 
     });

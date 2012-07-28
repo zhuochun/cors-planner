@@ -4,7 +4,7 @@
  * detail view
  *
  * Author: Wang Zhuochun
- * Last Edit: 22/Jul/2012 08:00 PM
+ * Last Edit: 29/Jul/2012 02:16 AM
  * ========================================
  * <License>
  * ======================================== */
@@ -13,36 +13,45 @@ define(function(require, exports) {
 
     "use strict";
     /*jshint jquery:true, laxcomma:true, maxerr:50*/
+    /*global planner*/
 
-    // load template
-    var template = require("hgn!template/moduleDetail")
     // dom elements associated
-    , $el = $("#detail");
+    var $el = $("#detail")
+    // load template
+    , template = require("hgn!template/moduleDetail");
 
-    // subscribe to app greeting events
-    // TODO: separate to specific view
-    $.subscribe("app:newUser", function(e, version) {
-        // TODO
-        $el.empty().append("<p>Welcome! Your are using version " + version + "</p>");
+    // init detail panel
+    exports.init = function() {
+        // do nothing, leave it as default
+    };
+
+    // subscribe app wide user message
+    // new user
+    $.subscribe("app:user:new", function() {
+        $el.empty().append("<p>Welcome! Your are using Version " + planner.version + "</p>");
+    });
+    // user just have their version updated
+    $.subscribe("app:user:updated", function() {
+        $el.empty().append("<p>Your just updated to Version " + planner.version + "</p>");
+    });
+    // user using the latest version
+    $.subscribe("app:user:uptodate", function() {
+        $el.empty().append("<p>Welcome come back! Version " + planner.version + "</p>");
     });
 
-    $.subscribe("app:update", function(e, version) {
-        // TODO
-        $el.empty().append("<p>Welcome! Your just updated to version " + version + "</p>");
-    });
-
-    $.subscribe("app:intro", function(e, version) {
-        // TODO
-        $el.empty().append("<p>Welcome! Normal Intro message you will read from version " + version + "</p>");
-    });
-
-    // subscribe to module detail display event
-    $.subscribe("module:detail", function(m) {
-        if (m) {
-            $el.empty().append(template(m.format()));
+    // module display
+    function _showModuleDetail(e, module) {
+        if (module) {
+            $el.empty().append(template(module.format()));
         } else {
             $el.empty().append("<p>Module Details are not found. :(</p>");
         }
-    });
+    }
+
+    // subscribe to module detail display event
+    $.subscribe("module:detail", _showModuleDetail);
+
+    // subscribe to preview list add event
+    $.subscribe("previews:addOne", _showModuleDetail);
 
 });

@@ -15,7 +15,7 @@ define(function(require, exports) {
 
 /* Test Module class
  * ======================================== */
-    describe("Module Class modal", function() {
+    describe("modal Module", function() {
 
         var Module = require("modal/module")
         // include JSON test data
@@ -61,14 +61,14 @@ define(function(require, exports) {
             expect(acc1002.count("LABS")).toEqual(0);
         });
 
-        it("only return TRUE is another module has the same code", function() {
+        it("can detect whether another Module instance is the same (using Module code)", function() {
             var acc1002 = new Module(modACC1002);
 
             expect(acc1002.isSame(new Module({ code : "ACC1002" }))).toBe(true);
             expect(acc1002.isSame(new Module({ code : "CS1020" }))).toBe(false);
         });
 
-        it("only return TRUE is code string is the same", function() {
+        it("can detect whether the module code is the same as the instance", function() {
             var cs1020 = new Module(modCS1020);
 
             expect(cs1020.isSame("CS1020")).toBe(true);

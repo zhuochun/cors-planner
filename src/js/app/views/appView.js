@@ -14,15 +14,18 @@ define(function(require, exports) {
 
     // load all the views
     var addModuleView = require("view/addModuleView")
-      , modulesView = require("view/modulesView")
-      , plannerView = require("view/plannerView")
-      ;
+      , basketView = require("view/basketView")
+      , detailView = require("view/detailView")
+      , plannerView = require("view/plannerView");
 
-    // initial App View
+    // render initial all App Views
     exports.render = function() {
+        // initial each view if they need
         addModuleView.init();
-        modulesView.init();
         plannerView.init();
+        basketView.init();
+        detailView.init();
+        // initial app wide view
         initMisc();
     };
 

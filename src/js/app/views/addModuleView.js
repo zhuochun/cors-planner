@@ -1,6 +1,8 @@
 /* ========================================
  * CORS Planner - AppModuleView
  *
+ * View on Add Module
+ *
  * Author: Wang Zhuochun
  * Last Edit: 23/Jul/2012 10:10 PM
  * ========================================
@@ -36,12 +38,17 @@ define(function(require, exports) {
     function attachTypeahead(cors) {
         cors = store.get("cors-modules");
 
-        if (cors) {
-            $input.typeahead({source:cors});
+        if (cors && cors.latestUpdate === planner.dataUpdate) {
+            $input.typeahead({source:cors.data});
         } else {
-            $.getScript("js/data/corsmodules.min.js", function() {
-                store.set("cors-modules", window.corsModules);
-                $input.typeahead({source:window.corsModules});
+            // require the latest modules data
+            require(["corsModulesData"], function(data) {
+                store.set("cors-modules", {
+                    latestUpdate : planner.dataUpdate
+                    , data : data
+                });
+
+                $input.typeahead({source:data});
             });
         }
     }
@@ -52,21 +59,27 @@ define(function(require, exports) {
         $input.on("focus", function() { this.select(); });
 
         // bind add module event
-        $addBtn.on("click", clickEvent(function(m) { modulesView.add(m); }));
+        $addBtn.on("click", _clickEvent(function(modCode) {
+            $.publish("module:add", [modCode]);
+        }));
         
         // bind preview module event
-        $prevBtn.on("click", clickEvent(function(m) { modulesView.preview(m); }));
+        $prevBtn.on("click", _clickEvent(function(modCode) {
+            $.publish("module:preview", [modCode]);
+        }));
     }
 
-    function clickEvent(callback) {
-        return function(e) {
+    function _clickEvent(callback) {
+        return function(e, modCode) {
             e.preventDefault();
             // get the module code entered
-            var modCode = $input.val().split(" ")[0];
+            modCode = $input.val().split(" ")[0];
             // test validity of the modCode
             if (modCode && (/^[a-z]{2,3}\d{4}[a-z]?$/i).test(modCode)) {
-                $input.val(""); // empty the val
-                callback(modCode); // callback
+                // empty the input val
+                $input.val("");
+                // callback decide what to do
+                callback(modCode);
             } else {
                 window.alert("The module code entered is not valid!");
             }

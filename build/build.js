@@ -19,17 +19,27 @@
 // and just need to map "dependency" for the build,
 // then use the special "empty:" paths config:
   , paths: {
+        
     }
+
+//Specify modules to stub out in the optimized file. The optimizer will
+//use the source version of these modules for dependency tracing and for
+//plugin use, but when writing the text into an optimized layer, these
+//modules will get the following text instead:
+  , stubModules: ['text', 'hgn']
 
 // Optimize the application files.
   , modules: [
         {
             name: "main"
-          , exclude: ["bootstrap"]
+          , exclude: ["bootstrap", "jquery-ui", "moduleCodes"]
         }
     ]
 
 // Exclude less folder
-  , fileExclusionRegExp: /^.*(less|modernizr|data).*$/
+  , fileExclusionRegExp: /^.*(less|modernizr).*$/
+
+// License
+  , preserveLicenseComments: false
 
 })

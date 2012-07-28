@@ -31,10 +31,10 @@ echo == Start Building CORS-PLANNER
         ::remove js files under bootstrap and copy the min.js only
         del release\js\libs\bootstrap\*.* /Q
         xcopy src\js\libs\bootstrap\*.min.js release\js\libs\bootstrap\ /Y
-        ::copy moderize
+        ::copy moderizr
         xcopy src\js\libs\modernizr*.js release\js\libs\ /Y
         ::copy data folder
-        xcopy src\js\data release\js\data\ /S /Y
+        ::xcopy src\js\data release\js\data\ /S /Y
 
     echo - modifying html script includes
         ::modify index.html to use css

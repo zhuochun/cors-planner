@@ -35,8 +35,8 @@ define(function(require, exports) {
         $("#nav").tooltip({placement:"bottom", selector:"a[rel=tooltip]"});
         $("#footer").tooltip({placement:"top", selector:"a[rel=tooltip]"});
         // detail height
-        $(window).bind("resize", function() {
-            $("#detail").css("height", $(window).height() - 108);
+        $(window).bind("resize", function(e) {
+            $("#detail").css("height", $(this).height() - 138);
         }).trigger("resize");
     }
 

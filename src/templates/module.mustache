@@ -3,13 +3,13 @@
   <h4>{{title}}</h4>
   <div class="module-class">
   {{#lectures}}
-  <span id="{{id}}-lectures" class="label label-large basket-lecture draggable">LECT</span>
+  <span id="{{id}}-lectures" class="label label-large basket-lecture draggable" data-type="lecture" data-count="{{lectures}}">LECT</span>
   {{/lectures}}
   {{#tutorials}}
-  <span id="{{id}}-tutorials" class="label label-large basket-tutorial draggable">TUT</span>
+  <span id="{{id}}-tutorials" class="label label-large basket-tutorial draggable" data-type="tutorial" data-count="{{tutorials}}">TUT</span>
   {{/tutorials}}
   {{#labs}}
-  <span id="{{id}}-labs" class="label label-large basket-lab draggable">LAB</span>
+  <span id="{{id}}-labs" class="label label-large basket-lab draggable" data-type="lab" data-count="{{labs}}">LAB</span>
   {{/labs}}
   </div>
 </div>

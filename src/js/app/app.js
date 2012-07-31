@@ -18,8 +18,10 @@ define(function(require, exports) {
     // include jQuery plugins
     require("jquery-ui");
     require("bootstrap");
-    // include the jQuery Pub/Sub plugin
+    // include jQuery Pub/Sub plugin
     require("util/pubsub");
+    // include jQuery dragDrop plugin
+    require("api/jquery-dragdrop");
 
     // include third party
     var store = require("util/store")
@@ -41,10 +43,19 @@ define(function(require, exports) {
             global.planner = {};
         }
 
+        // planner set and get
+        planner.get = function(key) { return this[key]; };
+        planner.set = function(key, value) {
+            this[key] = value;
+            $.publish("planner:" + key, [value]);
+        };
+
         // assign CORS Planner Version number
         planner.version = "0.0.6";
         // assign CORS Data latest update time
         planner.dataUpdate = "24 Jul 2012 11:29";
+        // default timetable view
+        planner.timetable = "horizontal";
     }
 
     // check the version between server and user, emits an message to all

@@ -17,12 +17,29 @@ define(function(require, exports) {
     // include moduleView component
     var moduleView = require("view/moduleView")
     // dom elements associated
-    , $el = $("#basket-scroll");
+    , $el = $("#basket-scroll")
+    , $basket = $("#basket");
 
     exports.init = function() {
         $el.tooltip({placement:"top", selector:"h3"});
+        // click on h3 title view detail
         $el.on("click", "h3", function() {
             $.publish("module:preview", $(this).text());
+        });
+        // basket is droppable for bar
+        $basket.droppable({
+            accept : ".bar"
+          , active : "remove-bar-active"
+          , hoverClass : "remove-bar-hover"
+          , drop: function(event, ui) {
+                var data = ui.draggable.data("slot");
+                // re-enable the draggable
+                data.elem.addClass("draggable").draggable("enable");
+                // remove the helper slot
+                ui.helper.remove();
+                // remove the original slot as well
+                ui.draggable.remove();
+            }
         });
     };
 

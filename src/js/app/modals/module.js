@@ -16,7 +16,8 @@ define(function(require, exports) {
 
     // Module default status
     var defaultStatus = {
-        allocated : { lecture : "", tutorial : "", lab : "" }
+        list : undefined
+      , allocated : { lecture : "", tutorial : "", lab : "" }
     };
 
     /* MODULE CLASS DEFINITION
@@ -107,6 +108,19 @@ define(function(require, exports) {
             parent = parent[keys[i]];
         }
         parent[keys[i]] = val;
+    };
+
+    // check the status
+    Module.fn.is = function(key, val) {
+        var i, keys = key.split(".")
+        , length = keys.length, parent = this.status;
+
+        for (i = 0; i < length - 1; i++) {
+            parent[keys[i]] = parent[keys[i]] || {};
+            parent = parent[keys[i]];
+        }
+
+        return parent[keys[i]] === val;
     };
 
     // count the number of lect/tut/labs

@@ -35,6 +35,7 @@ define(function(require, exports) {
         this.list = [];
 
         defaults.prefix = this.name + ":";
+
         this.options = $.extend({}, defaults, options);
     }
 
@@ -92,24 +93,28 @@ define(function(require, exports) {
         
         if (this.find(module) === -1) {
             if (typeof module === "object") {
-                this.list.push(module);
-
-                if (!options.mute) {
-                    $.publish(options.prefix + "addOne", [module]);
-                }
+                this._add(module, options);
             } else if (typeof module === "string") {
                 _fetch(module, $.proxy(function(m) {
-                    this.list.push(m);
-
-                    if (!options.mute) {
-                        $.publish(options.prefix + "addOne", [m]);
-                    }
+                    this._add(m, options);
                 }, this));
             }
         } else {
             if (!options.mute) {
                 $.publish(options.prefix + "addOne:duplicated", module);
             }
+        }
+    };
+
+    // private _add
+    ModuleList.fn._add = function(module, options) {
+        // set module's status list
+        module.set("list", this.name);
+        // then pusth to the list
+        this.list.push(module);
+
+        if (!options.mute) {
+            $.publish(options.prefix + "addOne", [module]);
         }
     };
 

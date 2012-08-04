@@ -13,12 +13,18 @@ define(function(require, exports) {
 
     "use strict";
     /*jshint browser:true, jquery:true, laxcomma:true, maxerr:50*/
+    /*global planner*/
+
+    // default module lists
+    planner.list = planner.list || {};
+    planner.list.modules  = "modules";
+    planner.list.previews = "previews";
 
     // include Modal component
     var ModuleList = require("modal/modules")
     // create Modal instances
-    , modules = new ModuleList("modules")
-    , previews = new ModuleList("previews");
+    , modules = new ModuleList(planner.list.modules)
+    , previews = new ModuleList(planner.list.previews);
 
     // add a module event
     $.subscribe("module:add", function(e, m) {
@@ -44,7 +50,7 @@ define(function(require, exports) {
     });
 
     // to control the size of previews list
-    $.subscribe("previews:addOne", function() {
+    $.subscribe(planner.list.previews + ":addOne", function() {
         if (previews.length() > 20) {
             previews.clean();
         }

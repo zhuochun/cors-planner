@@ -22,7 +22,12 @@ define(function(require, exports) {
 
     // init detail panel
     exports.init = function() {
-        // do nothing, leave it as default
+        // double click to add module to basket
+        $el.on("dblclick", "h3", function() {
+            var code = $(this).closest("#module-detail").data("modcode");
+            // send the message adding module
+            $.publish("module:add", [code]);
+        });
     };
 
     // subscribe app wide user message
@@ -42,9 +47,9 @@ define(function(require, exports) {
     // module display
     function _showModuleDetail(e, module) {
         if (module) {
-            $el.empty().append(template(module.format()));
+            $el.html(template(module.format()));
         } else {
-            $el.empty().append("<p>Module Details are not found. :(</p>");
+            $el.html("<p>Module Details are not found. :(</p>");
         }
     }
 
@@ -52,6 +57,6 @@ define(function(require, exports) {
     $.subscribe("module:detail", _showModuleDetail);
 
     // subscribe to preview list add event
-    $.subscribe("previews:addOne", _showModuleDetail);
+    $.subscribe(planner.list.previews + ":addOne", _showModuleDetail);
 
 });

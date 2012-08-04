@@ -16,6 +16,8 @@ body {
 // nav variables
 @logoColor: #4A64BC;
 @pinkColor: #E21149;
+@redColor: #EA1100;
+
 // nav styles
 #nav {
     #wander {
@@ -141,6 +143,14 @@ body {
 /* planner */
 #main {
     margin-bottom: 10px;
+
+    a {
+        text-decoration: none;
+
+        &:hover {
+            color: @redColor;
+        }
+    }
 }
 
 #timetable {
@@ -216,6 +226,20 @@ body {
     height: 480px;
     overflow: auto;
 
+    .detail-head {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        &:hover {
+            cursor: pointer;
+            color: @pinkColor;
+        }
+    }
+    
     th {
         vertical-align: top;
     }

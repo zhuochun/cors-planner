@@ -13,30 +13,68 @@
 define(function(require, exports) {
 
     "use strict";
-    /*jshint jquery:true, laxcomma:true, maxerr:50*/
+    /*jshint laxcomma:true, maxerr:50*/
 
     var Module
-      , infoLen = 7
-      , infoFun = function(m) { return m.p ? m.p : trim(m); }
-      , info = {
-          "classNo" : infoFun
-        , "type" : infoFun
-        , "weekType" : infoFun
-        , "weekDay" : infoFun
-        , "startTime" : infoFun
-        , "endTime" : infoFun
-        , "room" : function(m) { return m.content ? trim(m.content) : m.p ?  m.p : trim(m); }
-      };
+    , commFun = function(data) {
+        return data.p ? data.p : trim(data);
+      }
+    , contentFun = function(data) {
+        var result = data.content || data.p;
 
-    // trim unwanted \n and \s
+        if (typeof result === "object") {
+            return contentFun(result); // do it recursive
+        } else if (typeof result === "string") {
+            return trim(result);
+        } else {
+            return "ERROR: PARSE FAILED";
+        }
+      }
+    // for module detail parsing
+    , details = {
+          "code" : function(data) {
+              return commFun(data).split(" ")[0];
+          }
+        , "title" : commFun
+        , "description" : commFun
+        , "examinable" : commFun
+        , "examDate" : contentFun
+        , "credits" : function(data) { 
+              return parseInt(data.p, 10); // eg. 4 (MC)
+          }
+        , "prerequisite" : commFun
+        , "preclusion" : commFun
+        , "workload" : commFun
+      }
+    // for lecture/modules/labs info parsing
+    , infoLen = 7
+    , info = {
+          "classNo" : commFun
+        , "type" : commFun
+        , "weekType" : commFun
+        , "weekDay" : commFun
+        , "startTime" : commFun
+        , "endTime" : commFun
+        , "room" : contentFun
+      }
+    // regex for trim
+    , trimLeft = /^\s+/, trimRight = /(,?)\s+$/;
+
+    // trim unwanted \n and ,\s
     function trim(str) {
-        if (typeof str === "object") { str = JSON.stringify(str); }
-        return $.trim(str.replace(/,?\\n\s*/g, " "));
+        if (typeof str === "object") {
+            str = JSON.stringify(str);
+        }
+
+        return str ? str.replace(trimLeft, "").replace(trimRight, "") : "";
     }
 
     // check whether data passed in is valid
     function isDataValid(data) {
-        return (data && data.query && data.query.results && data.query.results.table) ? true : false;
+        return (data &&
+            data.query &&
+            data.query.results &&
+            data.query.results.table) ? true : false;
     }
 
     // check whether module is available in the semester
@@ -52,32 +90,11 @@ define(function(require, exports) {
 
     // retrieve and set the basic info of module
     function setModuleInfo(data) {
-        var i = 1 // starting from 2nd td
-        , tFun = function(data) { return data.p; }
-        , infos = {
-            "code" : function(data) {
-                return data.p.split(" ")[0];
-            }
-            , "title" : tFun
-            , "description" : tFun
-            , "examinable" : tFun
-            , "examDate" : function(data) {
-                if (data.p.content) {
-                    return trim(data.p.content); // eg. 03-12-2012 EVENING
-                } else {
-                    return data.p; // NO EXAM
-                }
-            }
-            , "credits" : function(e) { 
-                return parseInt(e.p, 10); // eg. 4 (MC)
-            }
-            , "prerequisite" : tFun
-            , "preclusion" : tFun
-            , "workload" : tFun
-        };
+        var i = 1, k; // starting from 2nd td
 
-        for (var k in infos) {
-          Module[k] = infos[k](data[i++].td[1]);
+        for (k in details) {
+            if (details.hasOwnProperty(k))
+                Module[k] = details[k](data[i++].td[1]);
         }
     }
 
@@ -95,7 +112,8 @@ define(function(require, exports) {
                 lect = {}; j = 0;
                 // assign values to this lecture
                 for (k in info) {
-                    lect[k] = info[k](data[i].td[j++]);
+                    if (info.hasOwnProperty(k))
+                        lect[k] = info[k](data[i].td[j++]);
                 }
                 // find this lecture's group weekday-startTime-endTime
                 grp = lect.weekDay + "-" + lect.startTime + "-" + lect.endTime;
@@ -125,7 +143,8 @@ define(function(require, exports) {
                 type = info.type(data[i].td[1]); // Tutorial or Labs
                 // assign values to this class
                 for (k in info) {
-                    klass[k] = info[k](data[i].td[j++]);
+                    if (info.hasOwnProperty(k))
+                        klass[k] = info[k](data[i].td[j++]);
                 }
                 // find this class's group weekday-startTime-endTime
                 grp = klass.weekDay + "-" + klass.startTime + "-" + klass.endTime;

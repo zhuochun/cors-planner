@@ -24,7 +24,7 @@ define(function(require, exports) {
             getJSON = $.getJSON;
             // write own getJSON will use callback to test data
             $.getJSON = function(data, callback) {
-                callback(data);
+                callback( { results : data } );
             };
         });
 
@@ -36,20 +36,26 @@ define(function(require, exports) {
 
         it("will have a correct yql query url", function() {
             yql.request("query", function(data) {
-                expect(data).toEqual("http://query.yahooapis.com/v1/public/yql?q=query&format=json&callback=");
+                expect(data.results).toEqual("http://query.yahooapis.com/v1/public/yql?q=query&format=json&callback=");
             });
         });
 
         // This test may failed when defaults changed. Now is 2012/2013 SEM 1
         xit("will have a correct module (string) request yql url", function() {
             yql.requestModule("ACC1002", function(data) {
-                expect(data).toEqual("http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D'https%3A%2F%2Faces01.nus.edu.sg%2Fcors%2Fjsp%2Freport%2FModuleDetailedInfo.jsp%3Facad_y%3D2012%2F2013%26sem_c%3D1%26mod_c%3DACC1002'%20and%20xpath%3D'%2F%2Ftable'&format=json&callback=");
+                expect(data.results).toEqual("http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D'https%3A%2F%2Faces01.nus.edu.sg%2Fcors%2Fjsp%2Freport%2FModuleDetailedInfo.jsp%3Facad_y%3D2012%2F2013%26sem_c%3D1%26mod_c%3DACC1002'%20and%20xpath%3D'%2F%2Ftable'&format=json&callback=");
             });
         });
 
         it("will have a correct module (object) request yql url", function() {
             yql.requestModule({modCode: "ACC1002", acadYear: "2011/2012", semester: "1"}, function(data) {
-                expect(data).toEqual("http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D'https%3A%2F%2Faces01.nus.edu.sg%2Fcors%2Fjsp%2Freport%2FModuleDetailedInfo.jsp%3Facad_y%3D2011%2F2012%26sem_c%3D1%26mod_c%3DACC1002'%20and%20xpath%3D'%2F%2Ftable'&format=json&callback=");
+                expect(data.results).toEqual("http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D'https%3A%2F%2Faces01.nus.edu.sg%2Fcors%2Fjsp%2Freport%2FModuleDetailedInfo.jsp%3Facad_y%3D2011%2F2012%26sem_c%3D1%26mod_c%3DACC1002'%20and%20xpath%3D'%2F%2Ftable'&format=json&callback=");
+            });
+        });
+
+        it("will attach the query url in the return result", function() {
+            yql.requestModule({modCode: "ACC1002", acadYear: "2011/2012", semester: "1"}, function(data) {
+                expect(data.url).toEqual("https://aces01.nus.edu.sg/cors/jsp/report/ModuleDetailedInfo.jsp?acad_y=2011/2012&sem_c=1&mod_c=ACC1002");
             });
         });
 
@@ -122,6 +128,7 @@ define(function(require, exports) {
                 expect(cs1010.examDate).toEqual("27-11-2012 AM");
                 // cs1010 lects = 4
                 expect(getObjSize(cs1010.lectures)).toEqual(4);
+                // check some specific lects
                 expect(cs1010.lectures["TUESDAY-1200-1500"].length).toEqual(3);
                 expect(cs1010.lectures["WEDNESDAY-900-1200"][0].room).toEqual("COM1-B109");
                 // cs1010 labs = 0

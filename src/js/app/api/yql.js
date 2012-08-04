@@ -33,9 +33,19 @@ define(function(require, exports) {
             encodeURIComponent(query) + "&format=json&callback=";
     }
 
+    // wrap the user's callback
+    function getCallback(query, callback) {
+        return function(result) {
+            // add the query url to the JSON result
+            result.url = query;
+            // then call user's callback
+            callback(result);
+        };
+    }
+
     // a generalized request
     exports.request = function(query, callback) {
-        $.getJSON(getYQLurl(query), callback);
+        $.getJSON(getYQLurl(query), getCallback(query, callback));
     };
 
     // a module request for yql, return a Module object
@@ -48,7 +58,7 @@ define(function(require, exports) {
           , cors = getCORSurl(mod)
           , query = "select * from html where url='" + cors + "' and xpath='//table'";
 
-        $.getJSON(getYQLurl(query), callback);
+        $.getJSON(getYQLurl(query), getCallback(cors, callback));
     };
 
 });

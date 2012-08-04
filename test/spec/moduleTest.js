@@ -45,6 +45,23 @@ define(function(require, exports) {
 
             cs1020.set("test.status", "set");
             expect(cs1020.status.test.status).toEqual("set");
+
+            cs1020.set("list", "listTest");
+            expect(cs1020.status.list).toEqual("listTest");
+        });
+
+        it("status can be checked using is()", function() {
+            var cs1020 = new Module(modCS1020);
+
+            cs1020.set("test-status", "set");
+            expect(cs1020.is("test-status", "set")).toBeTruthy();
+            expect(cs1020.is("test-status", "notset")).toBeFalsy();
+
+            cs1020.set("test.status", "set");
+            expect(cs1020.is("test.status", "set")).toBeTruthy();
+
+            cs1020.set("list.name.aa.bb", "listTest");
+            expect(cs1020.is("list.name.aa.bb", "listTest")).toBeTruthy();
         });
 
         it("can count the number of its lect/tut/labs", function() {

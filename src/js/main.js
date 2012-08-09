@@ -26,6 +26,7 @@ require.config({
       , "modal" : "../app/modals"
       , "view" : "../app/views"
       , "controller" : "../app/controllers"
+      , "helper" : "../app/helpers"
     // App data
       , "corsModulesData" : "../data/corsModuleCodes"
     // Helper Utils

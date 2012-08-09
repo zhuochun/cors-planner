@@ -24,7 +24,7 @@ define(function(require, exports) {
     // include jQuery Pub/Sub plugin
     require("util/pubsub");
     // include jQuery dragDrop plugin
-    require("api/jquery-dragdrop");
+    require("helper/dragdrop");
 
     // include third party
     var store = require("util/store")

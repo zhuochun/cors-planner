@@ -1,7 +1,13 @@
 <div id="{{id}}" class="module">
-  <h3 title="Click to view Module Details">{{code}}</h3>
+<div class="module-header clearfix">
+  <h3 title="View Module Detail">{{code}}</h3>
+  <div class="module-control">
+    <i class="icon-remove" tilte="Remove"></i>
+  </div>
+</div>
   <h4>{{title}}</h4>
-  <div class="module-class">
+  <h5>{{examDate}}</h5>
+<div class="module-class">
   {{#lectures}}
   <span id="{{id}}-lectures" class="label label-large basket-lecture draggable" data-type="lecture" data-count="{{lectures}}">LECT</span>
   {{/lectures}}
@@ -11,5 +17,5 @@
   {{#labs}}
   <span id="{{id}}-labs" class="label label-large basket-lab draggable" data-type="lab" data-count="{{labs}}">LAB</span>
   {{/labs}}
-  </div>
+</div>
 </div>

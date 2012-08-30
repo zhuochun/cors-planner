@@ -21,7 +21,7 @@ define(function(require, exports) {
     , $basket = $("#basket");
 
     exports.init = function() {
-        $el.tooltip({placement:"top", selector:"h3"});
+        //$el.tooltip({placement:"top", selector:"h3"});
         // click on h3 title view detail
         $el.on("click", "h3", function() {
             $.publish("module:preview", $(this).text());

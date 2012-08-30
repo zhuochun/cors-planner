@@ -55,7 +55,7 @@ define(function(require, exports) {
         var i, j, k, len, thead = [], tbody = [], table = [_tableHead()];
 
         // generate thead
-        for (i = _startHour, j = 0; i < _endHour; i++, j++) {
+        for (i = _startHour, j = 0; i <= _endHour; i++, j++) {
             thead[j] = "<th colspan='2'>" + (i < 10 ? "0" + i : i) + "</th>";
         }
         // push thead to table
@@ -65,7 +65,7 @@ define(function(require, exports) {
         for (i = 0, j = 0, len = weekDays.length; i < len; i++, j++) {
             tbody[j] = "<tr><td class='weekday'>" + weekDays[i] + "</td>";
 
-            for (k = _startHour; k < _endHour; k++) {
+            for (k = _startHour; k <= _endHour; k++) {
                 tbody[j] += "<td></td><td></td>";
             }
 
@@ -94,7 +94,7 @@ define(function(require, exports) {
         table.push("<thead><tr><th></th>" + thead.join("") + "</tr></thead>");
 
         // generate table body
-        for (i = _startHour, j = 0; i < _endHour; i++, j++) {
+        for (i = _startHour, j = 0; i <= _endHour; i++, j++) {
             // rowspan 2 weekday head
             tbody[j] = "<tr><td class='weekday' rowspan='2'>" + (i < 10 ? "0" + i : i) + ":00 - " +
                 (i+1 < 10 ? "0" + (i+1) : (i+1)) +  ":00</td>";

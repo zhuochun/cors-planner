@@ -23,6 +23,7 @@ define(function(require, exports) {
               "id" : module.id
             , "code" : module.get("code")
             , "title" : module.get("title")
+            , "examDate" : module.get("examDate")
             , "lectures" : module.count("lectures")
             , "tutorials" : module.count("tutorials")
             , "labs" : module.count("labs")

@@ -1,0 +1,1 @@
+define(["require","exports","module","view/timetableView"],function(require,exports){var timetableView=require("view/timetableView");exports.init=function(){timetableView.init(planner.timetable)},$.subscribe("timetable:range",function(e,start,end){timetableView.render(planner.timetable,start,end)}),$.subscribe("timetable:type",function(e,type){timetableView.render(type)})})

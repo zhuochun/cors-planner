@@ -1,0 +1,1 @@
+define(["require","exports","module"],function(require,exports){exports.getSemester=function(){var acadYear,semester,today=new Date,year=today.getFullYear(),month=today.getMonth();return month<6?(acadYear=year-1+"/"+year,semester=2):(acadYear=year+"/"+(year+1),semester=1),{acadYear:acadYear,semester:semester}}})

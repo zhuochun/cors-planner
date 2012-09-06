@@ -9,9 +9,6 @@ echo == Running JSHint on JavaScript files
     echo -- on src\js\app files
     call jshint src\js\app\
 
-    echo -- on src\js\utils files
-    call jshint src\js\utils\
-
 echo == End Running JSHint
 
 ::
@@ -19,6 +16,7 @@ echo == End Running JSHint
 ::
 echo == Start Building CORS-PLANNER
 
+    ::TODO: make this condition only if release folder exists
     echo - removing release folder
         ::remove release
         rmdir release /S /Q

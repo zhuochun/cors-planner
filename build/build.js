@@ -32,7 +32,7 @@
   , modules: [
         {
             name: "main"
-          , exclude: ["bootstrap", "jquery-ui", "moduleCodes"]
+          , exclude: ["bootstrap", "jquery-ui", "corsModulesData"]
         }
     ]
 

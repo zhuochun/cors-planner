@@ -13,6 +13,7 @@ define(function(require, exports) {
 
     "use strict";
     /*jshint browser:true, jquery:true, laxcomma:true, maxerr:50*/
+    /*global planner*/
 
     // include components
     var store = require("util/store")

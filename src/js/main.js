@@ -15,7 +15,7 @@ require.config({
   , paths : {
     // jQuery plugins
         "bootstrap" : "bootstrap/bootstrap.min"
-      , "jquery-ui" : "jquery-ui-1.8.21.custom"
+      , "jquery-ui" : "jquery-ui-1.8.23.custom"
     // RequireJS plugins
       , "hgn" : "requirejs-plugins/hgn"
       , "text" : "requirejs-plugins/text"

@@ -36,7 +36,7 @@ define(function(require, exports) {
         // assign CORS Planner Version number
         planner.version = "0.0.6";
         // assign CORS Data latest update time
-        planner.dataUpdate = "24 Jul 2012 11:29";
+        planner.dataUpdate = "27 Aug 2012 17:57";
         // default timetable view
         planner.timetable = "horizontal";
         // default module lists

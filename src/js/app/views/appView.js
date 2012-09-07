@@ -36,10 +36,7 @@ define(function(require, exports) {
         $("#footer").tooltip({placement:"top", selector:"a[rel=tooltip]"});
         // detail height
         $(window).bind("resize", function(e) {
-            $("#detail").css({
-                "height" : $(this).height() - 138
-              , "min-height" : $("#primary-panel").height()
-            });
+            $.publish("app:window:resize", [$(this).height(), $(this).width()]);
         }).trigger("resize");
     }
 

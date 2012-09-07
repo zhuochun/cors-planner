@@ -55,7 +55,8 @@ body {
 
 #basket {
     position: relative;
-    overflow: auto;
+    overflow-y: hidden;
+    overflow-x: auto;
     height: 120px;
 }
 
@@ -180,8 +181,8 @@ body {
     }
 
     .weekday { 
-        max-width: 50px;
-        height: 50px;
+        min-height: 50px;
+        max-width: 40px;
 
         vertical-align: middle;
         white-space: nowrap;

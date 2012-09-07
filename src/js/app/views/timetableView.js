@@ -36,9 +36,13 @@ define(function(require, exports) {
 
     // initial timetable grids
     exports.init = _render;
-
     // exports render
     exports.render = _render;
+    // subscribe window resize
+    $.subscribe("app:window:resize", function(e, height) {
+        if (_type === "horizontal")
+            $grid.find("table").css({"height" : height - 360});
+    });
 
     function _tableHead() {
         return "<table class='" + _type + " table table-striped table-bordered' " +

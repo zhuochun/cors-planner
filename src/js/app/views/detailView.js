@@ -44,6 +44,14 @@ define(function(require, exports) {
         $el.empty().append("<p>Welcome come back! Version " + planner.version + "</p>");
     });
 
+    // subscribe to public resize
+    $.subscribe("app:window:resize", function(e, height, width) {
+        $el.css({
+              "height" : height - 138
+            , "min-height" : $("#primary-panel").height()
+        });
+    });
+
     // module display
     function _showModuleDetail(e, module) {
         if (module) {

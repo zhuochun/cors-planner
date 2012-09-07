@@ -26,7 +26,7 @@ define(function(require, exports) {
     // Module Class
     function Module(data, status) {
         this.id = data.code.replace(/[_\s\'\"]/gi, "-"); // replace unwanted chars
-        this.data = data;
+        this.data = Module.Format(data); // convert it to have alter format
         this.status = $.extend({}, defaultStatus, status);
     }
 
@@ -49,24 +49,26 @@ define(function(require, exports) {
     // Module Format will return the modules data formatted
     // according to classNo instead of timeslot
     Module.Format = function(data) {
-        var m = $.extend({}, data); // avoid modify original data
+        // determine data is formatted
+        if (data.alterFormat) { return data; }
+        else { data.alterFormat = true; }
 
-        if (!$.isEmptyObject(m.lectures)) {
-            m.hasLecture = true;
-            m.lectures = convertClass(m.lectures);
+        if (!$.isEmptyObject(data.lectures)) {
+            data.hasLecture = true;
+            data._lectures = convertClass(data.lectures);
         }
 
-        if (!$.isEmptyObject(m.tutorials)) {
+        if (!$.isEmptyObject(data.tutorials)) {
             m.hasTutorial = true;
-            m.tutorials = convertClass(m.tutorials);
+            data._tutorials = convertClass(data.tutorials);
         }
 
         if (!$.isEmptyObject(m.labs)) {
             m.hasLab = true;
-            m.labs = convertClass(m.labs);
+            data._labs = convertClass(data.labs);
         }
 
-        return m;
+        return data;
     };
 
     function convertClass(klass) {

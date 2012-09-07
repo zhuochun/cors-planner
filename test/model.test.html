@@ -15,41 +15,14 @@
   <script src="../src/js/libs/jquery-1.8.1.js"></script>
   <!-- all other application scripts are loaded through require.  -->
   <script src="../src/js/libs/require.js"></script>
+  <script src="lib/main.test.js"></script>
 
   <script type="text/javascript">
-      require.config({
-          baseUrl : "../src/js"
-
-          , paths : {
-                "bootstrap" : "libs/bootstrap"
-              , "jquery-ui" : "libs/jquery-ui-1.8.23.custom"
-            // App directories
-              , "api" : "app/api"
-              , "modal" : "app/modals"
-              , "view" : "app/views"
-              , "controller" : "app/controllers"
-              , "helper" : "app/helpers"
-              , "util" : "utils"
-              , "template" : "templates"
-            // RequireJS Plugins
-              , "hgn" : "libs/requirejs-plugins/hgn"
-              , "text" : "libs/requirejs-plugins/text"
-              , "json" : "libs/requirejs-plugins/json"
-              , "hogan" : "libs/requirejs-plugins/hogan"
-            // Jasmine Specs
-              , "spec" : "../../test/spec"
-              , "testData" : "../../test/json"
-          }
-      });
-
       // include all the test specs here
       require([
           "util/pubsub"
-        , "spec/apiTest"
-        , "spec/utilTest"
         , "spec/moduleTest"
         , "spec/modulesTest"
-        //, "spec/templateTest"
       ], function() {
           $(function() {
               var jasmineEnv = jasmine.getEnv()

@@ -26,9 +26,6 @@ echo == Start Building CORS-PLANNER
         call node build\r.js -o build\build.js
 
     echo - reorganizing JS libraries
-        ::remove js files under bootstrap and copy the min.js only
-        del release\js\libs\bootstrap\*.* /Q
-        xcopy src\js\libs\bootstrap\*.min.js release\js\libs\bootstrap\ /Y
         ::copy moderizr
         xcopy src\js\libs\modernizr*.js release\js\libs\ /Y
         ::copy data folder

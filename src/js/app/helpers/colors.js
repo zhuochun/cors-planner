@@ -14,11 +14,24 @@ define(function(require, exports) {
     "use strict";
     /*jshint jquery:true, laxcomma:true, maxerr:50*/
 
-    // colors [lect, tut, lab]
+    // colors http://147colors.com/ 
     var colors = [
-        "#CD0074", "#00CC00", "#FFFF00", "#FF4040"
-      , "#E6C5B9", "#F45A98", "#5DB377", "#6AA620"
-      , "#E667AF", "#67E667", "#FFFF73", "#FF7373"
+        "midnightblue"
+      , "forestgreen"
+      , "royalblue"
+      , "darkslateblue"
+      , "saddlebrown"
+      , "seagreen"
+      , "steelblue"
+      , "indigo"
+      , "teal"
+      , "orangered"
+      , "green"
+      , "navy"
+      , "orange"
+      , "olive"
+      , "dodgerblue"
+      , "darkorange"
     ]
     , index = 0
     , length = colors.length;

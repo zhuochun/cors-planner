@@ -37,9 +37,9 @@ define(function(require, exports) {
         });
 
         it("can retrieve colors", function() {
-            expect(colors.get()).toEqual("#00CC00");
+            expect(colors.get()).toEqual("forestgreen");
             expect(colors.used()).toEqual(1);
-            expect(colors.get()).toEqual("#FFFF00");
+            expect(colors.get()).toEqual("royalblue");
             expect(colors.used()).toEqual(2);
         });
 
@@ -57,7 +57,7 @@ define(function(require, exports) {
                 colors.get();
             }
 
-            expect(colors.get()).toEqual("#CD0074");
+            expect(colors.get()).toEqual("midnightblue");
         });
     });
 

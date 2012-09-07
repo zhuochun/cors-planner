@@ -21,6 +21,7 @@ define(function(require, exports) {
     exports.render = function(module) {
         var context = {
               "id" : module.id
+            , "color" : module.get("color")
             , "code" : module.get("code")
             , "title" : module.get("title")
             , "examDate" : module.get("examDate")

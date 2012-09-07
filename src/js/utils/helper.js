@@ -17,7 +17,8 @@ define(function(require, exports) {
         , year = today.getFullYear()
         , month = today.getMonth(); // month is 0 ~ 11
 
-        if (month < 6) { // less than July (Month 6)
+        // month between Dec (11) - July (6)
+        if (month <= 6 || month >= 11) {
             acadYear = (year - 1) + "/" + year;
             semester = 2;
         } else {

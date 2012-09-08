@@ -55,7 +55,7 @@ define(function(require, exports) {
     // module display
     function _showModuleDetail(e, module) {
         if (module) {
-            $el.html(template(module.format()));
+            $el.html(template(module.data));
         } else {
             $el.html("<p>Module Details are not found. :(</p>");
         }

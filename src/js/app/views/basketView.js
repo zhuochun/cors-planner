@@ -44,8 +44,9 @@ define(function(require, exports) {
     };
 
     // subscribe modules add one event
-    $.subscribe("modules:addOne", function(e, mod) {
-        $el.prepend(moduleView.render(mod)).css("width", _getElWidth());
+    $.subscribe(planner.list.modules + ":addOne", function(e, mod) {
+        $el.prepend(moduleView.render(mod))
+           .css("width", _getElWidth());
     });
 
     // render all modules in list
@@ -62,10 +63,10 @@ define(function(require, exports) {
     // get the basket width
     function _getElWidth() {
         var $modules = $el.find(".module")
-        , len = $modules.length
-        , width = $modules.outerWidth();
+          , len = $modules.length
+          , width = $modules.outerWidth();
 
-        return (width + 10) * len; // 10 = margin of .module
+        return (width + 10) * len + 15; // 10 = margin of .module
     }
 
 });

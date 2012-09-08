@@ -32,15 +32,15 @@ define(function(require, exports) {
 
     // subscribe app wide user message
     // new user
-    $.subscribe("app:user:new", function() {
+    $.subscribe("app:status:new", function() {
         $el.empty().append("<p>Welcome! Your are using Version " + planner.version + "</p>");
     });
     // user just have their version updated
-    $.subscribe("app:user:updated", function() {
+    $.subscribe("app:status:updated", function() {
         $el.empty().append("<p>Your just updated to Version " + planner.version + "</p>");
     });
     // user using the latest version
-    $.subscribe("app:user:uptodate", function() {
+    $.subscribe("app:status:uptodate", function() {
         $el.empty().append("<p>Welcome come back! Version " + planner.version + "</p>");
     });
 

@@ -23,7 +23,7 @@ define(function(require, exports) {
     // ModuleList default options
     var defaults = {
         mute : false // mute event publish
-      , prefix : "module:" // event prefix
+      , prefix : "ModuleList:" // event prefix
     };
 
     /* MODULELIST CLASS DEFINITION
@@ -48,9 +48,7 @@ define(function(require, exports) {
                 if (mod.isAvailable) {
                     callback(new Module(mod));
                 } else {
-                    $.publish(
-                        "message:alert"
-                      , ["module : " + modCode + " is not available"]);
+                    $.publish("message:error", ["Module " + modCode + " is not available."]);
                 }
             }
         });
@@ -137,7 +135,7 @@ define(function(require, exports) {
             module = this.list.splice(mod, 1)[0];
 
             if (!options.mute) {
-                $.publish(options.prefix + "removeOne", [mod, module]);
+                $.publish(options.prefix + "removeOne", [module]);
             }
             
             return module;

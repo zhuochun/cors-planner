@@ -15,7 +15,8 @@ define(function(require, exports) {
     /*jshint jquery:true, laxcomma:true, maxerr:50*/
     /*globals planner*/
 
-    var store = require("util/store");
+    var store = require("util/store")
+      , reserved = ["key", "user", "status"];
 
     // expose a planner variable in global namespace
     // 
@@ -31,8 +32,10 @@ define(function(require, exports) {
         // planner set and get
         planner.get = function(key) { return this[key]; };
         planner.set = function(key, value) {
-            this[key] = value;
-            $.publish("app:" + key, [value]);
+            if (reserved.indexOf(key) === -1) {
+                this[key] = value;
+                $.publish("app:" + key, [value]);
+            }
         };
 
         // assign CORS Planner Version number

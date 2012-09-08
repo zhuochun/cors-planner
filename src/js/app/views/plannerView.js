@@ -22,12 +22,12 @@ define(function(require, exports) {
     };
 
     // subscribe to start/end time change, re-render table
-    $.subscribe("timetable:range", function(e, start, end) {
+    $.subscribe("app:timetable:range", function(e, start, end) {
 		timetableView.render(planner.timetable, start, end);
     });
 
 	// subscribe to timetable orientation change
-	$.subscribe("timetable:type", function(e, type) {
+	$.subscribe("app:timetable:type", function(e, type) {
 		timetableView.render(type);
 	});
 

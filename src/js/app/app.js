@@ -39,7 +39,7 @@ define(function(require, exports) {
         // set version again
         store.set("version", planner.version);
         // publish the app wide message related to user
-        $.publish("app:user:" + ((!_version) ? "new" :
+        $.publish("app:status:" + ((!_version) ? "new" :
             (_version < planner.version) ? "updated" : "uptodate"));
     }
 

@@ -45,7 +45,7 @@ define(function(require, exports) {
             // require the latest modules data
             require(["corsModulesData"], function(data) {
                 store.set("cors-modules", {
-                    latestUpdate : planner.dataUpdate
+                      latestUpdate : planner.dataUpdate
                     , data : data
                 });
 
@@ -82,7 +82,7 @@ define(function(require, exports) {
                 // callback decide what to do
                 callback(modCode);
             } else {
-                window.alert("The module code entered is not valid!");
+                $.publish("message:error", ["The Module Code Entered is not Valid!"]);
             }
         };
     }

@@ -47,6 +47,15 @@ define(function(require, exports) {
         }
     });
 
+    // remove a module event
+    $.subscribe("module:remove", function(e, m) {
+        var mod = modules.remove(m);
+
+        if (mod) {
+            $.publish("message:success", "Module " + mod.get("code") + " is removed");
+        }
+    });
+
     // to control the size of previews list
     $.subscribe(planner.list.previews + ":addOne", function() {
         if (previews.length() > 20) {

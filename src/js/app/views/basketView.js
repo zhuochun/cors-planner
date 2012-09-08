@@ -13,6 +13,7 @@ define(function(require, exports) {
 
     "use strict";
     /*jshint browser:true, jquery:true, laxcomma:true, maxerr:50*/
+    /*global planner*/
 
     // include moduleView component
     var moduleView = require("view/moduleView")
@@ -21,11 +22,17 @@ define(function(require, exports) {
     , $basket = $("#basket");
 
     exports.init = function() {
-        //$el.tooltip({placement:"top", selector:"h3"});
+        $el.tooltip({placement:"right", selector:"h3"});
+
         // click on h3 title view detail
         $el.on("click", "h3", function() {
             $.publish("module:preview", $(this).text());
         });
+
+        $el.on("click", ".module-control", function() {
+            $.publish("module:remove", $(this).data("code"));
+        });
+
         // basket is droppable for bar
         $basket.droppable({
             accept : ".bar"
@@ -41,12 +48,31 @@ define(function(require, exports) {
                 ui.draggable.remove();
             }
         });
+
+        // TODO module items in basket-scroll are sortable
+        //$el.sortable({
+        //    cursor : "move"
+        //  , opacity : 0.8
+        //  , revert : true
+        //  , placeholder : "module-placeholder"
+        //  , forcePlaceholderSize: true
+        //  , tolerance: "pointer"
+        //  , start : function() { $el.css("width", $el.width() + 200); }
+        //  , stop : function() { $el.css("width", $el.width() - 200); }
+        //}).disableSelection();
     };
 
     // subscribe modules add one event
     $.subscribe(planner.list.modules + ":addOne", function(e, mod) {
         $el.prepend(moduleView.render(mod))
            .css("width", _getElWidth());
+    });
+
+    // subscribe modules remove event
+    $.subscribe(planner.list.modules + ":removeOne", function(e, mod) {
+        $el.find("#" + mod.get("code")).remove();
+        // remove any slots TODO remove from slot list if any
+        $("#table-slot").find("[id^=" + mod.get("code") + "]").remove();
     });
 
     // render all modules in list

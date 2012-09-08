@@ -168,6 +168,7 @@ define(function(require, exports) {
 
             // set down this dropped slot
             $this.css("background-color", "grey")
+                 .attr("id", "AAA") // TODO assign it ACC1002-lecture
                  .removeClass("temp-slot")
                  .addClass("draggable")
                  .droppable("destroy")

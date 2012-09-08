@@ -21,6 +21,9 @@ define(function(require, exports) {
     modules  = new ModuleList(planner.list.modules);
     previews = new ModuleList(planner.list.previews);
 
+    // controller initial
+    exports.init = function() {}
+
     // add a module event
     $.subscribe("module:add", function(e, m) {
         var mod = previews.get(m);

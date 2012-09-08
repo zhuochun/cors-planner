@@ -19,7 +19,7 @@ define(function(require, exports) {
       , plannerView = require("view/plannerView");
 
     // render initial all App Views
-    exports.render = function() {
+    exports.init = function() {
         // initial each view if they need
         addModuleView.init();
         plannerView.init();

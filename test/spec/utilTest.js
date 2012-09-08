@@ -11,10 +11,70 @@ define(function(require, exports) {
 
     "use strict";
     /*jshint browser:true, jquery:true, laxcomma:true, maxerr:50*/
-    /*globals describe, xdescribe, it, xit, expect, beforeEach, afterEach*/
+    /*globals planner, describe, xdescribe, it, xit, expect, beforeEach, afterEach*/
 
     var helper = require("util/helper")
       , colors = require("helper/colors");
+
+/* Test Global
+ * ======================================== */
+    describe("app/global", function() {
+        require("app/global");
+
+        it("can set item and publish an app wide message", function() {
+            var messages = 0;
+            $.subscribe("app:hello", function() { messages += 1; });
+            $.subscribe("app:world", function() { messages += 1; });
+
+            planner.set("hello", "wah");
+            expect(messages).toEqual(1);
+
+            planner.set("hello", "yah");
+            expect(messages).toEqual(2);
+
+            planner.set("world", "mie");
+            expect(messages).toEqual(3);
+        });
+
+        it("can get planner item", function() {
+            planner.set("hello", "yah");
+            expect(planner.get("hello")).toEqual("yah");
+
+            planner.set("world", "mie");
+            expect(planner.get("world")).toEqual("mie");
+        });
+
+        it("can set user key-value data and publish an app wide message", function() {
+            var messages = 0;
+            $.subscribe("app:user:hello", function() { messages += 1; });
+            $.subscribe("app:user:world", function() { messages += 1; });
+
+            planner.user.set("hello", null);
+            expect(messages).toEqual(1);
+            planner.user.set("hello", null);
+            expect(messages).toEqual(2);
+            planner.user.set("world", null);
+            expect(messages).toEqual(3);
+        });
+
+        it("can set user key-pairs data and publish an app wide message", function() {
+            var messages = 0;
+            $.subscribe("app:user:hello", function() { messages += 1; });
+            $.subscribe("app:user:world", function() { messages += 1; });
+
+            planner.user.set({ "hello" : null, "world" : null });
+            expect(messages).toEqual(2);
+        });
+
+        it("can get user data", function() {
+            planner.user.set({ "hello" : "wah", "world" : "mie" });
+            expect(planner.user.get("hello")).toEqual("wah");
+            expect(planner.user.get("world")).toEqual("mie");
+            planner.user.set("world", null);
+            expect(planner.user.get("world")).toBeNull();
+        });
+
+    });
 
 /* Test Helper Util
  * ======================================== */

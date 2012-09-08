@@ -15,6 +15,8 @@ define(function(require, exports) {
     /*jshint jquery:true, laxcomma:true, maxerr:50*/
     /*globals planner*/
 
+    var store = require("util/store");
+
     // expose a planner variable in global namespace
     // 
     // Taken from: (in case window is not the point to the global object)
@@ -30,7 +32,7 @@ define(function(require, exports) {
         planner.get = function(key) { return this[key]; };
         planner.set = function(key, value) {
             this[key] = value;
-            $.publish("planner:" + key, [value]);
+            $.publish("app:" + key, [value]);
         };
 
         // assign CORS Planner Version number
@@ -43,6 +45,38 @@ define(function(require, exports) {
         planner.list = planner.list || {};
         planner.list.modules  = "modules";
         planner.list.previews = "previews";
+
+        // default user info
+        planner.user = {};
+        // planner user
+        planner.user = (function() {
+            var user = {};
+
+            user.data = store.get("user") || {};
+
+            user.get = function(key) { return user.data[key]; };
+            user.set = function(key, value) {
+                if (typeof key === "object") {
+                    for (var i in key) {
+                        if (key.hasOwnProperty(i)) {
+                            user.set(i, key[i]);
+                        }
+                    }
+                } else {
+                    user.data[key] = value;
+
+                    store.set("user", user.data);
+
+                    $.publish("app:user:" + key, [value]);
+                }
+            };
+
+            return {
+                get : user.get
+              , set : user.set
+            };
+        })();
+
     })();
 
 });

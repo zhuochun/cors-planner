@@ -17,7 +17,6 @@ define(function(require, exports) {
 
     // include global variable planner
     require("app/global");
-
     // include jQuery plugins
     require("jquery-ui");
     require("bootstrap");
@@ -34,9 +33,9 @@ define(function(require, exports) {
     , appView = require("view/appView");
 
     // check the version between server and user, emits an message to all
-    function _versionCheck(_version) {
+    function _versionCheck() {
         // get user's version
-        _version = store.get("version");
+        var _version = store.get("version");
         // set version again
         store.set("version", planner.version);
         // publish the app wide message related to user
@@ -46,9 +45,11 @@ define(function(require, exports) {
 
     // exports module
     exports.init = function(v) {
-        // render all the app views
-        appView.render();
-        // version check
+        // initial controller
+        modulesController.init();
+        // initial views
+        appView.init();
+        // other things
         _versionCheck();
     };
 

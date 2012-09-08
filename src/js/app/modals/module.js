@@ -14,8 +14,11 @@ define(function(require, exports) {
     "use strict";
     /*jshint jquery:true, laxcomma:true, maxerr:50*/
 
-    // Module default status
-    var defaultStatus = {
+    var
+    // require components
+      color = require("helper/colors")
+    // module default status
+    , defaultStatus = {
         list : undefined
       , allocated : { lecture : "", tutorial : "", lab : "" }
     };
@@ -25,8 +28,13 @@ define(function(require, exports) {
 
     // Module Class
     function Module(data, status) {
-        this.id = data.code.replace(/[_\s\'\"]/gi, "-"); // replace unwanted chars
-        this.data = Module.Format(data); // convert it to have alter format
+        if (!data) { this.data = null; }
+        else {
+            this.id = data.code.replace(/[_\s\'\"]/gi, "-");
+            this.data = Module.Format(data);
+            this.data.color = color.get(this.data.color);
+        }
+
         this.status = $.extend({}, defaultStatus, status);
     }
 
@@ -53,18 +61,18 @@ define(function(require, exports) {
         if (data.alterFormat) { return data; }
         else { data.alterFormat = true; }
 
-        if (!$.isEmptyObject(data.lectures)) {
+        if (!$.isEmptyObject(data.lectures) && !data.hasLecture) {
             data.hasLecture = true;
             data._lectures = convertClass(data.lectures);
         }
 
-        if (!$.isEmptyObject(data.tutorials)) {
-            m.hasTutorial = true;
+        if (!$.isEmptyObject(data.tutorials) && !data.hasTutorial) {
+            data.hasTutorial = true;
             data._tutorials = convertClass(data.tutorials);
         }
 
-        if (!$.isEmptyObject(m.labs)) {
-            m.hasLab = true;
+        if (!$.isEmptyObject(data.labs) && !data.hasLab) {
+            data.hasLab = true;
             data._labs = convertClass(data.labs);
         }
 
@@ -72,14 +80,20 @@ define(function(require, exports) {
     };
 
     function convertClass(klass) {
-        var i, j = 0, length, key, result = [];
+        var i, j = 0, length, key, classNo, result = {};
 
         for (key in klass) {
             if (klass.hasOwnProperty(key)) {
                 length = klass[key].length;
 
                 for (i = 0; i < length; i++) {
-                    result[j++] = klass[key][i];
+                    classNo = klass[key][i].classNo;
+
+                    if (!result[classNo]) {
+                        result[classNo] = [];
+                    }
+
+                    result[classNo].push(klass[key][i]);
                 }
             }
         }
@@ -136,11 +150,6 @@ define(function(require, exports) {
         } else if (type === "labs") {
             return Module.Count(this.data.labs);
         }
-    };
-
-    // format the module
-    Module.fn.format = function() {
-        return Module.Format(this.data);
     };
 
     // isSame will check the module code is the same

@@ -22,10 +22,14 @@ define(function(require, exports) {
         , modACC1002 = require("json!testData/acc1002parsed.json")
         , modCS1020 = require("json!testData/cs1020parsed.json");
 
+        it("will has null module data if no data provided", function() {
+            var module = new Module();
+            expect(module.data).toBeNull();
+        });
+
         it("will create a Module class", function() {
             var acc1002 = new Module(modACC1002);
             expect(acc1002).toBeDefined();
-
             var cs1020 = new Module(modCS1020);
             expect(cs1020).toBeDefined();
         });
@@ -35,6 +39,17 @@ define(function(require, exports) {
 
             expect(acc1002.data.code).toEqual("ACC1002");
             expect(acc1002.get("code")).toEqual("ACC1002");
+        });
+
+        it("will assign color and alter format to new Module created", function() {
+            var acc1002 = new Module(modACC1002);
+            expect(acc1002.get("color")).toEqual("forestgreen");
+            expect(acc1002.get("alterFormat")).toBeTruthy();
+
+            var cs1020 = new Module(modCS1020);
+            expect(cs1020.get("color")).toEqual("royalblue");
+            expect(cs1020.get("alterFormat")).toBeTruthy();
+            expect(cs1020.get("hasLecture")).toBeTruthy();
         });
 
         it("status can be set using set()", function() {
@@ -129,17 +144,6 @@ define(function(require, exports) {
             expect(cs1020.isAllocated("lab", "3")).toBe(true);
             expect(cs1020.isAllocated("tutorial", 3)).toBe(false);
             expect(cs1020.isAllocated("tutorial", "3")).toBe(false);
-        });
-
-        it("can get formated according to classNo", function() {
-            var acc1002 = new Module(modACC1002)
-            , formattedData = acc1002.format();
-            
-            expect(formattedData.code).toBe("ACC1002");
-            expect(formattedData.hasLecture).toBe(true);
-            expect(formattedData.lectures.length).toEqual(1);
-            expect(formattedData.hasTutorial).toBe(true);
-            expect(formattedData.tutorials.length).toEqual(13);
         });
 
     });

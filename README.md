@@ -1,6 +1,6 @@
-# WaNDER! CORS Planner
+# [WaNDER! CORS Planner](http://zhuochun.github.com/cors-planner/)
 
-CORS Planner helps NUS students doing timetable planning.
+CORS Planner is a NUS CORS Timetable builder tool aims to help students doing course timetable planning.
 
 <a name="build" />
 ## Build
@@ -20,18 +20,28 @@ To build, run `makefile.bat` on Windows. Files will be generated under folder `/
 <a name="data" />
 ## Updating Data
 
-Module Details are crawled directly from CORS website using [YQL](http://developer.yahoo.com/yql/) api.
+Module Details are crawled directly from CORS website using [YQL](http://developer.yahoo.com/yql/) api (Evaluating on integrating with [IVLE API](http://wiki.nus.edu.sg/display/ivlelapi/Module) provided).
 
 However, Module Code and Title served in Typeahead needs to update manually using the snippet written in file `js/data/crawl.js` (follow the Steps in the snippet).
 
 <a name="more" />
-## Contribute
+## Contributing
 
-* You can submit bugs through GitHub Issues.
+* You can submit bugs through [GitHub Issues](https://github.com/zhuochun/cors-planner/issues).
 
-* Please fork and I am welcome to accept pull requests.
+* Anyone and everyone is welcome to contribute.
 
 * All specification and ideas are listed in [Trello](https://trello.com/board/cors-planner/).
+
+<a name="doc" />
+## Documentation
+
+Detailed Documentation is listed in [Wiki](https://github.com/zhuochun/cors-planner/wiki). (Working...)
+
+<a name="test" />
+## Testing
+
+All tests are written in [Jasmine](http://pivotal.github.com/jasmine/) under folder `/test`.
 
 <a name="license" />
 ## License

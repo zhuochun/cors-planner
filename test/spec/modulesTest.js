@@ -242,6 +242,32 @@ define(function(require, exports) {
             expect(list.length()).toEqual(0);
         });
 
+        it("can check duplicated data in modules", function() {
+            var list = new ModuleList("testList");
+            // add modules
+            list.add(acc1002);
+            list.add(cs1020);
+            // check
+            expect(list.duplicated("examDate", "AAA")).toEqual(-1);
+            expect(list.duplicated("examDate", "03-12-2012 EVENING")).toEqual(0);
+            expect(list.duplicated("examDate", "04-12-2012 EVENING")).toEqual(1);
+
+            // test publish
+            var message = 0;
+
+            $.subscribe("testList:duplicatedExamDate", function(e, mod, modAdd) {
+                message += 1;
+                expect(mod.get("code")).toEqual("CS1020");
+                expect(modAdd.get("code")).toEqual("CS1020TEST");
+            });
+
+            var cs1020test = $.extend(true, {}, modCS1020, {code : "CS1020TEST"});
+
+            list.add(new Module(cs1020test));
+
+            expect(message).toEqual(1);
+        });
+
     });
     
 });

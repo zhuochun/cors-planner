@@ -23,7 +23,7 @@ define(function(require, exports) {
     // ModuleList default options
     var defaults = {
         mute : false // mute event publish
-        , prefix : "module:" // event prefix
+      , prefix : "module:" // event prefix
     };
 
     /* MODULELIST CLASS DEFINITION
@@ -48,8 +48,9 @@ define(function(require, exports) {
                 if (mod.isAvailable) {
                     callback(new Module(mod));
                 } else {
-                    // TODO: move this to specific view component
-                    window.alert("module : " + modCode + " is not available");
+                    $.publish(
+                        "message:alert"
+                      , ["module : " + modCode + " is not available"]);
                 }
             }
         });
@@ -108,6 +109,8 @@ define(function(require, exports) {
 
     // private _add
     ModuleList.fn._add = function(module, options) {
+        var idx = this.duplicated("examDate", module.get("examDate"));
+
         // set module's status list
         module.set("list", this.name);
         // then pusth to the list
@@ -115,17 +118,10 @@ define(function(require, exports) {
 
         if (!options.mute) {
             $.publish(options.prefix + "addOne", [module]);
-        }
-    };
 
-    // return the detail information about the module using module code
-    ModuleList.fn.detail = function(modCode) {
-        var module = this.get(modCode);
-
-        if (module) {
-            return module.format();
-        } else {
-            return null;
+            if (idx >= 0) {
+                $.publish(options.prefix + "duplicatedExamDate", [this.get(idx), module]);
+            }
         }
     };
 
@@ -168,9 +164,15 @@ define(function(require, exports) {
         return this.list.length;
     };
 
-    // sort will sort the list according to compareFunction
-    ModuleList.fn.sort = function(compareFun) {
-        this.list.sort(compareFun);
+    // check duplicate item
+    ModuleList.fn.duplicated = function(key, val) {
+        var i, length = this.list.length;
+
+        for (i = 0; i < length; i++) {
+            if (this.list[i].get(key) === val) { return i; }
+        }
+    
+        return -1;
     };
 
     // exports the constructor

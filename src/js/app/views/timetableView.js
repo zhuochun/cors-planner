@@ -1,7 +1,7 @@
 /* ========================================
  * CORS Planner - timetableView
  *
- * It is a view simply make a timetable
+ * It is to make a timetable
  *
  * Author: Wang Zhuochun
  * Last Edit: 28/Jul/2012 02:07 PM
@@ -13,36 +13,35 @@ define(function(require, exports) {
 
     "use strict";
     /*jshint browser:true, jquery:true, laxcomma:true, maxerr:50*/
+    /*global planner*/
 
     // private variables
     var _type = "horizontal"
-    , _tableRender = _renderHorizontal
-    , _startHour = 8 // default: 8AM
-    , _endHour = 21 // default: 9PM
-    // grid
-    , $grid = $("#table-grid")
-    , weekDays = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"];
+      , _startHour = 8 // default: 8AM
+      , _endHour   = 22 // default: 10PM
+      , weekDays = planner.weekDays
+      , $table; // DOM
 
-    // render
-    function _render(type, start, end) {
+    exports.init = function() {};
+
+    exports.render = function(type, start, end) {
         // write type
         _type = type || _type;
         // do render
-        if (_type === "vertical")
-            _renderVertical(start, end);
-        else
-            _renderHorizontal(start, end);
-    }
+        if (_type === "vertical") {
+            return _renderTableVertical(start, end);
+        } else {
+            return _renderTableHorizontal(start, end);
+        }
+    };
 
-    // initial timetable grids
-    exports.init = _render;
-    // exports render
-    exports.render = _render;
-    // subscribe window resize
-    $.subscribe("app:window:resize", function(e, height) {
-        if (_type === "horizontal")
-            $grid.find("table").css({"height" : height - 360});
-    });
+    exports.resize = function(height) {
+        if (_type === "vertical") {
+
+        } else {
+            $table.css({"height" : height - 360});
+        }
+    };
 
     function _tableHead() {
         return "<table class='" + _type + " table table-striped table-bordered' " +
@@ -50,7 +49,7 @@ define(function(require, exports) {
     }
 
     // generate a timetable
-    function _renderHorizontal(start, end) {
+    function _renderTableHorizontal(start, end) {
         // update table hour range
         _startHour = start || _startHour;
         _endHour   = end || _endHour;
@@ -78,11 +77,10 @@ define(function(require, exports) {
         // push tbody to table
         table.push("<tbody>" + tbody.join(" ") + "</tbody");
 
-        // append table to html
-        $grid.html(table.join(""));
+        return ($table = $(table.join("")));
     }
 
-    function _renderVertical(start, end) {
+    function _renderTableVertical(start, end) {
         // update table hour range
         _startHour = start || _startHour;
         _endHour   = end || _endHour;
@@ -118,8 +116,7 @@ define(function(require, exports) {
         // push tbody to table
         table.push("<tbody>" + tbody.join(" ") + "</tbody>");
 
-        // append table to html
-        $grid.html(table.join(""));
+        return ($table = $(table.join("")));
     }
 
 });

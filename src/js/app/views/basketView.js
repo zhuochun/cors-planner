@@ -72,7 +72,7 @@ define(function(require, exports) {
     $.subscribe(planner.list.modules + ":removeOne", function(e, mod) {
         $el.find("#" + mod.get("code")).remove();
         // remove any slots TODO remove from slot list if any
-        $("#table-slot").find("[id^=" + mod.get("code") + "]").remove();
+        $("#table-slot").find("[id^=" + mod.get("code") + "-]").remove();
     });
 
     // render all modules in list

@@ -208,30 +208,32 @@ body {
 @barOrangeBgColor: #FCD39A;
 
 // module slot bar styles
+.slots {
+    position: absolute;
+    overflow: hidden;
+}
+
 .bar {
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.25) inset;
 
     position: absolute;
     overflow: hidden;
-    padding-top: 2px;
 
     color: #fff;
     font-size: 11px;
-    line-height: 14px;
 
-    text-align: center;
+    text-align: left;
     text-overflow: ellipsis;
 
-    opacity: .8;
+    opacity: .6;
+    &:hover { opacity: 1; }
 
     &.lectures {
         background-color: lighten(@orange, 10%);
     }
-
     &.tutorials {
         background-color: lighten(@successText, 10%);
     }
-
     &.labs {
         background-color: lighten(@infoText, 10%);
     }

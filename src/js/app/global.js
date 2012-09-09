@@ -43,11 +43,14 @@ define(function(require, exports) {
         // assign CORS Data latest update time
         planner.dataUpdate = "27 Aug 2012 17:57";
         // default timetable view
-        planner.timetable = "horizontal";
+        planner.timetableType = "horizontal";
+        planner.timetableRange = { start : 8, end : 22 };
         // default module lists
         planner.list = planner.list || {};
         planner.list.modules  = "modules";
         planner.list.previews = "previews";
+        // week days
+        planner.weekDays = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"]; 
 
         // default user info
         planner.user = {};

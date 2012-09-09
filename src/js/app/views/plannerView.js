@@ -14,16 +14,27 @@ define(function(require, exports) {
     /*global planner*/
 
 	// get components
-    var timetableView = require("view/timetableView");
+    var timetable = require("view/timetableView")
+      , tableSlots = require("view/tableSlotsView")
+      , $grid = $("#table-grid")
+      , $slot = $("#table-slot")
 
     // initial timetable grids
     exports.init = function() {
-        timetableView.init(planner.timetable);
+        planner.timetableType = "vertical";
+        $grid.html(timetable.render(planner.timetableType));
+        $slot.html(tableSlots.render(planner.timetableType));
     };
+
+    // subscribe window resize
+    $.subscribe("app:window:resize", function(e, height) {
+        timetable.resize(height);
+        tableSlots.resize(planner.timetableType);
+    });
 
     // subscribe to start/end time change, re-render table
     $.subscribe("app:timetable:range", function(e, start, end) {
-		timetableView.render(planner.timetable, start, end);
+		timetableView.render(planner.timetableType, start, end);
     });
 
 	// subscribe to timetable orientation change

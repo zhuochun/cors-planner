@@ -55,7 +55,8 @@ define(function(require, exports) {
 
                     // set left and width, according to start and end time
                     left = $gridTd[getTimeIndex(info[1])].offsetLeft + 1;
-                    width = $gridTd[getTimeIndex(info[2])].offsetLeft - left;
+                    width = $gridTd[getTimeIndex(info[2]) - 1].offsetLeft +
+                            $gridTd[getTimeIndex(info[2]) - 1].offsetWidth - left;
 
                     // convert left and width to percentage
                     left = (left / $gridWidth) * 100 + "%";

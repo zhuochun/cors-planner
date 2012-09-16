@@ -20,11 +20,19 @@ To build, run `makefile.bat` on Windows. Files will be generated under folder `/
 <a name="data" />
 ## Updating Data
 
-Module Details are crawled directly from CORS website using [YQL](http://developer.yahoo.com/yql/) api (Evaluating on integrating with [IVLE API](http://wiki.nus.edu.sg/display/ivlelapi/Module) provided).
+Detail of each Module is crawled directly from CORS website using [YQL](http://developer.yahoo.com/yql/) API. (TODO: evaluating on integrating with [IVLE API](http://wiki.nus.edu.sg/display/ivlelapi/Module) provided by School).
 
-However, Module Code and Title served in Typeahead needs to update manually using the snippet written in file `js/data/crawl.js` (follow the Steps in the snippet).
+However, all Module Code and Title served in `#Typeahead` needs to be updated manually:
 
-<a name="more" />
+* Prefered: Get [phantomjs](http://phantomjs.org/), go to folder `js/data`, run
+
+```bash
+$ phantomjs crawl-phantomjs.js
+```
+
+* Or you can follow the steps written in the snippet `js/data/crawl.js`.
+
+<a name="contribute" />
 ## Contributing
 
 * You can submit bugs through [GitHub Issues](https://github.com/zhuochun/cors-planner/issues).

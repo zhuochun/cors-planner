@@ -20,11 +20,11 @@ To build, run `makefile.bat` on Windows. Files will be generated under folder `/
 <a name="data" />
 ## Updating Data
 
-Detail of each Module is crawled directly from CORS website using [YQL](http://developer.yahoo.com/yql/) API. (TODO: evaluating on integrating with [IVLE API](http://wiki.nus.edu.sg/display/ivlelapi/Module) provided by School).
+Details of each Module is crawled directly from CORS website using [YQL](http://developer.yahoo.com/yql/) API.
 
-However, all Module Code and Title served in `#Typeahead` needs to be updated manually:
+However, all Module Code and Title served in `$typeahead` needs to be updated manually:
 
-* Prefered: Get [phantomjs](http://phantomjs.org/), go to folder `js/data`, run
+* __Prefered__: Get [phantomjs](http://phantomjs.org/), go to folder `js/data`, run
 
 ```bash
 $ phantomjs crawl-phantomjs.js
@@ -39,7 +39,7 @@ $ phantomjs crawl-phantomjs.js
 
 * Anyone and everyone is welcome to contribute.
 
-* All specification and ideas are listed in [Trello](https://trello.com/board/cors-planner/).
+* All specification and ideas are listed in [Trello](https://trello.com/board/cors-planner/). (Need invitation)
 
 <a name="doc" />
 ## Documentation

@@ -1,0 +1,127 @@
+@import "bootstrap/bootstrap.css.less";
+
+@import "metro/m-buttons.css.less";
+@import "metro/m-forms.css.less";
+@import "metro/m-icons.css";
+
+#body {
+    overflow: hidden;
+}
+
+#primary {
+    height: 100%;
+}
+
+#planner {
+}
+
+#detail {
+}
+
+@border-color: #E5E5E5;
+
+#sidebar {
+    color: #333;
+    background: #F3F3F3; //#333;
+    padding: 20px;
+    margin: 0 20px 0 0;
+    height: 100%;
+}
+
+#grid-title {
+    .grid { 
+        background-color: #D24726;
+        color: #fff;
+        border-color: @border-color;
+    }
+}
+
+.grid-head {
+    border-left: 1px solid @border-color;
+}
+
+.grid {
+    border-top: 1px solid @border-color;
+    border-right: 1px solid @border-color;
+    text-align: center;
+    height: 44px;
+}
+
+.slot {
+    padding: 2px 2px;
+
+    overflow: hidden;
+
+    text-align: left;
+    text-overflow: ellipsis;
+
+    height: 40px;
+}
+
+.slot-small {
+    font-size: 11px;
+}
+
+#maincolumn .weekday:nth-child(odd) {
+    .grid { background: #f0f0f0; }
+}
+
+#maincolumn .weekday:nth-child(even) {
+    .grid { background: #e0e0e0; }
+}
+
+#maincolumn .weekday:hover {
+    .grid { background: #F3B7AA; }
+}
+
+#friday .row-fluid:last-child {
+    .grid {
+        border-bottom: 1px solid @border-color;
+    }
+}
+
+.weekday .row-fluid:nth-child(n+2) {
+    .grid {
+        border-top: none;
+    }
+}
+
+// modules
+.module {
+    display: block;
+
+    background: orange;
+    color: #fff;
+
+    padding: 5px 20px;
+    margin: 0 0 10px;
+
+    overflow: hidden;
+
+    -moz-box-shadow: 0px 2px 5px rgba(0,0,0,.1);
+    -webkit-box-shadow: 0px 2px 5px rgba(0,0,0,.1);
+    box-shadow: 0px 2px 5px rgba(0,0,0,.1);
+
+    h3 {
+        font-size: 14px;
+        cursor: pointer;
+        float: left;
+        line-height: 25px;
+        &:hover { color: red }
+    }
+
+    h3, h4 {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        margin: 0;
+    }
+
+    h5 { color: #888 }
+    h4, h5 { font-size: 12px; line-height: 19px }
+
+    .module-class {
+        margin-right: 10px;
+        padding: 5px 10px;
+    }
+}

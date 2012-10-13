@@ -1,0 +1,104 @@
+@import 'reset.css';
+@import 'grid.less';
+
+
+//////////
+// GRID //
+//////////
+
+//* { border : 1px solid green; }
+
+// Specify the number of columns and set column and gutter widths
+@columns: 32;
+@column-width: 30;
+@gutter-width: 0;
+
+// Remove the definition below for a pixel-based layout
+@total-width: 100%;
+
+
+////////////
+// LAYOUT //
+////////////
+
+// header
+header#top {
+	margin-bottom: 1em;
+}
+
+// main column & sidebar
+#sidebar {
+	//.column(5);
+}
+
+#basket {
+    background: green;
+}
+
+#maincolumn {
+	.column(32);
+
+    .title {
+        background: orange;
+        .column(2, 32);
+    }
+
+    .class {
+        background: grey;
+    }
+
+    .row-slots {
+        position: relative;
+    }
+
+    .row-1 {
+        .row(32);
+
+        .inner-title {
+            .column(2, 32);
+        }
+
+        .inner-content {
+            .row(30);
+            .col-1 {
+                .column(1, 30);
+                background: blue;
+            }
+            .col-2 {
+                text-align: center;
+                background: purple;
+                .column(2, 30);
+            }
+            .col-3 {
+                .column(3, 30);
+                .push(3);
+            }
+        }
+
+        .col-1 {
+            .column(1, 32);
+            background: blue;
+        }
+        .col-2 {
+            text-align: center;
+            background: purple;
+            .column(2, 32);
+        }
+        .col-3 {
+            .column(3, 32);
+            .push(3);
+        }
+
+        .grid {
+            border-right: 1px solid white;
+            //border-bottom: 1px solid gray;
+            height: 100%;
+        }
+    }
+
+    .class-slots {
+        position: absolute;
+        top: 0; left: 0;
+    }
+}
+

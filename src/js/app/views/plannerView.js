@@ -21,7 +21,7 @@ define(function(require, exports) {
 
     // initial timetable grids
     exports.init = function() {
-        planner.timetableType = "vertical";
+        //planner.timetableType = "vertical";
         $grid.html(timetable.render(planner.timetableType));
         $slot.html(tableSlots.render(planner.timetableType));
     };

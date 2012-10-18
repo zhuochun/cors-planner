@@ -4,8 +4,8 @@
 @import "metro/m-forms.css.less";
 @import "metro/m-icons.css";
 
-#body {
-    overflow: hidden;
+body {
+    //background: #f8f8f8 url("tiny_grid.png") repeat;
 }
 
 #primary {
@@ -20,17 +20,32 @@
 #detail {
     height: 180px;
     padding: 10px 20px;
-    background: #aaa;
+    background: #E3E3E3;
+
+    overflow: hidden;
+
+    #detail-content {
+        height: 160px;
+    }
 }
 
-@border-color: #E5E5E5;
+@sidebar-bg: #F3F3F3;
+@grid-bg: #0072C6;
+@grid-hover: #E7E7E7;
+@grid-odd-bg: #EAEAEA;
+@grid-even-bg: #F3F3F3;
+@border-white: #FFF;
 
 #sidebar {
     color: #333;
-    background: #F3F3F3; //#333;
-    padding: 20px;
+    background: @sidebar-bg;
+    padding: 10px 20px;
     margin: 0 20px 0 0;
     height: 100%;
+
+    h1 { 
+        padding: 0 0 5px 0;
+    }
 }
 
 #addmodule {
@@ -39,19 +54,19 @@
 
 #grid-title {
     .grid { 
-        background-color: #D24726;
-        color: #fff;
-        border-color: @border-color;
+        background-color: @grid-bg;
+        color: @border-white;
+        border-color: @border-white;
     }
 }
 
 .grid-head {
-    border-left: 1px solid @border-color;
+    border-left: 1px solid @border-white;
 }
 
 .grid {
-    border-top: 1px solid @border-color;
-    border-right: 1px solid @border-color;
+    border-top: 1px solid @border-white;
+    border-right: 1px solid @border-white;
     text-align: center;
     height: 44px;
 }
@@ -72,20 +87,24 @@
 }
 
 #maincolumn .weekday:nth-child(odd) {
-    .grid { background: #f0f0f0; }
+    .grid {
+        background: @grid-odd-bg;
+    }
 }
 
 #maincolumn .weekday:nth-child(even) {
-    .grid { background: #e0e0e0; }
+    .grid {
+        background: @grid-even-bg;
+    }
 }
 
 #maincolumn .weekday:hover {
-    .grid { background: #F3B7AA; }
+    .grid { background: @grid-hover; }
 }
 
 #friday .row-fluid:last-child {
     .grid {
-        border-bottom: 1px solid @border-color;
+        border-bottom: 1px solid @border-white;
     }
 }
 
@@ -95,28 +114,49 @@
     }
 }
 
+@module-bg: #0072C6;
+@module-hover: #213C92;
+
+.module:nth-child(odd) {
+    //background: @module-bg;
+    background: lighten(@module-bg, 5%);
+}
+
+.module:nth-child(even) {
+    background: lighten(@module-bg, 5%);
+    margin-right: 10px;
+}
+
+.module:hover {
+    background: @module-bg;
+}
+
 // modules
 .module {
     display: block;
 
-    background: orange;
+    background: @module-bg;
     color: #fff;
 
-    padding: 5px 20px;
-    margin: 0 0 10px;
+    width: 100px;
+    float: left;
+
+    padding: 5px 10px;
+    margin-bottom: 10px;
 
     overflow: hidden;
 
-    -moz-box-shadow: 0px 2px 5px rgba(0,0,0,.1);
-    -webkit-box-shadow: 0px 2px 5px rgba(0,0,0,.1);
-    box-shadow: 0px 2px 5px rgba(0,0,0,.1);
+    h3, h4, h5 {
+        padding: 5px;
+        font-weight: normal;
+    }
 
     h3 {
-        font-size: 14px;
+        font-size: 16px;
         cursor: pointer;
-        float: left;
-        line-height: 25px;
-        &:hover { color: red }
+        line-height: 23px;
+
+        //&:hover { background: #4D90FE; }
     }
 
     h3, h4 {
@@ -126,11 +166,26 @@
         margin: 0;
     }
 
-    h5 { color: #888 }
-    h4, h5 { font-size: 12px; line-height: 19px }
+    h4, h5 { font-size: 14px; line-height: 19px }
+
+    .module-header {
+        float: left;
+    }
 
     .module-class {
-        margin-right: 10px;
-        padding: 5px 10px;
+        margin-top: 35px;
+        float: right;
+    }
+
+    .basket-item {
+        font-weight: bold;
+        padding: 20px 10px;
+    }
+
+    .basket-lecture {
+        background: blue;
+    }
+    .basket-tutorial {
+        background: green;
     }
 }

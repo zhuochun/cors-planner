@@ -2,17 +2,29 @@ $(function() {
 
     var $planner = $("#planner")
       , $detail = $("#detail")
+      ;
 
-      $(window).on("resize", function() {
+    $(window).on("resize", function() {
 
-        // height
-        var height = $(this).height();
-        $planner.height(height - 200); // 200 = detail height
+      // height
+      var height = $(this).height();
+      $planner.height(height - 200); // 200 = detail height
 
-        // addmodule width
-        var width = $("#addmodule").width();
-        $("#addmodule").find("input[type=text]").width(width - 60 - 14);
+      // addmodule width
+      var width = $("#addmodule").width();
+      $("#addmodule").find("input[type=text]").width(width - 60 - 14);
 
-      }).trigger("resize");
+      // module
+      $(".module").width(Math.floor((width - 10) / 2) - 21);
+
+    }).trigger("resize");
+
+    $("#detail-title").click(function() {
+        
+        $detail.fadeOut("slow", function() {
+            $planner.height($(window).height());
+        });
+
+    });
 
 });

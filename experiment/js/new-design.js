@@ -27,4 +27,6 @@ $(function() {
 
     });
 
+    $("div.metro-pivot").metroPivot();
+
 });

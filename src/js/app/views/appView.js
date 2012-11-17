@@ -38,11 +38,21 @@ define(function(require, exports) {
         $("#footer").tooltip({placement:"top", selector:"a[rel=tooltip]"});
         // metro tab
         $("#metro-pivot").metroPivot();
-        // detail height
+        // min height
+        $("#planner").css("min-height", $("#primary").height());
+        // window resize
         $(window).bind("resize", function(e) {
-            var height = $(this).height(), secHeight = $("#primary").height();
+            var height = $(this).height(),
+                primary = $("#primary").height(),
+                highest = height > primary ? height : primary;
 
-            $("#sidebar").height((height > secHeight ? height : secHeight) - 20);
+            $("#sidebar").height(highest - 20);
+
+            var h1 = $("h1").first().height(),
+                pivotItems = $("#metro-pivot").find(".pivotItem");
+
+                pivotItems.height(highest - h1 - 143);
+                pivotItems.find(".info").width(pivotItems.width() - 43);
 
             $.publish("app:window:resize", [height, $(this).width()]);
         }).trigger("resize");

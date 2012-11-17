@@ -14,6 +14,9 @@ define(function(require, exports) {
     "use strict";
     /*jshint jquery:true, laxcomma:true, maxerr:50*/
 
+    // jquery plugin
+    require("helper/jquery.module");
+    // template
     var template = require("hgn!template/module");
 
     // render will return the html generated
@@ -30,9 +33,9 @@ define(function(require, exports) {
             , "labs" : module.count("labs")
         },
         // get the jquery object
-        $module = $(template(context)).data("module", module);
+        $module = $(template(context));
         // lazy draggable events loading
-        $module.dragdrop();
+        $module.module({data: module});
         // return $module DOM
         return $module;
     };

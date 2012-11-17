@@ -1,21 +1,12 @@
-<div id="{{id}}" class="module" style="border-color:{{color}}">
-    <div class="module-header clearfix">
-        <h3 title="View Detail">{{code}}</h3>
-        <div data-code="{{id}}" class="module-control">
-            <i class="icon-remove" tilte="Remove"></i>
-        </div>
+<div id="{{id}}" class="module clearfix">
+    <div class="method" style="background:{{color}}">
+        <span class="detail"><i class="icon-info-sign icon-white"></i></span>
+        <span class="timetable"><i class="icon-eye-open icon-white"></i></span>
+        <span class="remove"><i class="icon-remove icon-white"></i></span>
     </div>
-    <h4 style="color:{{color}}">{{title}}</h4>
-    <h5>{{examDate}}</h5>
-    <div class="module-class">
-        {{#lectures}}
-        <span id="{{id}}-lectures" class="label label-large basket-lecture draggable" data-type="lecture" data-count="{{lectures}}">LECT</span>
-        {{/lectures}}
-        {{#tutorials}}
-        <span id="{{id}}-tutorials" class="label label-large basket-tutorial draggable" data-type="tutorial" data-count="{{tutorials}}">TUT</span>
-        {{/tutorials}}
-        {{#labs}}
-        <span id="{{id}}-labs" class="label label-large basket-lab draggable" data-type="lab" data-count="{{labs}}">LAB</span>
-        {{/labs}}
+    <div class="info">
+        <div class="code">{{code}}</div>
+        <div class="title">{{title}}</div>
+        <div class="examdate">{{examDate}}</div>
     </div>
 </div>

@@ -13,6 +13,7 @@
 
 /* variables */
 @blue: #0072C6;
+@lightblue: #CDE6EC;
 @darkblue: #213C92;
 @red: #EA1100;
 @grey: #F3F3F3;
@@ -53,7 +54,7 @@ a {
 /* structure */
 #planner {
     height: 100%;
-    min-width: 960px;
+    min-width: 980px;
 
     position: relative;
 }
@@ -126,7 +127,7 @@ a {
 #sidebar {
     background: @grey;
 
-    padding: 10px 20px;
+    padding: 10px;
     margin: 0 20px 0 0;
 
     overflow: hidden;
@@ -164,9 +165,69 @@ a {
 }
 
 #metro-pivot .items .pivotItem {
+    margin: 0 -10px 0 0;
+
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    height: 500px;
+    padding: 0 0 15px;
 }
 
 /* module */
+.module {
+    display: block;
+    width: 100%;
+    margin: 0 0 3px;
+    overflow: hidden;
+
+    .method {
+        float: left;
+        width: 20px;
+        background: @blue;
+
+        display: block;
+        padding: 3px 0 1px;
+
+        span {
+            display: block;
+            padding: 3px 3px 0;
+            margin: 0 0 1px;
+            cursor: pointer;
+
+            &:hover {
+                background: @darkblue;
+            }
+        }
+    }
+
+    .info {
+        float: left;
+        background: @grid-hover;
+        width: 200px;
+        padding: 2px 0 2px 5px;
+        line-height: 24px;
+        font-size: 16px;
+
+        .code {
+            font-weight: bold;
+        }
+
+        .code,
+        .title,
+        .exam {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    }
+
+    &:hover .info {
+        background: @blue;
+        color: @grey;
+    }
+
+}
 
 /* footer */
 #footer {

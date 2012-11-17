@@ -1,46 +1,183 @@
-@import "bootstrap/bootstrap.less";
+@import "bootstrap.css.less";
 
-body {
-  padding: 60px 0 0;
-  cursor: default;
-  overflow-y: scroll;
-}
+@import "m-buttons.css.less";
+@import "m-forms.css.less";
+@import "m-icons.css.less";
 
-@import "bootstrap/responsive.less";
 @import "toastr.less";
 
 /*!========================================
  * Author: Wang Zhuochun
- * Last Edit: 14/Jul/2012 01:45 PM
+ * Last Edit: 17/Nov/2012 04:23 PM
  * ======================================== */
 
-/* nav */
-// nav variables
-@logoColor: #4A64BC;
-@pinkColor: #E21149;
-@redColor: #EA1100;
+/* variables */
+@blue: #0072C6;
+@darkblue: #213C92;
+@red: #EA1100;
+@grey: #F3F3F3;
 
-// nav styles
-#nav {
-    #wander {
-        display: inline-block;
-        margin: -5px 5px 0 0;
-        width: 20px;
-        height: 19px;
-    }
+/* timetable grid */
+@grid-title-bg: @blue;
+@grid-odd-bg: #EAEAEA;
+@grid-even-bg: #F3F3F3;
+@grid-hover: #E7E7E7;
+@grid-border: #FFF;
 
-    .brand {
-        width: 290px;
-        font-weight: bold;
-        color: @logoColor;
+/* module */
+@module-bg: @blue;
+@module-hover: @darkblue;
 
-        &:hover {
-            color: darken(@logoColor, 15%);
-        }
+/* basics */
+body {
+    cursor: default;
+}
+
+h1 {
+    font-size: 32px;
+    color: @darkblue;
+
+    &:hover {
+        color: @blue;
     }
 }
 
+a {
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+/* structure */
+#planner {
+    height: 100%;
+    min-width: 960px;
+
+    position: relative;
+}
+
+#primary {
+
+}
+
+#tt-header {
+    padding: 10px 0;
+}
+
+/* timetable grid */
+#tt-grid {
+    #grid-title {
+        .grid { 
+            background-color: @grid-title-bg;
+            color: @grid-border;
+            border-color: @grid-border;
+        }
+    }
+
+    .grid-head {
+        border-left: 1px solid @grid-border;
+    }
+
+    .grid {
+        border-top: 1px solid @grid-border;
+        border-right: 1px solid @grid-border;
+        text-align: center;
+        height: 44px;
+    }
+
+    .weekday {
+        &:nth-child(odd) .grid {
+            background: @grid-odd-bg;
+        }
+
+        &:nth-child(even) .grid {
+            background: @grid-even-bg;
+        }
+
+        &:hover .grid { background: @grid-hover; }
+
+        .row-fluid:nth-child(n+2) .grid {
+                border-top: none;
+        }
+
+        .grid-head h4 {
+            color: @grid-title-bg;
+        }
+    }
+
+    #friday .row-fluid:last-child .grid {
+        border-bottom: 1px solid @grid-border;
+    }
+}
+
+#secondary {
+    height: 100%;
+
+    color: #333;
+
+    h1 { 
+        padding: 0 0 5px 0;
+    }
+}
+
+/* sidebar */
+#sidebar {
+    background: @grey;
+
+    padding: 10px 20px;
+    margin: 0 20px 0 0;
+
+    overflow: hidden;
+}
+
+#add-module {
+    .m-btn { width: 60px; }
+}
+
+/* metro-pivot */
+#metro-pivot .headers {
+    clear: both;
+    display: block;
+
+    margin: 15px 0;
+
+    white-space: nowrap;
+}
+
+#metro-pivot .pivot-item h3,
+#metro-pivot .headers .header {
+    cursor: pointer;
+
+    font-size: 24px;
+    margin: 0 15px 0 0;
+    padding: 0;
+
+    vertical-align: top;
+}
+
+#metro-pivot .headers .header.current {
+}
+
+#metro-pivot .items {
+}
+
+#metro-pivot .items .pivotItem {
+}
+
+/* module */
+
+/* footer */
+#footer {
+    margin-top: 20px;
+    padding: 5px 10px 10px;
+    text-align: center;
+}
+
+/*
 /* board */
+/*
 @moduleWidth: 145px;
 @moduleHeight: 105px;
 
@@ -164,6 +301,7 @@ body {
 }
 
 /* planner */
+    /*
 #main {
     margin-bottom: 10px;
 
@@ -200,6 +338,7 @@ body {
 
 /* module slot bar */
 // module slot variables
+/*
 @barRedColor: #78436D;
 @barRedBgColor: #F9C4E1;
 @barGreenColor: #778461;
@@ -244,6 +383,7 @@ body {
 }
 
 /* secondary panel */
+/*
 #detail {
     height: 480px;
     overflow: auto;
@@ -270,9 +410,4 @@ body {
         color: @infoText;
     }
 }
-
-/* footer */
-#footer {
-    padding: 5px 10px 10px;
-    text-align: center;
-}
+    */

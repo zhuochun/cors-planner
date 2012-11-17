@@ -7,7 +7,7 @@
   <meta charset="utf-8">
 
   <title>WaNDER! CORS Planner - NUS Timetable Builder</title>
-  <meta name="description" content="WaNDER! CORS Planner is a NUS CORS Timetable planner and builder tool. CORS Planner provides a easy and desktop-like web NUS Timetable Building environment for NUS students.">
+  <meta name="description" content="WaNDER! CORS Planner is a NUS CORS Timetable planner and builder tool. CORS Planner provides an easy and desktop-like web NUS Timetable Building environment for NUS students.">
   <meta name="author" content="Wang Zhuochun">
 
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -18,6 +18,7 @@
   <!-- Le stylesheets -->
   <link rel="stylesheet/less" href="less/style.less">
   <script src="js/libs/less-1.3.0.min.js"></script>
+
   <!-- Le javascript -->
   <!-- pre-load third party scripts that do not want be async loaded. -->
   <script src="js/libs/modernizr-2.6.1.min.js"></script>
@@ -27,85 +28,439 @@
 </head>
 <body>
 
-  <div class="navbar navbar-fixed-top" id="nav">
-    <div class="navbar-inner">
-      <div class="container-fluid">
-        <a class="brand" href="/ivle-wander/"><img id="wander" src="img/wander-small.png" alt="WaNDER!"> CORS Planner</a>
+  <div class="container-fluid">
+    <div class="row-fluid" id="planner">
+      <!-- Sidebar -->
+      <div id="secondary" class="span7">
+        <div id="sidebar">
+          <h1><a href="#" title="WaNDER! CORS Planner">CORS Planner</a></h1>
 
-        <ul class="nav pull-right">
-          <!-- FACEBOOKBTN -->
-          <!-- GOOGLEPLUSBTN -->
-          <li class="divider-vertical"></li>
-          <li><a href="http://www.nus.edu.sg/cors/index.html" rel="tooltip" title="NUS CORS" target="_blank"><i class="icon-calendar"></i></a></li>
-          <li><a href="https://aces01.nus.edu.sg/cors/jsp/report/ModuleInfoListing.jsp" rel="tooltip" title="CORS Module Listing" target="_blank"><i class="icon-bookmark"></i></a></li>
-          <li class="visible-desktop"><a href="http://exchange.nus.edu.sg/" rel="tooltip" title="NUS Email" target="_blank"><i class="icon-envelope-alt"></i></a></li>
-          <li class="visible-desktop"><a href="http://www.lib.nus.edu.sg/" rel="tooltip" title="Library" target="_blank"><i class="icon-paper-clip"></i></a></li>
-          <li class="divider-vertical"></li>
-          <li><a href="#" rel="tooltip" title="IVLE WaNDER" target="_blank"><i class="icon-briefcase"></i></a></li>
-          <li class="divider-vertical"></li>
-          <li class="dropdown">
-            <a href="#more" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-chevron-down"></i></a>
-            <ul class="dropdown-menu">
-              <li><a href="#/settings/"><i class="icon-wrench"></i> Settings</a></li>
-              <li class="divider"></li>
-              <li><a href="#/feedback/"><i class="icon-edit"></i> Feedback</a></li>
-              <li><a href="#/about/"><i class="icon-heart"></i> About</a></li>
-              <li class="divider"></li>
-              <li><a href="#/help/"><i class="icon-pushpin"></i> Quick How-to</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div> <!-- /nav -->
-
-  <div class="container-fluid" id="main">
-    <div class="row-fluid">
-
-      <div id="primary-panel" class="span8">
-        <div class="row-fluid" id="board">
-          <div id="add">
-            <form class="form-inline">
-              <div class="input-append">
-                <label for="mod-code"><i class="icon-bolt"></i> <span id="semester">Enter Module Code :</span></label>
-                <input id="mod-code" type="text" class="input-large" placeholder="Module Code" value="" autocomplete="off" />
-                <button id="add-btn" type="submit" class="btn btn-danger">Add<span class="visible-desktop"> Module</span></button>
-                <button id="preview-btn" type="button" class="btn btn-primary">Preview<span class="visible-desktop"> Module</span></button>
-              </div>
-            </form>
-          </div> <!-- ../add -->
-
-          <div id="basket" class="well">
-            <div id="basket-scroll">
-            </div> <!-- .../basket-scroll -->
-          </div> <!-- ../basket -->
-        </div> <!-- ./board -->
-
-        <div class="row-fluid" id="planner">
-          <div class="row-fluid" id="timetable">
-            <div id="table-grid">
+          <div id="add-module">
+            <div class="m-input-append">                      
+              <input id="mod-code" class="m-wrap" size="16" type="text" tabindex="0" placeholder="Module Code/Title">
+              <button id="add-btn" href="#" class="m-btn blue">Add</button>
             </div>
-            <div id="table-slot">
+          </div> <!-- add-module -->
+
+          <div id="metro-pivot">
+            <div id="basket" class="pivot-item">
+              <h3>Modules</h3>
+              <div id="basket-scroll">
+                <div id="ACC1002" class="module">
+                  <h3>ACC1002</h3>
+                  <h4>Financial Engineering</h4>
+                  <h4>00-00-2012 EVENING</h4>
+                </div>
+                <div id="ACC1002" class="module">
+                  <h3>ACC1002</h3>
+                  <h4>Mechanical Speical Engineering</h4>
+                  <h4>00-00-2012 EVENING</h4>
+                </div>
+                <div id="ACC1002" class="module">
+                  <h3>ACC1002XYZ</h3>
+                  <h4>Mechanical Speical Engineering</h4>
+                  <h4>00-00-2012 EVENING</h4>
+                </div>
+                <div id="ACC1002" class="module">
+                  <h3>ACC1002</h3>
+                  <h4>Mechanical Speical Engineering</h4>
+                  <h4>00-00-2012 EVENING</h4>
+                </div>
+              </div> <!-- .../basket-scroll -->
             </div>
-          </div> <!-- ../timetable -->
-        </div> <!-- ./planner -->
-      </div> <!-- /primary-panel -->
+            <div id="detail" class="pivot-item">
+              <h3>Detail</h3>
+              <div>hello world;</div>
+            </div>
+          </div> <!-- metro-pivot -->
+        </div> <!-- sidebar -->
+      </div> <!-- secondary -->
 
-      <div class="span4" id="secondary-panel">
-        <div id="detail">
-          <h3>Module Details</h3>
-        </div> <!-- ./detail -->
-      </div> <!-- /secondary-panel -->
+      <!-- Main Body -->
+      <div id="primary" class="span26">
+        <div id="tt-header">
+          <h2>Timetable of <span id="semester"></span></h2>
+        </div> <!-- tt-header -->
 
-    </div>
-  </div> <!-- /main -->
+        <div id="tt-grid">
+          <div id="grid-title" class="row-fluid">
+            <div class="span2"><div class="grid grid-head">&nbsp;</div></div>
+            <div class="span2"><div class="grid"><h4>08</h4></div></div>
+            <div class="span2"><div class="grid"><h4>09</h4></div></div>
+            <div class="span2"><div class="grid"><h4>10</h4></div></div>
+            <div class="span2"><div class="grid"><h4>11</h4></div></div>
+            <div class="span2"><div class="grid"><h4>12</h4></div></div>
+            <div class="span2"><div class="grid"><h4>13</h4></div></div>
+            <div class="span2"><div class="grid"><h4>14</h4></div></div>
+            <div class="span2"><div class="grid"><h4>15</h4></div></div>
+            <div class="span2"><div class="grid"><h4>16</h4></div></div>
+            <div class="span2"><div class="grid"><h4>17</h4></div></div>
+            <div class="span2"><div class="grid"><h4>18</h4></div></div>
+            <div class="span2"><div class="grid"><h4>19</h4></div></div>
+            <div class="span2"><div class="grid"><h4>20</h4></div></div>
+            <div class="span2"><div class="grid"><h4>21</h4></div></div>
+            <div class="span2"><div class="grid"><h4>22</h4></div></div>
+          </div> <!-- ./grid-title -->
 
-  <div id="footer">
-    <h6>CORS Planner &copy; 2012 by <a href="https://www.facebook.com/zhuochun.wang" target="_blank" title="Follow my Facebook" rel="tooltip">WANG ZHUOCHUN <i class="icon-facebook-sign"></i></a> | <a href="https://github.com/zhuochun/cors-planner" title="Fork CORS Planner on GitHub" rel="tooltip">Github <i class="icon-github-sign"></i></a></h6>
-  </div>
+          <div id="monday" class="weekday">
+            <div class="row-fluid">
+              <div class="span2"><div class="grid grid-head"><h4>MON</h4></div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+            </div>
 
-  <!-- FACEBOOK -->
-  <!-- GOOGLEPLUS -->
+            <div class="row-fluid">
+              <div class="span2"><div class="grid grid-head">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+            </div>
+          </div> <!-- ./monday -->
+
+          <div id="tuesday" class="weekday">
+            <div class="row-fluid day">
+              <div class="span2"><div class="grid grid-head"><h4>TUE</h4></div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+            </div>
+
+            <div class="row-fluid">
+              <div class="span2"><div class="grid grid-head">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+            </div>
+          </div>
+
+          <div id="wednesday" class="weekday">
+            <div class="row-fluid day">
+              <div class="span2"><div class="grid grid-head"><h4>WED</h4></div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+            </div>
+
+            <div class="row-fluid">
+              <div class="span2"><div class="grid grid-head">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+            </div>
+          </div>
+
+          <div id="thursday" class="weekday">
+            <div class="row-fluid day">
+              <div class="span2"><div class="grid grid-head"><h4>THU</h4></div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+            </div>
+
+            <div class="row-fluid">
+              <div class="span2"><div class="grid grid-head">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+            </div>
+          </div>
+
+          <div id="friday" class="weekday">
+            <div class="row-fluid day">
+              <div class="span2"><div class="grid grid-head"><h4>FRI</h4></div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+            </div>
+
+            <div class="row-fluid">
+              <div class="span2"><div class="grid grid-head">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+            </div>
+          </div>
+        </div> <!-- tt-grid -->
+
+        <div id="footer">
+          <h6>CORS Planner &copy; 2012 by <a href="https://www.facebook.com/zhuochun.wang" target="_blank" title="Follow my Facebook" rel="tooltip">WANG ZHUOCHUN</a> | <a href="https://github.com/zhuochun/cors-planner" title="Fork CORS Planner on GitHub" rel="tooltip">Github</a></h6>
+        </div>
+
+      </div> <!-- primary -->
+    </div> <!-- planner -->
+  </div> <!-- container -->
+
   <!-- GOOGLEANALYTICS -->
 
 </body>

@@ -20,8 +20,7 @@ define(function(require, exports) {
       , sem = require("util/helper").getSemester()
     // associated DOM elements
       , $input = $("#mod-code")
-      , $addBtn = $("#add-btn")
-      , $prevBtn = $("#preview-btn");
+      , $addBtn = $("#add-btn");
 
     // init will attach all things related to #add
     exports.init = function() {
@@ -29,6 +28,12 @@ define(function(require, exports) {
         attachTypeahead();
         attachEvents();
     };
+
+    // resize on add-module width
+    $.subscribe("app:window:resize", function() {
+          var width = $("#add-module").width();
+          $("#add-module").find("#mod-code").width(width - 60 - 14);
+    });
 
     // update the semester text
     function updateSemester() {
@@ -57,16 +62,13 @@ define(function(require, exports) {
     // attach events to buttons
     function attachEvents() {
         // select input text when on focus
-        $input.on("focus", function() { this.select(); });
+        $input.on("focus", function(e) {
+            this.select();
+        });
 
         // bind add module event
         $addBtn.on("click", _clickEvent(function(modCode) {
             $.publish("module:add", [modCode]);
-        }));
-        
-        // bind preview module event
-        $prevBtn.on("click", _clickEvent(function(modCode) {
-            $.publish("module:preview", [modCode]);
         }));
     }
 

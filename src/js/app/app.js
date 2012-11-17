@@ -18,8 +18,9 @@ define(function(require, exports) {
     // include global variable planner
     require("app/global");
     // include jQuery plugins
-    require("jquery-ui");
     require("bootstrap");
+    require("jquery.ui");
+    require("jquery.metro");
     // include jQuery Pub/Sub plugin
     require("util/pubsub");
     // include jQuery dragDrop plugin

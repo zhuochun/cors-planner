@@ -14,7 +14,7 @@ require.config({
 
   , paths : {
     // jQuery plugins
-        "jquery-ui" : "jquery-ui-1.8.23.custom"
+        "jquery.ui" : "jquery-ui-1.8.23.custom"
     // RequireJS plugins
       , "hgn" : "requirejs-plugins/hgn"
       , "text" : "requirejs-plugins/text"

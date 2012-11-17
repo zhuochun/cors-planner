@@ -23,7 +23,7 @@ define(function(require, exports) {
     exports.init = function() {
         // initial each view if they need
         addModuleView.init();
-        plannerView.init();
+        //plannerView.init();
         basketView.init();
         detailView.init();
         messageView.init();
@@ -36,10 +36,15 @@ define(function(require, exports) {
         // enable tooltips
         $("#nav").tooltip({placement:"bottom", selector:"a[rel=tooltip]"});
         $("#footer").tooltip({placement:"top", selector:"a[rel=tooltip]"});
+        // metro tab
+        $("#metro-pivot").metroPivot();
         // detail height
         $(window).bind("resize", function(e) {
-            $.publish("app:window:resize", [$(this).height(), $(this).width()]);
+            var height = $(this).height(), secHeight = $("#primary").height();
+
+            $("#sidebar").height((height > secHeight ? height : secHeight) - 20);
+
+            $.publish("app:window:resize", [height, $(this).width()]);
         }).trigger("resize");
     }
-
 });

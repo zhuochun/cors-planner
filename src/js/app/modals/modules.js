@@ -111,13 +111,13 @@ define(function(require, exports) {
 
         // set module's status list
         module.set("list", this.name);
-        // then pusth to the list
+        // then push to the list
         this.list.push(module);
 
         if (!options.mute) {
             $.publish(options.prefix + "addOne", [module]);
 
-            if (idx >= 0) {
+            if (idx >= 0 && module.get("examDate").indexOf("No Exam") < 0) {
                 $.publish(options.prefix + "duplicatedExamDate", [this.get(idx), module]);
             }
         }

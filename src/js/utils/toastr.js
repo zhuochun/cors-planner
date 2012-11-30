@@ -15,7 +15,7 @@ define(function(require, exports) {
             containerId: 'toast-container',
             debug: false,
             fadeIn: 300,
-            fadeOut: 1200,
+            fadeOut: 800,
             iconClasses: {
                 error: 'toast-error',
                 info: 'toast-info',
@@ -24,7 +24,7 @@ define(function(require, exports) {
             },
             iconClass: 'toast-info',
             positionClass: 'toast-bottom-right',
-            timeOut: 6000, // Set timeOut to 0 to make it sticky
+            timeOut: 2000, // Set timeOut to 0 to make it sticky
             titleClass: 'toast-title',
             messageClass: 'toast-message'
         },

@@ -40,7 +40,7 @@ define(function(require, exports) {
             }
 
             , get: function(key) {
-                return this.data[key];
+                return this.data.get(key);
             }
 
             , resize: function() {
@@ -63,16 +63,16 @@ define(function(require, exports) {
                     if ($this.hasClass("icon-eye-open")) {
                         // remove slots on timetable
                         $this.removeClass("icon-eye-open").addClass("icon-eye-close");
-
                     } else {
                         // add slots to timetable
                         $this.removeClass("icon-eye-close").addClass("icon-eye-open");
-                    
                     }
                 });
 
                 this.$method.on("click", ".remove", function() {
                     $.publish("module:remove", self.get("code"));
+                    // hide tooltip
+                    $(this).tooltip("hide");
                     // remove it self
                     self.$elem.fadeOut(500, function() { self.$elem.remove(); });
                 });

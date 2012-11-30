@@ -31,11 +31,13 @@ define(function(require, exports) {
             , "lectures" : module.count("lectures")
             , "tutorials" : module.count("tutorials")
             , "labs" : module.count("labs")
-        },
+        }
         // get the jquery object
-        $module = $(template(context));
+        , $module = $(template(context));
+
         // lazy draggable events loading
         $module.module({data: module});
+
         // return $module DOM
         return $module;
     };

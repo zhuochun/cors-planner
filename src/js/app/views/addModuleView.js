@@ -32,7 +32,7 @@ define(function(require, exports) {
     // resize on add-module width
     $.subscribe("app:window:resize", function() {
           var width = $("#add-module").width();
-          $("#add-module").find("#mod-code").width(width - 60 - 14);
+          $("#add-module").find("#mod-code").width(width - 74);
     });
 
     // update the semester text
@@ -84,7 +84,7 @@ define(function(require, exports) {
                 // callback decide what to do
                 callback(modCode);
             } else {
-                $.publish("message:error", ["The Module Code Entered is not Valid!"]);
+                $.publish("message:error", ["The Module Code: " + modCode + " is not Valid!"]);
             }
         };
     }

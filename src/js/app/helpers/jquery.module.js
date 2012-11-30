@@ -45,6 +45,7 @@ define(function(require, exports) {
 
             , resize: function() {
                 var pivotItems = $("#metro-pivot").find(".pivotItem");
+                // width
                 this.$info.width(pivotItems.width() - 43);
             }
 
@@ -70,11 +71,15 @@ define(function(require, exports) {
                 });
 
                 this.$method.on("click", ".remove", function() {
-                    $.publish("module:remove", self.get("code"));
                     // hide tooltip
-                    $(this).tooltip("hide");
-                    // remove it self
-                    self.$elem.fadeOut(500, function() { self.$elem.remove(); });
+                    $(this).tooltip("destroy");
+                    // remove the DOM
+                    self.$elem.fadeOut(500, function() {
+                        // remove DOM itself
+                        self.$elem.remove();
+                        // publish event
+                        $.publish("module:remove", self.get("code"));
+                    });
                 });
             }
         };

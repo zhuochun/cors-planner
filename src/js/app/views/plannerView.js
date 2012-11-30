@@ -14,32 +14,36 @@ define(function(require, exports) {
     /*global planner*/
 
 	// get components
-    var timetable = require("view/timetableView")
-      , tableSlots = require("view/tableSlotsView")
-      , $grid = $("#table-grid")
-      , $slot = $("#table-slot")
+    var Weekday = require("modal/weekday")
+      , weekdays = {};
 
     // initial timetable grids
     exports.init = function() {
-        //planner.timetableType = "vertical";
-        $grid.html(timetable.render(planner.timetableType));
-        $slot.html(tableSlots.render(planner.timetableType));
+        var i, len = planner.weekDays.length;
+
+        for (i = 0; i < len; i++) {
+            weekdays[planner.weekDays[i]] = new Weekday(planner.weekDays[i]);
+        }
     };
 
-    // subscribe window resize
-    $.subscribe("app:window:resize", function(e, height) {
-        timetable.resize(height);
-        tableSlots.resize(planner.timetableType);
+    // subscribe to module add event
+    $.subscribe(planner.list.modules + ":addOne", function(e, mod) {
+        var lectures = mod.get("_lectures");
+
+        for (var key in lectures) {
+            if (lectures.hasOwnProperty(key)) {
+                var lects = lectures[key];
+
+                for (var i = 0, len = lects.length; i < len; i++) {
+                    weekdays[lects[i].weekDay].add(lects[i], "lectures", mod);
+                }
+            }
+        }
     });
 
-    // subscribe to start/end time change, re-render table
-    $.subscribe("app:timetable:range", function(e, start, end) {
-		timetableView.render(planner.timetableType, start, end);
-    });
+    // subscribe modules remove event
+    $.subscribe(planner.list.modules + ":removeOne", function(e, mod) {
 
-	// subscribe to timetable orientation change
-	$.subscribe("app:timetable:type", function(e, type) {
-		timetableView.render(type);
-	});
+    });
 
 });

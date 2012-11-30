@@ -23,7 +23,7 @@ define(function(require, exports) {
     exports.init = function() {
         // initial each view if they need
         addModuleView.init();
-        //plannerView.init();
+        plannerView.init();
         basketView.init();
         detailView.init();
         messageView.init();

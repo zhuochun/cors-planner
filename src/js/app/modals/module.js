@@ -100,7 +100,6 @@ define(function(require, exports) {
 
         return result;
     }
-    
 
     /* MODULE CLASS METHODS
      * ======================================== */

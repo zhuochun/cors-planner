@@ -89,7 +89,7 @@ define(function(require, exports) {
     // add a module instance or using module code
     ModuleList.fn.add = function(module, options) {
         options = $.extend({}, this.options, options);
-        
+
         if (this.find(module) === -1) {
             if (typeof module === "object") {
                 this._add(module, options);
@@ -100,7 +100,7 @@ define(function(require, exports) {
             }
         } else {
             if (!options.mute) {
-                $.publish(options.prefix + "addOne:duplicated", module);
+                $.publish(options.prefix + "addOne:duplicated", this.get(module));
             }
         }
     };
@@ -137,7 +137,7 @@ define(function(require, exports) {
             if (!options.mute) {
                 $.publish(options.prefix + "removeOne", [module]);
             }
-            
+
             return module;
         } else if (typeof mod === "string" || typeof mod === "object") {
             return this.remove(this.find(mod), options);
@@ -169,7 +169,7 @@ define(function(require, exports) {
         for (i = 0; i < length; i++) {
             if (this.list[i].get(key) === val) { return i; }
         }
-    
+
         return -1;
     };
 

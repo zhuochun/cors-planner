@@ -18,8 +18,7 @@ define(function(require, exports) {
     // include moduleView component
     var moduleView = require("view/moduleView")
     // dom elements associated
-    , $el = $("#basket-scroll")
-    , $basket = $("#basket");
+      , $el = $("#basket-scroll");
 
     exports.init = function() {
         $el.tooltip({placement:"right", selector:"span[rel=tooltip]"});
@@ -27,14 +26,7 @@ define(function(require, exports) {
 
     // subscribe modules add one event
     $.subscribe(planner.list.modules + ":addOne", function(e, mod) {
-        $el.prepend(moduleView.render(mod));
-    });
-
-    // subscribe modules remove event
-    $.subscribe(planner.list.modules + ":removeOne", function(e, mod) {
-        $el.find("#" + mod.get("code")).remove();
-        // remove any slots TODO remove from slot list if any
-        $("#table-slot").find("[id^=" + mod.get("code") + "-]").remove();
+        $el.append(moduleView.render(mod));
     });
 
 });

@@ -18,16 +18,11 @@ define(function(require, exports) {
     // dom elements associated
     var $el = $("#detail")
     // load template
-    , template = require("hgn!template/moduleDetail");
+      , template = require("hgn!template/moduleDetail");
 
     // init detail panel
     exports.init = function() {
-        // double click to add module to basket
-        $el.on("dblclick", "h3", function() {
-            var code = $(this).closest("#module-detail").data("modcode");
-            // send the message adding module
-            $.publish("module:add", [code]);
-        });
+
     };
 
     // subscribe app wide user message
@@ -44,20 +39,12 @@ define(function(require, exports) {
         $el.empty().append("<p>Welcome come back! Version " + planner.version + "</p>");
     });
 
-    // subscribe to public resize
-    $.subscribe("app:window:resize", function(e, height, width) {
-        $el.css({
-              "height" : height - 138
-            , "min-height" : $("#primary-panel").height()
-        });
-    });
-
     // module display
     function _showModuleDetail(e, module) {
         if (module) {
             $el.html(template(module.data));
         } else {
-            $el.html("<p>Module Details are not found. :(</p>");
+            $el.html("<p>Module's detail is not found. :(</p>");
         }
     }
 

@@ -18,20 +18,20 @@ define(function(require, exports) {
     var colors = [
         "midnightblue"
       , "forestgreen"
+      , "orangered"
       , "royalblue"
+      , "orange"
       , "darkslateblue"
       , "saddlebrown"
-      , "seagreen"
-      , "steelblue"
-      , "indigo"
-      , "teal"
-      , "orangered"
-      , "green"
-      , "navy"
-      , "orange"
       , "olive"
       , "dodgerblue"
+      , "seagreen"
+      , "steelblue"
       , "darkorange"
+      , "green"
+      , "teal"
+      , "indigo"
+      , "navy"
     ]
     , index = 0
     , length = colors.length;

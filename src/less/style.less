@@ -127,16 +127,29 @@ a {
     /* module slot */
     .slot {
         position: absolute;
-        overflow: hidden;
 
         color: #fff;
-        font-size: 11px;
-
-        text-align: left;
-        text-overflow: ellipsis;
+        font-size: 15px;
 
         opacity: .6;
         &:hover { opacity: 1; }
+
+        p {
+            padding: 2px 0 0 5px;
+
+            text-align: left;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        &.span3 { font-size: 12px; }
+        &.span2 { font-size: 11px; }
+        &.span1 { font-size: 10px; }
+    }
+
+    .slot-hover {
+        opacity: 1;
     }
 }
 

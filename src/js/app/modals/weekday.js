@@ -55,8 +55,9 @@ define(function(require, exports) {
           , span = getTimeIndex(slot.endTime) - offset;
 
         var $div = $("<div>").addClass("grid slot " + type + " offset" + offset + " span" + span)
+                .css({"background": mod.get("color")})
                 //.data("slot", data)
-                .text(mod.get("code") + " " + TYPES[type]);
+                .html("<p>" + mod.get("code") + " " + TYPES[type] + "<br/>" + slot.room + "</p>");
 
         this.$rows[0].append($div);
     };

@@ -80,12 +80,34 @@ define(function(require, exports) {
  * ======================================== */
     describe("util/Helper", function() {
         it("can get the semester accordingly", function() {
-            // Change it manually as time goes
-            var current = "2012/2013", sem = 1
-            , fromHelper = helper.getSemester();
+            var cur_year = "2011/2012"
+              , next_year = "2012/2013"
+              , getSem = helper.getSemester, sem;
 
-            expect(fromHelper.acadYear).toEqual(current);
-            expect(fromHelper.semester).toEqual(sem);
+            // 2011/2012 Sem 2
+            sem = getSem(new Date("Jan 01 2012 11:22:57 GMT+0800"));
+            expect(sem.acadYear).toEqual(cur_year);
+            expect(sem.semester).toEqual(2);
+            // 2011/2012 Sem 2
+            sem = getSem(new Date("Jul 29 2012 11:22:57 GMT+0800"));
+            expect(sem.acadYear).toEqual(cur_year);
+            expect(sem.semester).toEqual(2);
+            // 2012/2013 Sem 1
+            sem = getSem(new Date("Aug 01 2012 11:22:57 GMT+0800"));
+            expect(sem.acadYear).toEqual(next_year);
+            expect(sem.semester).toEqual(1);
+            // 2012/2013 Sem 1
+            sem = getSem(new Date("Nov 28 2012 11:22:57 GMT+0800"));
+            expect(sem.acadYear).toEqual(next_year);
+            expect(sem.semester).toEqual(1);
+            // 2012/2013 Sem 2
+            sem = getSem(new Date("Dec 01 2012 11:22:57 GMT+0800"));
+            expect(sem.acadYear).toEqual(next_year);
+            expect(sem.semester).toEqual(2);
+            // 2012/2013 Sem 2
+            sem = getSem(new Date("Jan 03 2013 11:22:57 GMT+0800"));
+            expect(sem.acadYear).toEqual(next_year);
+            expect(sem.semester).toEqual(2);
         });
     });
 
@@ -99,7 +121,7 @@ define(function(require, exports) {
         it("can retrieve colors", function() {
             expect(colors.get()).toEqual("forestgreen");
             expect(colors.used()).toEqual(1);
-            expect(colors.get()).toEqual("royalblue");
+            expect(colors.get()).toEqual("orangered");
             expect(colors.used()).toEqual(2);
         });
 

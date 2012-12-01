@@ -61,12 +61,12 @@
                     el = $(el);
 
                     var h3Element = pivot.headerSelector(el);
-                    if (h3Element.length == 0) return;
+                    if (h3Element.length === 0) return;
 
                     var headerItem = pivot.headerItemTemplate().html(h3Element.html()).fadeTo(0, pivot.headerOpacity);
                     var pivotItem = pivot.pivotItemTemplate().append(el).hide();
 
-                    if (index == 0) {
+                    if (index === 0) {
                         headerItem.addClass("current").fadeTo(0, 1);
                         pivotItem.addClass("current").show();
                     }
@@ -85,7 +85,7 @@
 
                 this.data("controller", pivot);
 
-                if(this.controlInitialized != undefined)
+                if (this.controlInitialized)
                 {
                     this.controlInitialized();
                 }
@@ -99,7 +99,7 @@
                 // make selected header to current
                 header.addClass("current").fadeTo(0, 1);
 
-                if(pivot.fixedHeaders == false)
+                if(pivot.fixedHeaders === false)
                 {
                     // create a copy for fadeout navigation
                     var copy = header.prevAll().clone();
@@ -134,10 +134,12 @@
             },
             currentItemChanged: function(index) {
                 this.animating = false;
-                if(this.selectedItemChanged != undefined)
-                {
+
+                if (this.selectedItemChanged) {
                     this.selectedItemChanged(index);
                 }
+
+                $(window).resize();
             },
             pivotHeader_Click : function (me) {
                 // ignore if already current
@@ -154,7 +156,7 @@
                 // find and set current item
                 var item = this.items.children(".pivotItem:nth(" + index + ")");
                 this.setCurrentItem(item, index);
-            },
+            }
         });
 
         return this.initialize();

@@ -17,6 +17,7 @@
 @darkblue: #213C92;
 @red: #EA1100;
 @grey: #F3F3F3;
+@lightblack: #999;
 
 /* timetable grid */
 @grid-title-bg: @blue;
@@ -77,6 +78,13 @@ a {
 
 /* timetable grid */
 #tt-grid {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
     #grid-title {
         .grid {
             background-color: @grid-title-bg;
@@ -264,6 +272,14 @@ a {
     &:hover .info {
         background: @blue;
         color: @grey;
+    }
+
+    &.inactive {
+        color: @lightblack;
+
+        &:hover .info {
+            background: @blue + #003311;
+        }
     }
 }
 

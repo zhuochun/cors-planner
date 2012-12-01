@@ -64,9 +64,13 @@ define(function(require, exports) {
                     if ($this.hasClass("icon-eye-open")) {
                         // remove slots on timetable
                         $this.removeClass("icon-eye-open").addClass("icon-eye-close");
+                        // mark the slot inactive
+                        self.$elem.addClass("inactive");
                     } else {
                         // add slots to timetable
                         $this.removeClass("icon-eye-close").addClass("icon-eye-open");
+                        // remove the inactive
+                        self.$elem.removeClass("inactive");
                     }
                 });
 

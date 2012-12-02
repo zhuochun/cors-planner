@@ -10,6 +10,9 @@ define(function(require, exports) {
     "use strict";
     /*jshint browser:true, jquery:true, laxcomma:true, maxerr:50 */
 
+    /* ==============================
+     * Semester Helpers */
+
     function getSemester(today) {
         var acadYear, semester
           , year = today.getFullYear()
@@ -42,6 +45,15 @@ define(function(require, exports) {
     exports.getSemester = function(date) {
         date = date || new Date();
         return getSemester(date);
+    };
+
+    /* ==============================
+     * Timetable related Helpers */
+
+    // return the index from 8 clock in grid
+    exports.getTimeIndex = function(t) {
+        t = parseInt(t, 10);
+        return 2 + (Math.floor(t / 100) - 8) * 2 + (t % 100 ? 1 : 0) ;
     };
 
 });

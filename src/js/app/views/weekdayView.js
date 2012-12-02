@@ -4,7 +4,7 @@
  * a weekday grids
  *
  * Author: Wang Zhuochun
- * Last Edit:
+ * Last Edit: 02/Dec/2012 04:49 PM
  * ========================================
  * <License>
  * ======================================== */
@@ -12,16 +12,20 @@
 define(function(require, exports) {
 
     "use strict";
-    /*jshint jquery:true, laxcomma:true, maxerr:50*/
+    /*jshint jquery:true, laxcomma:true, browser:true, maxerr:50*/
 
-    var TYPES = { "lectures" : "(L)", "tutorials" : "(T)", "labs" : "(Lab)" };
+    var TYPES = { "lectures" : "(L)", "tutorials" : "(T)", "labs" : "(Lab)" }
+    // slot template
+      , template = require("hgn!template/timeSlot");
 
     /* WEEKDAY CLASS DEFINITION
      * ======================================== */
 
     // Weekday Class
     function Weekday(name) {
-        this.$elem = $("#" + name.toLowerCase());
+        this.name = name.toLowerCase();
+        // cache elem
+        this.$elem = $("#" + this.name);
         // init rows
         this.$rows = [];
         var i, len, rows = this.$elem.find(".row-fluid");
@@ -29,6 +33,8 @@ define(function(require, exports) {
         for (i = 0, len = rows.length; i < len; i++) {
             this.$rows.push($(rows[i]));
         }
+        // subscribe some events
+        $.subscribe("grid:clearRows", $.proxy(this.removeEmptyRows, this));
     }
 
     /* WEEKDAY CLASS METHODS
@@ -50,24 +56,161 @@ define(function(require, exports) {
         type = lecture/tutorial/lab;
         mod  = module
     */
-    Weekday.fn.add = function(slot, type, mod) {
+    Weekday.fn.allocate = function(idx, slot, type, mod) {
         var offset = getTimeIndex(slot.startTime)
-          , span = getTimeIndex(slot.endTime) - offset;
+          , span = getTimeIndex(slot.endTime) - offset
+          , row = this.hasEmptySlots(offset, span);
 
-        var $div = $("<div>").addClass("grid slot " + type + " offset" + offset + " span" + span)
-                .css({"background": mod.get("color")})
-                //.data("slot", data)
-                .html("<p>" + mod.get("code") + " " + TYPES[type] + "<br/>" + slot.room + "</p>");
+        if (row === -1) {
+            this.createNewRow();
+            row = this.$rows.length - 1;
+        }
 
-        this.$rows[0].append($div);
+        var context = {
+            "code": mod.get("code")
+          , "type": type
+          , "shortType": TYPES[type]
+          , "index": idx
+          , "offset": offset
+          , "span": span
+          , "slot": slot
+          , "data": mod.data
+        };
+
+        this.$rows[row].append(createSlot(context, mod));
+    };
+
+    Weekday.fn.createNewRow = function() {
+        var newRow = this.$rows[1].clone();
+        // clear unwanted row
+        newRow.find(".slot").remove();
+        // add it to rows
+        this.$rows.push(newRow);
+        // append it
+        this.$elem.append(newRow);
+        // trigger resize
+        $(window).resize();
+    };
+
+    Weekday.fn.hideEmptyRows = function() {
+
+    };
+
+    Weekday.fn.removeEmptyRows = function() {
+        var i, len = this.$rows.length, $slots;
+
+        for (i = len - 1; i > 1; i--) {
+            if (this.$rows[i].find(".slot").length === 0) {
+                this.$rows[i].remove();
+                this.$rows.splice(i, 1);
+            }
+        }
+
+        // if fst row is empty
+        if (this.$rows[0].find(".slot").length === 0) {
+            // case 1: only 2 rows left, swap the 2nd slot (1)
+            // case 2: > 2 rows, swap the 3rd row (2)
+            i = this.$rows.length === 2 ? 1 : 2;
+            
+            $slots = this.$rows[i].find(".slot").detach();
+            this.$rows[0].append($slots);
+
+            // remove the 3rd row
+            if (i === 2) {
+                this.$rows[2].remove();
+                this.$rows.splice(i, 1);
+            }
+        }
+        // if snd row is empty
+        if (this.$rows[1].find(".slot").length === 0) {
+            // case 1: only 2 rows left, do nothing
+            // case 2: > 2 rows, swap the 3rd row (2)
+            if (this.$rows.length > 2) {
+                $slots = this.$rows[2].find(".slot").detach();
+                this.$rows[1].append($slots);
+                // remove the 3rd row
+                this.$rows[2].remove();
+                this.$rows.splice(2, 1);
+            }
+        }
+    };
+
+    // check whether the rows have empty slot at the {offset, span}
+    // return the row number, otherwise -1
+    Weekday.fn.hasEmptySlots = function(offset, span) {
+        var rowIsEmpty, i, j, rowLen = this.$rows.length, slotLen, slots, $slot;
+
+        for (i = 0; i < rowLen; i++) {
+            rowIsEmpty = true;
+
+            slots = this.$rows[i].find(".slot");
+            for (j = 0, slotLen = slots.length; j < slotLen; j++) {
+                $slot = $(slots[j]);
+
+                if (isSlotOverlap($slot.data("offset"), $slot.data("span"), offset, span)) {
+                    rowIsEmpty = false;
+                    break;
+                }
+            }
+
+            if (rowIsEmpty) {
+                return i;
+            }
+        }
+
+        return -1;
     };
 
     /* HELPERS
      * ======================================== */
 
+    // slot1 = offset, span
+    // slot2 = _offset, _span
+    // true if slot2 overlaps on slot1
+    function isSlotOverlap(offset, span, _offset, _span) {
+        var end = offset + span, _end = _offset + _span;
+
+        // _offset is within slot1 endgth
+        if (_offset >= offset && _offset < end) {
+            return true;
+        }
+        
+        // _span is within slot1 endgth
+        if (_end > offset && _end <= end) {
+            return true;
+        }
+
+        // slot1 is in slot2 endgth
+        if (_offset <= offset && _end >= end) {
+            return true;
+        }
+
+        return false;
+    }
+
     function getTimeIndex(t) {
         t = parseInt(t, 10);
         return 2 + (Math.floor(t / 100) - 8) * 2 + (t % 100 ? 1 : 0) ;
+    }
+
+    /*
+        var context = {
+            "code": mod.get("code")
+          , "type": type
+          , "shortType": TYPES[type]
+          , "index": idx
+          , "offset": offset
+          , "span": span
+          , "slot": slot
+          , "data": mod.data
+        };
+     */
+    function createSlot(context, mod) {
+        var $slot = $(template(context));
+
+        $slot.data("slot", context.slot);
+
+        return $slot;
     }
 
     // exports the constructor

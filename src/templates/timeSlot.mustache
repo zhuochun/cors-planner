@@ -1,5 +1,6 @@
-<div id="{{code}}-{{type}}-{{classNo}}-{{index}}"
+<div id="{{code}}-{{type}}-{{slot.classNo}}-{{index}}"
     class="grid slot {{type}} offset{{offset}} span{{span}}"
-    style="background:{{color}};">
-    <p>{{code}} {{type-short}}<br>{{room}}</p>
+    style="background:{{data.color}}"
+    data-offset="{{offset}}" data-span="{{span}}">
+    <p>{{code}} {{shortType}}<br>{{slot.room}}</p>
 </div>

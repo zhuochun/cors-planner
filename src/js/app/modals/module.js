@@ -20,7 +20,7 @@ define(function(require, exports) {
     // module default status
     , defaultStatus = {
         list : undefined
-      , allocated : { lecture : "", tutorial : "", lab : "" }
+      , allocated : { lecture : null, tutorial : null, lab : null }
     };
 
     /* MODULE CLASS DEFINITION
@@ -112,6 +112,12 @@ define(function(require, exports) {
         return this.data[key];
     };
 
+    // has will return the Modules's type
+    Module.fn.has = function(type) {
+        type = type.toLowerCase();
+        return !$.isEmptyObject(this.data[type]);
+    };
+
     // set will change the Module's status
     // key could be "allocated.lecture"
     Module.fn.set = function(key, val) {
@@ -160,9 +166,9 @@ define(function(require, exports) {
         } else { return false; }
     };
 
-    // isAllocated will check whether the klass is allocated
-    Module.fn.isAllocated = function(type, classNo) {
-        return this.status.allocated[type] == classNo;
+    // allocated return the allocated classNo or null
+    Module.fn.allocated = function(type) {
+        return this.status.allocated[type];
     };
 
     // allocate will allocate the clasNo of type

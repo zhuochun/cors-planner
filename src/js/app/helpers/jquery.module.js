@@ -77,6 +77,10 @@ define(function(require, exports) {
                 this.$method.on("click", ".remove", function() {
                     // hide tooltip
                     $(this).tooltip("destroy");
+                    // remove all the slots from timetable
+                    $("#tt-grid").find(".slot[id^=" + self.get("code") + "-]").remove();
+                    // check empty rows and remove it
+                    $.publish("grid:clearRows");
                     // remove the DOM
                     self.$elem.fadeOut(500, function() {
                         // remove DOM itself

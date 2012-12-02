@@ -14,7 +14,7 @@ define(function(require, exports) {
     /*global planner*/
 
 	// get components
-    var Weekday = require("modal/weekday")
+    var Weekday = require("view/weekdayView")
       , weekdays = {};
 
     // initial timetable grids
@@ -37,6 +37,8 @@ define(function(require, exports) {
                 for (var i = 0, len = lects.length; i < len; i++) {
                     weekdays[lects[i].weekDay].add(lects[i], "lectures", mod);
                 }
+
+                break;
             }
         }
     });

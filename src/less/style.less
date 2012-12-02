@@ -119,12 +119,16 @@ a {
             position: relative;
         }
 
-        .row-fluid:nth-child(n+2) .grid {
-            border-top: none;
+        .row-fluid:nth-child(n+2) {
+            .grid { border-top: none; }
+            .slot { border-bottom: 1px solid @grid-border; }
         }
+
+        .row-fluid:last-child .slot { border-bottom: none; }
 
         .grid-head h4 {
             color: @grid-title-bg;
+            text-transform: uppercase;
         }
     }
 
@@ -134,6 +138,7 @@ a {
 
     /* module slot */
     .slot {
+        cursor: move;
         position: absolute;
 
         color: #fff;
@@ -213,10 +218,7 @@ a {
 
 #metro-pivot .items .pivotItem {
     margin: 0 -10px 0 0;
-
-    overflow-y: scroll;
-    overflow-x: hidden;
-
+    overflow: auto;
     height: 500px;
     padding: 0 0 15px;
 }
@@ -287,6 +289,10 @@ a {
     th {
         text-align: left;
     }
+
+    td {
+        min-width: 15px;
+    }
 }
 
 /* footer */
@@ -301,173 +307,11 @@ a {
     h1 {
         font-size: 24px;
     }
-}
 
-/*
-/* board */
-/*
-@moduleWidth: 145px;
-@moduleHeight: 105px;
 
-#add {
-    label {
-        font-weight: bold;
-        margin-right: 10px;
-    }
-
-    i {
-        margin-right: 4px;
-    }
-}
-
-#basket {
-    position: relative;
-    overflow-y: hidden;
-    overflow-x: auto;
-    height: 120px;
-}
-
-#basket-scroll {
-    position: relative;
-    width: 300px;
-    height: @moduleHeight
-}
-
-#basket-scroll div:last-child {
-    margin-right: 0px;
-}
-
-.module {
-    float: left;
-    display: block;
-
-    padding: 5px;
-    margin-right: 10px;
-
-    overflow: hidden;
-
-    background-color: @navbarBackgroundHighlight;
-
-    border: 1px solid @grayLight;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
-    border-radius: 6px;
-
-    -moz-box-shadow: 0px 2px 5px rgba(0,0,0,.1);
-    -webkit-box-shadow: 0px 2px 5px rgba(0,0,0,.1);
-    box-shadow: 0px 2px 5px rgba(0,0,0,.1);
-
-    width: @moduleWidth;
-    height: @moduleHeight;
-
-    h3 {
-        cursor: pointer;
-        float: left;
-        line-height: 25px;
-        &:hover { color: @pinkColor }
-    }
-
-    h3, h4 {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-
-    h5 { color: #888 }
-
-    h4, h5 { line-height: 19px }
-
-    .module-control {
-        float: right;
-        padding: 1px 5px 0 0;
-        cursor: pointer;
-        color: #ddd;
-        &:hover { color: #666 }
-    }
-
-    .module-class {
-        margin-top: 12px;
-    }
-}
-
-.module-placeholder {
-    border: 2px dashed #aaa;
-}
-
-.label-large {
-    padding: 13px 10px;
-}
-
-.draggable {
-    cursor: move;
-
-    &.basket {
-        &-lecture {
-            background-color: @orange;
-
-            &:hover {
-                background-color: lighten(@orange, 10%);
-            }
-        }
-
-        &-tutorial {
-            background-color: @successText;
-
-            &:hover {
-                background-color: lighten(@successText, 10%);
-            }
-        }
-
-        &-lab {
-            background-color: @infoText;
-
-            &:hover {
-                background-color: lighten(@infoText, 10%);
-            }
+    #detail {
+        td {
+            min-width: 10px;
         }
     }
 }
-
-/* planner */
-    /*
-#main {
-    margin-bottom: 10px;
-
-    a {
-        text-decoration: none;
-
-        &:hover {
-            color: @redColor;
-        }
-    }
-}
-
-#timetable {
-    position: relative;
-
-    th {
-        text-align: center;
-    }
-
-    .weekday {
-        min-height: 50px;
-        max-width: 40px;
-
-        vertical-align: middle;
-        white-space: nowrap;
-        font-weight: bold;
-
-        text-overflow: ellipsis;
-        text-transform: capitalize;
-
-        overflow: hidden;
-    }
-}
-
-/* module slot bar */
-// module slot variables
-/*
-
-/* secondary panel */
-/*
-    */

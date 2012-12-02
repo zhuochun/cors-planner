@@ -124,12 +124,8 @@
 
                 // after a little delay
                 setTimeout(function () {
-                    // move the item to far right and make it visible
-                    item.css({ marginLeft: item.outerWidth() }).show().addClass("current");
-
-                    // animate it to left
-                    item.animate( { marginLeft: 0 }, pivot.animationDuration, function() { pivot.currentItemChanged(index);});
-
+                    item.show().addClass("current");
+                    pivot.currentItemChanged(index);
                 }, 200);                
             },
             currentItemChanged: function(index) {

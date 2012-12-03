@@ -18,6 +18,7 @@ define(function(require, exports) {
 
         var _project = "planner_"
           , _pluginName = "modules"
+          , $grid = $("#tt-grid")
         // Plugin constructor
           , Plugin = function(element, options) {
             this.$elem = $(element);
@@ -52,6 +53,16 @@ define(function(require, exports) {
             , attachEvent: function(item, fun) {
                 var self = this;
 
+                // elem events
+                this.$elem.on("mouseenter", function() {
+                    $grid.find(".slot[id^=" + self.get("code") + "-]").addClass("hover");
+                });
+
+                this.$elem.on("mouseleave", function() {
+                    $grid.find(".slot[id^=" + self.get("code") + "-]").removeClass("hover");
+                });
+
+                // method events
                 this.$method.on("click", ".detail", function() {
                     $.publish("module:preview", self.get("code"));
                     // switch to detail panel

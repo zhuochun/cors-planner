@@ -14,6 +14,9 @@ define(function(require, exports) {
     "use strict";
     /*jshint jquery:true, laxcomma:true, browser:true, maxerr:50*/
 
+    // require components
+    require("helper/jquery.slot")
+    // constants
     var TYPES = { "lectures" : "(L)", "tutorials" : "(T)", "labs" : "(Lab)" }
     // slot template
       , template = require("hgn!template/timeSlot");
@@ -208,7 +211,7 @@ define(function(require, exports) {
     function createSlot(context, mod) {
         var $slot = $(template(context));
 
-        $slot.data("slot", context.slot);
+        $slot.slot(context);
 
         return $slot;
     }

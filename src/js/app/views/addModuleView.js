@@ -65,7 +65,14 @@ define(function(require, exports) {
         $input.on("focus", function(e) {
             this.select();
         });
-
+        // enter = add
+        $input.on("keydown", function(e) {
+            if (e.which === 13) {
+                _clickEvent(function(modCode) {
+                    $.publish("module:add", [modCode]);
+                })(e);
+            }
+        });
         // bind add module event
         $addBtn.on("click", _clickEvent(function(modCode) {
             $.publish("module:add", [modCode]);
@@ -73,10 +80,10 @@ define(function(require, exports) {
     }
 
     function _clickEvent(callback) {
-        return function(e, modCode) {
+        return function(e) {
             e.preventDefault();
             // get the module code entered
-            modCode = $input.val().split(" ")[0];
+            var modCode = $input.val().split(" ")[0];
             // test validity of the modCode
             if (modCode && (/^[a-z]{2,3}\d{4}[a-z]?$/i).test(modCode)) {
                 // empty the input val

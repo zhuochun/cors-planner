@@ -12,7 +12,7 @@
 define(function(require, exports) {
 
     "use strict";
-    /*jshint jquery:true, laxcomma:true, maxerr:50*/
+    /*jshint jquery:true, laxcomma:true, browser:true, maxerr:50*/
 
     (function($) {
 
@@ -35,7 +35,7 @@ define(function(require, exports) {
                 // module data
                 this.data = opt.data;
                 // attach events
-                this.attachEvent();
+                this.attachEvents();
                 // resize
                 this.resize();
             }
@@ -50,7 +50,7 @@ define(function(require, exports) {
                 this.$info.width(pivotItems.width() - 43);
             }
 
-            , attachEvent: function(item, fun) {
+            , attachEvents: function(item, fun) {
                 var self = this;
 
                 // elem events
@@ -60,6 +60,12 @@ define(function(require, exports) {
 
                 this.$elem.on("mouseleave", function() {
                     $grid.find(".slot[id^=" + self.get("code") + "-]").removeClass("hover");
+                });
+
+                // debug info
+                this.$elem.on("dblclick", function() {
+                    if (window.console)
+                        window.console.log(self.data);
                 });
 
                 // method events
@@ -91,7 +97,7 @@ define(function(require, exports) {
                     // remove all the slots from timetable
                     $("#tt-grid").find(".slot[id^=" + self.get("code") + "-]").remove();
                     // check empty rows and remove it
-                    $.publish("grid:clearRows");
+                    $.publish("grid:rows:clearEmpty");
                     // remove the DOM
                     self.$elem.fadeOut(500, function() {
                         // remove DOM itself

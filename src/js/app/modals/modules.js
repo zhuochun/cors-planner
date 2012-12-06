@@ -44,12 +44,12 @@ define(function(require, exports) {
         yql.requestModule(modCode, function(result) {
             var mod = parser.parse(result);
 
-            if (mod !== null) {
-                if (mod.isAvailable) {
-                    callback(new Module(mod));
-                } else {
-                    $.publish("message:error", ["Module " + modCode + " is not available."]);
-                }
+            // TODO mod == null is usually caused by yql problem,
+            // make it try 3 times before submit problem
+            if (mod !== null && mod.isAvailable) {
+                callback(new Module(mod));
+            } else {
+                $.publish("message:error", "Module " + modCode + " is not available.");
             }
         });
     }

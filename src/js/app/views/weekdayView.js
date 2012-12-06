@@ -15,7 +15,7 @@ define(function(require, exports) {
     /*jshint jquery:true, laxcomma:true, browser:true, maxerr:50*/
 
     // require components
-    require("helper/jquery.slot")
+    require("helper/jquery.slot");
     // constants
     var TYPES = { "lectures" : "(L)", "tutorials" : "(T)", "labs" : "(Lab)" }
     // slot template
@@ -37,7 +37,7 @@ define(function(require, exports) {
             this.$rows.push($(rows[i]));
         }
         // subscribe some events
-        $.subscribe("grid:clearRows", $.proxy(this.removeEmptyRows, this));
+        $.subscribe("grid:rows:clearEmpty", $.proxy(this.removeEmptyRows, this));
     }
 
     /* WEEKDAY CLASS METHODS
@@ -58,8 +58,9 @@ define(function(require, exports) {
         };
         type = lecture/tutorial/lab;
         mod  = module
+        droppable = true/false
     */
-    Weekday.fn.allocate = function(idx, slot, type, mod) {
+    Weekday.fn.allocate = function(idx, slot, type, mod, droppable) {
         var offset = getTimeIndex(slot.startTime)
           , span = getTimeIndex(slot.endTime) - offset
           , row = this.hasEmptySlots(offset, span);
@@ -78,6 +79,7 @@ define(function(require, exports) {
           , "span": span
           , "slot": slot
           , "data": mod.data
+          , "droppable": droppable || false
         };
 
         this.$rows[row].append(createSlot(context, mod));
@@ -206,6 +208,7 @@ define(function(require, exports) {
           , "span": span
           , "slot": slot
           , "data": mod.data
+          , "droppable": droppable || false
         };
      */
     function createSlot(context, mod) {

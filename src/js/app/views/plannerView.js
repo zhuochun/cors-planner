@@ -29,6 +29,26 @@ define(function(require, exports) {
         }
     };
 
+    // allocate temporary droppable slot
+    $.subscribe("grid:module:droppable", function(e, slot, type, mod) {
+        var classNo = slot.classNo, slots = mod.get("_" + type), key;
+
+        for (key in slots) {
+            if (slots.hasOwnProperty(key) && key !== classNo) {
+                allocate(slots[key], type, mod, true); // droppable = true
+            }
+        }
+    });
+
+    // allocate a single slot and its section slot
+    $.subscribe("grid:module:allocate", function(e, slot, type, mod) {
+        var classNo = slot.classNo, slots = mod.get("_" + type)[classNo];
+
+        // allocate and mark the classNo allocated
+        allocate(slots, type, mod);
+        mod.allocate(type, classNo);
+    });
+
     // subscribe to module add event
     $.subscribe(planner.list.modules + ":addOne", function(e, mod) {
         var klasses, i, len, key, allocated, types = ["lectures", "tutorials", "labs"];
@@ -42,10 +62,10 @@ define(function(require, exports) {
                 for (key in klasses) {
                     if (klasses.hasOwnProperty(key)) {
                         if (canAllocate(klasses[key])) {
-                            allocate(klasses[key], types[i], mod);
                             allocated = true;
-                            // make the classNo allocated
-                            mod.allocate(klasses[key].classNo);
+                            // allocate and mark the classNo allocated
+                            allocate(klasses[key], types[i], mod);
+                            mod.allocate(types[i], klasses[key].classNo);
                             break;
                         }
                     }
@@ -82,17 +102,12 @@ define(function(require, exports) {
     }
 
     // allocate the klass[...]
-    function allocate(klass, type, mod) {
+    function allocate(klass, type, mod, droppable) {
         var i, len;
 
         for (i = 0, len = klass.length; i < len; i++) {
-            weekdays[klass[i].weekDay].allocate(i, klass[i], type, mod);
+            weekdays[klass[i].weekDay].allocate(i, klass[i], type, mod, droppable);
         }
     }
-
-    // subscribe modules remove event
-    $.subscribe(planner.list.modules + ":removeOne", function(e, mod) {
-
-    });
 
 });

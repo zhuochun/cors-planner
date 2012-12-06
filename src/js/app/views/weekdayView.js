@@ -79,10 +79,11 @@ define(function(require, exports) {
           , "span": span
           , "slot": slot
           , "data": mod.data
+          , "module": mod
           , "droppable": droppable || false
         };
 
-        this.$rows[row].append(createSlot(context, mod));
+        this.$rows[row].append(createSlot(context));
     };
 
     Weekday.fn.createNewRow = function() {
@@ -208,10 +209,11 @@ define(function(require, exports) {
           , "span": span
           , "slot": slot
           , "data": mod.data
+          , "module": mod
           , "droppable": droppable || false
         };
      */
-    function createSlot(context, mod) {
+    function createSlot(context) {
         var $slot = $(template(context));
 
         $slot.slot(context);

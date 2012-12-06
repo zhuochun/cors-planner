@@ -135,43 +135,45 @@ a {
     #friday .row-fluid:last-child .grid {
         border-bottom: 1px solid @grid-border;
     }
+}
 
-    /* module slot */
-    .slot {
-        cursor: move;
-        position: absolute;
+/* module slot */
+.slot {
+    cursor: move;
+    position: absolute;
 
-        color: #fff;
-        font-size: 15px;
+    color: #fff;
+    font-size: 15px;
 
-        opacity: .6;
-        &:hover { opacity: 1; }
+    opacity: .6;
+    &:hover { opacity: 1; }
 
-        &.highlight { opacity: 0.4; }
-        &.hover { opacity: 1; }
+    &.highlight { opacity: 0.4; }
+    &.hover { opacity: 1; }
 
-        p {
-            padding: 2px 0 0 5px;
+    &.active { background: yellow; }
 
-            text-align: left;
+    p {
+        padding: 2px 0 0 5px;
 
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+        text-align: left;
 
-        &.span3 {
-           font-size: 12px;
-           p { padding: 2px 0 0 3px;  }
-        }
-        &.span2 {
-           font-size: 11px;
-           p { padding: 2px 0 0 2px; }
-        }
-        &.span1 {
-           font-size: 10px;
-           p { padding: 1px 0 0 1px; }
-       }
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
+
+    &.span3 {
+       font-size: 12px;
+       p { padding: 2px 0 0 3px;  }
+    }
+    &.span2 {
+       font-size: 11px;
+       p { padding: 2px 0 0 2px; }
+    }
+    &.span1 {
+       font-size: 10px;
+       p { padding: 1px 0 0 1px; }
+   }
 }
 
 #secondary {
@@ -228,7 +230,7 @@ a {
     margin: 0 -10px 0 0;
     overflow: auto;
     height: 500px;
-    padding: 0 0 15px;
+    padding: 0 0 10px;
 }
 
 /* module */
@@ -280,6 +282,11 @@ a {
     }
 
     &:hover .info {
+        background: @blue;
+        color: @grey;
+    }
+
+    &.hover .info {
         background: @blue;
         color: @grey;
     }

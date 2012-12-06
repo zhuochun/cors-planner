@@ -41,7 +41,7 @@ define(function(require, exports) {
         // assign CORS Planner Version number
         planner.version = "0.0.6";
         // assign CORS Data latest update time
-        planner.dataUpdate = "27 Aug 2012 17:57";
+        planner.dataUpdate = "Thu Dec 06 2012 14:53:45 GMT+0800 (Malay Peninsula Standard Time)";
         // default timetable view
         planner.timetableType = "horizontal";
         planner.timetableRange = { start : 8, end : 22 };

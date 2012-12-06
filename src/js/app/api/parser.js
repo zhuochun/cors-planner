@@ -210,11 +210,14 @@ define(function(require, exports) {
             Module.tutorials = {};
             Module.labs = {};
 
-            if (moduleHasLecture(result[3].tr))
+            if (moduleHasLecture(result[3].tr)) {
                 setModuleLecture(result[4].tr);
+            }
 
-            if (moduleHasTutorial(result[5].tr))
+            if (moduleHasTutorial(result[5].tr)) {
+                setModuleLecture(result[5].tr); // Design Lecture
                 setModuleTutorial(result[6].tr);
+            }
         } else {
             Module.isAvailable = false;
         }

@@ -55,14 +55,14 @@ define(function(require, exports) {
                     $grid.find(".slot[id^=" + self.sid + "-]").addClass("hover");
                     $grid.find(".slot[id^=" + self.code + "-]")
                          .not("[id^=" + self.sid + "-]").addClass("highlight");
-                    $basket.find("[id=" + self.code + "]").addClass("hover");
+                    $basket.find(".module[id=" + self.code + "]").addClass("hover");
                 });
 
                 this.$elem.on("mouseleave", function() {
                     $grid.find(".slot[id^=" + self.sid + "-]").removeClass("hover");
                     $grid.find(".slot[id^=" + self.code + "-]")
                          .not("[id^=" + self.sid + "-]").removeClass("highlight");
-                    $basket.find("[id=" + self.code + "]").removeClass("hover");
+                    $basket.find(".module[id=" + self.code + "]").removeClass("hover");
                 });
             }
 
@@ -72,6 +72,7 @@ define(function(require, exports) {
                 this.dragOpts = {
                     helper: "clone"
                   , opacity: 0.3
+                  , cursorAt: {top:20,left:20}
                   , revert: "invalid"
                   , revertDuration: 200
                   , zIndex : 1000
@@ -82,6 +83,8 @@ define(function(require, exports) {
                     activeClass: "highlight"
                   , hoverClass: "hover"
                   , tolerance: "pointer"
+                  , over: $.proxy(self.dropOver, self)
+                  , out: $.proxy(self.dropOut, self)
                   , drop: $.proxy(self.dropEvent, self)
                 };
 
@@ -105,18 +108,22 @@ define(function(require, exports) {
             }
 
             , dropEvent: function(e, ui) {
-                (function(s, t, d) {
-                    setTimeout(function() {
-                        $.publish("grid:module:allocate", [s, t, d]);
-                    }, 50);
-                })(this.slot, this.type, this.data)
-
-                // remove the original draggable
-                ui.draggable.remove();
-                // remove temp drop slot
-                $grid.find(".ui-droppable").remove();
+                // remove all slots of this module + type
+                $grid.find(".slot[id^=" + this.code + "-" + this.type + "-]").remove();
+                // allocate the new slots
+                $.publish("grid:module:allocate", [this.slot, this.type, this.data]);
                 // clear rows
-                $.publish("grid:rows:clearEmpty");
+                setTimeout(function() {
+                    $.publish("grid:rows:clearEmpty");
+                }, 10);
+            }
+            
+            , dropOver: function() {
+                $grid.find(".slot[id^=" + this.sid + "-]").addClass("hover");
+            }
+
+            , dropOut: function() {
+                $grid.find(".slot[id^=" + this.sid + "-]").removeClass("hover");
             }
         };
 

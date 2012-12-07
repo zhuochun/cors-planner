@@ -12,7 +12,7 @@
 define(function(require, exports) {
 
     "use strict";
-    /*jshint jquery:true, laxcomma:true, maxerr:50*/
+    /*jshint jquery:true, laxcomma:true, browser:true, maxerr:50*/
 
     (function($) {
 
@@ -52,16 +52,12 @@ define(function(require, exports) {
                 var self = this;
 
                 this.$elem.on("mouseenter", function() {
-                    $grid.find(".slot[id^=" + self.sid + "-]").addClass("hover");
-                    $grid.find(".slot[id^=" + self.code + "-]")
-                         .not("[id^=" + self.sid + "-]").addClass("highlight");
+                    $grid.find(".slot[id^=" + self.code + "-]").addClass("hover");
                     $basket.find(".module[id=" + self.code + "]").addClass("hover");
                 });
 
                 this.$elem.on("mouseleave", function() {
-                    $grid.find(".slot[id^=" + self.sid + "-]").removeClass("hover");
-                    $grid.find(".slot[id^=" + self.code + "-]")
-                         .not("[id^=" + self.sid + "-]").removeClass("highlight");
+                    $grid.find(".slot[id^=" + self.code + "-]").removeClass("hover");
                     $basket.find(".module[id=" + self.code + "]").removeClass("hover");
                 });
             }

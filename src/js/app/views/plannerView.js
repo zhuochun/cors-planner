@@ -91,8 +91,8 @@ define(function(require, exports) {
         for (i = 0, len = klass.length; i < len; i++) {
             offset = Util.getTimeIndex(klass[i].startTime);
             span = Util.getTimeIndex(klass[i].endTime) - offset;
-
-            if (weekdays[klass[i].weekDay].hasEmptySlots(offset, span) == -1) {
+            // can be allocated to the 1st row only
+            if (weekdays[klass[i].weekDay].hasEmptySlots(offset, span) !== 0) {
                 result = false;
                 break;
             }

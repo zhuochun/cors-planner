@@ -98,24 +98,20 @@ define(function(require, exports) {
         $(window).resize();
     };
 
-    Weekday.fn.hideEmptyRows = function() {
-
-    };
-
     Weekday.fn.removeEmptyRows = function() {
-        var i, len = this.$rows.length, $slots;
+        var i, $slots;
 
-        for (i = len - 1; i > 1; i--) {
+        for (i = this.$rows.length - 1; i > 1; i--) {
             if (this.$rows[i].find(".slot").length === 0) {
                 this.$rows[i].remove();
                 this.$rows.splice(i, 1);
             }
         }
 
-        // if fst row is empty
+        // if 1st row is empty
         if (this.$rows[0].find(".slot").length === 0) {
-            // case 1: only 2 rows left, swap the 2nd slot (1)
-            // case 2: > 2 rows, swap the 3rd row (2)
+            // case 1: only 2 rows left, swap the slots in 1st/2nd row
+            // case 2: > 2 rows, swap the slots in 1st/3rd row
             i = this.$rows.length === 2 ? 1 : 2;
             
             $slots = this.$rows[i].find(".slot").detach();
@@ -127,7 +123,8 @@ define(function(require, exports) {
                 this.$rows.splice(i, 1);
             }
         }
-        // if snd row is empty
+
+        // if 2nd row is empty
         if (this.$rows[1].find(".slot").length === 0) {
             // case 1: only 2 rows left, do nothing
             // case 2: > 2 rows, swap the 3rd row (2)
@@ -139,14 +136,42 @@ define(function(require, exports) {
                 this.$rows.splice(2, 1);
             }
         }
+
+        this.mergeRows();
     };
 
-    // check whether the rows have empty slot at the {offset, span}
-    // return the row number, otherwise -1
-    Weekday.fn.hasEmptySlots = function(offset, span) {
-        var rowIsEmpty, i, j, rowLen = this.$rows.length, slotLen, slots, $slot;
+    Weekday.fn.mergeRows = function() {
+        var i, j, moved, row, slots, $slot;
 
-        for (i = 0; i < rowLen; i++) {
+        for (i = this.$rows.length - 1; i > 0; i--) {
+            slots = this.$rows[i].find(".slot");
+
+            for (j = slots.length - 1, moved = 0; j >= 0; j--) {
+                $slot = $(slots[j]);
+
+                row = this._hasEmptySlots($slot.data("offset"), $slot.data("span"), i);
+                if (row !== -1) {
+                    $slot.detach();
+                    this.$rows[row].append($slot);
+                    moved++;
+                }
+            }
+
+            if (moved !== 0 && i !== 1 && moved === slots.length) {
+                this.$rows[i].remove();
+                this.$rows.splice(i, 1);
+            }
+        }
+
+        $(window).resize();
+    };
+
+    // check whether the rows up to the limit have empty slot at {offset, span}
+    // return the row number, otherwise -1
+    Weekday.fn._hasEmptySlots = function(offset, span, limit) {
+        var rowIsEmpty, i, j, slotLen, slots, $slot;
+
+        for (i = 0; i < limit; i++) {
             rowIsEmpty = true;
 
             slots = this.$rows[i].find(".slot");
@@ -159,12 +184,16 @@ define(function(require, exports) {
                 }
             }
 
-            if (rowIsEmpty) {
-                return i;
-            }
+            if (rowIsEmpty) { return i; }
         }
 
         return -1;
+    };
+
+    // check whether the rows have empty slot at {offset, span}
+    // return the row number, otherwise -1
+    Weekday.fn.hasEmptySlots = function(offset, span) {
+        return this._hasEmptySlots(offset, span, this.$rows.length);
     };
 
     /* HELPERS

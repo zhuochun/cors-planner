@@ -16,15 +16,8 @@ define(function(require, exports) {
 
     // include components
     var yql = require("api/yql")
-    , parser = require("api/parser")
-    // include modal
-    , Module = require("modal/module");
-
-    // ModuleList default options
-    var defaults = {
-        mute : false // mute event publish
-      , prefix : "ModuleList:" // event prefix
-    };
+      , parser = require("api/parser")
+      , Module = require("model/module");
 
     /* MODULELIST CLASS DEFINITION
      * ======================================== */
@@ -34,9 +27,10 @@ define(function(require, exports) {
         this.name = name;
         this.list = [];
 
-        defaults.prefix = this.name + ":";
-
-        this.options = $.extend({}, defaults, options);
+        this.options = $.extend({}, {
+            mute : false
+          , prefix : this.name + ":"
+        }, options);
     }
 
     // fetch the module from CORS with callback

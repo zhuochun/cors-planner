@@ -169,6 +169,8 @@ define(function(require, exports) {
     // allocate will allocate the clasNo of type
     Module.fn.allocate = function(type, classNo) {
         this.status.allocated[type] = classNo;
+
+        $.publish("module:" + this.get("code") + ":allocated", [type, classNo]);
     };
 
     // toJSON will return a string contains all

@@ -18,7 +18,7 @@ require.config({
         , "jquery-ui" : "libs/jquery-ui-1.8.23.custom"
         // App directories
         , "api" : "app/api"
-        , "modal" : "app/modals"
+        , "model" : "app/models"
         , "view" : "app/views"
         , "controller" : "app/controllers"
         , "helper" : "app/helpers"

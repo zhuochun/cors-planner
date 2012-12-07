@@ -13,12 +13,12 @@ define(function(require, exports) {
     /*jshint browser:true, jquery:true, laxcomma:true, maxerr:50*/
     /*globals describe, xdescribe, it, xit, expect, beforeEach, afterEach*/
 
-/* Test Modules modal
+/* Test Modules model
  * ======================================== */
-    describe("modal ModuleList", function() {
+    describe("model ModuleList", function() {
 
-        var Module = require("modal/module")
-        , ModuleList = require("modal/modules")
+        var Module = require("model/module")
+        , ModuleList = require("model/modules")
         // include JSON test data
         , rawCS1020 = require("json!testData/cs1020.json")
         , modACC1002 = require("json!testData/acc1002parsed.json")

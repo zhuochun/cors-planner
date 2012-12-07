@@ -22,7 +22,7 @@ require.config({
     // App directories
       , "app" : "../app"
       , "api" : "../app/api"
-      , "modal" : "../app/modals"
+      , "model" : "../app/models"
       , "view" : "../app/views"
       , "controller" : "../app/controllers"
       , "helper" : "../app/helpers"

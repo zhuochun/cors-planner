@@ -15,9 +15,9 @@ define(function(require, exports) {
 
 /* Test Module class
  * ======================================== */
-    describe("modal Module", function() {
+    describe("model Module", function() {
 
-        var Module = require("modal/module")
+        var Module = require("model/module")
         // include JSON test data
         , modACC1002 = require("json!testData/acc1002parsed.json")
         , modCS1020 = require("json!testData/cs1020parsed.json");

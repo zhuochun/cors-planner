@@ -22,9 +22,11 @@ define(function(require, exports) {
         , modACC1002 = require("json!testData/acc1002parsed.json")
         , modCS1020 = require("json!testData/cs1020parsed.json");
 
-        it("will has null module data if no data provided", function() {
-            var module = new Module();
-            expect(module.data).toBeNull();
+        it("will throw error if null data provided", function() {
+            var aMod = function() { return new Module(); }
+              , bMod = function() { return new Module(null); };
+
+            expect(aMod).toThrow();
         });
 
         it("will create a Module class", function() {
@@ -47,7 +49,7 @@ define(function(require, exports) {
             expect(acc1002.get("alterFormat")).toBeTruthy();
 
             var cs1020 = new Module(modCS1020);
-            expect(cs1020.get("color")).toEqual("royalblue");
+            expect(cs1020.get("color")).toEqual("orangered");
             expect(cs1020.get("alterFormat")).toBeTruthy();
             expect(cs1020.get("hasLecture")).toBeTruthy();
         });
@@ -121,29 +123,39 @@ define(function(require, exports) {
             expect(newCS1020.status.hello).toEqual("world");
         });
 
-        it("can find allocated lect/tut/labs and set class to be allocated", function() {
-            var cs1020 = new Module(modCS1020);
-            // check initial condition
-            expect(cs1020.isAllocated("lecture", 1)).toBe(false);
-            expect(cs1020.isAllocated("tutorial", 7)).toBe(false);
-            expect(cs1020.isAllocated("lab", 3)).toBe(false);
+        it("will initialize allocated classes to null", function() {
+            var cs1020 = new Module(modCS1020)
+              , acc1002 = new Module(modACC1002);
+               
+            expect(cs1020.allocated("lectures")).toBe(null);
+            expect(cs1020.allocated("tutorials")).toBe(null);
+            expect(cs1020.allocated("labs")).toBe(null);
+
+            expect(acc1002.allocated("lectures")).toBe(null);
+            expect(acc1002.allocated("tutorials")).toBe(null);
+            expect(acc1002.allocated("labs")).toBe(null);
+        });
+
+        it("can allocate and find allocated classes", function() {
+            var cs1020 = new Module(modCS1020)
+              , acc1002 = new Module(modACC1002);
+               
             // allocate lect/tutorial/lab
-            cs1020.allocate("lecture", 1);
-            cs1020.allocate("tutorial", 7);
-            cs1020.allocate("lab", 3);
+            cs1020.allocate("lectures", 1);
+            cs1020.allocate("tutorials", 7);
+            cs1020.allocate("labs", 3);
             // go inside and check
-            expect(cs1020.status.allocated.lecture).toBe(1);
-            expect(cs1020.status.allocated.tutorial).toBe(7);
-            expect(cs1020.status.allocated.lab).toBe(3);
+            expect(cs1020.status.allocated.lectures).toBe(1);
+            expect(cs1020.status.allocated.tutorials).toBe(7);
+            expect(cs1020.status.allocated.labs).toBe(3);
             // use api provided to check
-            expect(cs1020.isAllocated("lecture", 1)).toBe(true);
-            expect(cs1020.isAllocated("lecture", "1")).toBe(true);
-            expect(cs1020.isAllocated("tutorial", 7)).toBe(true);
-            expect(cs1020.isAllocated("tutorial", "7")).toBe(true);
-            expect(cs1020.isAllocated("lab", 3)).toBe(true);
-            expect(cs1020.isAllocated("lab", "3")).toBe(true);
-            expect(cs1020.isAllocated("tutorial", 3)).toBe(false);
-            expect(cs1020.isAllocated("tutorial", "3")).toBe(false);
+            expect(cs1020.allocated("lectures")).toBe(1);
+            expect(cs1020.allocated("tutorials")).toBe(7);
+            expect(cs1020.allocated("labs")).toBe(3);
+            // check acc1002 is not affected
+            expect(acc1002.allocated("lectures")).toBe(null);
+            expect(acc1002.allocated("tutorials")).toBe(null);
+            expect(acc1002.allocated("labs")).toBe(null);
         });
 
     });

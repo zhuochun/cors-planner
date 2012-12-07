@@ -4,7 +4,7 @@
  * a Module class
  *
  * Author: Wang Zhuochun
- * Last Edit: 21/Jul/2012 05:27 PM
+ * Last Edit: 07/Dec/2012 11:11 AM
  * ========================================
  * <License>
  * ======================================== */
@@ -14,28 +14,23 @@ define(function(require, exports) {
     "use strict";
     /*jshint jquery:true, laxcomma:true, maxerr:50*/
 
-    var
     // require components
-      color = require("helper/colors")
-    // module default status
-    , defaultStatus = {
-        list : undefined
-      , allocated : { lecture : null, tutorial : null, lab : null }
-    };
+    var color = require("helper/colors");
 
     /* MODULE CLASS DEFINITION
      * ======================================== */
 
     // Module Class
     function Module(data, status) {
-        if (!data) { this.data = null; }
-        else {
-            this.id = data.code.replace(/[_\s\'\"]/gi, "-");
-            this.data = Module.Format(data);
-            this.data.color = color.get(this.data.color);
-        }
+        if (!data) { throw new Error("Module data cannot be null!"); }
 
-        this.status = $.extend({}, defaultStatus, status);
+        this.id = data.code.replace(/[_\s\'\"]/gi, "-");
+        this.data = Module.Format(data);
+        this.data.color = color.get(this.data.color);
+        
+        this.status = $.extend({}
+            , {allocated : { lectures : null, tutorials : null, labs : null }}
+            , status);
     }
 
     /* MODULE STATIC METHODS

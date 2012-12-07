@@ -133,7 +133,7 @@ define(function(require, exports) {
             // add duplicated using module code
             list.add("cs1020");
             expect(list.length()).toEqual(2);
-            expect(msg).toEqual("cs1020");
+            expect(msg).toEqual("CS1020");
 
             // write back
             $.getJSON = getJSON;

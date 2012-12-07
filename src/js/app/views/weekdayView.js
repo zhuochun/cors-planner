@@ -71,16 +71,16 @@ define(function(require, exports) {
         }
 
         var context = {
-            "code": mod.get("code")
-          , "type": type
-          , "shortType": TYPES[type]
-          , "index": idx
-          , "offset": offset
-          , "span": span
-          , "slot": slot
-          , "data": mod.data
-          , "module": mod
-          , "droppable": droppable || false
+            code: mod.get("code")
+          , type: type
+          , shortType: TYPES[type]
+          , index: idx
+          , offset: offset
+          , span: span
+          , slot: slot
+          , data: mod.data
+          , module: mod
+          , droppable: droppable || false
         };
 
         this.$rows[row].append(createSlot(context));

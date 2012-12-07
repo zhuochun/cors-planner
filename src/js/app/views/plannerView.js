@@ -55,19 +55,19 @@ define(function(require, exports) {
 
         for (i = 0, len = types.length; i < len; i++) {
             if (mod.has(types[i])) {
-                klasses = mod.get("_" + types[i]);
-
+                // initial allocate
                 allocated = false;
-                // try to allocate any of the klass in empty slots
+
+                // try to allocate any of the klass in an empty slot
+                klasses = mod.get("_" + types[i]);
                 for (key in klasses) {
-                    if (klasses.hasOwnProperty(key)) {
-                        if (canAllocate(klasses[key])) {
-                            allocated = true;
-                            // allocate and mark the classNo allocated
-                            allocate(klasses[key], types[i], mod);
-                            mod.allocate(types[i], klasses[key].classNo);
-                            break;
-                        }
+                    if (klasses.hasOwnProperty(key) && canAllocate(klasses[key])) {
+                        // allocate and mark the classNo allocated
+                        allocate(klasses[key], types[i], mod);
+                        mod.allocate(types[i], key);
+                        // next type
+                        allocated = true;
+                        break;
                     }
                 }
 

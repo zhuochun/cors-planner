@@ -23,22 +23,18 @@ define(function(require, exports) {
     // according to the Module passed in
     exports.render = function(module) {
         var context = {
-              "id" : module.id
-            , "color" : module.get("color")
-            , "code" : module.get("code")
-            , "title" : module.get("title")
-            , "examDate" : module.get("examDate")
-            , "lectures" : module.count("lectures")
-            , "tutorials" : module.count("tutorials")
-            , "labs" : module.count("labs")
-        }
-        // get the jquery object
-        , $module = $(template(context));
+              id : module.id
+            , color : module.get("color")
+            , code : module.get("code")
+            , title : module.get("title")
+            , examDate : module.get("examDate")
+            , lectures : module.count("lectures")
+            , tutorials : module.count("tutorials")
+            , labs : module.count("labs")
+        }, $module = $(template(context));
 
-        // lazy draggable events loading
         $module.module({data: module});
 
-        // return $module DOM
         return $module;
     };
 

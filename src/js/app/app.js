@@ -21,17 +21,15 @@ define(function(require, exports) {
     require("bootstrap");
     require("jquery.ui");
     require("jquery.metro");
-    // include jQuery Pub/Sub plugin
+    // include pub/sub jQuery plugin
     require("util/pubsub");
-    // include jQuery dragDrop plugin
-    require("helper/dragdrop");
 
     // include third party
     var store = require("util/store")
     // include controllers
-    , modulesController = require("controller/modulesController")
+      , controller = require("controller/modulesController")
     // include app view
-    , appView = require("view/appView");
+      , views = require("view/appView");
 
     // check the version between server and user, emits an message to all
     function _versionCheck() {
@@ -46,11 +44,9 @@ define(function(require, exports) {
 
     // exports module
     exports.init = function(v) {
-        // initial controller
-        modulesController.init();
-        // initial views
-        appView.init();
-        // other things
+        controller.init();
+        views.init();
+        // check app version
         _versionCheck();
     };
 

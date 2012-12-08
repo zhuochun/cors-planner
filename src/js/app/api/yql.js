@@ -21,10 +21,10 @@ define(function(require, exports) {
     , defaults = $.extend({}, { modCode : "ACC1002" }, helper.getSemester());
 
     // return a valid CORS url
-    function getCORSurl(module) {
+    function getCORSurl(mod) {
         return "https://aces01.nus.edu.sg/cors/jsp/report/ModuleDetailedInfo.jsp?" +
-            "acad_y=" + module.acadYear + "&sem_c=" + module.semester +
-            "&mod_c=" + module.modCode.toUpperCase();
+            "acad_y=" + mod.acadYear + "&sem_c=" + mod.semester +
+            "&mod_c=" + mod.modCode.toUpperCase();
     }
 
     // return a valid yql url with query
@@ -49,13 +49,12 @@ define(function(require, exports) {
     };
 
     // a module request for yql, return a Module object
-    exports.requestModule = function(module, callback) {
-        if (typeof module === "string") {
-            module = { modCode : module };
+    exports.requestModule = function(mod, callback) {
+        if (typeof mod === "string") {
+            mod = { modCode : mod };
         }
 
-        var mod = $.extend({}, defaults, module)
-          , cors = getCORSurl(mod)
+        var cors = getCORSurl($.extend({}, defaults, mod))
           , query = "select * from html where url='" + cors + "' and xpath='//table'";
 
         $.getJSON(getYQLurl(query), getCallback(cors, callback));

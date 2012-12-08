@@ -16,11 +16,9 @@ define(function(require, exports) {
     /*globals planner*/
 
     // include jQuery plugins
-    require("bootstrap");
-    require("jquery.ui");
-    require("jquery.metro");
+    require("plugin/bootstrap");
+    require("plugin/jquery.metro");
     require("util/pubsub");
-
     // include third party
     var store = require("util/store")
     // include controllers

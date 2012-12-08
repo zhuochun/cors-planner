@@ -54,8 +54,8 @@ define(function(require, exports) {
             // require the latest modules data
             require(["corsModulesData"], function(data) {
                 store.set("cors-modules", {
-                      latestUpdate : planner.dataUpdate
-                    , data : data
+                    latestUpdate : planner.dataUpdate
+                  , data : data
                 });
 
                 $input.typeahead({source:data});

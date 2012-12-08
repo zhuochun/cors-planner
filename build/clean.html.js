@@ -16,7 +16,7 @@ console.log("Removed less runtime js compiler");
 
 // change jQuery to google CDN
 var CDN = "<script src=\"http://ajax.googleapis.com/ajax/libs/jquery/$1/jquery.min.js\"></script><script>window.jQuery || document.write('<script src=\"js/libs/jquery-$1.js\"><\\\/script>')</script>";
-content = content.replace(/<script.*?\bjquery-\b([^"']*?)\.js.*?<\/script>/g, CDN);
+content = content.replace(/<script.*?\bjquery-\b([^"'u]*?)\.js.*?<\/script>/g, CDN);
 // log
 console.log("Changed jQuery to use Google CDN jQuery");
 

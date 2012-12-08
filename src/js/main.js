@@ -10,29 +10,29 @@
 /* RequireJs Configurations */
 require.config({
 
-    baseUrl : "js/libs"
+    baseUrl : "js"
 
   , paths : {
-    // jQuery plugins
-        "jquery.ui" : "jquery-ui-1.8.23.custom"
     // RequireJS plugins
-      , "hgn" : "requirejs-plugins/hgn"
-      , "text" : "requirejs-plugins/text"
-      , "hogan" : "requirejs-plugins/hogan"
+        "hgn" : "libs/requirejs-plugins/hgn"
+      , "text" : "libs/requirejs-plugins/text"
+      , "hogan" : "libs/requirejs-plugins/hogan"
+    // jQuery plugins
+      , "plugin" : "libs"
     // App directories
-      , "app" : "../app/appMain"
-      , "global" : "../app/global"
-      , "api" : "../app/api"
-      , "model" : "../app/models"
-      , "view" : "../app/views"
-      , "controller" : "../app/controllers"
-      , "helper" : "../app/helpers"
+      , "appMain" : "app/appMain"
+      , "global" : "app/global"
+      , "api" : "app/api"
+      , "model" : "app/models"
+      , "view" : "app/views"
+      , "controller" : "app/controllers"
+      , "helper" : "app/helpers"
     // App data
-      , "corsModulesData" : "../data/corsModuleCodes"
+      , "corsModulesData" : "data/corsModuleCodes"
     // Helper Utils
-      , "util" : "../utils"
+      , "util" : "utils"
     // Templates
-      , "template" : "../../templates"
+      , "template" : "../templates"
     }
 
     // configure hgn! plugin
@@ -42,7 +42,7 @@ require.config({
 });
 
 /* Require Start */
-require(["app", "global"], function(App) {
+require(["global", "appMain"], function(g, App) {
     $(function() {
         App.init();
     });

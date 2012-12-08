@@ -23,8 +23,8 @@ console.log("*****************************************\n");
 
 // Variables
 var url = "https://aces01.nus.edu.sg/cors/jsp/report/ModuleInfoListing.jsp"
-  , output = "corsModuleCodes.js"
-  , update = true, global = "../app/global.js";
+  , output = "src/js/data/corsModuleCodes.js"
+  , update = true, global = "src/js/app/global.js";
 
 // Args
 if (sys.args.length > 1) {

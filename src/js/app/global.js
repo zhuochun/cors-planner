@@ -41,47 +41,13 @@ define(function(require, exports) {
         // assign CORS Planner Version number
         planner.version = "0.3.0";
         // assign CORS Data latest update time
-        planner.dataUpdate = "Thu Dec 06 2012 14:53:45 GMT+0800 (Malay Peninsula Standard Time)";
-        // default timetable view
-        planner.timetableType = "horizontal";
-        planner.timetableRange = { start : 8, end : 22 };
+        planner.dataUpdate = "Sat Dec 08 2012 23:07:21 GMT+0800 (Malay Peninsula Standard Time)";
         // default module lists
         planner.list = planner.list || {};
         planner.list.modules  = "modules";
         planner.list.previews = "previews";
         // week days
         planner.weekDays = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"]; 
-
-        // default user info
-        planner.user = {};
-        // planner user
-        planner.user = (function() {
-            var user = {};
-
-            user.data = store.get("user") || {};
-
-            user.get = function(key) { return user.data[key]; };
-            user.set = function(key, value) {
-                if (typeof key === "object") {
-                    for (var i in key) {
-                        if (key.hasOwnProperty(i)) {
-                            user.set(i, key[i]);
-                        }
-                    }
-                } else {
-                    user.data[key] = value;
-
-                    store.set("user", user.data);
-
-                    $.publish("app:user:" + key, [value]);
-                }
-            };
-
-            return {
-                get : user.get
-              , set : user.set
-            };
-        })();
 
     })();
 

@@ -40,6 +40,8 @@ define(function(require, exports) {
                 this.id = this.$elem.attr("id");
                 // section lecture id
                 this.sid = this.id.substr(0, this.id.lastIndexOf("-"));
+                // elem ui
+                this.updateElem();
                 // attach events
                 this.attachEvents();
                 // draggable
@@ -47,6 +49,12 @@ define(function(require, exports) {
             }
             
             , get: function(key) { return this.data.get(key); }
+
+            , updateElem: function() {
+                if (this.code.length > 6 && this.$elem.data("span") < 3) {
+                    this.$elem.addClass("small");
+                }
+            }
 
             , attachEvents: function(item, fun) {
                 var self = this;

@@ -17,7 +17,8 @@ define(function(require, exports) {
     // include components
     var yql = require("api/yql")
       , parser = require("api/parser")
-      , Module = require("model/module");
+      , Module = require("model/module")
+      , _fetching = {};
 
     /* MODULELIST CLASS DEFINITION
      * ======================================== */
@@ -35,6 +36,10 @@ define(function(require, exports) {
 
     // fetch the module from CORS with callback
     function _fetch(modCode, callback) {
+        // prevent fetching the same mod if it is on fetching
+        if (_fetching[modCode]) { return ; }
+        else { _fetching[modCode] = true; }
+
         yql.requestModule(modCode, function(result) {
             var mod = parser.parse(result);
 
@@ -45,6 +50,9 @@ define(function(require, exports) {
             } else {
                 $.publish("message:error", "Module " + modCode + " is not available.");
             }
+
+            // clear this module in fetching
+            delete _fetching[modCode];
         });
     }
 

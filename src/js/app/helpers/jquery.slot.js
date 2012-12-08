@@ -70,6 +70,12 @@ define(function(require, exports) {
                     $grid.find(".slot[id^=" + self.code + "-]").removeClass("hover");
                     $basket.find(".module[id=" + self.code + "]").removeClass("hover");
                 });
+
+                this.$elem.on("click", function() {
+                    $.publish("module:preview", self.code);
+                    // switch to detail panel
+                    $("#metro-pivot").data("controller").goToItemByName("Detail");
+                });
             }
 
             , attachDragDrop: function(droppable) {

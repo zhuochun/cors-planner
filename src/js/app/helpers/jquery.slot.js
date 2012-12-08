@@ -43,7 +43,7 @@ define(function(require, exports) {
                 // elem ui
                 this.updateElem();
                 // attach events
-                this.attachEvents();
+                this.attachEvents(opt.droppable);
                 // draggable
                 this.attachDragDrop(opt.droppable);
             }
@@ -56,7 +56,9 @@ define(function(require, exports) {
                 }
             }
 
-            , attachEvents: function(item, fun) {
+            , attachEvents: function(droppable) {
+                if (droppable) { return ; }
+
                 var self = this;
 
                 this.$elem.on("mouseenter", function() {
@@ -112,6 +114,9 @@ define(function(require, exports) {
             }
 
             , dropEvent: function(e, ui) {
+                // fix minor bug when mouse is not over the slot after drop
+                // the module in basket is still on hover state
+                this.$elem.trigger("mouseleave");
                 // remove all slots of this module + type
                 $grid.find(".slot[id^=" + this.code + "-" + this.type + "-]").remove();
                 // allocate the new slots

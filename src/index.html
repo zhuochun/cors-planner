@@ -53,8 +53,17 @@
 
       <!-- Main Body -->
       <div id="primary" class="span26">
-        <div id="tt-header">
-          <h2>Timetable of <span id="semester"></span></h2>
+        <div id="tt-header" class="row-fluid">
+          <div class="span22">
+            <h2>Timetable of <span id="semester"></span></h2>
+          </div>
+          <div class="span10">
+            <ul id="misc-btns" class="pull-right unstyled">
+              <li>
+                <a href="https://www.facebook.com/pages/CORS-Planner/522030524482502" title="Like us on Facebook" target="_blank" class="red m-btn">Follow Facebook Page</a>
+              </li>
+            </ul>
+          </div>
         </div> <!-- tt-header -->
 
         <div id="tt-grid">
@@ -429,7 +438,7 @@
         </div> <!-- tt-grid -->
 
         <div id="footer">
-          <h6>CORS Planner &copy; 2012 by <a href="https://www.facebook.com/zhuochun.wang" target="_blank" title="Follow my Facebook" rel="tooltip">WANG ZHUOCHUN</a> | <a href="https://github.com/zhuochun/cors-planner" title="Fork CORS Planner on GitHub" rel="tooltip">Github</a></h6>
+          <h6>CORS Planner <span id="version">0.0.0</span> &copy; 2012-2013 by <a href="https://www.facebook.com/zhuochun.wang" target="_blank" title="Follow My Facebook" rel="tooltip">WANG ZHUOCHUN</a> | <a href="https://www.facebook.com/pages/CORS-Planner/522030524482502" target="_blank" title="Like CORS Planner on Facebook Page" rel="tooltip">Facebook</a> | <a href="https://github.com/zhuochun/cors-planner" title="Fork CORS Planner on GitHub" rel="tooltip">Github</a></h6>
         </div>
       </div> <!-- primary -->
     </div> <!-- planner -->
@@ -442,6 +451,16 @@
   <script src="js/libs/require.js" data-main="js/main"></script>
 
   <!-- GOOGLEANALYTICS -->
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35844116-2']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
 
 </body>
 </html>

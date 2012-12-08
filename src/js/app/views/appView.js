@@ -36,6 +36,8 @@ define(function(require, exports) {
         // enable tooltips
         $("#nav").tooltip({placement:"bottom", selector:"a[rel=tooltip]"});
         $("#footer").tooltip({placement:"top", selector:"a[rel=tooltip]"});
+        // version text
+        $("#version").text(planner.version);
         // metro tab
         $("#metro-pivot").metroPivot();
         // min height

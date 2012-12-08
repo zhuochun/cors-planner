@@ -1,57 +1,22 @@
 <div id="module-detail" data-modcode="{{code}}">
-<h3>
-    <a href="{{url}}" target="_blank" title="View on CORS"><i class="icon-external-link"></i></a> 
-    <span class="detail-head" title="Double click to add Module {{code}}">Module Details [{{code}}]</span>
-</h3>
-<h4><small>Correct As At: {{correctAsAt}}</small></h4>
-
-<table class="table table-condensed table-striped">
-  <thead>
-    <tr>
-      <th>Module</th><td colspan="3">{{code}} - {{title}}</td>
-    </tr>
-    <tr>
-      <th>Description</th><td colspan="3">{{description}}</td>
-    </tr>
-    <tr>
-      <th>Exam Date</th><td colspan="3">{{examDate}}</td>
-    </tr>
-    <tr>
-      <th>Credits</th><td>{{credits}}</td><th>Workload</th><td>{{workload}}</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td colspan="4"> </td></tr>
-  {{#hasLecture}}
-    <tr class="header">
-      <th colspan="4"><i class="icon-circle-arrow-right"></i> Lectures</th>
-    </tr>
-    {{#lectures}}
-    <tr>
-      <td>[{{classNo}}]</td><td>{{weekType}}</td><td>{{weekDay}}<br/>{{startTime}}-{{endTime}}</td><td>{{room}}</td>
-    </tr>
-    {{/lectures}}
-  {{/hasLecture}}
-  {{#hasTutorial}}
-    <tr class="header">
-      <th colspan="4"><i class="icon-circle-arrow-right"></i> Tutorials</th>
-    </tr>
-    {{#tutorials}}
-    <tr>
-      <td>[{{classNo}}]</td><td>{{weekType}}</td><td>{{weekDay}}<br/>{{startTime}}-{{endTime}}</td><td>{{room}}</td>
-    </tr>
-    {{/tutorials}}
-  {{/hasTutorial}}
-  {{#hasLab}}
-    <tr class="header">
-      <th colspan="4"><i class="icon-circle-arrow-right"></i> Labs</th>
-    </tr>
-    {{#labs}}
-    <tr>
-      <td>[{{classNo}}]</td><td>{{weekType}}</td><td>{{weekDay}}<br/>{{startTime}}-{{endTime}}</td><td>{{room}}</td>
-    </tr>
-    {{/labs}}
-  {{/hasLab}}
-  </tbody>
-</table>
+    <h4 style="color:{{color}}">{{code}} - {{title}}</h4>
+    <p><a href="{{url}}" target="_blank" title="View on CORS">
+        Correct As At: {{correctAsAt}}
+    </a></p>
+    <table class="table">
+        <tbody>
+        <tr><th colspan="4">Exam Date</th></tr>
+        <tr><td colspan="4">{{examDate}}</td></tr>
+        <tr>
+            <th>Credits</th><td>{{credits}}</td>
+            <th>Workload</th><td>{{workload}}</td>
+        </tr>
+        <tr><th colspan="4">Description</th></tr>
+        <tr><td colspan="4">{{description}}</td></tr>
+        <tr><th colspan="4">Pre-requisite</th></tr>
+        <tr><td colspan="4">{{prerequisite}}</td></tr>
+        <tr><th colspan="4">Preclusion</th></tr>
+        <tr><td colspan="4">{{preclusion}}</td></tr>
+        </tbody>
+    </table>
 </div>

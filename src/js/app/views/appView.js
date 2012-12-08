@@ -11,6 +11,7 @@ define(function(require, exports) {
 
     "use strict";
     /*jshint browser:true, jquery:true, laxcomma:true, maxerr:50*/
+    /*global planner*/
 
     // load all the views
     var addModuleView = require("view/addModuleView")

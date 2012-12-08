@@ -27,17 +27,13 @@ echo == Start Building CORS-PLANNER
 
     echo - reorganizing JS libraries
         ::copy moderizr
-        xcopy src\js\libs\modernizr*.js release\js\libs\ /Y
+        ::xcopy src\js\libs\modernizr*.js release\js\libs\ /Y
         ::copy data folder
         ::xcopy src\js\data release\js\data\ /S /Y
 
     echo - modifying html script includes
         ::modify index.html to use css
         call node build\clean.html.js
-
-    echo - moving font folder to release\
-        ::move awesone-fonts to css folder
-        xcopy src\less\font release\font\ /S /Y
 
     echo - compiling less to css
         ::create folder in release for css files

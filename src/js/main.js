@@ -20,7 +20,8 @@ require.config({
       , "text" : "requirejs-plugins/text"
       , "hogan" : "requirejs-plugins/hogan"
     // App directories
-      , "app" : "../app"
+      , "app" : "../app/appMain"
+      , "global" : "../app/global"
       , "api" : "../app/api"
       , "model" : "../app/models"
       , "view" : "../app/views"
@@ -41,7 +42,7 @@ require.config({
 });
 
 /* Require Start */
-require(["app/app"], function(App) {
+require(["app", "global"], function(App) {
     $(function() {
         App.init();
     });

@@ -15,13 +15,10 @@ define(function(require, exports) {
     /*jshint jquery:true, laxcomma:true, maxerr:50*/
     /*globals planner*/
 
-    // include global variable planner
-    require("app/global");
     // include jQuery plugins
     require("bootstrap");
     require("jquery.ui");
     require("jquery.metro");
-    // include pub/sub jQuery plugin
     require("util/pubsub");
 
     // include third party

@@ -18,9 +18,7 @@
 // If you want to exclude files from being included,
 // and just need to map "dependency" for the build,
 // then use the special "empty:" paths config:
-  , paths: {
-        
-    }
+  , paths: { }
 
 //Specify modules to stub out in the optimized file. The optimizer will
 //use the source version of these modules for dependency tracing and for
@@ -30,10 +28,10 @@
 
 // Optimize the application files.
   , modules: [
-        {
-            name: "main"
-          , exclude: ["bootstrap", "jquery-ui", "corsModulesData"]
-        }
+       //{
+       //    name: "main"
+       //  , exclude: ["jquery.ui", "corsModulesData"]
+       //}
     ]
 
 // Exclude less folder

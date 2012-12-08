@@ -41,6 +41,6 @@ define(function(require, exports) {
         return c ? c : colors[index];
     };
 
-    exports.length = function() { return length; }
-    exports.used = function() { return index; }
+    exports.length = function() { return length; };
+    exports.used = function() { return index; };
 });

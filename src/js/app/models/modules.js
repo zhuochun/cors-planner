@@ -35,24 +35,33 @@ define(function(require, exports) {
     }
 
     // fetch the module from CORS with callback
-    function _fetch(modCode, callback) {
-        // prevent fetching the same mod if it is on fetching
+    function _fetch(modCode, callback, tried) {
+        // prevent fetching the same module if it is on fetching
         if (_fetching[modCode]) { return ; }
         else { _fetching[modCode] = true; }
+        // try 3 times before give up on fetching
+        tried = tried || 0;
+        if (tried === 3) {
+            return $.publish("message:error", "Fetching data for Module " + modCode + " failed, Please try again later.");
+        }
 
         yql.requestModule(modCode, function(result) {
             var mod = parser.parse(result);
 
-            // TODO mod == null is usually caused by yql problem,
-            // make it try 3 times before submit problem
-            if (mod !== null && mod.isAvailable) {
-                callback(new Module(mod));
+            if (mod !== null) {
+                if (mod.isAvailable) {
+                    callback(new Module(mod));
+                } else {
+                    $.publish("message:error", "Module " + modCode + " is not available.");
+                }
+                // clear this module in fetching
+                delete _fetching[modCode];
             } else {
-                $.publish("message:error", "Module " + modCode + " is not available.");
+                // clear this module in fetching
+                delete _fetching[modCode];
+                // try fetch again
+                _fetch(modCode, callback, tried + 1);
             }
-
-            // clear this module in fetching
-            delete _fetching[modCode];
         });
     }
 

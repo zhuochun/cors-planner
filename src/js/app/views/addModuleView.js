@@ -37,7 +37,11 @@ define(function(require, exports) {
 
     // update the semester text
     function updateSemester() {
-        $("#semester").text("Year " + sem.acadYear + " SEM" + sem.semester);
+        $("#semester")
+            .text("Year " + sem.acadYear + " SEM" + sem.semester)
+            .on("dblclick", function() {
+                $.publish("module:clean");
+            });
     }
 
     // attach typeahead to input

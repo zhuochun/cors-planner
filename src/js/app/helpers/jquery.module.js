@@ -36,6 +36,8 @@ define(function(require, exports) {
                 this.data = opt.data;
                 // attach events
                 this.attachEvents();
+                // bind subscription
+                this.subscribeEvents();
                 // resize
                 this.resize();
             }
@@ -64,6 +66,9 @@ define(function(require, exports) {
 
                 // debug info
                 this.$elem.on("dblclick", function() {
+                    window._debug = window._debug || {};
+                    window._debug.module = self.data;
+
                     if (window.console)
                         window.console.log(self.data);
                 });
@@ -105,6 +110,14 @@ define(function(require, exports) {
                         // publish event
                         $.publish("module:remove", self.get("code"));
                     });
+                });
+            }
+
+            , subscribeEvents: function() {
+                var self = this;
+
+                $.subscribe("module:clean:all", function() {
+                    self.$method.find(".remove").trigger("click");
                 });
             }
         };

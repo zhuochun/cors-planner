@@ -99,14 +99,27 @@ define(function(require, exports) {
         }
     };
 
+    // add a list of modules
+    ModuleList.fn.populate = function(list, options) {
+        var i, len = list.length;
+
+        for (i = 0; i < len; i++) {
+            this._add(new Module(list[i].data, list[i].status), options);
+        }
+    };
+
     // private _add
     ModuleList.fn._add = function(module, options) {
         var idx = this.duplicated("examDate", module.get("examDate"));
+
+        options = $.extend({}, this.options, options);
 
         // set module's status list
         module.set("list", this.name);
         // then push to the list
         this.list.push(module);
+        // save list
+        $.publish("module:save");
 
         if (!options.mute) {
             $.publish(options.prefix + "addOne", [module]);
@@ -128,6 +141,8 @@ define(function(require, exports) {
         if (typeof mod === "number" && mod >= 0 && mod < this.list.length) {
             module = this.list.splice(mod, 1)[0];
 
+            $.publish("module:save");
+
             if (!options.mute) {
                 $.publish(options.prefix + "removeOne", [module]);
             }
@@ -145,6 +160,8 @@ define(function(require, exports) {
         options = $.extend({}, this.options, options);
 
         this.list = [];
+
+        $.publish("module:save");
 
         if (!options.mute) {
             $.publish(options.prefix + "clean");
@@ -165,6 +182,17 @@ define(function(require, exports) {
         }
 
         return -1;
+    };
+
+    // to JSON
+    ModuleList.fn.toJSON = function() {
+        var result = [], i, len = this.list.length;
+
+        for (i = 0; i < len; i++) {
+            result.push(this.list[i].toJSON());
+        }
+
+        return result;
     };
 
     // exports the constructor

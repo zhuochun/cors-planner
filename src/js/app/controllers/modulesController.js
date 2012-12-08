@@ -16,13 +16,34 @@ define(function(require, exports) {
     /*global planner*/
 
     // include ModalList modal
-    var ModuleList = require("modal/modules"), modules, previews;
+    var ModuleList = require("model/modules")
     // initial Module lists
-    modules  = new ModuleList(planner.list.modules);
-    previews = new ModuleList(planner.list.previews);
+      , modules = new ModuleList(planner.list.modules)
+      , previews = new ModuleList(planner.list.previews)
+    // store
+      , store = require("util/store");
 
     // controller initial
-    exports.init = function() {}
+    exports.init = function() {
+        setTimeout(function() {
+            loadStorage();
+        }, 500);
+    };
+
+    // populate storage modules
+    function loadStorage() {
+        modules.populate(store.get(planner.list.modules) || []);
+    }
+
+    // save modules to storage
+    function saveStorage() {
+        store.set(planner.list.modules, modules.toJSON());
+    }
+
+    // save modules to storage
+    $.subscribe("module:save", function() {
+        saveStorage();
+    });
 
     // add a module event
     $.subscribe("module:add", function(e, m) {
@@ -40,7 +61,7 @@ define(function(require, exports) {
     $.subscribe("module:preview", function(e, m) {
         var mod = modules.get(m) || previews.get(m);
 
-        if (mod) { 
+        if (mod) {
             $.publish("module:detail", mod);
         } else {
             previews.add(m);
@@ -54,6 +75,15 @@ define(function(require, exports) {
         if (mod) {
             $.publish("message:success", "Module " + mod.get("code") + " is removed");
         }
+    });
+
+    // clear all modules
+    $.subscribe("module:clean", function() {
+        modules.clean();
+        // notify module plugins
+        $.publish("module:clean:all");
+        // message
+        $.publish("message:success", "All modules are removed");
     });
 
     // to control the size of previews list

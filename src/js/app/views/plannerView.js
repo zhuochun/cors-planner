@@ -55,28 +55,32 @@ define(function(require, exports) {
 
         for (i = 0, len = types.length; i < len; i++) {
             if (mod.has(types[i])) {
-                // initial allocate
-                allocated = false;
+                if (mod.allocated(types[i]) !== null) {
+                    $.publish("grid:module:allocate",
+                        [mod.get("_" + types[i])[mod.allocated(types[i])][0], types[i], mod]);
+                } else {
+                    allocated = false;
 
-                // try to allocate any of the klass in an empty slot
-                klasses = mod.get("_" + types[i]);
-                for (key in klasses) {
-                    if (klasses.hasOwnProperty(key) && canAllocate(klasses[key])) {
-                        // allocate and mark the classNo allocated
-                        allocate(klasses[key], types[i], mod);
-                        mod.allocate(types[i], key);
-                        // next type
-                        allocated = true;
-                        break;
+                    // try to allocate any of the klass in an empty slot
+                    klasses = mod.get("_" + types[i]);
+                    for (key in klasses) {
+                        if (klasses.hasOwnProperty(key) && canAllocate(klasses[key])) {
+                            // allocate and mark the classNo allocated
+                            allocate(klasses[key], types[i], mod);
+                            mod.allocate(types[i], key);
+                            // next type
+                            allocated = true;
+                            break;
+                        }
                     }
-                }
 
-                if (!allocated) {
-                    key = Object.keys(klasses)[0];
-                    // force allocate it, with a new row created
-                    allocate(klasses[key], types[i], mod);
-                    // make the classNo allocated
-                    mod.allocate(klasses[key].classNo);
+                    if (!allocated) {
+                        key = Object.keys(klasses)[0];
+                        // force allocate it, with a new row created
+                        allocate(klasses[key], types[i], mod);
+                        // make the classNo allocated
+                        mod.allocate(klasses[key].classNo);
+                    }
                 }
             }
         }

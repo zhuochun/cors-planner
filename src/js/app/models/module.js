@@ -123,7 +123,10 @@ define(function(require, exports) {
             parent[keys[i]] = parent[keys[i]] || {};
             parent = parent[keys[i]];
         }
+
         parent[keys[i]] = val;
+
+        $.publish("module:save");
     };
 
     // check the status
@@ -171,6 +174,8 @@ define(function(require, exports) {
         this.status.allocated[type] = classNo;
 
         $.publish("module:" + this.get("code") + ":allocated", [type, classNo]);
+
+        $.publish("module:save");
     };
 
     // toJSON will return a string contains all

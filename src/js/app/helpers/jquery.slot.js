@@ -51,7 +51,8 @@ define(function(require, exports) {
             , get: function(key) { return this.data.get(key); }
 
             , updateElem: function() {
-                if (this.code.length > 6 && this.$elem.data("span") < 3) {
+                if (this.$elem.data("span") < 3
+                    && (this.code.length > 6 || this.type === "labs")) {
                     this.$elem.addClass("small");
                 }
             }

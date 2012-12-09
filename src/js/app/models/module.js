@@ -26,7 +26,7 @@ define(function(require, exports) {
 
         this.id = data.code.replace(/[_\s\'\"]/gi, "-");
         this.data = Module.Format(data);
-        this.data.color = color.get(this.data.color);
+        this.data.color = color.get();
         
         this.status = $.extend({}
             , {allocated : { lectures : null, tutorials : null, labs : null }}

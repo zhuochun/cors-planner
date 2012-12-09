@@ -15,30 +15,36 @@ define(function(require, exports) {
     /*jshint jquery:true, laxcomma:true, maxerr:50*/
 
     // colors http://147colors.com/ 
+    // TODO: convert to HEX code
     var colors = [
         "midnightblue"
-      , "forestgreen"
-      , "orangered"
       , "royalblue"
-      , "orange"
-      , "darkslateblue"
+      , "orangered"
+      , "forestgreen"
+      , "dimgray"
       , "saddlebrown"
+      , "indigo"
+      , "deeppink"
+      , "navy"
+      , "maroon"
+      , "goldenrod"
+      , "purple"
+      , "darkslateblue"
       , "olive"
       , "dodgerblue"
       , "seagreen"
       , "steelblue"
       , "darkorange"
       , "green"
+      , "mediumvioletred"
       , "teal"
-      , "indigo"
-      , "navy"
     ]
     , index = 0
     , length = colors.length;
 
-    exports.get = function(c) {
+    exports.get = function() {
         index = (index + 1) % length;
-        return c ? c : colors[index];
+        return colors[index];
     };
 
     exports.length = function() { return length; };

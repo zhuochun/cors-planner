@@ -42,22 +42,41 @@ define(function(require, exports) {
 
     // allocate a single slot and its section slot
     $.subscribe("grid:module:allocate", function(e, slot, type, mod) {
+        _allocateSlot(slot, type, mod);
+    });
+
+    // allocate a single slot and its section slot
+    function _allocateSlot(slot, type, mod) {
         var classNo = slot.classNo, slots = mod.get("_" + type)[classNo];
 
         // allocate and mark the classNo allocated
         allocate(slots, type, mod);
         mod.allocate(type, classNo);
+    }
+
+    // re-allocate a module's slots
+    $.subscribe("grid:module:reallocate", function(e, mod) {
+        var i, len, allocated, types = ["lectures", "tutorials", "labs"];
+
+        for (i = 0, len = types.length; i < len; i++) {
+            if (mod.has(types[i])) {
+                if ((allocated = mod.allocated(types[i])) !== null) {
+                    _allocateSlot(mod.get("_" + types[i])[allocated][0], types[i], mod);
+                }
+            }
+        }
     });
 
     // subscribe to module add event
     $.subscribe(planner.list.modules + ":addOne", function(e, mod) {
+        if (!mod.is("visible")) { return; }
+
         var klasses, i, len, key, allocated, types = ["lectures", "tutorials", "labs"];
 
         for (i = 0, len = types.length; i < len; i++) {
             if (mod.has(types[i])) {
                 if (mod.allocated(types[i]) !== null) {
-                    $.publish("grid:module:allocate",
-                        [mod.get("_" + types[i])[mod.allocated(types[i])][0], types[i], mod]);
+                    _allocateSlot(mod.get("_" + types[i])[mod.allocated(types[i])][0], types[i], mod);
                 } else {
                     allocated = false;
 
@@ -79,7 +98,7 @@ define(function(require, exports) {
                         // force allocate it, with a new row created
                         allocate(klasses[key], types[i], mod);
                         // make the classNo allocated
-                        mod.allocate(klasses[key].classNo);
+                        mod.allocate(types[i], key);
                     }
                 }
             }

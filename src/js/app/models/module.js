@@ -29,7 +29,7 @@ define(function(require, exports) {
         this.data.color = color.get();
         
         this.status = $.extend({}
-            , {allocated : { lectures : null, tutorials : null, labs : null }}
+            , {visible: true, allocated : { lectures : null, tutorials : null, labs : null }}
             , status);
     }
 
@@ -130,7 +130,7 @@ define(function(require, exports) {
     };
 
     // check the status
-    Module.fn.is = function(key, val) {
+    Module.fn.is = function(key) {
         var i, keys = key.split(".")
         , length = keys.length, parent = this.status;
 
@@ -139,7 +139,7 @@ define(function(require, exports) {
             parent = parent[keys[i]];
         }
 
-        return parent[keys[i]] === val;
+        return parent[keys[i]];
     };
 
     // count the number of lect/tut/labs

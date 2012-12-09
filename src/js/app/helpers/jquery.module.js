@@ -34,6 +34,8 @@ define(function(require, exports) {
 
                 // module data
                 this.data = opt.data;
+                // update ui
+                this.updateElem();
                 // attach events
                 this.attachEvents();
                 // bind subscription
@@ -50,6 +52,27 @@ define(function(require, exports) {
                 var pivotItems = $("#metro-pivot").find(".pivotItem");
                 // width
                 this.$info.width(pivotItems.width() - 43);
+            }
+
+            , updateElem: function() {
+                if (!this.data.is("visible")) {
+                    this.showOnTimetable(false);
+                }
+            }
+
+            , showOnTimetable: function(show, $elem, $this) {
+                $elem = $elem || this.$method.find(".timetable i");
+                $this = $this || this.$elem;
+
+                if (show) {
+                    // open eye, unmark inactive
+                    $this.removeClass("inactive");
+                    $elem.removeClass("icon-eye-close").addClass("icon-eye-open");
+                } else {
+                    // close eye, mark inactive
+                    $this.addClass("inactive");
+                    $elem.removeClass("icon-eye-open").addClass("icon-eye-close");
+                }
             }
 
             , attachEvents: function(item, fun) {
@@ -88,11 +111,19 @@ define(function(require, exports) {
                         $this.removeClass("icon-eye-open").addClass("icon-eye-close");
                         // mark the slot inactive
                         self.$elem.addClass("inactive");
+                        // update module status
+                        self.data.set("visible", false);
+                        // remove all the slots from timetable
+                        $grid.find(".slot[id^=" + self.get("code") + "-]").remove();
                     } else {
                         // add slots to timetable
                         $this.removeClass("icon-eye-close").addClass("icon-eye-open");
                         // remove the inactive
                         self.$elem.removeClass("inactive");
+                        // update module status
+                        self.data.set("visible", true);
+                        // allocate the slots on timetable
+                        $.publish("grid:module:reallocate", self.data);
                     }
                 });
 
@@ -100,7 +131,7 @@ define(function(require, exports) {
                     // hide tooltip
                     $(this).tooltip("destroy");
                     // remove all the slots from timetable
-                    $("#tt-grid").find(".slot[id^=" + self.get("code") + "-]").remove();
+                    $grid.find(".slot[id^=" + self.get("code") + "-]").remove();
                     // check empty rows and remove it
                     $.publish("grid:rows:clearEmpty");
                     // remove the DOM

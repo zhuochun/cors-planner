@@ -5,7 +5,7 @@
  * http://developer.yahoo.com/yql/
  *
  * Author: Wang Zhuochun
- * Last Edit: 18/Jul/2012 02:41 PM
+ * Last Edit: 09/Dec/2012 08:32 PM
  * ========================================
  * <License>
  * ======================================== */
@@ -18,7 +18,7 @@ define(function(require, exports) {
     // include components
     var helper = require("util/helper")
     // module default options
-    , defaults = $.extend({}, { modCode : "ACC1002" }, helper.getSemester());
+      , defaults = $.extend({}, { modCode : "ACC1002" }, helper.getSemester());
 
     // return a valid CORS url
     function getCORSurl(mod) {
@@ -30,7 +30,7 @@ define(function(require, exports) {
     // return a valid yql url with query
     function getYQLurl(query) {
         return "http://query.yahooapis.com/v1/public/yql?q=" +
-            encodeURIComponent(query) + "&format=json&callback=";
+            encodeURIComponent(query) + "&format=json"; //"&callback=";
     }
 
     // wrap the user's callback
@@ -42,10 +42,21 @@ define(function(require, exports) {
             callback(result);
         };
     }
+    
+    // cross domain jsonp
+    function jsonp(url) {
+        return $.ajax({
+            type : "GET"
+          , dataType : "jsonp"
+          , contentType :"application/x-javascript"
+          , url : url
+          , xhrFields : { widthCredentials : false }
+        });
+    }
 
     // a generalized request
     exports.request = function(query, callback) {
-        $.getJSON(getYQLurl(query), getCallback(query, callback));
+        return jsonp(getYQLurl(query)).success(getCallback(query, callback));
     };
 
     // a module request for yql, return a Module object
@@ -57,7 +68,7 @@ define(function(require, exports) {
         var cors = getCORSurl($.extend({}, defaults, mod))
           , query = "select * from html where url='" + cors + "' and xpath='//table'";
 
-        $.getJSON(getYQLurl(query), getCallback(cors, callback));
+        jsonp(getYQLurl(query)).success(getCallback(cors, callback));
     };
 
 });

@@ -32,10 +32,26 @@ define(function(require, exports) {
         initMisc();
     };
 
+    // toggle between fullsize timetable
+    $.subscribe("app:fullsize", function(e, fullsize) {
+        var $primary = $("#primary"), $secondary = $("#secondary");
+
+        if (fullsize) {
+            $secondary.hide();
+            $primary.removeClass("span26").addClass("offset1 span32");
+        } else {
+            $secondary.show();
+            $primary.removeClass("offset1 span32").addClass("span26");
+        }
+
+        $(window).resize();
+    });
+
     // initial tooltips
     function initMisc() {
         // enable tooltips
         $("#nav").tooltip({placement:"bottom", selector:"a[rel=tooltip]"});
+        $("#misc-btns").tooltip({placement:"bottom", selector:"a[rel=tooltip]"});
         $("#footer").tooltip({placement:"top", selector:"a[rel=tooltip]"});
         // version text
         $("#version").text(planner.version);
@@ -59,5 +75,12 @@ define(function(require, exports) {
 
             $.publish("app:window:resize", [height, $(this).width()]);
         }).trigger("resize");
+        // bind print button
+        $("#fullsize").on("click", (function() {
+            var fs = false; // fullsize next = true
+            return function() {
+                $.publish("app:fullsize", (fs = !fs));
+            };
+        })());
     }
 });

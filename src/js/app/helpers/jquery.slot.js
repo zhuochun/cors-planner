@@ -51,9 +51,20 @@ define(function(require, exports) {
             , get: function(key) { return this.data.get(key); }
 
             , updateElem: function() {
-                if (this.$elem.data("span") < 3
-                    && (this.code.length > 6 || this.type === "labs")) {
+                var self = this;
+
+                if (this.$elem.data("span") < 3 &&
+                    (this.code.length > 6 || this.type === "labs")) {
+                    // small font
                     this.$elem.addClass("small");
+                    // subscribe print mode
+                    $.subscribe("app:fullsize", function(e, fs) {
+                        if (fs) {
+                            self.$elem.removeClass("small");
+                        } else {
+                            self.$elem.addClass("small");
+                        }
+                    });
                 }
             }
 

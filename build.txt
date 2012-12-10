@@ -15,10 +15,12 @@ js/app/models/modules.js
 js/app/controllers/modulesController.js
 js/app/views/addModuleView.js
 js/app/helpers/jquery.module.js
+js/app/helpers/jquery.loading.js
 js/libs/requirejs-plugins/hogan.js
 js/libs/requirejs-plugins/text.js
 js/libs/requirejs-plugins/hgn.js
 hgn!template/module
+hgn!template/loading
 js/app/views/moduleView.js
 js/app/views/basketView.js
 hgn!template/moduleDetail

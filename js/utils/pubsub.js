@@ -1,1 +1,1 @@
-(function(e){var t=e({});e.subscribe=function(){t.on.apply(t,arguments)},e.unsubscribe=function(){t.off.apply(t,arguments)},e.publish=function(){t.trigger.apply(t,arguments)}})(jQuery);
+(function(e){var t=e({});e.subscribe=function(){t.on.apply(t,arguments)},e.subscribeOnce=function(){t.one.apply(t,arguments)},e.unsubscribe=function(){t.off.apply(t,arguments)},e.publish=function(){t.trigger.apply(t,arguments)}})(jQuery);

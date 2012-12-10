@@ -19,7 +19,7 @@ define(function(require, exports) {
     require("helper/jquery.loading");
     // template
     var template = require("hgn!template/module")
-      , loading = require("hgn!template/loading")
+      , loading = require("hgn!template/loading");
 
     // render will return the html generated
     // according to the Module passed in

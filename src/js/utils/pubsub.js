@@ -10,6 +10,10 @@
         o.on.apply(o, arguments);
     };
 
+    $.subscribeOnce = function() {
+        o.one.apply(o, arguments);
+    };
+
     $.unsubscribe = function() {
         o.off.apply(o, arguments);
     };

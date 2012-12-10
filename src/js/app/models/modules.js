@@ -36,13 +36,23 @@ define(function(require, exports) {
 
     // fetch the module from CORS with callback
     function _fetch(modCode, callback, tried) {
-        // prevent fetching the same module if it is on fetching
-        if (_fetching[modCode]) { return ; }
-        else { _fetching[modCode] = true; }
-        // try 3 times before give up on fetching
+        // initial # of times tried fetching
         tried = tried || 0;
-        if (tried === 3) {
-            return $.publish("message:error", "Fetching data for Module " + modCode + " failed, Please try again later.");
+        // pre-condition check
+        if (tried === 0) {
+            // prevent fetching the same module if it is on fetching
+            if (_fetching[modCode]) {
+                return ;
+            } else {
+                _fetching[modCode] = true;
+                // start fetching
+                $.publish("module:fetching", modCode);
+            }
+        } else if (tried === 3) {
+            // tried 3 times before give up on fetching
+            $.publish("module:" + modCode + ":fetched");
+            $.publish("message:error", "Fetching data for Module " + modCode + " failed, Please try again later.");
+            return;
         }
 
         yql.requestModule(modCode, function(result) {
@@ -56,9 +66,9 @@ define(function(require, exports) {
                 }
                 // clear this module in fetching
                 delete _fetching[modCode];
+                // module fetched
+                $.publish("module:" + modCode + ":fetched");
             } else {
-                // clear this module in fetching
-                delete _fetching[modCode];
                 // try fetch again
                 _fetch(modCode, callback, tried + 1);
             }

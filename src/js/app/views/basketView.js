@@ -24,9 +24,21 @@ define(function(require, exports) {
         $el.tooltip({placement:"right", selector:"span[rel=tooltip]"});
     };
 
+    // switch to module panel
+    function onModulePanel() {
+        $("#metro-pivot").data("controller").goToItemByName("Modules");
+    }
+
     // subscribe modules add one event
     $.subscribe(planner.list.modules + ":addOne", function(e, mod) {
+        onModulePanel();
         $el.append(moduleView.render(mod));
+    });
+
+    // subscribe module add loading event
+    $.subscribe("module:fetching", function(e, code) {
+        onModulePanel();
+        $el.prepend(moduleView.loading(code));
     });
 
 });

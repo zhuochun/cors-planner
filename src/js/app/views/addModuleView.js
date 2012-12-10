@@ -17,7 +17,7 @@ define(function(require, exports) {
 
     // include components
     var store = require("util/store")
-      , sem = require("util/helper").getSemester()
+      , sem = require("util/helper").Semester
     // associated DOM elements
       , $input = $("#mod-code")
       , $addBtn = $("#add-btn");
@@ -72,32 +72,26 @@ define(function(require, exports) {
         // enter = add
         $input.on("keydown", function(e) {
             if (e.which === 13) {
-                _clickEvent(function(modCode) {
-                    $.publish("module:add", [modCode]);
-                })(e);
+                addEvent(e);
             }
         });
         // bind add module event
-        $addBtn.on("click", _clickEvent(function(modCode) {
-            $.publish("module:add", [modCode]);
-        }));
+        $addBtn.on("click", addEvent);
     }
 
-    function _clickEvent(callback) {
-        return function(e) {
-            e.preventDefault();
-            // get the module code entered
-            var modCode = $input.val().split(" ")[0];
-            // test validity of the modCode
-            if (modCode && (/^[a-z]{2,3}\d{4}[a-z]?$/i).test(modCode)) {
-                // empty the input val
-                $input.val("");
-                // callback decide what to do
-                callback(modCode);
-            } else {
-                $.publish("message:error", ["The Module Code: " + modCode + " is not Valid!"]);
-            }
-        };
+    function addEvent(e) {
+        e.preventDefault();
+        // get the module code entered
+        var modCode = $input.val().split(" ")[0];
+        // test validity of the modCode
+        if (modCode && (/^[a-z]{2,3}\d{4}[a-z]?$/i).test(modCode)) {
+            // empty the input val
+            $input.val("");
+            // callback decide what to do
+            $.publish("module:add", [modCode]);
+        } else {
+            $.publish("message:error", ["The Module Code: " + modCode + " is not Valid!"]);
+        }
     }
 
 });

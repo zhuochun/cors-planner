@@ -16,6 +16,7 @@
 @lightblue: #CDE6EC;
 @darkblue: #213C92;
 @red: #EA1100;
+@white: #fff;
 @grey: #F3F3F3;
 @lightblack: #999;
 
@@ -310,6 +311,30 @@ a {
         &:hover .info {
             background: @blue + #003311;
         }
+    }
+}
+
+.loading {
+    color: @white;
+
+    .method {
+        background: @blue;
+        height: 24px;
+
+        div {
+            display: block;
+            padding: 3px 3px 0;
+            margin: 0;
+        }
+    }
+
+    .info {
+        background: @blue;
+    }
+
+    &:hover .info {
+        background: @blue;
+        color: @white;
     }
 }
 

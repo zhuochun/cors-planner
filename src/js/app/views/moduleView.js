@@ -16,8 +16,10 @@ define(function(require, exports) {
 
     // jquery plugin
     require("helper/jquery.module");
+    require("helper/jquery.loading");
     // template
-    var template = require("hgn!template/module");
+    var template = require("hgn!template/module")
+      , loading = require("hgn!template/loading")
 
     // render will return the html generated
     // according to the Module passed in
@@ -36,6 +38,16 @@ define(function(require, exports) {
         $module.module({data: module});
 
         return $module;
+    };
+
+    // render a module loading html
+    exports.loading = function(code) {
+        var context = { id: code }
+          , $elem = $(loading(context));
+
+        $elem.loading(context);
+
+        return $elem;
     };
 
 });

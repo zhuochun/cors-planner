@@ -153,17 +153,19 @@ a {
 
     color: #fff;
     font-size: 15px;
+    font-family: "Segoe UI","Segoe UI Web Regular","Segoe UI Symbol","Helvetica Neue",Arial,"sans-serif";
 
     opacity: .6;
-    &:hover { opacity: 1; }
-
+    /* opacity status */
     &.highlight { opacity: 0.4; }
     &.hover { opacity: 1; }
 
-    &.active { background: yellow; }
+    /* cursor */
+    &.nodrop { cursor: no-drop; }
+    &.nomove { cursor: default; }
 
     p {
-        padding: 2px 0 0 5px;
+        padding: 1px 0 0 5px;
 
         text-align: left;
 
@@ -173,16 +175,16 @@ a {
 
     &.span3 {
        font-size: 12px;
-       p { padding: 2px 0 0 3px;  }
+       p { padding: 1px 0 0 3px;  }
     }
     &.span2 {
        font-size: 11px;
-       p { padding: 2px 0 0 3px; }
+       p { padding: 1px 0 0 2px; }
        &.small { font-size: 9px; }
     }
     &.span1 {
        font-size: 10px;
-       p { padding: 2px 0 0 2px; }
+       p { padding: 1px 0 0 1px; }
    }
 }
 

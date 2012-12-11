@@ -37,12 +37,12 @@ define(function(require, exports) {
      * ======================================== */
 
     // Module Count will count the number of elements
-    Module.Count = function(klass) {
+    Module.Count = function(klass, deep) {
         var key, count = 0;
 
         for (key in klass) {
-            if (klass.hasOwnProperty(key) && $.isArray(klass[key])) {
-                count += klass[key].length;
+            if (klass.hasOwnProperty(key)) {
+                count += 1;
             }
         }
 
@@ -147,11 +147,11 @@ define(function(require, exports) {
         type = type.toLowerCase();
 
         if (type === "lectures") {
-            return Module.Count(this.data.lectures);
+            return Module.Count(this.data._lectures);
         } else if (type === "tutorials") {
-            return Module.Count(this.data.tutorials);
+            return Module.Count(this.data._tutorials);
         } else if (type === "labs") {
-            return Module.Count(this.data.labs);
+            return Module.Count(this.data._labs);
         }
     };
 

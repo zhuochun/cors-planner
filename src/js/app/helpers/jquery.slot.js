@@ -54,7 +54,7 @@ define(function(require, exports) {
                 var self = this;
 
                 if (this.$elem.data("span") < 3 &&
-                    (this.code.length > 6 || this.type === "labs")) {
+                    (this.code.length > 6 && this.type === "labs")) {
                     // small font
                     this.$elem.addClass("small");
                     // subscribe print mode
@@ -83,11 +83,22 @@ define(function(require, exports) {
                     $basket.find(".module[id=" + self.code + "]").removeClass("hover");
                 });
 
-                this.$elem.on("click", function() {
-                    $.publish("module:preview", self.code);
-                    // switch to detail panel
-                    $("#metro-pivot").data("controller").goToItemByName("Detail");
-                });
+                this.$elem.on("click", (function() {
+                    var on = 0, P = ["Modules", "Detail"];
+
+                    return function() {
+                        on = (on + 1) % 2;
+
+                        if (on === 1) {
+                            $.publish("module:preview", self.code);
+                            // switch to detail panel
+                            $("#metro-pivot").data("controller").goToItemByName(P[on]);
+                        } else {
+                            // switch to modules panel
+                            $("#metro-pivot").data("controller").goToItemByName(P[on]);
+                        }
+                    };
+                })());
             }
 
             , attachDragDrop: function(droppable) {
@@ -114,8 +125,10 @@ define(function(require, exports) {
 
                 if (droppable) {
                     this.$elem.droppable(this.dropOpts);
-                } else {
+                } else if (this.data.count(this.type) > 1){
                     this.$elem.draggable(this.dragOpts);
+                } else {
+                    this.$elem.addClass("nomove");
                 }
             }
 

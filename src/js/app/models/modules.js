@@ -62,7 +62,7 @@ define(function(require, exports) {
                 if (mod.isAvailable) {
                     callback(new Module(mod));
                 } else {
-                    $.publish("message:error", "Module " + modCode + " is not available.");
+                    $.publish("message:error", "Module " + modCode + " is not available on CORS now.");
                 }
                 // clear this module in fetching
                 delete _fetching[modCode];

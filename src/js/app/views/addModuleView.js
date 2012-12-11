@@ -88,9 +88,9 @@ define(function(require, exports) {
             // empty the input val
             $input.val("");
             // callback decide what to do
-            $.publish("module:add", [modCode]);
+            $.publish("module:add", [modCode.toUpperCase()]);
         } else {
-            $.publish("message:error", ["The Module Code: " + modCode + " is not Valid!"]);
+            $.publish("message:error", ["The Module Code '" + modCode.toUpperCase() + "' is not Valid!"]);
         }
     }
 

@@ -90,7 +90,7 @@ define(function(require, exports) {
                         on = (on + 1) % 2;
 
                         if (on === 1) {
-                            $.publish("module:preview", self.code);
+                            $.publish("module:detail", self.data);
                             // switch to detail panel
                             $("#metro-pivot").data("controller").goToItemByName(P[on]);
                         } else {

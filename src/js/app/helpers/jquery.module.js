@@ -34,6 +34,10 @@ define(function(require, exports) {
 
                 // module data
                 this.data = opt.data;
+                // module id
+                this.id = this.data.get("code");
+                // clashing modules
+                this.clash = [];
                 // update ui
                 this.updateElem();
                 // attach events
@@ -80,11 +84,11 @@ define(function(require, exports) {
 
                 // elem events
                 this.$elem.on("mouseenter", function() {
-                    $grid.find(".slot[id^=" + self.get("code") + "-]").addClass("hover");
+                    $grid.find(".slot[id^=" + self.id + "-]").addClass("hover");
                 });
 
                 this.$elem.on("mouseleave", function() {
-                    $grid.find(".slot[id^=" + self.get("code") + "-]").removeClass("hover");
+                    $grid.find(".slot[id^=" + self.id + "-]").removeClass("hover");
                 });
 
                 // debug info
@@ -93,12 +97,12 @@ define(function(require, exports) {
                     window._debug.module = self.data;
 
                     if (window.console)
-                        window.console.log(self.data);
+                        window.console.log(self);
                 });
 
                 // method events
                 this.$method.on("click", ".detail", function() {
-                    $.publish("module:preview", self.get("code"));
+                    $.publish("module:detail", self.data);
                     // switch to detail panel
                     $("#metro-pivot").data("controller").goToItemByName("Detail");
                 });
@@ -114,7 +118,7 @@ define(function(require, exports) {
                         // update module status
                         self.data.set("visible", false);
                         // remove all the slots from timetable
-                        $grid.find(".slot[id^=" + self.get("code") + "-]").remove();
+                        $grid.find(".slot[id^=" + self.id + "-]").remove();
                     } else {
                         // add slots to timetable
                         $this.removeClass("icon-eye-close").addClass("icon-eye-open");
@@ -130,8 +134,10 @@ define(function(require, exports) {
                 this.$method.on("click", ".remove", function() {
                     // hide tooltip
                     $(this).tooltip("destroy");
+                    // tell all clashing modules
+                    self.removeClash();
                     // remove all the slots from timetable
-                    $grid.find(".slot[id^=" + self.get("code") + "-]").remove();
+                    $grid.find(".slot[id^=" + self.id + "-]").remove();
                     // check empty rows and remove it
                     $.publish("grid:rows:clearEmpty");
                     // remove the DOM
@@ -139,7 +145,7 @@ define(function(require, exports) {
                         // remove DOM itself
                         self.$elem.remove();
                         // publish event
-                        $.publish("module:remove", self.get("code"));
+                        $.publish("module:remove", self.id);
                     });
                 });
             }
@@ -150,6 +156,49 @@ define(function(require, exports) {
                 $.subscribe("module:clean:all", function() {
                     self.$method.find(".remove").trigger("click");
                 });
+
+                this.$elem.on("clash.add", function(e, mod) {
+                    self.clash.push(mod);
+                    self.handleClash();
+                });
+
+                this.$elem.on("clash.remove", function(e, mod) {
+                    var idx = self.clash.indexOf(mod);
+
+                    if (idx >= 0) {
+                        self.clash.splice(idx, 1);
+                    }
+
+                    self.handleClash();
+                });
+            }
+
+            , handleClash: function() {
+                if (this.clash.length > 0 && !this.$elem.hasClass("clashing")) {
+                    this.$elem.addClass("clashing");
+                } else if (this.clash.length === 0) {
+                    this.$elem.removeClass("clashing");
+                }
+            }
+
+            , removeClash: function() {
+                var i, len = this.clash.length, $fst, fstId;
+
+                if (len < 0) { return ; }
+                // keep the first -> comes with great responsibility
+                fstId = this.clash[0];
+                // remove self from the first
+                $fst = $("#" + fstId).trigger("clash.remove", [this.id]);
+
+                for (i = 1; i < len; i++) {
+                    // remove self, and add the first
+                    $("#" + this.clash[i])
+                        .trigger("clash.remove", [this.id])
+                        .trigger("clash.add", [fstId]);
+                    // tell the first to remember all other clashes
+                    // XXX: can get speed improvement for fst
+                    $fst.trigger("clash.add", [this.clash[i]]);
+                }
             }
         };
 

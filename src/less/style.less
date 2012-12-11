@@ -16,6 +16,7 @@
 @lightblue: #CDE6EC;
 @darkblue: #213C92;
 @red: #EA1100;
+@pink: #F7CFCA;
 @white: #fff;
 @grey: #F3F3F3;
 @lightblack: #999;
@@ -165,7 +166,7 @@ a {
     &.nomove { cursor: default; }
 
     p {
-        padding: 1px 0 0 5px;
+        padding: 0 0 0 5px;
 
         text-align: left;
 
@@ -337,6 +338,20 @@ a {
     &:hover .info {
         background: @blue;
         color: @white;
+    }
+}
+
+.clashing {
+    .info { 
+        background: @pink;
+    }
+
+    .examdate {
+        color: @red;
+    }
+
+    &:hover .examdate {
+        color: @pink;
     }
 }
 

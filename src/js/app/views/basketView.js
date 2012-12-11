@@ -41,4 +41,16 @@ define(function(require, exports) {
         $el.prepend(moduleView.loading(code));
     });
 
+    // subscribe to module exam clash
+    $.subscribe(planner.list.modules + ":duplicatedExamDate", function(e, m1, m2) {
+        var c1 = m1.get("code"), c2 = m2.get("code");
+
+        $("#" + c1).trigger("clash.add", [c2]);
+        $("#" + c2).trigger("clash.add", [c1]);
+
+        $.publish("message:warning", ["Exam Date (" + m1.get("examDate") + ") clashes between " +
+            c2 + " " + m2.get("title") + " and " +
+            c1 + " " + m1.get("title") + "."]);
+    });
+
 });

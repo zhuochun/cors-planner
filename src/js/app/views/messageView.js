@@ -34,12 +34,6 @@ define(function(require, exports) {
         toastr.success(message);
     });
 
-    $.subscribe(planner.list.modules + ":duplicatedExamDate", function(e, m1, m2) {
-        toastr.warning("Exam Date (" + m1.get("examDate") + ") clashes between " +
-            m2.get("code") + " " + m2.get("title") + " and " +
-            m1.get("code") + " " + m1.get("title") + ".");
-    });
-
     $.subscribe(planner.list.modules + ":addOne:duplicated", function(e, m) {
         toastr.error("Module " + m.get("code") + " " + m.get("title") + " is in your module list.");
     });

@@ -70,8 +70,8 @@ define(function(require, exports) {
             this.select();
         });
         // enter = add
-        $input.on("keydown", function(e) {
-            if (e.which === 13) {
+        $input.on("keyup", function(e) {
+            if (e.which === 13) { // enter
                 addEvent(e);
             }
         });

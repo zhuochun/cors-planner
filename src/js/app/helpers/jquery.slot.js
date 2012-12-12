@@ -148,6 +148,8 @@ define(function(require, exports) {
                 // fix minor bug when mouse is not over the slot after drop
                 // the module in basket is still on hover state
                 this.$elem.trigger("mouseleave");
+                // destroy the dragging helper elem
+                ui.helper.remove();
                 // remove all slots of this module + type
                 $grid.find(".slot[id^=" + this.code + "-" + this.type + "-]").remove();
                 // allocate the new slots

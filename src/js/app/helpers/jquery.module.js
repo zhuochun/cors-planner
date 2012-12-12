@@ -158,7 +158,16 @@ define(function(require, exports) {
                 });
 
                 this.$elem.on("clash.add", function(e, mod) {
-                    self.clash.push(mod);
+                    if ($.isArray(mod)) {
+                        if (mod.length === 0) {
+                            return ;
+                        }
+
+                        self.clash = self.clash.concat(mod);
+                    } else {
+                        self.clash.push(mod);
+                    }
+                    
                     self.handleClash();
                 });
 
@@ -182,22 +191,23 @@ define(function(require, exports) {
             }
 
             , removeClash: function() {
-                var i, len = this.clash.length, $fst, fstId;
+                var i, len = this.clash.length, fstId;
 
                 if (len < 0) { return ; }
+
                 // keep the first -> comes with great responsibility
-                fstId = this.clash[0];
-                // remove self from the first
-                $fst = $("#" + fstId).trigger("clash.remove", [this.id]);
+                fstId = this.clash.splice(0, 1)[0];
+
+                // remove self from the first, add other clashes to it
+                $("#" + fstId)
+                    .trigger("clash.remove", [this.id])
+                    .trigger("clash.add", [this.clash]);
 
                 for (i = 1; i < len; i++) {
                     // remove self, and add the first
                     $("#" + this.clash[i])
                         .trigger("clash.remove", [this.id])
                         .trigger("clash.add", [fstId]);
-                    // tell the first to remember all other clashes
-                    // XXX: can get speed improvement for fst
-                    $fst.trigger("clash.add", [this.clash[i]]);
                 }
             }
         };

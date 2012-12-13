@@ -53,8 +53,7 @@ define(function(require, exports) {
             , updateElem: function() {
                 var self = this;
 
-                if (this.$elem.data("span") < 3 &&
-                    (this.code.length > 6 && this.type === "labs")) {
+                if (this.$elem.data("span") < 3 && this.type === "labs") {
                     // small font
                     this.$elem.addClass("small");
                     // subscribe print mode
@@ -83,22 +82,25 @@ define(function(require, exports) {
                     $basket.find(".module[id=" + self.code + "]").removeClass("hover");
                 });
 
-                this.$elem.on("click", (function() {
-                    var on = 0, P = ["Modules", "Detail"];
+                this.$elem.on("click", function() {
+                    var pivot = $("#metro-pivot").data("controller")
+                      , current = pivot.headers.children(".current").text();
 
-                    return function() {
-                        on = (on + 1) % 2;
-
-                        if (on === 1) {
+                    if (current === "Modules") {
+                        $.publish("module:detail", self.data);
+                        // switch to detail panel
+                        pivot.goToItemByName("Detail");
+                    } else {
+                        if ($("#detail").data("module") === self.code) {
+                            // switch to modules panel
+                            $("#metro-pivot").data("controller").goToItemByName("Modules");
+                        } else {
                             $.publish("module:detail", self.data);
                             // switch to detail panel
-                            $("#metro-pivot").data("controller").goToItemByName(P[on]);
-                        } else {
-                            // switch to modules panel
-                            $("#metro-pivot").data("controller").goToItemByName(P[on]);
+                            pivot.goToItemByName("Detail");
                         }
-                    };
-                })());
+                    }
+                });
             }
 
             , attachDragDrop: function(droppable) {

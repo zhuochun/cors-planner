@@ -40,9 +40,10 @@ define(function(require, exports) {
     });
 
     // module display
-    function _showModuleDetail(e, module) {
-        if (module) {
-            $el.html(template(module.data));
+    function _showModuleDetail(e, mod) {
+        if (mod) {
+            $el.html(template(mod.data));
+            $el.data("module", mod.get("code"));
         } else {
             $el.html("<p>Module's detail is not found. :(</p>");
         }

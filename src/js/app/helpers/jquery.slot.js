@@ -73,8 +73,10 @@ define(function(require, exports) {
                 var self = this;
 
                 this.$elem.on("mouseenter", function() {
-                    $grid.find(".slot[id^=" + self.code + "-]").addClass("hover");
-                    $basket.find(".module[id=" + self.code + "]").addClass("hover");
+                    if (!self.$elem.hasClass("on-dragging")) {
+                        $grid.find(".slot[id^=" + self.code + "-]").addClass("hover");
+                        $basket.find(".module[id=" + self.code + "]").addClass("hover");
+                    }
                 });
 
                 this.$elem.on("mouseleave", function() {
@@ -135,11 +137,16 @@ define(function(require, exports) {
             }
 
             , dragStart: function() {
+                // section is on dragging
+                $grid.find(".slot[id^=" + this.sid + "-]").addClass("on-dragging");
+                // create droppable slots 
                 $.publish("grid:module:droppable",
                     [this.slot, this.type, this.data]);
             }
 
             , dragStop: function() {
+                // section is not on dragging anymore
+                $grid.find(".slot[id^=" + this.sid + "-]").removeClass("on-dragging");
                 // remove temp drop slot
                 $grid.find(".ui-droppable").remove();
                 // clear rows

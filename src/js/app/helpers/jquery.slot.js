@@ -95,7 +95,7 @@ define(function(require, exports) {
                     } else {
                         if ($("#detail").data("module") === self.code) {
                             // switch to modules panel
-                            $pivot.goToItemByName("Modules");
+                            pivot.goToItemByName("Modules");
                         } else {
                             $.publish("module:detail", self.data);
                             // switch to detail panel

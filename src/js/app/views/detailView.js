@@ -28,18 +28,12 @@ define(function(require, exports) {
     // subscribe app wide user message
     // new user
     $.subscribe("app:status:new", function() {
-        $el.empty().append("<p>Hello! This is CORS Planner :) </p><p>A simple and elegant NUS CORS Timetable builder!</p>");
-
         $("#metro-pivot").data("controller").goToItemByName("Detail");
     });
     // user just have their version updated
-    $.subscribe("app:status:updated", function() {
-        $el.empty().append("<p>CORS Planner just updated to the latest version " + planner.version + "!</p>");
-    });
+    //$.subscribe("app:status:updated", function() { });
     // user using the latest version
-    $.subscribe("app:status:uptodate", function() {
-        $el.empty().append("<p>Welcome come back! Your modules are saved in the Modules tab :)</p>");
-    });
+    //$.subscribe("app:status:uptodate", function() { });
 
     // module display
     function _showModuleDetail(e, mod) {

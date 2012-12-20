@@ -39,9 +39,9 @@ define(function(require, exports) {
         };
 
         // assign CORS Planner Version number
-        planner.version = "0.3.3";
+        planner.version = "0.3.4";
         // assign CORS Data latest update time
-        planner.dataUpdate = "Thu Dec 13 2012 13:12:01 GMT+0800 (Malay Peninsula Standard Time)";
+        planner.dataUpdate = "Thu Dec 20 2012 19:44:16 GMT+0800 (Malay Peninsula Standard Time)";
         // default module lists
         planner.list = planner.list || {};
         planner.list.modules  = "modules";

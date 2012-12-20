@@ -53,7 +53,8 @@ define(function(require, exports) {
             , updateElem: function() {
                 var self = this;
 
-                if (this.$elem.data("span") < 3 && this.type === "labs") {
+                if (this.$elem.data("span") < 3 &&
+                    (this.code.length > 7 || this.type === "labs")) {
                     // small font
                     this.$elem.addClass("small");
                     // subscribe print mode

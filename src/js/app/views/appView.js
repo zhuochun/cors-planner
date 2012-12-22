@@ -70,7 +70,7 @@ define(function(require, exports) {
             var h1 = $("h1").first().height(),
                 pivotItems = $("#metro-pivot").find(".pivotItem");
 
-                pivotItems.height(highest - h1 - 143);
+                pivotItems.height(highest - h1 - 138);
                 pivotItems.find(".info").width(pivotItems.width() - 43);
 
             $.publish("app:window:resize", [height, $(this).width()]);

@@ -15,10 +15,8 @@ define(function(require, exports) {
     /*jshint browser:true, jquery:true, laxcomma:true, maxerr:50*/
 
     // include components
-    var yql = require("api/yql")
-      , parser = require("api/parser")
-      , Module = require("model/module")
-      , _fetching = {};
+    var Module = require("model/module")
+      , Crawler = require("api/crawler");
 
     /* MODULELIST CLASS DEFINITION
      * ======================================== */
@@ -32,47 +30,6 @@ define(function(require, exports) {
             mute : false
           , prefix : this.name + ":"
         }, options);
-    }
-
-    // fetch the module from CORS with callback
-    function _fetch(modCode, callback, tried) {
-        // initial # of times tried fetching
-        tried = tried || 0;
-        // pre-condition check
-        if (tried === 0) {
-            // prevent fetching the same module if it is on fetching
-            if (_fetching[modCode]) {
-                return ;
-            } else {
-                _fetching[modCode] = true;
-                // start fetching
-                $.publish("module:fetching", modCode);
-            }
-        } else if (tried === 3) {
-            // tried 3 times before give up on fetching
-            $.publish("module:" + modCode + ":fetched");
-            $.publish("message:error", "Fetching data for Module " + modCode + " failed, Please try again later.");
-            return;
-        }
-
-        yql.requestModule(modCode, function(result) {
-            var mod = parser.parse(result);
-
-            if (mod !== null) {
-                if (mod.isAvailable) {
-                    callback(new Module(mod));
-                } else {
-                    $.publish("message:error", "Module " + modCode + " is not available now.");
-                }
-                // clear this module in fetching
-                delete _fetching[modCode];
-                // module fetched
-                $.publish("module:" + modCode + ":fetched");
-            } else {
-                // try fetch again
-                _fetch(modCode, callback, tried + 1);
-            }
-        });
     }
 
     /* MODULELIST CLASS METHODS
@@ -115,8 +72,8 @@ define(function(require, exports) {
             if (typeof module === "object") {
                 this._add(module, options);
             } else if (typeof module === "string") {
-                _fetch(module, $.proxy(function(m) {
-                    this._add(m, options);
+                Crawler.crawl(module, $.proxy(function(m) {
+                    this._add(new Module(m), options);
                 }, this));
             }
         } else {

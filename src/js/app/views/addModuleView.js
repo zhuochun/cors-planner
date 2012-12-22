@@ -27,6 +27,7 @@ define(function(require, exports) {
         updateSemester();
         attachTypeahead();
         attachEvents();
+        attachTermControls();
     };
 
     // resize on add-module width
@@ -42,6 +43,16 @@ define(function(require, exports) {
             .on("dblclick", function() {
                 $.publish("module:clean");
             });
+    }
+
+    // term control buttons
+    function attachTermControls() {
+        // term clean
+        $("#term-clear").on("click", function() {
+            $.publish("module:clean");
+        });
+        // typeahead
+        $("#term-ctrls").tooltip({placement:"bottom", selector:"li[rel=tooltip]"});
     }
 
     // attach typeahead to input

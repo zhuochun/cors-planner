@@ -49,4 +49,5 @@ define(function(require, exports) {
 
     exports.length = function() { return length; };
     exports.used = function() { return index; };
+    exports.reset = function() { index = 0; };
 });

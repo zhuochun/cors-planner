@@ -45,11 +45,11 @@ define(function(require, exports) {
 
         it("will assign color and alter format to new Module created", function() {
             var acc1002 = new Module(modACC1002);
-            expect(acc1002.get("color")).toEqual("forestgreen");
+            expect(acc1002.get("color")).not.toBeNull();
             expect(acc1002.get("alterFormat")).toBeTruthy();
 
             var cs1020 = new Module(modCS1020);
-            expect(cs1020.get("color")).toEqual("orangered");
+            expect(cs1020.get("color")).not.toBeNull();
             expect(cs1020.get("alterFormat")).toBeTruthy();
             expect(cs1020.get("hasLecture")).toBeTruthy();
         });
@@ -71,14 +71,13 @@ define(function(require, exports) {
             var cs1020 = new Module(modCS1020);
 
             cs1020.set("test-status", "set");
-            expect(cs1020.is("test-status", "set")).toBeTruthy();
-            expect(cs1020.is("test-status", "notset")).toBeFalsy();
+            expect(cs1020.is("test-status")).toEqual("set");
 
             cs1020.set("test.status", "set");
-            expect(cs1020.is("test.status", "set")).toBeTruthy();
+            expect(cs1020.is("test.status")).toEqual("set");
 
             cs1020.set("list.name.aa.bb", "listTest");
-            expect(cs1020.is("list.name.aa.bb", "listTest")).toBeTruthy();
+            expect(cs1020.is("list.name.aa.bb")).toEqual("listTest");
         });
 
         it("can count the number of its lect/tut/labs", function() {
@@ -115,9 +114,12 @@ define(function(require, exports) {
             var cs1020 = new Module(modCS1020);
 
             cs1020.set("hello", "world");
+            cs1020.data.color = ""; // clear color
 
             var jsonObj = JSON.parse(JSON.stringify(cs1020.toJSON()));
             var newCS1020 = new Module(jsonObj.data, jsonObj.status);
+
+            newCS1020.data.color = ""; // clear color
 
             expect(cs1020).toEqual(newCS1020);
             expect(newCS1020.status.hello).toEqual("world");

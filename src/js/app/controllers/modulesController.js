@@ -57,6 +57,12 @@ define(function(require, exports) {
         }
     });
 
+    // modules sequence update
+    $.subscribe("module:sequence", function(e, seq) {
+        modules.inSequence(seq);
+        saveStorage();
+    });
+
     // preview a module event
     $.subscribe("module:preview", function(e, m) {
         var mod = modules.get(m) || previews.get(m);

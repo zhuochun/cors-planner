@@ -22,6 +22,17 @@ define(function(require, exports) {
 
     exports.init = function() {
         $el.tooltip({placement:"right", selector:"span[rel=tooltip]"});
+        // sortable
+        $el.sortable({
+            cursor: "move"
+          , containment: "parent"
+          , tolerance: "pointer"
+          , handle: ".info"
+          , forcePlaceholderSize: true
+          , update: function(e, ui) {
+                $.publish("module:sequence", [$el.sortable("toArray")]);
+          }
+        });
     };
 
     // switch to module panel

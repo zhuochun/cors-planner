@@ -168,6 +168,17 @@ define(function(require, exports) {
         return -1;
     };
 
+    // sort modules in new order
+    ModuleList.fn.inSequence = function(seq) {
+        var result = [], i, len = seq.length;
+
+        for (i = 0; i < len; i++) {
+            result.push(this.get(seq[i]));
+        }
+
+        this.list = result;
+    };
+
     // to JSON
     ModuleList.fn.toJSON = function() {
         var result = [], i, len = this.list.length;

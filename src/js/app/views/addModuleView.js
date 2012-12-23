@@ -32,8 +32,8 @@ define(function(require, exports) {
 
     // resize on add-module width
     $.subscribe("app:window:resize", function() {
-          var width = $("#add-module").width();
-          $("#add-module").find("#mod-code").width(width - 74);
+        var width = $("#add-module").width();
+        $("#add-module").find("#mod-code").width(width - 74);
     });
 
     // update the semester text
@@ -47,12 +47,20 @@ define(function(require, exports) {
 
     // term control buttons
     function attachTermControls() {
+        // typeahead
+        $("#term-ctrls").tooltip({placement:"bottom", selector:"li[rel=tooltip]"});
         // term clean
         $("#term-clear").on("click", function() {
             $.publish("module:clean");
         });
-        // typeahead
-        $("#term-ctrls").tooltip({placement:"bottom", selector:"li[rel=tooltip]"});
+        // term undo
+        $("#term-undo").on("click", function() {
+            $.publish("undo:pop");
+        });
+        // subscribe to undo title change
+        $.subscribe("undo:title", function(e, title) {
+            $("#term-undo").attr("data-original-title", title);
+        });
     }
 
     // attach typeahead to input
@@ -60,7 +68,7 @@ define(function(require, exports) {
         cors = store.get("cors-modules");
 
         if (cors && cors.latestUpdate === planner.dataUpdate) {
-            $input.typeahead({source:cors.data});
+            $input.typeahead({source:cors.data, items:59});
         } else {
             // require the latest modules data
             require(["corsModulesData"], function(data) {
@@ -69,7 +77,7 @@ define(function(require, exports) {
                   , data : data
                 });
 
-                $input.typeahead({source:data});
+                $input.typeahead({source:data, items:59});
             });
         }
     }

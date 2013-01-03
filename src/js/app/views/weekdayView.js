@@ -56,7 +56,7 @@ define(function(require, exports) {
             "endTime": "1600",
             "room": "BIZ2-0303"
         };
-        type = lecture/tutorial/lab;
+        type = lectures/tutorials/labs;
         mod  = module
         droppable = true/false
     */

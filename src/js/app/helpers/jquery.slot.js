@@ -69,9 +69,21 @@ define(function(require, exports) {
             }
 
             , attachEvents: function(droppable) {
-                if (droppable) { return ; }
 
                 var self = this;
+
+                // popover
+                this.$elem.popover({
+                    html: true
+                  , trigger: 'hover'
+                  , placement: self.$elem.data("offset") + self.$elem.data("span") > 24 ?
+                                  "left" : "right"
+                  , title: self.get("code") + " " + self.get("title")
+                  , content: popoverContent(self.type, self.slot, self.data)
+                });
+
+                // following actions are now available in droppable
+                if (droppable) { return ; }
 
                 this.$elem.on("mouseenter", function() {
                     if (!self.$elem.hasClass("on-dragging")) {
@@ -172,10 +184,14 @@ define(function(require, exports) {
             
             , dropOver: function() {
                 $grid.find(".slot[id^=" + this.sid + "-]").addClass("hover");
+
+                this.$elem.popover("show");
             }
 
             , dropOut: function() {
                 $grid.find(".slot[id^=" + this.sid + "-]").removeClass("hover");
+
+                this.$elem.popover("hide");
             }
         };
 
@@ -188,6 +204,29 @@ define(function(require, exports) {
                 }
             });
         };
+
+        // helper function
+        function popoverContent(type, slot, mod) {
+            var i, result = [], slots = mod.get("_" + type)[slot.classNo];
+
+            result.push("<b>GROUP: </b>" + slot.classNo);
+            result.push("<b>TYPE: </b>" + slot.type);
+            result.push("<b>WEEK: </b>" + slot.weekType);
+            // push slots time
+            for (i = 0; i < slots.length; i++) {
+                if (i === 0) {
+                    result.push("<b>TIME: </b>" + slots[i].weekDay +
+                        " " + slots[i].startTime + "-" + slots[i].endTime);
+                } else {
+                    result.push("<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>" +
+                        slots[i].weekDay + " " + slots[i].startTime +
+                        "-" + slots[i].endTime);
+                }
+            }
+            result.push("<b>ROOM: </b>" + slot.room);
+
+            return result.join("<br>");
+        }
 
     }(jQuery));
 

@@ -1,16 +1,15 @@
 
 js/main.js
 ----------------
-js/utils/store.js
-js/app/global.js
 js/libs/bootstrap.js
 js/libs/jquery.metro.js
 js/utils/pubsub.js
+js/app/helpers/colors.js
+js/app/models/module.js
 js/utils/helper.js
 js/app/api/yql.js
 js/app/api/parser.js
-js/app/helpers/colors.js
-js/app/models/module.js
+js/app/api/crawler.js
 js/app/models/modules.js
 js/app/controllers/modulesController.js
 js/app/views/addModuleView.js

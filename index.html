@@ -69,10 +69,27 @@
       <!-- Main Body -->
       <div id="primary" class="span26">
         <div id="tt-header" class="row-fluid">
-          <div class="span22">
-            <h2>Timetable of <span id="semester"></span></h2>
+          <div class="span24">
+            <h2 id="term-info">Timetable of <span id="semester"></span></h2>
+            <ul id="term-ctrls" class="unstyled">
+              <!-- not ready
+              <li id="term-summary" title="View Term Module Summary" rel="tooltip"><i class="icon-list-alt"></i></li>
+              <li id="term-share" title="Share Your Timetable" rel="tooltip"><i class="icon-share"></i></li>
+              <li id="term-feeback" title="Feedback Us" rel="tooltip"><i class="icon-comment"></i></li>
+              <li id="term-undo" title="No Action to Undo Yet" rel="tooltip"><i class="icon-fast-backward"></i></li>
+              -->
+              <li id="term-clear" title="Clear All Modules Added" rel="tooltip"><i class="icon-trash"></i></li>
+              <li id="term-config" title="Configure Class Slot Display" rel="tooltip" data-placement="right" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="tt-config"><i class="icon-cog"></i></a>
+                <ul aria-labelledby="tt-config" role="menu" class="dropdown-menu">
+                  <li><a onclick="planner.set('slotType', 'location')" href="#">Display Location</a></li>
+                  <li><a onclick="planner.set('slotType', 'group')" href="#">Display Group ID</a></li>
+                  <li><a onclick="planner.set('slotType', 'week')" href="#">Display WeekType</a></li>
+                </ul>
+              </li>
+            </ul>
           </div>
-          <div class="span10">
+          <div class="span8">
             <ul id="misc-btns" class="pull-right unstyled">
               <li>
                 <a href="https://www.facebook.com/cors.planner" title="Feedback and Like us on Facebook" rel="tooltip" target="_blank" class="red m-btn"><i class="icon-thumbs-up icon-white"></i> Follow Facebook Page</a>

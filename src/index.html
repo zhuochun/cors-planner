@@ -76,8 +76,17 @@
               <li id="term-summary" title="View Term Module Summary" rel="tooltip"><i class="icon-list-alt"></i></li>
               <li id="term-share" title="Share Your Timetable" rel="tooltip"><i class="icon-share"></i></li>
               <li id="term-feeback" title="Feedback Us" rel="tooltip"><i class="icon-comment"></i></li>
+              <li id="term-undo" title="No Action to Undo Yet" rel="tooltip"><i class="icon-fast-backward"></i></li>
               -->
               <li id="term-clear" title="Clear All Modules Added" rel="tooltip"><i class="icon-trash"></i></li>
+              <li id="term-config" title="Configure Class Slot Display" rel="tooltip" data-placement="right" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="tt-config"><i class="icon-cog"></i></a>
+                <ul aria-labelledby="tt-config" role="menu" class="dropdown-menu">
+                  <li><a onclick="planner.set('slotType', 'location')" href="#">Display Location</a></li>
+                  <li><a onclick="planner.set('slotType', 'group')" href="#">Display Group ID</a></li>
+                  <li><a onclick="planner.set('slotType', 'week')" href="#">Display WeekType</a></li>
+                </ul>
+              </li>
             </ul>
           </div>
           <div class="span8">

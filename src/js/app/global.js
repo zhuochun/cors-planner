@@ -24,30 +24,40 @@ define(function(require, exports) {
     //   http://stackoverflow.com/questions/3277182/how-to-get-the-global-object-in-javascript
     (function _initGlobalPlanner() {
         var Fn = Function, global = (new Fn('return this'))();
-
+        // declare global
         if (!global.planner) {
             global.planner = {};
         }
 
-        // planner set and get
-        planner.get = function(key) { return this[key]; };
-        planner.set = function(key, value) {
-            if (reserved.indexOf(key) === -1) {
-                this[key] = value;
-                $.publish("app:" + key, [value]);
-            }
-        };
+        /* Defaults Values
+        /* ======================================== */
 
         // assign CORS Planner Version number
-        planner.version = "0.3.4";
+        planner.version = "0.4.0";
         // assign CORS Data latest update time
-        planner.dataUpdate = "Thu Dec 20 2012 19:44:16 GMT+0800 (Malay Peninsula Standard Time)";
+        planner.dataUpdate = "Sun Dec 23 2012 00:48:08 GMT+0800 (Malay Peninsula Standard Time)";
         // default module lists
         planner.list = planner.list || {};
         planner.list.modules  = "modules";
         planner.list.previews = "previews";
         // week days
         planner.weekDays = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"]; 
+        // enable or disable popover on slot
+        planner.slotPopover = store.get("app:slotPopover") || true;
+        // slot type, e.g. location, week, group
+        planner.slotType = store.get("app:slotType") || "location";
+
+        // planner set and get
+        planner.get = function(key) { return this[key]; };
+        planner.set = function(key, val) {
+            if (reserved.indexOf(key) === -1) {
+                this[key] = val;
+                // save to localStorage
+                store.set("app:" + key, val);
+                // publish it
+                $.publish("app:" + key, [val]);
+            }
+        };
 
     })();
 

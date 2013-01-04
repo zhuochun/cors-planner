@@ -13,6 +13,7 @@ define(function(require, exports) {
 
     "use strict";
     /*jshint jquery:true, laxcomma:true, browser:true, maxerr:50*/
+    /*global planner*/
 
     (function($) {
 
@@ -31,6 +32,8 @@ define(function(require, exports) {
             constructor: Plugin
 
             , init: function(opt) {
+                // elem opt info span
+                this.$info = this.$elem.find(".opt-info");
                 // opt info
                 this.code = opt.code;
                 this.type = opt.type;
@@ -42,6 +45,8 @@ define(function(require, exports) {
                 this.sid = this.id.substr(0, this.id.lastIndexOf("-"));
                 // elem ui
                 this.updateElem();
+                // attach popover
+                this.attachPopover();
                 // attach events
                 this.attachEvents(opt.droppable);
                 // draggable
@@ -66,21 +71,40 @@ define(function(require, exports) {
                         }
                     });
                 }
+
+                if (planner.slotType !== "location") {
+                    switchInfoType(planner.slotType, self.$info, self.slot);
+                }
+            }
+
+            , attachPopover: function() {
+                var self = this;
+                // popover setup
+                function withPopover(enable) {
+                    if (!enable) {
+                        self.$elem.popover("destroy");
+                    } else {
+                        self.$elem.popover({
+                            html: true
+                          , trigger: 'hover'
+                          , placement: self.$elem.data("offset") + self.$elem.data("span") > 24 ?
+                                          "left" : "right"
+                          , title: self.get("code") + " " + self.get("title")
+                          , content: popoverContent(self.type, self.slot, self.data)
+                        });
+                    }
+                }
+
+                withPopover(planner.slotPopover);
+
+                $.subscribe("app:slotPopover", function() {
+                    withPopover(planner.slotPopover);
+                });
             }
 
             , attachEvents: function(droppable) {
-
                 var self = this;
 
-                // popover
-                this.$elem.popover({
-                    html: true
-                  , trigger: 'hover'
-                  , placement: self.$elem.data("offset") + self.$elem.data("span") > 24 ?
-                                  "left" : "right"
-                  , title: self.get("code") + " " + self.get("title")
-                  , content: popoverContent(self.type, self.slot, self.data)
-                });
 
                 // following actions are now available in droppable
                 if (droppable) { return ; }
@@ -115,6 +139,10 @@ define(function(require, exports) {
                             pivot.goToItemByName("Detail");
                         }
                     }
+                });
+
+                $.subscribe("app:slotType", function() {
+                    switchInfoType(planner.slotType, self.$info, self.slot);
                 });
             }
 
@@ -226,6 +254,16 @@ define(function(require, exports) {
             result.push("<b>ROOM: </b>" + slot.room);
 
             return result.join("<br>");
+        }
+
+        function switchInfoType(info, $elem, slot) {
+            if (info === "location") {
+                $elem.text(slot.room);
+            } else if (info === "group") {
+                $elem.text("[" + slot.classNo + "]");
+            } else if (info === "week") {
+                $elem.text(slot.weekType);
+            }
         }
 
     }(jQuery));

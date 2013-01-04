@@ -19,7 +19,6 @@ define(function(require, exports) {
     var ModuleList = require("model/modules")
     // initial Module lists
       , modules = new ModuleList(planner.list.modules)
-      , previews = new ModuleList(planner.list.previews)
     // store
       , store = require("util/store");
 
@@ -47,14 +46,7 @@ define(function(require, exports) {
 
     // add a module event
     $.subscribe("module:add", function(e, m) {
-        var mod = previews.get(m);
-
-        if (mod) {
-            previews.remove(mod);
-            modules.add(mod);
-        } else {
-            modules.add(m);
-        }
+        modules.add(m);
     });
 
     // modules sequence update
@@ -65,12 +57,10 @@ define(function(require, exports) {
 
     // preview a module event
     $.subscribe("module:preview", function(e, m) {
-        var mod = modules.get(m) || previews.get(m);
+        var mod = modules.get(m);
 
         if (mod) {
             $.publish("module:detail", mod);
-        } else {
-            previews.add(m);
         }
     });
 
@@ -90,13 +80,6 @@ define(function(require, exports) {
         $.publish("module:clean:all");
         // message
         $.publish("message:success", "All modules are removed");
-    });
-
-    // to control the size of previews list
-    $.subscribe(planner.list.previews + ":addOne", function() {
-        if (previews.length() > 20) {
-            previews.clean();
-        }
     });
 
 });

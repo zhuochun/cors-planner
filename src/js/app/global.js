@@ -35,13 +35,13 @@ define(function(require, exports) {
         // assign CORS Planner Version number
         planner.version = "0.4.0";
         // assign CORS Data latest update time
-        planner.dataUpdate = "Sun Dec 23 2012 00:48:08 GMT+0800 (Malay Peninsula Standard Time)";
+        planner.dataUpdate = "Fri Jan 04 2013 02:05:25 GMT-0800 (Pacific Standard Time)";
         // default module lists
         planner.list = planner.list || {};
         planner.list.modules  = "modules";
         planner.list.previews = "previews";
         // week days
-        planner.weekDays = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"]; 
+        planner.weekDays = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"]; 
         // enable or disable popover on slot
         planner.slotPopover = store.get("app:slotPopover") || true;
         // slot type, e.g. location, week, group

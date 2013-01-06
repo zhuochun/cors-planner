@@ -84,6 +84,13 @@ define(function(require, exports) {
         };
 
         this.$rows[row].append(createSlot(context));
+
+        // special to saturday
+        if (this.$elem.hasClass("hidden")) {
+            this.$elem.removeClass("hidden");
+            // resize is necessary
+            $(window).resize();
+        }
     };
 
     Weekday.fn.createNewRow = function() {
@@ -137,7 +144,15 @@ define(function(require, exports) {
             }
         }
 
-        this.mergeRows();
+        // merge rows bottom up
+        if (this.$rows[0].find(".slot").length > 0) {
+            this.mergeRows();
+        } else {
+            if (this.name === "saturday")
+                this.$elem.addClass("hidden");
+        }
+
+        $(window).resize();
     };
 
     Weekday.fn.mergeRows = function() {
@@ -162,8 +177,6 @@ define(function(require, exports) {
                 this.$rows.splice(i, 1);
             }
         }
-
-        $(window).resize();
     };
 
     // check whether the rows up to the limit have empty slot at {offset, span}

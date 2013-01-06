@@ -64,11 +64,11 @@ define(function(require, exports) {
     }
 
     // attach typeahead to input
-    function attachTypeahead(cors) {
-        cors = store.get("cors-modules");
+    function attachTypeahead() {
+        var cors = store.get("cors-modules");
 
         if (cors && cors.latestUpdate === planner.dataUpdate) {
-            $input.typeahead({source:cors.data, items:59});
+            $input.typeahead({source:cors.data, items:59, updater:addModule});
         } else {
             // require the latest modules data
             require(["corsModulesData"], function(data) {
@@ -77,7 +77,7 @@ define(function(require, exports) {
                   , data : data
                 });
 
-                $input.typeahead({source:data, items:59});
+                $input.typeahead({source:data, items:59, updater:addModule});
             });
         }
     }
@@ -91,17 +91,21 @@ define(function(require, exports) {
         // enter = add
         $input.on("keyup", function(e) {
             if (e.which === 13) { // enter
-                addEvent(e);
+                handleAddEvent(e);
             }
         });
         // bind add module event
-        $addBtn.on("click", addEvent);
+        $addBtn.on("click", handleAddEvent);
     }
 
-    function addEvent(e) {
+    function handleAddEvent(e) {
         e.preventDefault();
-        // get the module code entered
-        var modCode = $input.val().split(" ")[0];
+        // perform add module code entered
+        addModule($input.val());
+    }
+
+    function addModule(modCode) {
+        modCode = modCode.split(" ")[0];
         // test validity of the modCode
         if (modCode && (/^[a-z]{2,3}\d{4}[a-z]?$/i).test(modCode)) {
             // empty the input val
@@ -109,7 +113,8 @@ define(function(require, exports) {
             // callback decide what to do
             $.publish("module:add", [modCode.toUpperCase()]);
         } else {
-            $.publish("message:error", ["The Module Code '" + modCode.toUpperCase() + "' is not Valid!"]);
+            $.publish("message:error", 
+                ["The Module Code '" + modCode.toUpperCase() + "' is not Valid!"]);
         }
     }
 

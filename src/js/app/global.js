@@ -33,9 +33,9 @@ define(function(require, exports) {
         /* ======================================== */
 
         // assign CORS Planner Version number
-        planner.version = "0.4.0";
+        planner.version = "0.4.1";
         // assign CORS Data latest update time
-        planner.dataUpdate = "Fri Jan 04 2013 02:05:25 GMT-0800 (Pacific Standard Time)";
+        planner.dataUpdate = "Sat Jan 05 2013 22:32:17 GMT-0800 (Pacific Standard Time)";
         // default module lists
         planner.list = planner.list || {};
         planner.list.modules  = "modules";

@@ -88,20 +88,12 @@ define(function(require, exports) {
         $input.on("focus", function(e) {
             this.select();
         });
-        // enter = add
-        $input.on("keyup", function(e) {
-            if (e.which === 13) { // enter
-                handleAddEvent(e);
-            }
-        });
         // bind add module event
-        $addBtn.on("click", handleAddEvent);
-    }
-
-    function handleAddEvent(e) {
-        e.preventDefault();
-        // perform add module code entered
-        addModule($input.val());
+        $addBtn.on("click", function(e) {
+            e.preventDefault();
+            // perform add module code entered
+            addModule($input.val());
+        });
     }
 
     function addModule(modCode) {

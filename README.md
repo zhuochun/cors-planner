@@ -1,6 +1,6 @@
 # [WaNDER! CORS Planner](http://cors.bicrement.com/)
 
-CORS Planner is a simple and elegant open source NUS CORS Timetable builder.
+CORS Planner is a simple and elegant, open source timetable builder for National University of Singapore students ([Facebook Page](https://www.facebook.com/cors.planner)).
 
 ![Version 0.3.0 Screenshot](https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-ash3/530386_522148014470753_1886317266_n.png)
 
@@ -58,4 +58,4 @@ All tests are written in [Jasmine](http://pivotal.github.com/jasmine/) under fol
 <a name="license" />
 ## License
 
-Copyright (c) 2012 Wang Zhuochun. Licensed under the [MIT license](https://github.com/zhuochun/cors-planner/blob/master/LICENSE).
+Copyright (c) 2012-2013 Wang Zhuochun. Licensed under the [MIT license](https://github.com/zhuochun/cors-planner/blob/master/LICENSE).

@@ -70,6 +70,13 @@ define(function(require, exports) {
 
         if (mod) {
             $.publish("message:success", "Module " + mod.get("code") + " is removed");
+            // undo remove module
+            //$.publish("undo:push", ["module:remove", {
+            //    mod: mod,
+            //    undo: function() {
+            //        $.publish("module:add", mod);
+            //    }
+            //}]);
         }
     });
 

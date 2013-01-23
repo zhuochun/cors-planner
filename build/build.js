@@ -41,7 +41,7 @@
   , modules: [
        {
            name: "main"
-         , exclude: ["corsModulesData", "global"]
+         , exclude: ["corsModulesData"]
        }
     ]
 

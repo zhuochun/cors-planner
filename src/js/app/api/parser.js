@@ -149,7 +149,7 @@ define(function(require, exports) {
                 // find this class's group weekday-startTime-endTime
                 grp = klass.weekDay + "-" + klass.startTime + "-" + klass.endTime;
                 // add class to its type group
-                if (type === "TUTORIAL") {
+                if (type.toUpperCase().indexOf("TUTORIAL") >= 0) {
                     tuts[grp] = tuts[grp] || [];
                     tuts[grp].push(klass);
                 } else {

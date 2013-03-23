@@ -5,7 +5,7 @@
  * Return an object contains all data, null if failed
  *
  * Author: Wang Zhuochun
- * Last Edit: 18/Jul/2012 10:46 PM
+ * Last Edit: 22/Mar/2013 08:42 PM
  * ========================================
  * <License>
  * ======================================== */
@@ -27,7 +27,7 @@ define(function(require, exports) {
         } else if (typeof result === "string") {
             return trim(result);
         } else {
-            return "ERROR: PARSE FAILED";
+            throw "ERROR PARSE FAILED: " + JSON.stringify(data).substr(0, 10);
         }
       }
     // for module detail parsing
@@ -103,62 +103,45 @@ define(function(require, exports) {
         return !(/No Lecture Class/i.test(JSON.stringify(data)));
     }
 
-    // retrieve and set the module lectures
-    function setModuleLecture(data) {
-        var lect, grp, lects = Module.lectures, i, j, k, dataLen = data.length;
-
-        for (i = 1; i < dataLen; i++) {
-            if (data[i].td && data[i].td.length >= infoLen) {
-                lect = {}; j = 0;
-                // assign values to this lecture
-                for (k in info) {
-                    if (info.hasOwnProperty(k))
-                        lect[k] = info[k](data[i].td[j++]);
-                }
-                // find this lecture's group weekday-startTime-endTime
-                grp = lect.weekDay + "-" + lect.startTime + "-" + lect.endTime;
-                // if the lecture group does not exist, create it
-                if (!lects[grp]) {
-                    lects[grp] = [];
-                }
-                // push lecture to its group
-                lects[grp].push(lect);
-            }
-        }
-    }
-
     // check whether the module has tutorial
     function moduleHasTutorial(data) {
         return !(/No Tutorial Class or to be announced/i.test(JSON.stringify(data)));
     }
 
-    // retrieve and set the module tutorials and labs
-    function setModuleTutorial(data) {
-        var klass, type, grp, tuts = Module.tutorials
-          , labs = Module.labs, i, j, k, dataLen = data.length;
+    // retrieve and set the module lesson according to type
+    function setModuleLesson(data) {
+        var addTo = Module.lessons, type, grp, klass
+          , i, j, k, dataLen = data.length;
 
         for (i = 1; i < dataLen; i++) {
             if (data[i].td && data[i].td.length >= infoLen) {
+                // type = Lecture/Tutorial/Lab
+                type = info.type(data[i].td[1]);
+
+                // create the type in lessons
+                if (!addTo[type]) {
+                    addTo[type] = {};
+                }
+                    
                 klass = {}; j = 0;
-                type = info.type(data[i].td[1]); // Tutorial or Labs
-                // assign values to this class
+                // get klass values
                 for (k in info) {
                     if (info.hasOwnProperty(k))
                         klass[k] = info[k](data[i].td[j++]);
                 }
-                // find this class's group weekday-startTime-endTime
-                grp = klass.weekDay + "-" + klass.startTime + "-" + klass.endTime;
-                // add class to its type group
-                if (type.toUpperCase().indexOf("TUTORIAL") >= 0) {
-                    tuts[grp] = tuts[grp] || [];
-                    tuts[grp].push(klass);
-                } else {
-                    labs[grp] = labs[grp] || [];
-                    labs[grp].push(klass);
+
+                // get klass group
+                grp = klass.classNo;
+                // create the group array
+                if (!addTo[type][grp]) {
+                    addTo[type][grp] = [];
                 }
+                // save the klass
+                addTo[type][grp].push(klass);
             }
         }
     }
+
 
     // ========================================
     // Return true if module exists and available
@@ -187,11 +170,11 @@ define(function(require, exports) {
 
         // ========================================
         // result[0] - -
-        // result[1] - Module Head - Module Availibility
+        // result[1] - Module Head - Module's Availability
         // result[2] - Module Information
-        // result[3] - Lecture Availibility + Workload Explain
+        // result[3] - Lectures' Availibility + Workload Description
         // result[4] - Lectures
-        // result[5] - Tutorial Availibility
+        // result[5] - Tutorials' Availibility
         // result[6] - Tutorials/Labs
         // ========================================
 
@@ -206,17 +189,15 @@ define(function(require, exports) {
             setLatestUpdate(result[1].tr[0]);
             setModuleInfo(result[2].tr);
 
-            Module.lectures = {};
-            Module.tutorials = {};
-            Module.labs = {};
+            Module.lessons = {};
 
             if (moduleHasLecture(result[3].tr)) {
-                setModuleLecture(result[4].tr);
+                setModuleLesson(result[4].tr);
             }
 
             if (moduleHasTutorial(result[5].tr)) {
-                setModuleLecture(result[5].tr); // Design Lecture
-                setModuleTutorial(result[6].tr);
+                setModuleLesson(result[5].tr); // Design Lecture
+                setModuleLesson(result[6].tr);
             }
         } else {
             Module.isAvailable = false;

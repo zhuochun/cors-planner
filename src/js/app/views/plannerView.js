@@ -4,7 +4,7 @@
  * Timetable Planner As All
  *
  * Author: Wang Zhuochun
- * Last Edit: 02/Dec/2012 04:57 PM
+ * Last Edit: 23/Mar/2013 02:07 AM
  * ========================================
  * <License>
  * ======================================== */
@@ -31,7 +31,7 @@ define(function(require, exports) {
 
     // allocate temporary droppable slot
     $.subscribe("grid:module:droppable", function(e, slot, type, mod) {
-        var classNo = slot.classNo, slots = mod.get("_" + type), key;
+        var classNo = slot.classNo, slots = mod.get("lessons")[type], key;
 
         for (key in slots) {
             if (slots.hasOwnProperty(key) && key !== classNo) {
@@ -47,7 +47,7 @@ define(function(require, exports) {
 
     // allocate a single slot and its section slot
     function _allocateSlot(slot, type, mod) {
-        var classNo = slot.classNo, slots = mod.get("_" + type)[classNo];
+        var classNo = slot.classNo, slots = mod.get("lessons")[type][classNo];
 
         // allocate and mark the classNo allocated
         allocate(slots, type, mod);
@@ -56,12 +56,14 @@ define(function(require, exports) {
 
     // re-allocate a module's slots
     $.subscribe("grid:module:reallocate", function(e, mod) {
-        var i, len, allocated, types = ["lectures", "tutorials", "labs"];
+        var type, lessons = mod.get("lessons"), classNo;
 
-        for (i = 0, len = types.length; i < len; i++) {
-            if (mod.has(types[i])) {
-                if ((allocated = mod.allocated(types[i])) !== null) {
-                    _allocateSlot(mod.get("_" + types[i])[allocated][0], types[i], mod);
+        for (type in lessons) {
+            if (lessons.hasOwnProperty(type)) {
+                classNo = mod.allocated(type);
+                
+                if (classNo) {
+                    _allocateSlot(lessons[type][classNo][0], type, mod);
                 }
             }
         }
@@ -71,34 +73,35 @@ define(function(require, exports) {
     $.subscribe(planner.list.modules + ":addOne", function(e, mod) {
         if (!mod.is("visible")) { return; }
 
-        var klasses, i, len, key, allocated, types = ["lectures", "tutorials", "labs"];
+        var type, lessons = mod.get("lessons"), succAllocated, klasses, key;// allocated, types = ["lectures", "tutorials", "labs"];
 
-        for (i = 0, len = types.length; i < len; i++) {
-            if (mod.has(types[i])) {
-                if (mod.allocated(types[i]) !== null) {
-                    _allocateSlot(mod.get("_" + types[i])[mod.allocated(types[i])][0], types[i], mod);
+        for (type in lessons) {
+            if (lessons.hasOwnProperty(type)) {
+                if (mod.allocated(type)) {
+                    _allocateSlot(lessons[type][mod.allocated(type)][0], type, mod);
                 } else {
-                    allocated = false;
+                    succAllocated = false;
 
                     // try to allocate any of the klass in an empty slot
-                    klasses = mod.get("_" + types[i]);
+                    klasses = lessons[type];
+
                     for (key in klasses) {
                         if (klasses.hasOwnProperty(key) && canAllocate(klasses[key])) {
                             // allocate and mark the classNo allocated
-                            allocate(klasses[key], types[i], mod);
-                            mod.allocate(types[i], key);
+                            allocate(klasses[key], type, mod);
+                            mod.allocate(type, key);
                             // next type
-                            allocated = true;
+                            succAllocated = true;
                             break;
                         }
                     }
 
-                    if (!allocated) {
+                    if (!succAllocated) {
                         key = Object.keys(klasses)[0];
                         // force allocate it, with a new row created
-                        allocate(klasses[key], types[i], mod);
+                        allocate(klasses[key], type, mod);
                         // make the classNo allocated
-                        mod.allocate(types[i], key);
+                        mod.allocate(type, key);
                     }
                 }
             }

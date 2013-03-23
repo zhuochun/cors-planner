@@ -50,7 +50,9 @@ define(function(require, exports) {
     , infoLen = 7
     , info = {
           "classNo" : commFun
-        , "type" : commFun
+        , "type" : function(data) {
+              return (data.p ? data.p : trim(data)).replace(/\s/g, "-");
+          }
         , "weekType" : commFun
         , "weekDay" : commFun
         , "startTime" : commFun
@@ -115,8 +117,8 @@ define(function(require, exports) {
 
         for (i = 1; i < dataLen; i++) {
             if (data[i].td && data[i].td.length >= infoLen) {
-                // type = Lecture/Tutorial/Lab
-                type = info.type(data[i].td[1]);
+                // type = lecture/tutorial/lab
+                type = info.type(data[i].td[1]).toLowerCase();
 
                 // create the type in lessons
                 if (!addTo[type]) {

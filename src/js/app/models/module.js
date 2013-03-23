@@ -4,7 +4,7 @@
  * a Module class
  *
  * Author: Wang Zhuochun
- * Last Edit: 07/Dec/2012 11:11 AM
+ * Last Edit: 23/Mar/2013 01:03 AM
  * ========================================
  * <License>
  * ======================================== */
@@ -25,19 +25,17 @@ define(function(require, exports) {
         if (!data) { throw new Error("Module data cannot be null!"); }
 
         this.id = data.code.replace(/[_\s\'\"]/gi, "-");
-        this.data = Module.Format(data);
+        this.data = data;
         this.data.color = color.get();
         
-        this.status = $.extend({}
-            , {visible: true, allocated : { lectures : null, tutorials : null, labs : null }}
-            , status);
+        this.status = $.extend({}, {visible: true, allocated : {}}, status);
     }
 
     /* MODULE STATIC METHODS
      * ======================================== */
 
     // Module Count will count the number of elements
-    Module.Count = function(klass, deep) {
+    Module.Count = function(klass) {
         var key, count = 0;
 
         for (key in klass) {
@@ -48,53 +46,6 @@ define(function(require, exports) {
 
         return count;
     };
-
-    // Module Format will return the modules data formatted
-    // according to classNo instead of timeslot
-    Module.Format = function(data) {
-        // determine data is formatted
-        if (data.alterFormat) { return data; }
-        else { data.alterFormat = true; }
-
-        if (!$.isEmptyObject(data.lectures) && !data.hasLecture) {
-            data.hasLecture = true;
-            data._lectures = convertClass(data.lectures);
-        }
-
-        if (!$.isEmptyObject(data.tutorials) && !data.hasTutorial) {
-            data.hasTutorial = true;
-            data._tutorials = convertClass(data.tutorials);
-        }
-
-        if (!$.isEmptyObject(data.labs) && !data.hasLab) {
-            data.hasLab = true;
-            data._labs = convertClass(data.labs);
-        }
-
-        return data;
-    };
-
-    function convertClass(klass) {
-        var i, j = 0, length, key, classNo, result = {};
-
-        for (key in klass) {
-            if (klass.hasOwnProperty(key)) {
-                length = klass[key].length;
-
-                for (i = 0; i < length; i++) {
-                    classNo = klass[key][i].classNo;
-
-                    if (!result[classNo]) {
-                        result[classNo] = [];
-                    }
-
-                    result[classNo].push(klass[key][i]);
-                }
-            }
-        }
-
-        return result;
-    }
 
     /* MODULE CLASS METHODS
      * ======================================== */
@@ -109,7 +60,6 @@ define(function(require, exports) {
 
     // has will return the Modules's type
     Module.fn.has = function(type) {
-        type = type.toLowerCase();
         return !$.isEmptyObject(this.data[type]);
     };
 
@@ -117,7 +67,7 @@ define(function(require, exports) {
     // key could be "allocated.lecture"
     Module.fn.set = function(key, val) {
         var i, keys = key.split(".")
-        , length = keys.length, parent = this.status;
+          , length = keys.length, parent = this.status;
 
         for (i = 0; i < length - 1; i++) {
             parent[keys[i]] = parent[keys[i]] || {};
@@ -132,7 +82,7 @@ define(function(require, exports) {
     // check the status
     Module.fn.is = function(key) {
         var i, keys = key.split(".")
-        , length = keys.length, parent = this.status;
+          , length = keys.length, parent = this.status;
 
         for (i = 0; i < length - 1; i++) {
             parent[keys[i]] = parent[keys[i]] || {};
@@ -144,15 +94,7 @@ define(function(require, exports) {
 
     // count the number of lect/tut/labs
     Module.fn.count = function(type) {
-        type = type.toLowerCase();
-
-        if (type === "lectures") {
-            return Module.Count(this.data._lectures);
-        } else if (type === "tutorials") {
-            return Module.Count(this.data._tutorials);
-        } else if (type === "labs") {
-            return Module.Count(this.data._labs);
-        }
+        return Module.Count(this.data.lessons[type]);
     };
 
     // isSame will check the module code is the same
@@ -174,7 +116,6 @@ define(function(require, exports) {
         this.status.allocated[type] = classNo;
 
         $.publish("module:" + this.get("code") + ":allocated", [type, classNo]);
-
         $.publish("module:save");
     };
 

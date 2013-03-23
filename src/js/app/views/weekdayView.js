@@ -16,10 +16,8 @@ define(function(require, exports) {
 
     // require components
     require("helper/jquery.slot");
-    // constants
-    var TYPES = { "lectures" : "(L)", "tutorials" : "(T)", "labs" : "(Lab)" }
     // slot template
-      , template = require("hgn!template/timeSlot");
+    var template = require("hgn!template/timeSlot");
 
     /* WEEKDAY CLASS DEFINITION
      * ======================================== */
@@ -73,7 +71,7 @@ define(function(require, exports) {
         var context = {
             code: mod.get("code")
           , type: type
-          , shortType: TYPES[type]
+          , shortType: getShortType(type)
           , index: idx
           , offset: offset
           , span: span
@@ -239,6 +237,22 @@ define(function(require, exports) {
     function getTimeIndex(t) {
         t = parseInt(t, 10);
         return 2 + (Math.floor(t / 100) - 8) * 2 + (t % 100 ? 1 : 0) ;
+    }
+
+    function getShortType(type) {
+        var name = type.toUpperCase().split("-");
+
+        if (type === "laboratory") {
+            return "(LB)";
+        }
+
+        if (name.length === 3) {
+            return "(" + name[0].charAt(0) + name[2].charAt(0) + ")";
+        } else if (name.length === 2) {
+            return "(" + name[0].charAt(0) + name[1].charAt(0) + ")";
+        } else {
+            return "(" + name[0].charAt(0) + ")";
+        }
     }
 
     /*

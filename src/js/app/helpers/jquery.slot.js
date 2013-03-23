@@ -58,8 +58,7 @@ define(function(require, exports) {
             , updateElem: function() {
                 var self = this;
 
-                if (this.$elem.data("span") < 3 &&
-                    (this.code.length > 7 || this.type === "labs")) {
+                if (this.$elem.data("span") < 3 && this.code.length > 7) {
                     // small font
                     this.$elem.addClass("small");
                     // subscribe print mode
@@ -104,7 +103,6 @@ define(function(require, exports) {
 
             , attachEvents: function(droppable) {
                 var self = this;
-
 
                 // following actions are now available in droppable
                 if (droppable) { return ; }
@@ -235,7 +233,7 @@ define(function(require, exports) {
 
         // helper function
         function popoverContent(type, slot, mod) {
-            var i, result = [], slots = mod.get("_" + type)[slot.classNo];
+            var i, result = [], slots = mod.get("lessons")[type][slot.classNo];
 
             result.push("<b>GROUP: </b>" + slot.classNo);
             result.push("<b>TYPE: </b>" + slot.type);

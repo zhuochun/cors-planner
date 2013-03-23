@@ -32,6 +32,10 @@ define(function(require, exports) {
         var _version = store.get("version");
         // set version again
         store.set("version", planner.version);
+        // reset storage due to update from 0.4.1 -> 0.5.0
+        if (_version < "0.4.9") {
+            store.remove(planner.list.modules);
+        }
         // publish the app wide message related to user
         $.publish("app:status:" + ((!_version) ? "new" :
             (_version < planner.version) ? "updated" : "uptodate"));

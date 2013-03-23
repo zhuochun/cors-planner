@@ -30,9 +30,6 @@ define(function(require, exports) {
             , code : module.get("code")
             , title : module.get("title")
             , examDate : module.get("examDate")
-            , lectures : module.count("lectures")
-            , tutorials : module.count("tutorials")
-            , labs : module.count("labs")
         }, $module = $(template(context));
 
         $module.module({data: module});

@@ -43,21 +43,31 @@ define(function(require, exports) {
 
         // call yql
         yql.requestModule(modCode, function(result) {
-            var mod = parser.parse(result);
+            var mod, closeFetch = true;
 
-            if (mod !== null) {
-                if (mod.isAvailable) {
-                    callback(mod);
+            try {
+                mod = parser.parse(result);
+
+                if (mod !== null) {
+                    if (mod.isAvailable) {
+                        callback(mod);
+                    } else {
+                        $.publish("message:error", "Module " + modCode + " is not available now.");
+                    }
                 } else {
-                    $.publish("message:error", "Module " + modCode + " is not available now.");
+                    // try fetch again
+                    closeFetch = false;
+                    fetch(modCode, callback, tried + 1);
                 }
+            } catch (e) {
+                $.publish("message:error", e.toString());
+            }
+
+            if (closeFetch) {
                 // clear this module in fetching
                 delete fetching[modCode];
                 // module fetched
                 $.publish("module:" + modCode + ":fetched");
-            } else {
-                // try fetch again
-                fetch(modCode, callback, tried + 1);
             }
         });
     }

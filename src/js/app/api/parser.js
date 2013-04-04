@@ -79,6 +79,11 @@ define(function(require, exports) {
             data.query.results.table) ? true : false;
     }
 
+    // check whether nus cors website is functioning
+    function isCorsWorking(data) {
+        return data.query.count !== 2;
+    }
+
     // check whether module is available in the semester
     function moduleIsAvailable(data) {
         return !(/currently not available/i.test(JSON.stringify(data)));
@@ -165,6 +170,8 @@ define(function(require, exports) {
         // check whether data has wanted results
         if (!isDataValid(data)) {
             return null;
+        } else if (!isCorsWorking(data)) {
+            throw new Error("NUS CORS Module Website is Down.");
         }
 
         // ready to parse data 

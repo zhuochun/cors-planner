@@ -73,7 +73,7 @@ define(function(require, exports) {
     $.subscribe(planner.list.modules + ":addOne", function(e, mod) {
         if (!mod.is("visible")) { return; }
 
-        var type, lessons = mod.get("lessons"), succAllocated, klasses, key;// allocated, types = ["lectures", "tutorials", "labs"];
+        var type, lessons = mod.get("lessons"), succAllocated, klasses, key;
 
         for (type in lessons) {
             if (lessons.hasOwnProperty(type)) {

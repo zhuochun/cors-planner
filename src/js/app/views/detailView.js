@@ -22,7 +22,10 @@ define(function(require, exports) {
 
     // init detail panel
     exports.init = function() {
-
+        // metro tab
+        $("#metro-pivot").metroPivot();
+        // on detail be default
+        $("#metro-pivot").data("controller").goToItemByName("Detail");
     };
 
     // subscribe app wide user message

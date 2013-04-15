@@ -55,8 +55,6 @@ define(function(require, exports) {
         $("#footer").tooltip({placement:"top", selector:"a[rel=tooltip]"});
         // version text
         $("#version").text(planner.version);
-        // metro tab
-        $("#metro-pivot").metroPivot();
         // min height
         $("#planner").css("min-height", $("#primary").height());
         // window resize

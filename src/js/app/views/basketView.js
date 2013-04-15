@@ -24,8 +24,7 @@ define(function(require, exports) {
         $el.tooltip({placement:"right", selector:"span[rel=tooltip]"});
         // sortable
         $el.sortable({
-            cursor: "move"
-          , containment: "parent"
+            containment: "parent"
           , tolerance: "pointer"
           , handle: ".info"
           , forcePlaceholderSize: true

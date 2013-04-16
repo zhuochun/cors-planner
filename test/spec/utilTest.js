@@ -24,38 +24,49 @@ define(function(require, exports) {
         it("has nothing to test", function() {
 
         });
-
     });
 
 /* Test Helper Util
  * ======================================== */
     describe("util/Helper", function() {
-        it("can get the semester accordingly", function() {
-            var cur_year = "2011/2012"
-              , next_year = "2012/2013"
-              , getSem = helper.getSemester, sem;
+        var cur_year = "2011/2012"
+          , next_year = "2012/2013"
+          , getSem = helper.getSemester, sem;
 
+        it("can get year + sem 1 correctly", function() {
+            // 2012/2013 Sem 1
+            sem = getSem(new Date("Aug 03 2012 11:22:57 GMT+0800"));
+            expect(sem.acadYear).toEqual(next_year);
+            expect(sem.semester).toEqual(1);
+
+            // 2012/2013 Sem 1
+            sem = getSem(new Date("Sep 11 2012 11:22:57 GMT+0800"));
+            expect(sem.acadYear).toEqual(next_year);
+            expect(sem.semester).toEqual(1);
+
+            // 2012/2013 Sem 1
+            sem = getSem(new Date("Nov 19 2012 11:22:57 GMT+0800"));
+            expect(sem.acadYear).toEqual(next_year);
+            expect(sem.semester).toEqual(1);
+        });
+
+        it("can get year + sem 2 correctly", function() {
             // 2011/2012 Sem 2
-            sem = getSem(new Date("Jan 01 2012 11:22:57 GMT+0800"));
+            sem = getSem(new Date("Jan 03 2012 11:22:57 GMT+0800"));
             expect(sem.acadYear).toEqual(cur_year);
             expect(sem.semester).toEqual(2);
+
             // 2011/2012 Sem 2
             sem = getSem(new Date("Jul 29 2012 11:22:57 GMT+0800"));
             expect(sem.acadYear).toEqual(cur_year);
             expect(sem.semester).toEqual(2);
-            // 2012/2013 Sem 1
-            sem = getSem(new Date("Aug 01 2012 11:22:57 GMT+0800"));
-            expect(sem.acadYear).toEqual(next_year);
-            expect(sem.semester).toEqual(1);
-            // 2012/2013 Sem 1
-            sem = getSem(new Date("Nov 28 2012 11:22:57 GMT+0800"));
-            expect(sem.acadYear).toEqual(next_year);
-            expect(sem.semester).toEqual(1);
-            // 2012/2013 Sem 2
-            sem = getSem(new Date("Dec 01 2012 11:22:57 GMT+0800"));
+
+            // 2012/2013 Sem 2 (End of Year)
+            sem = getSem(new Date("Dec 03 2012 11:22:57 GMT+0800"));
             expect(sem.acadYear).toEqual(next_year);
             expect(sem.semester).toEqual(2);
-            // 2012/2013 Sem 2
+
+            // 2012/2013 Sem 2 (Begin of Year)
             sem = getSem(new Date("Jan 03 2013 11:22:57 GMT+0800"));
             expect(sem.acadYear).toEqual(next_year);
             expect(sem.semester).toEqual(2);

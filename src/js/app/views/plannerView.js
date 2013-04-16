@@ -27,6 +27,8 @@ define(function(require, exports) {
         for (i = 0; i < len; i++) {
             weekdays[planner.weekDays[i]] = new Weekday(planner.weekDays[i]);
         }
+
+        $("#tt-grid").on("contextmenu", function(e) { e.preventDefault(); });
     };
 
     // allocate temporary droppable slot

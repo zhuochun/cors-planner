@@ -42,13 +42,13 @@ define(function(require, exports) {
     // subscribe modules add one event
     $.subscribe(planner.list.modules + ":addOne", function(e, mod) {
         onModulePanel();
-        $el.append(moduleView.render(mod));
+        moduleView.render(mod).hide().appendTo($el).slideDown();
     });
 
     // subscribe module add loading event
     $.subscribe("module:fetching", function(e, code) {
         onModulePanel();
-        $el.prepend(moduleView.loading(code));
+        moduleView.loading(code).hide().prependTo($el).slideDown();
     });
 
     // subscribe to module exam clash

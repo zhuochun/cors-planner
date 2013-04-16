@@ -74,6 +74,10 @@ define(function(require, exports) {
                 if (planner.slotType !== "location") {
                     switchInfoType(planner.slotType, self.$info, self.slot);
                 }
+
+                $.subscribe("app:slotType", function() {
+                    switchInfoType(planner.slotType, self.$info, self.slot);
+                });
             }
 
             , attachPopover: function() {
@@ -104,7 +108,7 @@ define(function(require, exports) {
             , attachEvents: function(droppable) {
                 var self = this;
 
-                // following actions are now available in droppable
+                // following actions are not available in droppable
                 if (droppable) { return ; }
 
                 this.$elem.on("mouseenter", function() {
@@ -119,7 +123,8 @@ define(function(require, exports) {
                     $basket.find(".module[id=" + self.code + "]").removeClass("hover");
                 });
 
-                this.$elem.on("click", function() {
+                // left click to toggle between module list and class detail
+                this.$elem.on("click", function(e) {
                     var pivot = $("#metro-pivot").data("controller")
                       , current = pivot.headers.children(".current").text();
 
@@ -137,10 +142,6 @@ define(function(require, exports) {
                             pivot.goToItemByName("Detail");
                         }
                     }
-                });
-
-                $.subscribe("app:slotType", function() {
-                    switchInfoType(planner.slotType, self.$info, self.slot);
                 });
             }
 

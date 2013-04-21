@@ -6,7 +6,7 @@
  * ======================================== */
 
     /*jshint browser:true, jquery:true, laxcomma:true, maxerr:50*/
-    console.log("require main.test");
+console.log("require main.test");
 
 /* RequireJs Configurations */
 require.config({
@@ -16,14 +16,16 @@ require.config({
   , paths : {
           "bootstrap" : "libs/bootstrap"
         , "jquery-ui" : "libs/jquery-ui-1.8.23.custom"
-        // App directories
-        , "api" : "app/api"
-        , "model" : "app/models"
-        , "view" : "app/views"
-        , "controller" : "app/controllers"
-        , "helper" : "app/helpers"
         , "util" : "utils"
-        , "template" : "templates"
+        // App directories
+        , "app" : "../app"
+        , "api" : "../app/api"
+        , "model" : "../app/models"
+        , "view" : "../app/views"
+        , "controller" : "../app/controllers"
+        , "helper" : "../app/helpers"
+        , "template" : "../app/templates"
+        , "school" : "../schools"
         // RequireJS Plugins
         , "hgn" : "libs/requirejs-plugins/hgn"
         , "text" : "libs/requirejs-plugins/text"
@@ -35,3 +37,5 @@ require.config({
     }
 
 });
+
+console.log("require main.test completed");

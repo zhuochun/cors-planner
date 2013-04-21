@@ -13,22 +13,31 @@ define(function(require, exports) {
     /*jshint browser:true, jquery:true, laxcomma:true, maxerr:50*/
     /*globals planner, describe, xdescribe, it, xit, expect, beforeEach, afterEach*/
 
-    var helper = require("util/helper")
-      , colors = require("helper/colors");
-
 /* Test Global
  * ======================================== */
+
     describe("app/global", function() {
         require("app/global");
 
-        it("has nothing to test", function() {
+        it("is globally accessible", function() {
+            expect(planner).not.toBe(null);
+        });
 
+        it("has setting publish", function() {
+            $.subscribe("app:newKey", function(e, k) {
+                expect(k).toEqual("newKeyContent");
+            });
+
+            planner.set("newKey", "newKeyContent");
         });
     });
 
 /* Test Helper Util
  * ======================================== */
+
     describe("util/Helper", function() {
+        var helper = require("util/helper");
+
         var cur_year = "2011/2012"
           , next_year = "2012/2013"
           , getSem = helper.getSemester, sem;
@@ -75,7 +84,10 @@ define(function(require, exports) {
 
 /* Test Colors Helper
  * ======================================== */
+ 
     describe("helper/colors", function() {
+        var colors = require("helper/colors");
+
         it("has 0 colors used at the beginning", function() {
             expect(colors.used()).toEqual(0);
         });

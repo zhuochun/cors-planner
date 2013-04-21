@@ -78,7 +78,7 @@ page.open(encodeURI(url), function (status) {
     function outputFile(output, result) {
         console.log("===> Output to file [" + output + "]");
 
-        fs.write(output, "define(function(){return" + JSON.stringify(result) + "});", "w");
+        fs.write(output, "define(function(){return " + JSON.stringify(result) + "});", "w");
 
         console.log("===> Output Completed");
     }
@@ -89,8 +89,8 @@ page.open(encodeURI(url), function (status) {
 
         var file = fs.open(global, "rw"), content = file.read();
 
-        content = content.replace(/lastUpdate\s*=\s*(\".*\")/,
-                                  "lastUpdate = \"" + (new Date()) + "\"");
+        content = content.replace(/lastUpdate\s*:\s*(\".*\")/,
+                                  "lastUpdate: \"" + (new Date()) + "\"");
 
         file.write(content);
         file.flush();

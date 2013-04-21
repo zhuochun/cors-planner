@@ -85,7 +85,8 @@ function visitPage(page, idx, max) {
 
         page.close();
 
-        updateFile(global);
+        if (update)
+            updateFile(global);
 
         var totalTime = new Date() - timeStart;
         console.log("Spent " + (totalTime / 1000).toFixed(2) + "s using " + thread + " pages");
@@ -126,7 +127,7 @@ function visitPage(page, idx, max) {
             });
 
             var str = JSON.stringify(result);
-            fs.write(output, str.substring(1, str.length - 1), "a");
+            fs.write(output, str.substring(1, str.length - 1) + (completed >= llength ? "" : ","), "a");
 
             completed++;
             console.log("==> completed " + idx + " with " + completed + " total completed");

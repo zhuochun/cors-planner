@@ -23,8 +23,8 @@ console.log("*****************************************\n");
 
 // Variables
 var url = "https://sit.aces01.nus.edu.sg/cors/jsp/report/ModuleInfoListing.jsp"
-  , output = "src/schools/sg.nus/data/list.js"
-  , update = true, global = "src/schools/sg.nus/info.js";
+  , output = "list.js"//"src/schools/sg.nus/data/list.js"
+  , update = true, global = "../info.js";//"src/schools/sg.nus/info.js";
 
 // Args
 if (sys.args.length > 1) {
@@ -37,6 +37,8 @@ if (sys.args.length > 1) {
     }
 }
 
+var timeStart = new Date();
+
 // Open CORS Module Listings
 page.open(encodeURI(url), function (status) {
     // Check for page load success
@@ -46,8 +48,10 @@ page.open(encodeURI(url), function (status) {
         console.log("===> Page Loaded");
 
         // Execute some DOM inspection within the page context
+        var timeEva = new Date();
+
         var result = page.evaluate(function() {
-            var i, length, table, trs, tds, result = [];
+            var i, len, table, trs, tds, result = [];
 
             table = document.getElementsByClassName("tableframe")[0];
 
@@ -55,7 +59,7 @@ page.open(encodeURI(url), function (status) {
             trs = table.getElementsByTagName("tr");
 
             // loop through rows to get information
-            for (i = 1, length = trs.length; i < length; i++) {
+            for (i = 1, len = trs.length; i < len; i++) {
                 tds = trs[i].getElementsByTagName("td");
                 result.push(tds[1].textContent.trim() + " " + tds[2].textContent.trim());
             }
@@ -70,6 +74,9 @@ page.open(encodeURI(url), function (status) {
         if (update) {
             updateFile(global);
         }
+
+        var totalTime = new Date() - timeStart;
+        console.log("Spent " + (totalTime / 1000).toFixed(2) + "s");
     }
 
     phantom.exit();

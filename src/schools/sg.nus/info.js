@@ -16,7 +16,7 @@ define(function(require, exports) {
         name: "National University of Singapore"
       , abbr: "NUS"
       , url: "http://www.nus.edu.sg/"
-      , lastUpdate: "Sat Apr 20 2013 19:10:33 GMT-0700 (Pacific Daylight Time)"
+      , lastUpdate: "Sun Apr 21 2013 01:55:59 GMT-0700 (Pacific Daylight Time)"
     };
 
 });

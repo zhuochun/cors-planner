@@ -28,6 +28,7 @@ require.config({
       , "controller" : "app/controllers"
       , "helper" : "app/helpers"
     // App data
+      , "school" : "../schools"
       , "corsModulesData" : "data/corsModuleCodes"
     // Helper Utils
       , "util" : "utils"

@@ -5,7 +5,7 @@
  * http://developer.yahoo.com/yql/
  *
  * Author: Wang Zhuochun
- * Last Edit: 09/Dec/2012 08:32 PM
+ * Last Edit: 20/Apr/2013 04:27 PM
  * ========================================
  * <License>
  * ======================================== */
@@ -15,34 +15,36 @@ define(function(require, exports) {
     "use strict";
     /*jshint browser:true, jquery:true, laxcomma:true, maxerr:50*/
 
-    // include components
-    var helper = require("util/helper")
-    // module default options
-      , defaults = $.extend({}, { modCode : "ACC1002" }, helper.getSemester());
-
-    // return a valid CORS url
-    function getCORSurl(mod) {
-        return "https://aces01.nus.edu.sg/cors/jsp/report/ModuleDetailedInfo.jsp?" +
-            "acad_y=" + mod.acadYear + "&sem_c=" + mod.semester +
-            "&mod_c=" + mod.modCode.toUpperCase();
+    // YQL class wrapper
+    function YQL(url) {
+        this.url = url;
     }
 
-    // return a valid yql url with query
-    function getYQLurl(query) {
-        return "http://query.yahooapis.com/v1/public/yql?q=" +
-            encodeURIComponent(query) + "&format=json"; //"&callback=";
-    }
+    // YQL Prototype alias
+    YQL.prototype = {
+        // return a valid yql url
+        yqlUrl: function(query) {
+            return "http://query.yahooapis.com/v1/public/yql?q=" +
+                encodeURIComponent(query) + "&format=json";
+        }
 
-    // wrap the user's callback
-    function getCallback(query, callback) {
-        return function(result) {
-            // add the query url to the JSON result
-            result.url = query;
-            // then call user's callback
-            callback(result);
-        };
-    }
-    
+        // a select query
+      , querySelect: function(mod) {
+            return "select * from html where url='" +
+                this.url(mod) + "' and xpath='//table'";
+        }
+
+        // a generalized request with a query
+      , request: function(query, success) {
+            return jsonp(this.yqlUrl(query)).success(getCallback(query, success));
+        }
+
+        // a module request for yql, return a Module object
+      , requestModule: function(mod, callback) {
+            return this.request(this.querySelect(mod), callback);
+        }
+    };
+
     // cross domain jsonp
     function jsonp(url) {
         return $.ajax({
@@ -54,21 +56,16 @@ define(function(require, exports) {
         });
     }
 
-    // a generalized request
-    exports.request = function(query, callback) {
-        return jsonp(getYQLurl(query)).success(getCallback(query, callback));
-    };
+    // to wrap users' callbacks
+    function getCallback(query, callback) {
+        return function(result) {
+            // add the query url to the JSON result
+            result.url = query;
+            // then call user's callback
+            callback(result);
+        };
+    }
 
-    // a module request for yql, return a Module object
-    exports.requestModule = function(mod, callback) {
-        if (typeof mod === "string") {
-            mod = { modCode : mod };
-        }
-
-        var cors = getCORSurl($.extend({}, defaults, mod))
-          , query = "select * from html where url='" + cors + "' and xpath='//table'";
-
-        jsonp(getYQLurl(query)).success(getCallback(cors, callback));
-    };
-
+    return YQL;
+    
 });

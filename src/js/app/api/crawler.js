@@ -4,7 +4,7 @@
  * Combine yql and query together
  *
  * Author: Wang Zhuochun
- * Last Edit: 22/Dec/2012 09:57 PM
+ * Last Edit: 20/Apr/2013 02:00 PM
  * ========================================
  * <License>
  * ======================================== */
@@ -13,17 +13,32 @@ define(function(require, exports) {
 
     "use strict";
     /*jshint browser:true, jquery:true, laxcomma:true, maxerr:50*/
+    /*global planner*/
 
     // components
-    var yql = require("api/yql")
-      , parser = require("api/parser")
+    var YQL = require("api/yql")
+      , parser, query
     // local variables
       , fetching = {}
       , MAXTRIED = 3;
 
+    function crawl(modCode, callback) {
+        if (!query || !parser) {
+            require(
+                ["school/" + planner.school + "/url", "school/" + planner.school + "/parser"]
+              , function(u, p) {
+                    parser = p;
+                    query = new YQL(u);
+
+                    fetch(modCode, callback, 0);
+                }
+            );
+        } else {
+            fetch(modCode, callback, 0);
+        }
+    }
+
     function fetch(modCode, callback, tried) {
-        // initial # of times tried fetching
-        tried = tried || 0;
         // pre-condition check
         if (tried === 0) {
             // prevent fetching the same module if it is on fetching
@@ -41,8 +56,8 @@ define(function(require, exports) {
             return;
         }
 
-        // call yql
-        yql.requestModule(modCode, function(result) {
+        // call yql query
+        query.requestModule(modCode, function(result) {
             var mod, closeFetch = true;
 
             try {
@@ -73,6 +88,6 @@ define(function(require, exports) {
     }
 
     // export in another name
-    exports.crawl = fetch;
+    exports.crawl = crawl;
 
 });

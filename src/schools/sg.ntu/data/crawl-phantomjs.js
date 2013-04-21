@@ -9,15 +9,10 @@
 
 /*jshint browser:true, jquery:true, laxcomma:true, maxerr:50 */
 
-var page = require("webpage").create()
+var webpage = require("webpage")
   , fs = require("fs")
   , sys = require("system")
   , list = require("./degrees").degrees;
-
-// Route "console.log()" calls from within the Page context to the main Phantom context (i.e. current "this")
-page.onConsoleMessage = function(msg) {
-    console.log(msg);
-};
 
 // Heading
 console.log("\n************* CORS PLANNER **************");
@@ -45,8 +40,9 @@ var sem = (function(today) {
             degree + "&boption=CLoad&ACADSEM=" + sem;
     }
   , school = "sg.ntu"
+  , thread = 45 
   , output = "list.js"//"src/schools/" + school + "/data/list.js"
-  , update = true, global = "src/schools/" + school + "/info.js";
+  , update = true, global = "../info.js";//"src/schools/" + school + "/info.js";
 
 // Args
 if (sys.args.length > 1) {
@@ -55,26 +51,50 @@ if (sys.args.length > 1) {
             output = sys.args[i+1] + ".js";
         } else if (sys.args[i] === "-n") {
             update = false;
+        } else if (sys.args[i] === "-t") {
+            thread = parseInt(sys.args[i+1], 10);
         }
     }
 }
 
-var i, llength = list.length;
+var llength = list.length, completed = 0;
 
 console.log("list length = " + llength);
 
-fs.write(output, "define(function(){return ", "w");
+fs.write(output, "define(function(){return[", "w");
 
-visitPage(0, []);
+var i, max = ((llength / thread) | 0) + 1;
 
-function visitPage(idx, rs) {
+console.log("thread = " + thread + ", max = " + max);
+
+var timeStart = new Date();
+
+for (i = 0; i < thread; i++) {
+    var aPage = webpage.create();
+
+    // Route "console.log()" calls from within the Page context to the main Phantom context (i.e. current "this")
+    aPage.onConsoleMessage = function(msg) { console.log(msg); };
+
+    visitPage(aPage, max * i, max * (i + 1));
+}
+
+function visitPage(page, idx, max) {
     // exit
-    if (idx >= 2/*llength*/) {
+    if (completed >= llength) {
         fs.write(output, "]});", "a");
 
         page.close();
 
+        updateFile(global);
+
+        var totalTime = new Date() - timeStart;
+        console.log("Spent " + (totalTime / 1000).toFixed(2) + "s using " + thread + " pages");
+
         phantom.exit();
+
+        return ;
+    } else if (idx === max || idx >= llength) {
+        page.close();
 
         return ;
     }
@@ -87,8 +107,6 @@ function visitPage(idx, rs) {
         if (status !== "success") {
             console.log("===! Unable to access network\n");
         } else {
-            console.log("===> Page Loaded");
-
             // Execute some DOM inspection within the page context
             var result = page.evaluate(function() {
                 var j, len, tbodys, tds, result = [];
@@ -110,7 +128,10 @@ function visitPage(idx, rs) {
             var str = JSON.stringify(result);
             fs.write(output, str.substring(1, str.length - 1), "a");
 
-            visitPage(idx + 1);
+            completed++;
+            console.log("==> completed " + idx + " with " + completed + " total completed");
+
+            visitPage(page, idx + 1, max);
         }
     });
 }

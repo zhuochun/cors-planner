@@ -6,8 +6,8 @@
 <head>
   <meta charset="utf-8">
 
-  <title>CORS Planner - Unofficial NUS Timetable Builder</title>
-  <meta name="description" content="NUS CORS Planner is an elegant Course Planner and Timetable Builder for National University of Singapore (NUS) students.">
+  <title>CORS Planner - Unofficial NUS/NTU Timetable Builder</title>
+  <meta name="description" content="NUS/NTU CORS Planner is an elegant Course Planner and Timetable Builder for National University of Singapore (NUS) and Nanyang Technological University (NTU) students.">
   <meta name="author" content="Wang Zhuochun">
 
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -27,8 +27,8 @@
       <div id="secondary" class="span7">
         <div id="sidebar">
           <h1>
-            <a href="http://cors.bicrement.com/" title="WaNDER! CORS Planner">CORS Planner</a>
-            <span class="small-header">Unofficial NUS Timetable Builder</span>
+            <a href="http://cors.bicrement.com/" title="CORS Planner - Unofficial Timetable Builder">CORS Planner <span id="school-abbr">NUS</span></a>
+            <strong class="small-header">Unofficial Timetable Builder for NUS and NTU!</strong>
           </h1>
 
           <div id="add-module">
@@ -48,12 +48,12 @@
               <h3>Detail</h3>
               <div id="detail-inner">
                 <h4>Hello!</h4>
-                <p><b>NUS CORS Planner</b> is a simple and elegant timetable builder for National University of Singapore (NUS) Students.</p>
+                <p><b>NUS/NTU CORS Planner</b> is a simple and elegant <b>web timetable builder</b> for National University of Singapore (NUS) and Nanyang Technological University (NTU) Students.</p>
                 <h4>Features</h4>
                 <ul>
-                  <li>CORS Planner uses the latest module information from <a href="https://sit.aces01.nus.edu.sg/cors/jsp/report/ModuleInfoListing.jsp" title="NUS CORS Module Information Listing" target="_blank">NUS CORS</a>.</li>
+                  <li>CORS Planner uses the latest module information from <a href="https://sit.aces01.nus.edu.sg/cors/jsp/report/ModuleInfoListing.jsp" title="NUS CORS Module Information Listing" target="_blank">NUS CORS</a> and <a href="https://wish.wis.ntu.edu.sg/webexe/owa/aus_schedule.main" title="NTU Module Schedule" target="_blank">NTU Schedule</a>.</li>
                   <li>You can drag and drop module slots on Timetable.</li>
-                  <li>Your Timetable is saved in your browser for your next visit.</li>
+                  <li>Your timetable is saved in your browser for your next visit.</li>
                 </ul>
                 <p></p>
                 <h4>Like Us</h4>
@@ -550,13 +550,37 @@
 
         <div id="footer">
           <h6>CORS Planner <span id="version">0.0.0</span> &copy; 2012-2013 by
-            <a href="https://www.facebook.com/zhuochun.wang" target="_blank" title="Visit the programmer" rel="tooltip">WANG ZHUOCHUN</a> |
+            <a href="https://www.facebook.com/zhuochun.wang" target="_blank" title="Visit My Page" rel="tooltip">WANG ZHUOCHUN</a> |
             <a href="https://www.facebook.com/cors.planner" target="_blank" title="Like CORS Planner on Facebook Page" rel="tooltip">Facebook</a> |
             <a href="https://github.com/zhuochun/cors-planner" target="_blank" title="Fork CORS Planner on GitHub" rel="tooltip">Github</a> |
-            <a href="#" id="fullsize" title="Toggle Timetable Only" rel="tooltip">Timetable</a>
+            <a href="#" id="fullsize" title="Toggle Fullsize Timetable" rel="tooltip">Timetable</a> |
+            <a href="#select-school" data-toggle="modal" title="Choose Your University" rel="tooltip">University</a>
           </h6>
-        </div>
+        </div> <!-- footer -->
       </div> <!-- primary -->
+
+      <div id="select-school" class="modal hide fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-header">
+          <h3>Please Choose Your University</h3>
+        </div>
+        <div class="modal-body">
+          <ul class="thumbnails">
+            <li class="span15">
+            <a data-school="sg.nus" class="thumbnail" href="#">
+              <img class="img-polaroid" alt="260x180" data-src="holder.js/260x180" src="schools/sg.nus/logo.jpg">
+              <span class="hide">National Unviersity of Singapore (NUS)</span>
+            </a>
+            </li>
+            <li class="span15 offset2">
+            <a data-school="sg.ntu" class="thumbnail" href="#">
+              <img class="img-polaroid" alt="260x180" data-src="holder.js/260x180" src="schools/sg.ntu/logo.jpg">
+              <span class="hide">Nanyang Technological Unviersity (NTU)</span>
+            </a>
+            </li>
+          </ul>
+        </div>
+      </div> <!-- select-school modal -->
+
     </div> <!-- planner -->
   </div> <!-- container -->
 

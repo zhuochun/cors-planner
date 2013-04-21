@@ -65,6 +65,15 @@ define(function(require, exports) {
 
     // attach typeahead to input
     function attachTypeahead() {
+        if (planner.school) {
+            updateTypeahead();
+        }
+
+        $.subscribe("app:school", updateTypeahead);
+    }
+
+    // typeahead update
+    function updateTypeahead() {
         var cors = store.get("cors-modules");
 
         require(["school/" + planner.school + "/info"], function(info) {
@@ -75,7 +84,7 @@ define(function(require, exports) {
                 require(["school/" + planner.school + "/data/list"], function(data) {
                     store.set("cors-modules", {
                         lastUpdate : planner.dataUpdate
-                      , data : data
+                        , data : data
                     });
 
                     $input.typeahead({source:data, items:59, updater:addModule});
@@ -101,7 +110,7 @@ define(function(require, exports) {
     function addModule(modCode) {
         modCode = modCode.split(" ")[0];
         // test validity of the modCode
-        if (modCode && (/^[a-z]{2,4}\d{4}[a-z]?$/i).test(modCode)) {
+        if (modCode && (/^[a-z]{2,4}\d{3,4}[a-z]?$/i).test(modCode)) {
             // empty the input val
             $input.val("");
             // callback decide what to do

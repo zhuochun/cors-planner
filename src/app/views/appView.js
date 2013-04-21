@@ -14,7 +14,8 @@ define(function(require, exports) {
     /*global planner*/
 
     // load all the views
-    var addModuleView = require("view/addModuleView")
+    var schoolView = require("view/schoolView")
+      , addModuleView = require("view/addModuleView")
       , basketView = require("view/basketView")
       , detailView = require("view/detailView")
       , messageView = require("view/messageView")
@@ -23,6 +24,7 @@ define(function(require, exports) {
     // render initial all App Views
     exports.init = function() {
         // initial each view if they need
+        schoolView.init();
         addModuleView.init();
         plannerView.init();
         basketView.init();

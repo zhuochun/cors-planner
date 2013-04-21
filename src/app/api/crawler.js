@@ -22,6 +22,12 @@ define(function(require, exports) {
       , fetching = {}
       , MAXTRIED = 3;
 
+    // if school changed, reset parser and query url
+    $.subscribe("app:school", function() {
+        parser = null;
+        query  = null;
+    });
+
     function crawl(modCode, callback) {
         if (!query || !parser) {
             require(

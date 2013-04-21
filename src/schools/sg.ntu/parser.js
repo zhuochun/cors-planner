@@ -17,7 +17,9 @@ define(function(require, exports) {
 
     var Module, GROUP = "group"
     , commFun = function(data) {
-        return data.strong.font ? data.strong.font.content : data.strong;
+        return data.strong ?
+                (data.strong.font ?
+                    data.strong.font.content : data.strong) : "-";
       }
     // for module detail parsing
     , details = {

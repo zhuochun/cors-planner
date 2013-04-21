@@ -71,7 +71,7 @@ define(function(require, exports) {
         var context = {
             code: mod.get("code")
           , type: type
-          , shortType: getShortType(type)
+          , shortType: getShortType(slot.type)
           , index: idx
           , offset: offset
           , span: span
@@ -242,7 +242,7 @@ define(function(require, exports) {
     function getShortType(type) {
         var name = type.toUpperCase().split("-");
 
-        if (type === "laboratory") {
+        if (name[0].indexOf("LAB") >= 0) {
             return "(LB)";
         }
 

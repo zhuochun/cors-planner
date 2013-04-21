@@ -143,6 +143,11 @@ define(function(require, exports) {
                 if (!addTo[type][grp]) {
                     addTo[type][grp] = [];
                 }
+
+                // to identify the klass position
+                klass.parent = type;
+                klass.index = classNo;
+
                 // save the klass
                 addTo[type][grp].push(klass);
             }

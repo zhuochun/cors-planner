@@ -33,10 +33,10 @@ define(function(require, exports) {
 
     // allocate temporary droppable slot
     $.subscribe("grid:module:droppable", function(e, slot, type, mod) {
-        var classNo = slot.classNo, slots = mod.get("lessons")[type], key;
+        var idx = slot.index, slots = mod.get("lessons")[type], key;
 
         for (key in slots) {
-            if (slots.hasOwnProperty(key) && key !== classNo) {
+            if (slots.hasOwnProperty(key) && key !== idx) {
                 allocate(slots[key], type, mod, true); // droppable = true
             }
         }
@@ -49,11 +49,11 @@ define(function(require, exports) {
 
     // allocate a single slot and its section slot
     function _allocateSlot(slot, type, mod) {
-        var classNo = slot.classNo, slots = mod.get("lessons")[type][classNo];
+        var idx = slot.index, slots = mod.get("lessons")[type][idx];
 
         // allocate and mark the classNo allocated
         allocate(slots, type, mod);
-        mod.allocate(type, classNo);
+        mod.allocate(type, idx);
     }
 
     // re-allocate a module's slots
@@ -80,7 +80,10 @@ define(function(require, exports) {
         for (type in lessons) {
             if (lessons.hasOwnProperty(type)) {
                 if (mod.allocated(type)) {
-                    _allocateSlot(lessons[type][mod.allocated(type)][0], type, mod);
+                    klasses = lessons[type][mod.allocated(type)];
+                    // allocate and mark the classNo allocated
+                    allocate(klasses, type, mod);
+                    mod.allocate(type, klasses[0].index);
                 } else {
                     succAllocated = false;
 

@@ -234,7 +234,7 @@ define(function(require, exports) {
 
         // helper function
         function popoverContent(type, slot, mod) {
-            var i, result = [], slots = mod.get("lessons")[type][slot.classNo];
+            var i, result = [], slots = mod.get("lessons")[type][slot.index];
 
             result.push("<b>GROUP: </b>" + slot.classNo);
             result.push("<b>TYPE: </b>" + slot.type);

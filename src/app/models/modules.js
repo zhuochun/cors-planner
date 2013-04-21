@@ -159,6 +159,8 @@ define(function(require, exports) {
 
     // check duplicate item
     ModuleList.fn.duplicated = function(key, val) {
+        if (val === '-') { return -1; }
+
         var i, length = this.list.length;
 
         for (i = 0; i < length; i++) {

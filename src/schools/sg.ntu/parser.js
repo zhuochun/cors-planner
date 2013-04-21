@@ -64,6 +64,7 @@ define(function(require, exports) {
         Module.examDate = "-";
         Module.preclusion = "-";
         Module.workload = "-";
+        Module.prerequisite = "";
 
         // data[0] - basic info
         for (k in details) {
@@ -72,8 +73,8 @@ define(function(require, exports) {
         }
 
         // data[1] - prerequisite
-        if (data.length > 1) {
-            Module.prerequisite = commFun(data[1].td[1]);
+        for (i = 1, k = data.length; i < k; i++) {
+            Module.prerequisite += commFun(data[i].td[1]) + " ";
         }
     }
 

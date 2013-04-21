@@ -146,7 +146,7 @@ define(function(require, exports) {
 
                 // to identify the klass position
                 klass.parent = type;
-                klass.index = classNo;
+                klass.index = grp;
 
                 // save the klass
                 addTo[type][grp].push(klass);

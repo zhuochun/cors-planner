@@ -22,9 +22,9 @@ console.log("*** Crawl CORS Module Code and Titles ***");
 console.log("*****************************************\n");
 
 // Variables
-var url = "https://aces01.nus.edu.sg/cors/jsp/report/ModuleInfoListing.jsp"
-  , output = "src/js/data/corsModuleCodes.js"
-  , update = true, global = "src/js/app/global.js";
+var url = "https://sit.aces01.nus.edu.sg/cors/jsp/report/ModuleInfoListing.jsp"
+  , output = "src/schools/sg.nus/data/list.js"
+  , update = true, global = "src/schools/sg.nus/info.js";
 
 // Args
 if (sys.args.length > 1) {
@@ -60,10 +60,6 @@ page.open(encodeURI(url), function (status) {
                 result.push(tds[1].textContent.trim() + " " + tds[2].textContent.trim());
             }
 
-            // create div to contain result
-            //i = document.createElement("div");
-            //i.textContent = ;
-
             console.log("===> Found " + result.length + " Modules");
 
             return result;
@@ -93,8 +89,8 @@ page.open(encodeURI(url), function (status) {
 
         var file = fs.open(global, "rw"), content = file.read();
 
-        content = content.replace(/planner.dataUpdate\s*=\s*(\".*\")/,
-                                  "planner.dataUpdate = \"" + (new Date()) + "\"");
+        content = content.replace(/lastUpdate\s*=\s*(\".*\")/,
+                                  "lastUpdate = \"" + (new Date()) + "\"");
 
         file.write(content);
         file.flush();

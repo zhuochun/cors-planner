@@ -5,8 +5,8 @@
 ::
 echo == Running JSHint on JavaScript files
 
-    echo -- on src\js\app files
-    call jshint src\js\app\
+    echo -- on src\app files
+    call jshint src\app\
 
 echo == End Running JSHint
 
@@ -16,7 +16,7 @@ echo == End Running JSHint
 
 echo == Crawling the latest module code
 
-	call phantomjs src\js\data\crawl-phantomjs.js
+	call phantomjs src\schools\sg.nus\data\crawl-phantomjs.js
 	
 echo == End Crawling data
 

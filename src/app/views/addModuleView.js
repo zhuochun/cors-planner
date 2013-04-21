@@ -67,19 +67,21 @@ define(function(require, exports) {
     function attachTypeahead() {
         var cors = store.get("cors-modules");
 
-        if (cors && cors.latestUpdate === planner.dataUpdate) {
-            $input.typeahead({source:cors.data, items:59, updater:addModule});
-        } else {
-            // require the latest modules data
-            require(["corsModulesData"], function(data) {
-                store.set("cors-modules", {
-                    latestUpdate : planner.dataUpdate
-                  , data : data
-                });
+        require(["school/" + planner.school + "/info"], function(info) {
+            if (cors && cors.lastUpdate === info.lastUpdate) {
+                $input.typeahead({source:cors.data, items:59, updater:addModule});
+            } else {
+                // require the latest modules data
+                require(["school/" + planner.school + "/data/list"], function(data) {
+                    store.set("cors-modules", {
+                        lastUpdate : planner.dataUpdate
+                      , data : data
+                    });
 
-                $input.typeahead({source:data, items:59, updater:addModule});
-            });
-        }
+                    $input.typeahead({source:data, items:59, updater:addModule});
+                });
+            }
+        });
     }
 
     // attach events to buttons

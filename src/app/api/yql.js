@@ -29,19 +29,28 @@ define(function(require, exports) {
         }
 
         // a select query
-      , querySelect: function(mod) {
-            return "select * from html where url='" +
-                this.url(mod) + "' and xpath='//table'";
+      , querySelect: function(u) {
+            return "select * from html where url='" + u + "' and xpath='//table'";
         }
 
         // a generalized request with a query
       , request: function(query, success) {
-            return jsonp(this.yqlUrl(query)).success(getCallback(query, success));
+            return jsonp(this.yqlUrl(query)).success(success);
         }
 
         // a module request for yql, return a Module object
       , requestModule: function(mod, callback) {
-            return this.request(this.querySelect(mod), callback);
+            var link = this.url(mod);
+
+            return this.request(this.querySelect(link), (function(u, cb) {
+                // wrap users' callbacks and add the link
+                return function(result) {
+                    // add the query url to the JSON result
+                    result.url = u;
+                    // then call the actual user's callback
+                    cb(result);
+                };
+            })(link, callback));
         }
     };
 
@@ -54,16 +63,6 @@ define(function(require, exports) {
           , url : url
           , xhrFields : { widthCredentials : false }
         });
-    }
-
-    // to wrap users' callbacks
-    function getCallback(query, callback) {
-        return function(result) {
-            // add the query url to the JSON result
-            result.url = query;
-            // then call user's callback
-            callback(result);
-        };
     }
 
     return YQL;

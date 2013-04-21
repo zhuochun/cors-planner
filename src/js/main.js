@@ -2,7 +2,7 @@
  * Require Configurations for CORS Planner
  *
  * Author: Wang Zhuochun
- * Last Edit: 21/Jul/2012 04:35 PM
+ * Last Edit: 20/Apr/2013 06:11 PM
  * ======================================== */
 
     /*jshint browser:true, jquery:true, laxcomma:true, maxerr:50*/
@@ -20,20 +20,19 @@ require.config({
     // jQuery plugins
       , "plugin" : "libs"
     // App directories
-      , "appMain" : "app/appMain"
-      , "global" : "app/global"
-      , "api" : "app/api"
-      , "model" : "app/models"
-      , "view" : "app/views"
-      , "controller" : "app/controllers"
-      , "helper" : "app/helpers"
+      , "appMain" : "../app/appMain"
+      , "global" : "../app/global"
+      , "api" : "../app/api"
+      , "model" : "../app/models"
+      , "view" : "../app/views"
+      , "controller" : "../app/controllers"
+      , "helper" : "../app/helpers"
     // App data
       , "school" : "../schools"
-      , "corsModulesData" : "data/corsModuleCodes"
     // Helper Utils
       , "util" : "utils"
     // Templates
-      , "template" : "../templates"
+      , "template" : "../app/templates"
     }
 
     // configure hgn! plugin

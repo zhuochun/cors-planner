@@ -1,8 +1,8 @@
 /* ========================================
- * CORS Planner - NUS Infomation
+ * CORS Planner - NTU Infomation
  * 
  * Author: Wang Zhuochun
- * Last Edit: 20/Apr/2013 06:04 PM
+ * Last Edit: 20/Apr/2013 08:54 PM
  * ========================================
  * <License>
  * ======================================== */
@@ -13,9 +13,9 @@ define(function(require, exports) {
     /*jshint browser:true, jquery:true, laxcomma:true, maxerr:50*/
 
     return {
-        name: "National University of Singapore"
-      , abbr: "NUS"
-      , url: "http://www.nus.edu.sg/"
+        name: "Nanyang Technological University"
+      , abbr: "NTU"
+      , url: "http://www.ntu.edu.sg/"
       , lastUpdate: "Sat Apr 20 2013 19:10:33 GMT-0700 (Pacific Daylight Time)"
     };
 

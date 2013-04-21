@@ -14,28 +14,33 @@ define(function(require, exports) {
      * Semester Helpers */
 
     function getSemester(today) {
-        var acadYear, semester
+        var result = {
+                startYear: 2012, endYear: 2013
+              , acadYear: "2012/2013", semester: 2
+            }
           , year = today.getFullYear()
-          , month = today.getMonth(); // month is 0 ~ 11
+          , month = today.getMonth(); // month is [0, 11]
 
         // Jan 0 - July 6 (this year sem 2)
         // Aug 7 - Nov 10 (next year sem 1)
         // Dec 11 (next year sem 2)
         if (month <= 6) {
-            acadYear = (year - 1) + "/" + year;
-            semester = 2;
+            result.startYear = year - 1;
+            result.endYear = year;
+            result.semester = 2;
         } else if (month >= 11) {
-            acadYear = year + "/" + (year + 1);
-            semester = 2;
+            result.startYear = year;
+            result.endYear = year + 1;
+            result.semester = 2;
         } else {
-            acadYear = year + "/" + (year + 1);
-            semester = 1;
+            result.startYear = year;
+            result.endYear = year + 1;
+            result.semester = 1;
         }
 
-        return {
-            acadYear : acadYear
-          , semester : semester
-        };
+        result.acadYear = result.startYear + "/" + result.endYear;
+
+        return result;
     }
 
     // current academic year and semester object

@@ -19,10 +19,10 @@ define(function(require, exports) {
     exports.init = function() {
         attachEvent();
 
-        uiUpdate();
-
         if (!planner.school) {
             $el.modal("show");
+        } else {
+            uiUpdate();
         }
     };
 
@@ -39,9 +39,11 @@ define(function(require, exports) {
             var newSchool = $(this).data("school");
 
             if (newSchool !== planner.school) {
+                if (planner.school) {
+                    $.publish("module:clean");
+                }
+                // update planner school
                 planner.set("school", newSchool);
-                // clear all modules
-                $.publish("module:clean");
                 // update ui
                 uiUpdate();
             }

@@ -2,7 +2,12 @@
 
 CORS Planner ([Facebook Page](https://www.facebook.com/cors.planner)) is a simple and elegant open source *timetable builder* for any university!
 
-Now it supports National University of Singapore (NUS) and Nanyang Technological Unviersity (NTU), you can add your university by writing some JavaScripts!
+Now it supports:
+
+- National University of Singapore (NUS)
+- Nanyang Technological Unviersity (NTU)
+
+You can add your university by writing some JavaScripts (doc)!
 
 ![Version 0.3.0 Screenshot](https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-ash3/530386_522148014470753_1886317266_n.png)
 
@@ -19,22 +24,24 @@ $ npm install uglify-js -g
 $ npm install less -g
 ```
 
-Additionally, you will need [phantomjs](http://phantomjs.org/) to crawl the latest list of modules available in each school.
-
 To build, run `makefile.bat` on Windows. Files will be generated in folder `/release`.
+
+Additionally, you will need [phantomjs](http://phantomjs.org/) to crawl the latest list of modules available in each school.
 
 <a name="data" />
 ## Updating Data
 
-Details of each module are crawled directly from the website using [YQL](http://developer.yahoo.com/yql/) API.
+Details of each module are crawled directly from the website using [YQL](http://developer.yahoo.com/yql/) API at run-time.
 
-However, the list of Module Codes and Titles served in `<input>` box for auto-complete needs to be updated manually:
+However, the list of Module Codes and Titles served in `<input>` box for auto-completion needs to be fetched manually:
 
-* __Prefered__: Get [phantomjs](http://phantomjs.org/), at `schools/../data` directory, run
+* Get [phantomjs](http://phantomjs.org/), at `schools/.../data` directory, run
 
 ```bash
 $ phantomjs crawl-phantomjs.js
 ```
+
+It should generate a `list.js` in the same directory for use.
 
 <a name="contribute" />
 ## Contributing

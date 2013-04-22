@@ -1,1 +1,1 @@
-define(["require","exports","module"],function(e,t){return{name:"Nanyang Technological University",abbr:"NTU",url:"http://www.ntu.edu.sg/",lastUpdate:"Sun Apr 21 2013 01:32:52 GMT-0700 (Pacific Daylight Time)"}});
+define(["require","exports","module"],function(e,t){return{name:"Nanyang Technological University",abbr:"NTU",url:"http://www.ntu.edu.sg/",lastUpdate:"Mon Apr 22 2013 12:57:38 GMT-0700 (Pacific Daylight Time)"}});

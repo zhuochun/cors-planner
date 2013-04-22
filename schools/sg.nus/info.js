@@ -1,0 +1,1 @@
+define(["require","exports","module"],function(e,t){return{name:"National University of Singapore",abbr:"NUS",url:"http://www.nus.edu.sg/",lastUpdate:"Sun Apr 21 2013 01:55:59 GMT-0700 (Pacific Daylight Time)"}});

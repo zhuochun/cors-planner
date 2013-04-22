@@ -65,6 +65,9 @@ define(function(require, exports) {
 
     // attach typeahead to input
     function attachTypeahead() {
+        // attach an empty source by default
+        $input.typeahead({source: [], items: 59, updater: addModule});
+
         if (planner.school) {
             updateTypeahead();
         }
@@ -74,20 +77,21 @@ define(function(require, exports) {
 
     // typeahead update
     function updateTypeahead() {
-        var cors = store.get("cors-modules");
+        var key = planner.school + "-module-data"
+          , mod = store.get(key);
 
         require(["school/" + planner.school + "/info"], function(info) {
-            if (cors && cors.lastUpdate === info.lastUpdate) {
-                $input.typeahead({source:cors.data, items:59, updater:addModule});
+            if (mod && mod.lastUpdate === info.lastUpdate) {
+                $input.data("typeahead").source = mod.data;
             } else {
                 // require the latest modules data
-                require(["school/" + planner.school + "/data/list"], function(data) {
-                    store.set("cors-modules", {
-                        lastUpdate : planner.dataUpdate
-                        , data : data
+                require(["school/" + planner.school + "/data/list"], function(list) {
+                    store.set(key, {
+                        lastUpdate : info.lastUpdate
+                      , data : list
                     });
 
-                    $input.typeahead({source:data, items:59, updater:addModule});
+                    $input.data("typeahead").source = list;
                 });
             }
         });

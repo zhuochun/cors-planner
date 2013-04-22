@@ -61,8 +61,6 @@ var llength = list.length, completed = 0;
 
 console.log("list length = " + llength);
 
-fs.write(output, "define(function(){return[", "w");
-
 var i, max = ((llength / thread) | 0) + 1;
 
 console.log("thread = " + thread + ", max = " + max);
@@ -78,10 +76,13 @@ for (i = 0; i < thread; i++) {
     visitPage(aPage, max * i, max * (i + 1));
 }
 
+var finalList = {};
+
 function visitPage(page, idx, max) {
     // exit
     if (completed >= llength) {
-        fs.write(output, "]});", "a");
+        // save output
+        outputFile(output, Object.keys(finalList));
 
         page.close();
 
@@ -126,8 +127,11 @@ function visitPage(page, idx, max) {
                 return result;
             });
 
-            var str = JSON.stringify(result);
-            fs.write(output, str.substring(1, str.length - 1) + (completed >= llength ? "" : ","), "a");
+            // save result to finalList uniquely
+            var ii = 0, ilength = result.length;
+            for (; ii < ilength; ii++) {
+                finalList[result[ii]] = 1;
+            }
 
             completed++;
             console.log("==> completed " + idx + " with " + completed + " total completed");
@@ -135,6 +139,15 @@ function visitPage(page, idx, max) {
             visitPage(page, idx + 1, max);
         }
     });
+}
+
+// ouput module information
+function outputFile(output, result) {
+    console.log("===> Output to file [" + output + "] with " + result.length + " Modules");
+
+    fs.write(output, "define(function(){return " + JSON.stringify(result) + "});", "w");
+
+    console.log("===> Output Completed");
 }
 
 // update global information

@@ -113,7 +113,7 @@ define(function(require, exports) {
             klass.index = index;
             // klass information
             klass.type = commFun(td[1]);
-            klass.classNo = commFun(td[2]);
+            klass.classNo = "#" + index + " " + commFun(td[2]);
             klass.weekDay = WEEKDAY[commFun(td[3])];
             time = commFun(td[4]).split("-");
             klass.startTime = time[0];

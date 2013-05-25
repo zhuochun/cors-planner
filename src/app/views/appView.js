@@ -82,5 +82,11 @@ define(function(require, exports) {
                 $.publish("app:fullsize", (fs = !fs));
             };
         })());
+        // bind share btns
+        $(".share-btn").on("click", function(e) {
+            if(!e) return;
+            e.preventDefault();
+            window.open(e.target.href, "intent", "scrollbars=yes,resizable=yes,toolbar=no,location=yes,width=550,height=420,left=" + (window.screen ? Math.round(screen.width / 2 - 275) : 50) + ",top=" + 100);
+        });
     }
 });

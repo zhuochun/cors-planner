@@ -21,10 +21,10 @@ define(function(require, exports) {
           , year = today.getFullYear()
           , month = today.getMonth(); // month is [0, 11]
 
-        // Jan 0 - July 6 (this year sem 2)
-        // Aug 7 - Nov 10 (next year sem 1)
+        // Jan 0 - Jun 5 (this year sem 2)
+        // Jul 6 - Nov 10 (next year sem 1)
         // Dec 11 (next year sem 2)
-        if (month <= 6) {
+        if (month <= 5) {
             result.startYear = year - 1;
             result.endYear = year;
             result.semester = 2;

@@ -44,6 +44,11 @@ define(function(require, exports) {
 
         it("can get year + sem 1 correctly", function() {
             // 2012/2013 Sem 1
+            sem = getSem(new Date("Jul 13 2012 11:22:57 GMT+0800"));
+            expect(sem.acadYear).toEqual(next_year);
+            expect(sem.semester).toEqual(1);
+
+            // 2012/2013 Sem 1
             sem = getSem(new Date("Aug 03 2012 11:22:57 GMT+0800"));
             expect(sem.acadYear).toEqual(next_year);
             expect(sem.semester).toEqual(1);
@@ -66,7 +71,7 @@ define(function(require, exports) {
             expect(sem.semester).toEqual(2);
 
             // 2011/2012 Sem 2
-            sem = getSem(new Date("Jul 29 2012 11:22:57 GMT+0800"));
+            sem = getSem(new Date("Jun 29 2012 11:22:57 GMT+0800"));
             expect(sem.acadYear).toEqual(cur_year);
             expect(sem.semester).toEqual(2);
 

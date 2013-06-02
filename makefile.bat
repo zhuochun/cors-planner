@@ -1,26 +1,6 @@
 @echo off
 
 ::
-:: JSHint
-::
-echo == Running JSHint on JavaScript files
-
-    echo -- on src\app files
-    call jshint src\app\
-
-echo == End Running JSHint
-
-::
-:: Update the module code list
-::
-
-::echo == Crawling the latest module code
-::
-::	call phantomjs src\schools\sg.nus\data\crawl-phantomjs.js
-::	
-::echo == End Crawling data
-
-::
 :: Building
 ::
 echo == Start Building CORS-PLANNER

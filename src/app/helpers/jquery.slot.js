@@ -52,7 +52,7 @@ define(function(require, exports) {
                 // draggable
                 this.attachDragDrop(opt.droppable);
             }
-            
+
             , get: function(key) { return this.data.get(key); }
 
             , updateElem: function() {
@@ -179,7 +179,7 @@ define(function(require, exports) {
             , dragStart: function() {
                 // section is on dragging
                 $grid.find(".slot[id^=" + this.sid + "-]").addClass("on-dragging");
-                // create droppable slots 
+                // create droppable slots
                 $.publish("grid:module:droppable",
                     [this.slot, this.type, this.data]);
             }
@@ -208,7 +208,7 @@ define(function(require, exports) {
                     $.publish("grid:rows:clearEmpty");
                 }, 10);
             }
-            
+
             , dropOver: function() {
                 $grid.find(".slot[id^=" + this.sid + "-]").addClass("hover");
 

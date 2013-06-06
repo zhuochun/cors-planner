@@ -7,7 +7,7 @@ Now it supports:
 - National University of Singapore (NUS)
 - Nanyang Technological Unviersity (NTU)
 
-You can add your university by writing some JavaScripts (doc)!
+You can add your university by writing some JavaScripts ([Doc](https://github.com/zhuochun/cors-planner/wiki/How-to-Add-your-University))!
 
 ![Version 0.3.0 Screenshot](https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-ash3/530386_522148014470753_1886317266_n.png)
 

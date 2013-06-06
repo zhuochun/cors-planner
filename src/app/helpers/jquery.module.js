@@ -167,12 +167,12 @@ define(function(require, exports) {
                     } else {
                         self.clash.push(mod);
                     }
-                    
+
                     self.handleClash();
                 });
 
                 this.$elem.on("clash.remove", function(e, mod) {
-                    var idx = self.clash.indexOf(mod);
+                    var idx = $.inArray(self.clash, mod);
 
                     if (idx >= 0) {
                         self.clash.splice(idx, 1);

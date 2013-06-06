@@ -51,7 +51,7 @@ define(function(require, exports) {
         // planner set and get
         planner.get = function(key) { return this[key]; };
         planner.set = function(key, val) {
-            if (reserved.indexOf(key) === -1) {
+            if ($.inArray(key, reserved) === -1) {
                 this[key] = val;
                 // save to localStorage
                 store.set("app:" + key, val);

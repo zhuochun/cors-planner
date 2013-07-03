@@ -22,7 +22,7 @@ console.log("*** Crawl CORS Module Code and Titles ***");
 console.log("*****************************************\n");
 
 // Variables
-var url = "https://sit.aces01.nus.edu.sg/cors/jsp/report/ModuleInfoListing.jsp"
+var url = "https://aces01.nus.edu.sg/cors/jsp/report/ModuleInfoListing.jsp"
   , output = "list.js"//"src/schools/sg.nus/data/list.js"
   , update = true, global = "../info.js";//"src/schools/sg.nus/info.js";
 

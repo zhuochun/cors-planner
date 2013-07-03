@@ -12,7 +12,7 @@
 var webpage = require("webpage")
   , fs = require("fs")
   , sys = require("system")
-  , list = require("./degrees").degrees;
+  , list = require("./degrees.sem1.2014").degrees;
 
 // Heading
 console.log("\n************* CORS PLANNER **************");
@@ -24,10 +24,10 @@ var sem = (function(today) {
         var year = today.getFullYear()
           , month = today.getMonth(); // month is [0, 11]
 
-        // Jan 0 - July 6 (this year sem 2)
-        // Aug 7 - Nov 10 (next year sem 1)
+        // Jan 0 - May 4 (this year sem 2)
+        // June 5 - Nov 10 (next year sem 1)
         // Dec 11 (next year sem 2)
-        if (month <= 6) {
+        if (month <= 4) {
             return (year - 1) + ";2";
         } else if (month >= 11) {
             return year + ";2";

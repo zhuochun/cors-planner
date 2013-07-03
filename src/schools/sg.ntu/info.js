@@ -16,7 +16,7 @@ define(function(require, exports) {
         name: "Nanyang Technological University"
       , abbr: "NTU"
       , url: "http://www.ntu.edu.sg/"
-      , lastUpdate: "Mon Apr 22 2013 12:57:38 GMT-0700 (Pacific Daylight Time)"
+      , lastUpdate: "Thu Jul 04 2013 00:22:57 GMT+0800 (Malay Peninsula Standard Time)"
     };
 
 });

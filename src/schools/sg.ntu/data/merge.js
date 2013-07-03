@@ -1,4 +1,4 @@
-// need to change list to `exports.codes =`
+// need to change list to `exports.codes = [];`
 
 var oList = require("./list.sem2.2013.js").codes
   , nList = require("./list.sem1.2014.js").codes

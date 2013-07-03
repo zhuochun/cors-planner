@@ -19,7 +19,7 @@ define(function(require, exports) {
 
     // return a valid CORS url
     function corsUrl(mod) {
-        return "https://sit.aces01.nus.edu.sg/cors/jsp/report/ModuleDetailedInfo.jsp?" +
+        return "https://aces01.nus.edu.sg/cors/jsp/report/ModuleDetailedInfo.jsp?" +
             "acad_y=" + mod.acadYear + "&sem_c=" + mod.semester +
             "&mod_c=" + mod.modCode.toUpperCase();
     }

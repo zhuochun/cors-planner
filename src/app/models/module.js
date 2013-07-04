@@ -128,6 +128,15 @@ define(function(require, exports) {
         };
     };
 
+    // compress will only return an object with id, visible, allocated
+    Module.fn.compress = function() {
+        return {
+            id: this.get("code")
+          , visible: this.status.visible
+          , allocated: this.status.allocated
+        };
+    };
+
     // exports the constructor
     return Module;
 

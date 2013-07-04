@@ -26,7 +26,7 @@ define(function(require, exports) {
     exports.init = function() {
         setTimeout(function() {
             loadStorage();
-        }, 500);
+        }, 190);
     };
 
     // populate storage modules
@@ -53,6 +53,30 @@ define(function(require, exports) {
     $.subscribe("module:sequence", function(e, seq) {
         modules.inSequence(seq);
         saveStorage();
+    });
+
+    // module share
+    $.subscribe("module:share", function() {
+        var list = modules.compress(), params = [], i, len = list.length;
+
+        for (i = 0; i < len; i++) {
+            params.push(list[i].id + "|" +
+                        (list[i].visible ? 1 : 0) + "|" +
+                        JSON.stringify(list[i].allocated));
+        }
+
+        $.publish("app:share:get", [params.join("&")]);
+    });
+
+    // module parse share
+    $.subscribe("module:readFromShare", function(e, mods) {
+        var i, len = mods.length, m;
+
+        for (i = 0; i < len; i++) {
+            m = mods[i].split("|");
+
+            modules.add(m[0], null, {visible: m[1] === '1', allocated: JSON.parse(m[2])});
+        }
     });
 
     // preview a module event

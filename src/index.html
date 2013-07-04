@@ -75,10 +75,10 @@
             <ul id="term-ctrls" class="unstyled">
               <!-- not ready
               <li id="term-summary" title="View Term Module Summary" rel="tooltip"><i class="icon-list-alt"></i></li>
-              <li id="term-share" title="Share Your Timetable" rel="tooltip"><i class="icon-share"></i></li>
               <li id="term-feeback" title="Feedback Us" rel="tooltip"><i class="icon-comment"></i></li>
               <li id="term-undo" title="No Action to Undo Yet" rel="tooltip"><i class="icon-fast-backward"></i></li>
               -->
+              <li id="term-share" title="Share Your Timetable" rel="tooltip"><i class="icon-share"></i></li>
               <li id="term-clear" title="Clear All Modules Added" rel="tooltip"><i class="icon-trash"></i></li>
               <li id="term-config" title="Configure Class Slot Display" rel="tooltip" data-placement="right" class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="tt-config"><i class="icon-cog"></i></a>
@@ -562,12 +562,20 @@
         </div> <!-- footer -->
       </div> <!-- primary -->
 
-      <div id="select-school" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+      <div id="short-link-modal" class="modal hide fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
         <div class="modal-header">
-          <h3>Your Share Url Generated</h3>
+          <h3>Share Your Timetable</h3>
         </div>
         <div class="modal-body">
-
+          <h4>Your Share Link:</h4>
+          <div class="m-input-prepend m-input-append">
+            <button class="m-btn black">URL</button>     
+            <input class="m-wrap" type="text" placeholder="Generating..." id="short-link-url">
+            <a href="http://www.facebook.com/sharer.php?u=" class="m-btn blue share-btn" title="My Timetable on CORS Planner">Facebook</a>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="blue m-btn" data-dismiss="modal" aria-hidden="true">Close</button>
         </div>
       </div> <!-- select-school modal -->
 

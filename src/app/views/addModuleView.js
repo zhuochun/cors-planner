@@ -53,6 +53,10 @@ define(function(require, exports) {
         $("#term-clear").on("click", function() {
             $.publish("module:clean");
         });
+        // term share
+        $("#term-share").on("click", function() {
+            $.publish("module:share");
+        });
         // term undo
         $("#term-undo").on("click", function() {
             $.publish("undo:pop");

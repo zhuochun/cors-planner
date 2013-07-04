@@ -65,7 +65,7 @@ define(function(require, exports) {
     };
 
     // add a module instance or using module code
-    ModuleList.fn.add = function(module, options) {
+    ModuleList.fn.add = function(module, options, status) {
         options = $.extend({}, this.options, options);
 
         if (this.find(module) === -1) {
@@ -73,7 +73,7 @@ define(function(require, exports) {
                 this._add(module, options);
             } else if (typeof module === "string") {
                 Crawler.crawl(module, $.proxy(function(m) {
-                    this._add(new Module(m), options);
+                    this._add(new Module(m, status), options);
                 }, this));
             }
         } else {
@@ -191,6 +191,17 @@ define(function(require, exports) {
 
         return result;
     };
+
+    // to link params
+    ModuleList.fn.compress = function() {
+        var result = [], i, len = this.list.length;
+
+        for (i = 0; i < len; i++) {
+            result.push(this.list[i].compress());
+        }
+
+        return result;
+    }
 
     // exports the constructor
     return ModuleList;

@@ -20,16 +20,51 @@ define(function(require, exports) {
 
     // init check school
     exports.init = function() {
-        
+        checkShare();
+        attachEvents();
     };
 
+    function checkShare() {
+        setTimeout(function() {
+            var share = /#share=(.*)&school=(.*)/ig.exec(decodeURIComponent(location.hash));
+
+            if (share && share.length === 3) {
+                // clear hash
+                location.hash = "";
+
+                // TODO: ask the users first if they have modules
+                console.log(share[1]);
+                console.log(share[2]);
+
+                $.publish("module:readFromShare", [share[1].split("&")]);
+            }
+        }, 380);
+    }
+
     function generateBitly(e, mods) {
-        var longUrl = baseUrl + "?" + mods;
+        var longUrl = baseUrl + "#share=" + mods + "&school=" + planner.get("school");
 
-        $.get(bitly + encodeURIComponent(longUrl), function(data) {
-            var shortUrl = data.url;
+        $.get(bitly + encodeURIComponent(longUrl), function(result) {
+            var shortUrl = result.data.url;
 
-            console.log(data);
+            console.log(result);
+            console.log(shortUrl);
+
+            $el.find("#short-link-url").val(shortUrl);
+            $el.find(".share-btn").attr("href", $el.find(".share-btn").attr("href") + shortUrl);
+        });
+
+        $el.modal("show");
+    }
+
+    function attachEvents() {
+        $el.find(".black.m-btn").on("click", function() {
+            $(this).html("Ctrl + C to copy");
+            $("#short-link-url").focus();
+        });
+
+        $("#short-link-url").on("focus", function() {
+            $(this).select();
         });
     }
 

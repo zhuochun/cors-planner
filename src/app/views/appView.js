@@ -25,13 +25,13 @@ define(function(require, exports) {
     // render initial all App Views
     exports.init = function() {
         // initial each view if they need
+        shareView.init();
         schoolView.init();
         addModuleView.init();
         plannerView.init();
         basketView.init();
         detailView.init();
         messageView.init();
-        shareView.init();
         // initial app wide view
         initMisc();
     };

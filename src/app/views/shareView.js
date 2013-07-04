@@ -25,15 +25,15 @@ define(function(require, exports) {
     };
 
     function checkShare() {
-        setTimeout(function() {
-            var share = /#share=(.*)&school=(.*)/ig.exec(decodeURIComponent(location.hash));
+        var share = /#share=(.*)&school=(.*)/ig.exec(decodeURIComponent(location.hash));
 
-            if (share && share.length === 3) {
-                location.hash = "";
+        if (share && share.length === 3) {
+            location.hash = "";
 
-                $.publish("module:readFromShare", [share[1].split("&")]);
-            }
-        }, 290);
+            planner.set("school", share[2]);
+
+            $.publish("module:readFromShare", [share[1].split("&")]);
+        }
     }
 
     function generateBitly(e, mods) {

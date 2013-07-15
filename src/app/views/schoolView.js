@@ -20,6 +20,9 @@ define(function(require, exports) {
         attachEvent();
 
         if (!planner.school) {
+            // load cardinjs as needed
+            require(["plugin/chardinjs.min"]);
+            // select a school
             $el.modal("show");
         } else {
             uiUpdate();
@@ -41,13 +44,15 @@ define(function(require, exports) {
             if (newSchool !== planner.school) {
                 if (planner.school) {
                     $.publish("module:clean");
+                } else {
+                    $('body').chardinJs('start');
                 }
                 // update planner school
                 planner.set("school", newSchool);
                 // update ui
                 uiUpdate();
             }
-            
+
             $el.modal("hide");
         });
     }

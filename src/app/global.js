@@ -4,7 +4,7 @@
  * Load all app components required
  *
  * Author: Wang Zhuochun
- * Last Edit: 05/Aug/2012 03:40 AM
+ * Last Edit: 16/Jul/2013 12:25 AM
  * ========================================
  * <License>
  * ======================================== */
@@ -19,7 +19,7 @@ define(function(require, exports) {
       , reserved = ["key", "user", "status"];
 
     // expose a planner variable in global namespace
-    // 
+    //
     // Taken from: (in case window is not the point to the global object)
     //   http://stackoverflow.com/questions/3277182/how-to-get-the-global-object-in-javascript
     (function _initGlobalPlanner() {
@@ -58,6 +58,18 @@ define(function(require, exports) {
                 // publish it
                 $.publish("app:" + key, [val]);
             }
+        };
+        // track usages and events using google analytics
+        // https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide
+        planner.analytics = function() {
+            _gaq && _gaq.push($.makeArray(arguments));
+        };
+        // some help functions
+        planner.trackEvent = function(category, action) {
+            planner.analytics("_trackEvent", category, action);
+        };
+        planner.trackPageView = function(url, prefix) {
+            planner.analytics("_trackPageview", prefix ? prefix + '/' + url : url);
         };
 
     })();

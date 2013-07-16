@@ -41,12 +41,23 @@ define(function(require, exports) {
             (_version < planner.version) ? "updated" : "uptodate"));
     }
 
+    // track outbound link click
+    function _trackOutbound() {
+        $(document).on("click", "a", function(e) {
+            e.currentTarget.hostname === "cors.bicrement.com" ||
+                planner.trackPageView(e.currentTarget.href, "outbound");
+        });
+    }
+
     // exports module
     exports.init = function(v) {
+        // init components
         controller.init();
         views.init();
         // check app version
         _versionCheck();
+        // outbound link click
+        _trackOutbound();
     };
 
 });

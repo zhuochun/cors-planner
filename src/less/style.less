@@ -18,8 +18,9 @@
 @darkblue: #213C92;
 @red: #EA1100;
 @pink: #F7CFCA;
-@white: #fff;
+@white: #FFF;
 @grey: #F3F3F3;
+@darkgery: #DFDFDF;
 @lightblack: #999;
 
 /* timetable grid */
@@ -28,14 +29,6 @@
 @grid-even-bg: #F3F3F3;
 @grid-hover: #E7E7E7;
 @grid-border: #FFF;
-
-/* grid slot */
-@slot-red: #78436D;
-@slot-red-bg: #F9C4E1;
-@slot-green: #778461;
-@slot-green-bg: #D8EDA3;
-@slot-orange: #714715;
-@slot-orange-bg: #FCD39A;
 
 /* module */
 @module-bg: @blue;
@@ -118,6 +111,11 @@ a {
         height: 44px;
     }
 
+    .grid.occupied {
+        background-color: @pink !important;
+        cursor: pointer;
+    }
+
     .weekday {
         &:nth-child(odd) .grid {
             background: @grid-odd-bg;
@@ -136,6 +134,13 @@ a {
         .row-fluid:nth-child(n+2) {
             .grid { border-top: none; }
             .slot { border-bottom: 1px solid @grid-border; }
+        }
+
+        .row-fluid:first-child .span1 .grid {
+            &:hover {
+                background-color: @pink;
+                cursor: pointer;
+            }
         }
 
         .row-fluid:last-child .slot { border-bottom: none; }

@@ -24,18 +24,24 @@ define(function(require, exports) {
 
     // Weekday Class
     function Weekday(name) {
-        this.name = name.toLowerCase();
+        this.name = name;
         // cache elem
-        this.$elem = $("#" + this.name);
+        this.$elem = $("#" + this.name.toLowerCase());
         // init rows
         this.$rows = [];
+        // cache the rows
         var i, len, rows = this.$elem.find(".row-fluid");
         // jquery the rows
         for (i = 0, len = rows.length; i < len; i++) {
             this.$rows.push($(rows[i]));
         }
+        // init occupied slots
+        this.occupied  = [];
+        this.$occupied = this.$rows[0];
+        // listen toggle event
+        this.$occupied.on("click", ".span1", $.proxy(this.toggleOccupiedSpan, this));
         // subscribe some events
-        $.subscribe("grid:rows:clearEmpty", $.proxy(this.removeEmptyRows, this));
+        $.subscribe("grid:rows:clearEmpty", $.proxy(this.compressRows, this));
     }
 
     /* WEEKDAY CLASS METHODS
@@ -103,9 +109,24 @@ define(function(require, exports) {
         $(window).resize();
     };
 
+    Weekday.fn.compressRows = function() {
+        // do a quick clean up
+        this.removeEmptyRows();
+
+        // merge rows bottom up
+        if (this.$rows[0].find(".slot, .occupied").length > 0) {
+            this.mergeRows();
+        } else if (this.name === "SATURDAY") {
+            this.$elem.addClass("hidden");
+        }
+
+        $(window).resize();
+    };
+
     Weekday.fn.removeEmptyRows = function() {
         var i, $slots;
 
+        // remove empty rows with index > 1
         for (i = this.$rows.length - 1; i > 1; i--) {
             if (this.$rows[i].find(".slot").length === 0) {
                 this.$rows[i].remove();
@@ -113,12 +134,12 @@ define(function(require, exports) {
             }
         }
 
-        // if 1st row is empty
-        if (this.$rows[0].find(".slot").length === 0) {
+        // if 1st row is empty and no occupied grid
+        if (this.$rows[0].find(".slot, .occupied").length === 0) {
             // case 1: only 2 rows left, swap the slots in 1st/2nd row
             // case 2: > 2 rows, swap the slots in 1st/3rd row
             i = this.$rows.length === 2 ? 1 : 2;
-            
+
             $slots = this.$rows[i].find(".slot").detach();
             this.$rows[0].append($slots);
 
@@ -141,16 +162,6 @@ define(function(require, exports) {
                 this.$rows.splice(2, 1);
             }
         }
-
-        // merge rows bottom up
-        if (this.$rows[0].find(".slot").length > 0) {
-            this.mergeRows();
-        } else {
-            if (this.name === "saturday")
-                this.$elem.addClass("hidden");
-        }
-
-        $(window).resize();
     };
 
     Weekday.fn.mergeRows = function() {
@@ -185,14 +196,13 @@ define(function(require, exports) {
         for (i = 0; i < limit; i++) {
             rowIsEmpty = true;
 
-            slots = this.$rows[i].find(".slot");
-            for (j = 0, slotLen = slots.length; j < slotLen; j++) {
-                $slot = $(slots[j]);
-
-                if (isSlotOverlap($slot.data("offset"), $slot.data("span"), offset, span)) {
-                    rowIsEmpty = false;
-                    break;
-                }
+            // should not overlap with any slots added
+            if (isSlotsOverlop(this.$rows[i].find(".slot"), offset, span)) {
+                continue;
+            }
+            // should not overlap with any slots marked occupied
+            if (i === 0 && isSlotsOverlop(this.$occupied.find(".occupied"), offset, span)) {
+                continue;
             }
 
             if (rowIsEmpty) { return i; }
@@ -207,8 +217,64 @@ define(function(require, exports) {
         return this._hasEmptySlots(offset, span, this.$rows.length);
     };
 
+    // on span click event
+    Weekday.fn.toggleOccupiedSpan = function(e) {
+        var $this = $(e.currentTarget);
+
+        if (!$this.hasClass("slot")) {
+            this._toggleOccupiedGrid($this.find(".grid"), $this.index() + 1);
+        }
+    };
+
+    // toggle a grid between occupied or not
+    Weekday.fn._toggleOccupiedGrid = function($grid, offset) {
+        $grid.toggleClass("occupied");
+
+        if ($grid.hasClass("occupied")) {
+            // associate some general data
+            $grid.data("offset", offset).data("span", 1);
+        } else if (isSlotsOverlop(this.$rows[1].find(".slot"), $this.index() + 1, 1)) {
+            // if 2nd row has slot overlap, do a compress
+            this.compressRows();
+        }
+    };
+
+    // toggle slots[] between occupied or not
+    Weekday.fn.addOccupiedSlots = function(slots) {
+        var i, idx, $grids = this.$occupied.find(".grid");
+
+        for (i = 0; (idx = slots[i]); i++) {
+            this._toggleOccupiedGrid($($grids[idx]), idx);
+        }
+    };
+
+    // save occupied slots to object
+    Weekday.fn.getOccupiedSlots = function() {
+        var result = {}, i, grid, $grids = this.$occupied.find(".occupied");
+        // create result
+        result[this.name] = [];
+        // push grids
+        for (i = 0; (grid = $grids[i]); i++) {
+            result[this.name].push($(grid).data("offset"));
+        }
+    };
+
     /* HELPERS
      * ======================================== */
+
+    // check slot with offset and span overlaps
+    // any slot in slots
+    function isSlotsOverlop(slots, offset, span) {
+        var i, len = slots.length, $slot;
+
+        for (i = 0; i < len; i++) {
+            $slot = $(slots[i]);
+
+            if (isSlotOverlap($slot.data("offset"), $slot.data("span"), offset, span)) {
+                return true;
+            }
+        }
+    }
 
     // slot1 = offset, span
     // slot2 = _offset, _span
@@ -220,7 +286,7 @@ define(function(require, exports) {
         if (_offset >= offset && _offset < end) {
             return true;
         }
-        
+
         // _span is within slot1 endgth
         if (_end > offset && _end <= end) {
             return true;

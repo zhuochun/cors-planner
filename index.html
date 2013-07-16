@@ -18,6 +18,18 @@
   <!-- Le stylesheets -->
   <link rel="stylesheet" href="css/style.css">
   
+
+  <!-- Le google analytics -->
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35844116-2']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
 </head>
 <body>
 
@@ -31,8 +43,8 @@
             <strong class="small-header">Unofficial Timetable Builder for NUS and NTU!</strong>
           </h1>
 
-          <div id="add-module">
-            <div class="m-input-append">                      
+          <div id="add-module" data-intro="Enter Module Code or Module Title Here!" data-position="right">
+            <div class="m-input-append">
               <input id="mod-code" class="m-wrap" size="16" type="text" tabindex="0" placeholder="Module Code/Title">
               <button id="add-btn" class="m-btn blue">Add</button>
             </div>
@@ -49,16 +61,17 @@
               <div id="detail-inner">
                 <h4>Hello!</h4>
                 <p><b>CORS Planner</b> is a simple and elegant <b>web timetable builder (unofficial)</b> for National University of Singapore (NUS) and Nanyang Technological University (NTU) Students.</p>
-                <h4>Features</h4>
-                <ul>
-                  <li>CORS Planner uses the <strong>latest module information</strong> from <a href="https://sit.aces01.nus.edu.sg/cors/jsp/report/ModuleInfoListing.jsp" title="NUS CORS Module Information Listing" target="_blank">NUS CORS</a> and <a href="https://wish.wis.ntu.edu.sg/webexe/owa/aus_schedule.main" title="NTU Module Schedule" target="_blank">NTU Schedule</a>.</li>
-                  <li>Modules are <strong>smartly allocated</strong> in timetable to prevent time clashes.</li>
-                  <li>You can <strong>drag and drop</strong> the module slots to modify your timetable.</li>
-                  <li>Your <strong>timetable is saved</strong> in your browser for your next visit.</li>
-                </ul>
-                <p></p>
+                <div class="feature-list" data-intro="What I can do for you" data-position="right">
+                  <h4>Features</h4>
+                  <ul>
+                    <li>CORS Planner uses the <strong>latest module information</strong> from <a href="https://aces01.nus.edu.sg/cors/jsp/report/ModuleInfoListing.jsp" title="NUS CORS Module Information Listing" target="_blank">NUS CORS</a> and <a href="https://wish.wis.ntu.edu.sg/webexe/owa/aus_schedule.main" title="NTU Module Schedule" target="_blank">NTU Schedule</a>.</li>
+                    <li>Modules are <strong>smartly allocated</strong> in timetable to prevent time clashes.</li>
+                    <li>You can <strong>drag and drop</strong> the module slots to modify your timetable.</li>
+                    <li>Your <strong>timetable is saved</strong> in your browser for your next visit.</li>
+                  </ul>
+                </div>
                 <h4>Support!</h4>
-                <p><span class="label label-important"><a href="http://www.facebook.com/sharer.php?u=http://cors.bicrement.com" title="CORS Planner - Unofficial Timetable Builder for NUS and NTU" class="share-btn">Share</a></span> and <span class="label label-important"><a href="https://www.facebook.com/cors.planner" title="CORS Planner's Facebook Page" target="_blank">Like</a></span> CORS Planner!</p>
+                <p><span class="label label-important"><a href="http://www.facebook.com/sharer.php?u=http://cors.bicrement.com" title="CORS Planner - Unofficial Timetable Builder for NUS and NTU" class="share-btn">Share</a></span> and <span class="label label-important"><a href="https://www.facebook.com/cors.planner" title="CORS Planner's Facebook Page" target="_blank">Follow</a></span> the latest CORS Planner updates!</p>
                 <h4>Feedback</h4>
                 <p>If you meet any problem or have any suggestion, please leave a message on <a href="https://www.facebook.com/cors.planner" title="CORS Planner's Facebook Page" target="_blank">the facebook page</a>.</p>
               </div>
@@ -70,18 +83,20 @@
       <!-- Main Body -->
       <div id="primary" class="span26">
         <div id="tt-header" class="row-fluid">
-          <div class="span24">
+          <div class="span26">
             <h2 id="term-info">Timetable of <span id="semester"></span></h2>
-            <ul id="term-ctrls" class="unstyled">
+            <ul id="term-ctrls" class="unstyled" data-intro="Share, Settings and More" data-position="bottom">
               <!-- not ready
-              <li id="term-summary" title="View Term Module Summary" rel="tooltip"><i class="icon-list-alt"></i></li>
-              <li id="term-feeback" title="Feedback Us" rel="tooltip"><i class="icon-comment"></i></li>
               <li id="term-undo" title="No Action to Undo Yet" rel="tooltip"><i class="icon-fast-backward"></i></li>
+              <li id="term-combination" title="Find All Possible Timetable Plans" rel="tooltip"><i class="icon-calendar"></i></li>
+              <li id="term-solve-conflict" title="One-click Solve Conflicts" rel="tooltip"><i class="icon-random"></i></li>
               -->
               <li id="term-share" title="Share Your Timetable" rel="tooltip"><i class="icon-share"></i></li>
               <li id="term-clear" title="Clear All Modules Added" rel="tooltip"><i class="icon-trash"></i></li>
               <li id="term-config" title="Configure Class Slot Display" rel="tooltip" data-placement="right" class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="tt-config"><i class="icon-cog"></i></a>
+                <span class="dropdown-toggle" data-toggle="dropdown" id="tt-config">
+                  <i class="icon-cog"></i>
+                </span>
                 <ul aria-labelledby="tt-config" role="menu" class="dropdown-menu">
                   <li><a onclick="planner.set('slotType', 'location')" href="#">Display Location</a></li>
                   <li><a onclick="planner.set('slotType', 'group')" href="#">Display Group ID</a></li>
@@ -90,13 +105,13 @@
               </li>
             </ul>
           </div>
-          <div class="span8">
-            <ul id="misc-btns" class="pull-right unstyled">
+          <div class="span6">
+            <ul id="misc-btns" class="pull-right unstyled" data-intro="Support us with a Like!" data-position="bottom">
               <li>
-                <a href="http://www.facebook.com/sharer.php?u=http://cors.bicrement.com" title="Like CORS Planner!" rel="tooltip" class="red m-btn share-btn">Like!</a>
+                <a href="http://www.facebook.com/sharer.php?u=http://cors.bicrement.com" title="Like and Share CORS Planner!" rel="tooltip" class="red m-btn share-btn">Like!</a>
               </li>
               <li>
-                <a href="https://www.facebook.com/cors.planner" title="Provide Feedbacks" rel="tooltip" target="_blank" class="m-btn">Feedback</a>
+                <a href="https://www.facebook.com/cors.planner" title="Follow Our Facebook" rel="tooltip" target="_blank" class="m-btn blue">Facebook</a>
               </li>
             </ul>
           </div>
@@ -203,7 +218,9 @@
 
           <div id="tuesday" class="weekday">
             <div class="row-fluid">
-              <div class="span2"><div class="grid grid-head"><h4>TUE</h4></div></div>
+              <div class="span2">
+                <div class="grid grid-head"><h4>TUE</h4></div>
+              </div>
               <div class="span1"><div class="grid">&nbsp;</div></div>
               <div class="span1"><div class="grid">&nbsp;</div></div>
               <div class="span1"><div class="grid">&nbsp;</div></div>
@@ -283,7 +300,7 @@
               <div class="span1"><div class="grid">&nbsp;</div></div>
               <div class="span1"><div class="grid">&nbsp;</div></div>
               <div class="span1"><div class="grid">&nbsp;</div></div>
-              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1" data-intro="Click on the blue box mark it as a occupied timeslot (e.g. Lunch Break)" data-position="right"><div class="grid">&nbsp;</div></div>
               <div class="span1"><div class="grid">&nbsp;</div></div>
               <div class="span1"><div class="grid">&nbsp;</div></div>
               <div class="span1"><div class="grid">&nbsp;</div></div>
@@ -553,11 +570,15 @@
         </div> <!-- tt-grid -->
 
         <div id="footer">
-          <h6>CORS Planner <span id="version">0.0.0</span> &copy; 2012-2013 by
-            <a href="http://www.bicrement.com" target="_blank" title="Bicrement +2" rel="tooltip">Zhuochun</a> |
+          <h6>
+            <span class="credit" data-intro="Click anywhere to start planning :)" data-position="top">
+              CORS Planner <span id="version">0.0.0</span> &copy; by
+              <a href="http://www.bicrement.com" target="_blank" title="Bicrement +2" rel="tooltip">Zhuochun</a>
+            </span> |
+            <a href="https://www.facebook.com/cors.planner" target="_blank" title="Follow Our Facebook" rel="tooltip">Facebook</a> |
             <a href="https://github.com/zhuochun/cors-planner" target="_blank" title="Contribute to CORS Planner" rel="tooltip">Github</a> |
             <a href="#" id="fullsize" title="Toggle Fullsize Timetable" rel="tooltip">Timetable</a> |
-            <a href="#select-school" data-toggle="modal" title="Choose Your University" rel="tooltip">University</a>
+            <a href="#select-school" data-toggle="modal" title="Choose Your University" rel="tooltip">Universities</a>
           </h6>
         </div> <!-- footer -->
       </div> <!-- primary -->
@@ -606,22 +627,10 @@
 
   <!-- Le javascript -->
   <!-- pre-load third party scripts that do not want be async loaded. -->
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script><script>window.jQuery || document.write('<script src="js/libs/jquery-1.8.1.js"><\/script>')</script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script><script>window.jQuery || document.write('<script src="js/libs/jquery-1.8.3.js"><\/script>')</script>
   <script src="js/libs/jquery-ui-1.8.23.custom.js"></script>
   <!-- all other application scripts are loaded through require.  -->
   <script src="js/libs/require.js" data-main="js/main"></script>
-
-  <!-- GOOGLEANALYTICS -->
-  <script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-35844116-2']);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-  </script>
 
 </body>
 </html>

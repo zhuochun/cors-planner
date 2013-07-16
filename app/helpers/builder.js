@@ -1,0 +1,1 @@
+define(["require","exports","module"],function(e,t){function n(){this.slots=[]}function r(){this.weekdays={};var e,t=planner.weekDays.length;for(e=0;e<t;e++)weekdays[planner.weekDays[e]]=new n}return n.fn=n.prototype,n.fn.allocate=function(e){},r});

@@ -246,7 +246,7 @@ define(function(require, exports) {
         var i, idx, $grids = this.$occupied.find(".grid");
 
         for (i = 0; (idx = slots[i]); i++) {
-            this._toggleOccupiedGrid($($grids[idx]), idx);
+            this._toggleOccupiedGrid($($grids[idx - 1]), idx);
         }
     };
 

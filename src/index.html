@@ -88,13 +88,15 @@
             <ul id="term-ctrls" class="unstyled" data-intro="Share, Settings and More" data-position="bottom">
               <!-- not ready
               <li id="term-undo" title="No Action to Undo Yet" rel="tooltip"><i class="icon-fast-backward"></i></li>
-              -->
               <li id="term-combination" title="Find All Possible Timetable Plans" rel="tooltip"><i class="icon-calendar"></i></li>
+              -->
               <li id="term-solve-conflict" title="One-click Solve Conflicts" rel="tooltip"><i class="icon-random"></i></li>
               <li id="term-share" title="Share Your Timetable" rel="tooltip"><i class="icon-share"></i></li>
               <li id="term-clear" title="Clear All Modules Added" rel="tooltip"><i class="icon-trash"></i></li>
               <li id="term-config" title="Configure Class Slot Display" rel="tooltip" data-placement="right" class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="tt-config"><i class="icon-cog"></i></a>
+                <span class="dropdown-toggle" data-toggle="dropdown" id="tt-config">
+                  <i class="icon-cog"></i>
+                </span>
                 <ul aria-labelledby="tt-config" role="menu" class="dropdown-menu">
                   <li><a onclick="planner.set('slotType', 'location')" href="#">Display Location</a></li>
                   <li><a onclick="planner.set('slotType', 'group')" href="#">Display Group ID</a></li>
@@ -570,7 +572,7 @@
         <div id="footer">
           <h6>
             <span class="credit" data-intro="Click anywhere to start planning :)" data-position="top">
-              CORS Planner <span id="version">0.0.0</span> &copy; 2012-2013 by
+              CORS Planner <span id="version">0.0.0</span> &copy; by
               <a href="http://www.bicrement.com" target="_blank" title="Bicrement +2" rel="tooltip">Zhuochun</a>
             </span> |
             <a href="https://www.facebook.com/cors.planner" target="_blank" title="Follow Our Facebook" rel="tooltip">Facebook</a> |
@@ -625,7 +627,7 @@
 
   <!-- Le javascript -->
   <!-- pre-load third party scripts that do not want be async loaded. -->
-  <script src="js/libs/jquery-1.8.1.js"></script>
+  <script src="js/libs/jquery-1.8.3.js"></script>
   <script src="js/libs/jquery-ui-1.8.23.custom.js"></script>
   <!-- all other application scripts are loaded through require.  -->
   <script src="js/libs/require.js" data-main="js/main"></script>

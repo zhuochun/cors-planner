@@ -71,7 +71,7 @@ define(function(require, exports) {
             expect(sem.semester).toEqual(2);
 
             // 2011/2012 Sem 2
-            sem = getSem(new Date("Jun 29 2012 11:22:57 GMT+0800"));
+            sem = getSem(new Date("May 29 2012 11:22:57 GMT+0800"));
             expect(sem.acadYear).toEqual(cur_year);
             expect(sem.semester).toEqual(2);
 

@@ -1,5 +1,5 @@
 /* ========================================
- * CORS Planner - undo controller
+ * CORS Planner - undo manager
  *
  * handle undo actions in a session
  *   -> undo remove module
@@ -32,7 +32,6 @@ define(function(require, exports) {
     // undo push and pop
     $.subscribe("undo:pop", function(e, type, o) {
         if (Undos.length === MAXUNDOS) {
-        
         }
 
         Undos.push(o);

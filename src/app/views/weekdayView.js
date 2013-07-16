@@ -222,21 +222,23 @@ define(function(require, exports) {
         var $this = $(e.currentTarget);
 
         if (!$this.hasClass("slot")) {
-            this._toggleOccupiedGrid($this.find(".grid"), $this.index() + 1);
+            this._toggleOccupiedGrid($this.find(".grid"), $this.index() + 1, true);
         }
     };
 
     // toggle a grid between occupied or not
-    Weekday.fn._toggleOccupiedGrid = function($grid, offset) {
+    Weekday.fn._toggleOccupiedGrid = function($grid, offset, save) {
         $grid.toggleClass("occupied");
 
         if ($grid.hasClass("occupied")) {
             // associate some general data
-            $grid.data("offset", offset).data("span", 1);
-        } else if (isSlotsOverlop(this.$rows[1].find(".slot"), $this.index() + 1, 1)) {
+            $grid.data({"offset": offset, "span": 1});
+        } else if (isSlotsOverlop(this.$rows[1].find(".slot"), offset, 1)) {
             // if 2nd row has slot overlap, do a compress
             this.compressRows();
         }
+
+        if (save) { $.publish("grid:occupy:save", [this.name]); }
     };
 
     // toggle slots[] between occupied or not
@@ -250,13 +252,13 @@ define(function(require, exports) {
 
     // save occupied slots to object
     Weekday.fn.getOccupiedSlots = function() {
-        var result = {}, i, grid, $grids = this.$occupied.find(".occupied");
-        // create result
-        result[this.name] = [];
-        // push grids
-        for (i = 0; (grid = $grids[i]); i++) {
-            result[this.name].push($(grid).data("offset"));
+        var result = [], i, len, $grids = this.$occupied.find(".occupied");
+
+        for (i = 0, len = $grids.length; i < len; i++) {
+            result.push($.data($grids[i], "offset"));
         }
+
+        return result;
     };
 
     /* HELPERS

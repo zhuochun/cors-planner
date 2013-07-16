@@ -15,21 +15,54 @@ define(function(require, exports) {
     /*jshint browser:true, jquery:true, laxcomma:true, maxerr:50*/
     /*global planner*/
 
-	// get components
+    // get components
     var Weekday = require("view/weekdayView")
-      , Util = require("util/helper")
+      , util = require("util/helper")
+      , store = require("util/store")
       , weekdays = {};
 
     // initial timetable grids
     exports.init = function() {
         var i, len = planner.weekDays.length;
 
+        // init weekdays
         for (i = 0; i < len; i++) {
             weekdays[planner.weekDays[i]] = new Weekday(planner.weekDays[i]);
         }
 
+        // populate occupied grids from local storage
+        _loadOccupiedGrids();
+
+        // prevent right click on timetable
         $("#tt-grid").on("contextmenu", function(e) { e.preventDefault(); });
     };
+
+    // load occupied grids from local storage
+    function _loadOccupiedGrids() {
+        var i, grids = store.get("grid:occupied");
+
+        if (grids) {
+            for (i in grids) {
+                if (grids.hasOwnProperty(i)) {
+                    weekdays[i].addOccupiedSlots(grids[i]);
+                }
+            }
+        }
+    }
+
+    // allocate occupied grids
+    $.subscribe("grid:occupy:allocate", function(e, day, idx) {
+        weekdays[day].addOccupiedSlots(idx);
+    });
+
+    // save occupied grids
+    $.subscribe("grid:occupy:save", function(e, day) {
+        var grid = store.get("grid:occupied") || {};
+        // update that day
+        grid[day] = weekdays[day].getOccupiedSlots();
+        // save it
+        store.set("grid:occupied", grid);
+    });
 
     // allocate temporary droppable slot
     $.subscribe("grid:module:droppable", function(e, slot, type, mod) {
@@ -63,7 +96,7 @@ define(function(require, exports) {
         for (type in lessons) {
             if (lessons.hasOwnProperty(type)) {
                 classNo = mod.allocated(type);
-                
+
                 if (classNo) {
                     _allocateSlot(lessons[type][classNo][0], type, mod);
                 }
@@ -120,8 +153,8 @@ define(function(require, exports) {
         // check all klass can be allocated
         result = true;
         for (i = 0, len = klass.length; i < len; i++) {
-            offset = Util.getTimeIndex(klass[i].startTime);
-            span = Util.getTimeIndex(klass[i].endTime) - offset;
+            offset = util.getTimeIndex(klass[i].startTime);
+            span = util.getTimeIndex(klass[i].endTime) - offset;
             // can be allocated to the 1st row only
             if (weekdays[klass[i].weekDay].hasEmptySlots(offset, span) !== 0) {
                 result = false;

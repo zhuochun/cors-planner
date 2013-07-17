@@ -7,7 +7,7 @@
   <meta charset="utf-8">
 
   <title>CORS Planner - Unofficial NUS and NTU Timetable Builder</title>
-  <meta name="description" content="CORS Planner is an unofficial online timetable builder for National University of Singapore (NUS) and Nanyang Technological University (NTU) students.">
+  <meta name="description" content="CORS Planner is an unofficial online web timetable builder for National University of Singapore (NUS) and Nanyang Technological University (NTU) students.">
   <meta name="author" content="Wang Zhuochun">
 
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -60,14 +60,15 @@
               <h3>Detail</h3>
               <div id="detail-inner">
                 <h4>Hello!</h4>
-                <p><b>CORS Planner</b> is a simple and elegant <b>web timetable builder (unofficial)</b> for National University of Singapore (NUS) and Nanyang Technological University (NTU) Students.</p>
+                <p><b>CORS Planner</b> is a powerful and elegant <b>timetable builder</b> (unofficial) for NUS <b class="hide">National University of Singapore</b> and NTU <b class="hide">Nanyang Technological University</b> Students.</p>
                 <div class="feature-list" data-intro="What I can do for you" data-position="right">
                   <h4>Features</h4>
                   <ul>
                     <li>CORS Planner uses the <strong>latest module information</strong> from <a href="https://aces01.nus.edu.sg/cors/jsp/report/ModuleInfoListing.jsp" title="NUS CORS Module Information Listing" target="_blank">NUS CORS</a> and <a href="https://wish.wis.ntu.edu.sg/webexe/owa/aus_schedule.main" title="NTU Module Schedule" target="_blank">NTU Schedule</a>.</li>
-                    <li>Modules are <strong>smartly allocated</strong> in timetable to prevent time clashes.</li>
-                    <li>You can <strong>drag and drop</strong> the module slots to modify your timetable.</li>
-                    <li>Your <strong>timetable is saved</strong> in your browser for your next visit.</li>
+                    <li>Modules are <strong>smartly allocated</strong> onto timetable that minimize time clashes.</li>
+                    <li>You can tell CORS Planner <b class="hide">Timetable Builder</b> the <strong>timeslots NOT to allocate modules</strong> (e.g. Lunch Break).</li>
+                    <li>You can <strong>drag and drop</strong> modules in the timetable to alternative timeslots.</li>
+                    <li>Your <strong>timetable is saved automatically</strong> for your next visit.</li>
                   </ul>
                 </div>
                 <h4>Support!</h4>
@@ -89,8 +90,8 @@
               <!-- not ready
               <li id="term-undo" title="No Action to Undo Yet" rel="tooltip"><i class="icon-fast-backward"></i></li>
               <li id="term-combination" title="Find All Possible Timetable Plans" rel="tooltip"><i class="icon-calendar"></i></li>
-              <li id="term-solve-conflict" title="One-click Solve Conflicts" rel="tooltip"><i class="icon-random"></i></li>
               -->
+              <li id="term-solve-conflict" title="One-click Solve Conflicts" rel="tooltip"><i class="icon-random"></i></li>
               <li id="term-share" title="Share Your Timetable" rel="tooltip"><i class="icon-share"></i></li>
               <li id="term-clear" title="Clear All Modules Added" rel="tooltip"><i class="icon-trash"></i></li>
               <li id="term-config" title="Configure Class Slot Display" rel="tooltip" data-placement="right" class="dropdown">
@@ -106,14 +107,11 @@
             </ul>
           </div>
           <div class="span6">
-            <ul id="misc-btns" class="pull-right unstyled" data-intro="Support us with a Like!" data-position="bottom">
-              <li>
-                <a href="http://www.facebook.com/sharer.php?u=http://cors.bicrement.com" title="Like and Share CORS Planner!" rel="tooltip" class="red m-btn share-btn">Like!</a>
-              </li>
-              <li>
-                <a href="https://www.facebook.com/cors.planner" title="Follow Our Facebook" rel="tooltip" target="_blank" class="m-btn blue">Facebook</a>
-              </li>
-            </ul>
+            <div class="fb-like pull-right"
+              data-intro="Support us with a Like!" data-position="bottom"
+              data-href="https://www.facebook.com/cors.planner"
+              data-send="true" data-layout="button_count"
+              data-width="58" data-show-faces="false"></div>
           </div>
         </div> <!-- tt-header -->
 
@@ -572,7 +570,7 @@
         <div id="footer">
           <h6>
             <span class="credit" data-intro="Click anywhere to start planning :)" data-position="top">
-              CORS Planner <span id="version">0.0.0</span> &copy; by
+              CORS Planner <span id="version">0.0.0</span> by
               <a href="http://www.bicrement.com" target="_blank" title="Bicrement +2" rel="tooltip">Zhuochun</a>
             </span> |
             <a href="https://www.facebook.com/cors.planner" target="_blank" title="Follow Our Facebook" rel="tooltip">Facebook</a> |
@@ -631,6 +629,16 @@
   <script src="js/libs/jquery-ui-1.8.23.custom.js"></script>
   <!-- all other application scripts are loaded through require.  -->
   <script src="js/libs/require.js" data-main="js/main"></script>
+
+  <!-- Le facebook -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
 
 </body>
 </html>

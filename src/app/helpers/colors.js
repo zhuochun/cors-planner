@@ -24,7 +24,6 @@ define(function(require, exports) {
       , "saddlebrown"
       , "deeppink"
       , "dodgerblue"
-      , "seagreen"
       , "dimgray"
       , "goldenrod"
       , "indigo"
@@ -38,6 +37,7 @@ define(function(require, exports) {
       , "green"
       , "mediumvioletred"
       , "teal"
+      , "seagreen"
     ]
     , index = 0
     , length = colors.length;

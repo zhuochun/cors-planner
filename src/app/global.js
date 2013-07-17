@@ -33,7 +33,7 @@ define(function(require, exports) {
         /* ======================================== */
 
         // assign CORS Planner Version number
-        planner.version = "0.7.0";
+        planner.version = "0.7.2";
         // CORS Planner for schools
         planner.school = store.get("app:school") || null;
         // default module lists
@@ -62,14 +62,16 @@ define(function(require, exports) {
         // track usages and events using google analytics
         // https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide
         planner.analytics = function() {
-            _gaq && _gaq.push($.makeArray(arguments));
+            if (global._gaq) {
+                global._gaq.push($.makeArray(arguments));
+            }
         };
         // some help functions
         planner.trackEvent = function(category, action) {
             planner.analytics("_trackEvent", category, action);
         };
-        planner.trackPageView = function(url, prefix) {
-            planner.analytics("_trackPageview", prefix ? prefix + '/' + url : url);
+        planner.trackPageView = function(url) {
+            planner.analytics("_trackPageview", url);
         };
 
     })();

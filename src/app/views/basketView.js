@@ -27,7 +27,7 @@ define(function(require, exports) {
             containment: "parent"
           , tolerance: "pointer"
           , handle: ".info"
-          , forcePlaceholderSize: true
+          , forcePlaceholderSize: false
           , update: function(e, ui) {
                 $.publish("module:sequence", [$el.sortable("toArray")]);
           }

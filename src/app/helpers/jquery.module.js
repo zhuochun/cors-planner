@@ -80,7 +80,13 @@ define(function(require, exports) {
             }
 
             , attachEvents: function(item, fun) {
-                var self = this;
+                var self = this
+                  , viewDetail = function() {
+                    // view detail
+                    $.publish("module:detail", self.data);
+                    // switch to detail panel
+                    $("#metro-pivot").data("controller").goToItemByName("Detail");
+                };
 
                 // elem events
                 this.$elem.on("mouseenter", function() {
@@ -91,21 +97,10 @@ define(function(require, exports) {
                     $grid.find(".slot[id^=" + self.id + "-]").removeClass("hover");
                 });
 
-                // debug info
-                this.$elem.on("dblclick", function() {
-                    window._debug = window._debug || {};
-                    window._debug.module = self.data;
-
-                    if (window.console)
-                        window.console.log(self);
-                });
+                this.$elem.on("dblclick", viewDetail);
 
                 // method events
-                this.$method.on("click", ".detail", function() {
-                    $.publish("module:detail", self.data);
-                    // switch to detail panel
-                    $("#metro-pivot").data("controller").goToItemByName("Detail");
-                });
+                this.$method.on("click", ".detail", viewDetail);
 
                 this.$method.on("click", ".timetable", function() {
                     var $this = $(this).find("i");

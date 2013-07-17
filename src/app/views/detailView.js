@@ -23,6 +23,10 @@ define(function(require, exports) {
     // init detail panel
     exports.init = function() {
         $("#metro-pivot").metroPivot();
+        // go back to modules page
+        $el.on("dblclick", function() {
+            $("#metro-pivot").data("controller").goToItemByName("Modules");
+        });
     };
 
     // subscribe app wide user message

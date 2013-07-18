@@ -33,7 +33,7 @@ define(function(require, exports) {
         /* ======================================== */
 
         // assign CORS Planner Version number
-        planner.version = "0.7.2";
+        planner.version = "0.7.3";
         // CORS Planner for schools
         planner.school = store.get("app:school") || null;
         // default module lists
@@ -70,8 +70,8 @@ define(function(require, exports) {
         planner.trackEvent = function(category, action) {
             planner.analytics("_trackEvent", category, action);
         };
-        planner.trackPageView = function(url) {
-            planner.analytics("_trackPageview", url);
+        planner.trackPageView = function(url, prefix) {
+            planner.analytics("_trackPageview", prefix ? prefix + "=" + url : url);
         };
 
     })();

@@ -237,7 +237,7 @@ a {
     color: #333;
 
     h1 {
-        padding: 0 0 5px 0;
+        padding: 10px 0 5px;
 
         a { position: relative; }
     }
@@ -266,23 +266,18 @@ a {
     }
 }
 
-#basket-scroll {
-    padding-bottom: 20px;
-}
-
 /* sidebar */
 #sidebar {
     background: @grey;
 
-    padding: 10px;
-    margin: 0 20px 0 0;
+    padding-left: 10px;
+    margin-right: 20px;
 
     overflow: hidden;
 }
 
-#add-module {
-    .m-btn { width: 60px; }
-}
+#add-btn { width: 60px; }
+#mod-code { width: 176px; }
 
 .typeahead {
     border-radius: 0 0 0 0;
@@ -319,17 +314,20 @@ a {
 }
 
 #metro-pivot .items .pivotItem {
-    margin: 0 -10px 0 0;
     overflow: auto;
-    height: 500px;
-    padding: 0 0 10px;
+    height: 486px;
 }
 
 /* module */
+#basket-scroll {
+    padding-bottom: 20px;
+}
+
 .module {
     display: block;
-    width: 100%;
-    margin: 0 0 3px;
+    margin-right: 10px;
+    margin-bottom: 3px;
+    padding-left: 20px;
     overflow: hidden;
 
     .method {
@@ -339,6 +337,7 @@ a {
 
         display: block;
         padding: 3px 0 1px;
+        margin-left: -20px;
 
         span {
             display: block;
@@ -356,7 +355,7 @@ a {
         float: left;
         background: @grid-hover;
         cursor: url("../img/handOpen.cur"), auto;
-        width: 200px;
+        width: 100%;
         padding: 2px 0 2px 5px;
         line-height: 24px;
         font-size: 16px;
@@ -371,6 +370,7 @@ a {
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
+            padding-right: 9px;
         }
     }
 

@@ -27,9 +27,11 @@ define(function(require, exports) {
             containment: "parent"
           , tolerance: "pointer"
           , handle: ".info"
-          , forcePlaceholderSize: false
+          , forcePlaceholderSize: true
+          , opacity: 0.3
+          , scroll: false
           , update: function(e, ui) {
-                $.publish("module:sequence", [$el.sortable("toArray")]);
+              $.publish("module:sequence", [$el.sortable("toArray")]);
           }
         });
     };

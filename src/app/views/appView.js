@@ -67,15 +67,10 @@ define(function(require, exports) {
                 primary = $("#primary").height(),
                 highest = height > primary ? height : primary;
 
-            $("#sidebar").height(highest - 20);
+            $("#sidebar").height(highest);
+            $("#metro-pivot").find(".pivotItem").height(highest - 168);
 
-            var h1 = $("h1").first().height(),
-                pivotItems = $("#metro-pivot").find(".pivotItem");
-
-                pivotItems.height(highest - h1 - 138);
-                pivotItems.find(".info").width(pivotItems.width() - 43);
-
-            $.publish("app:window:resize", [height, $(this).width()]);
+            $.publish("app:window:resize", [highest, $(this).width()]);
         }).trigger("resize");
         // bind print button
         $("#fullsize").on("click", (function() {

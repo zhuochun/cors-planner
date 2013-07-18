@@ -44,18 +44,10 @@ define(function(require, exports) {
                 this.attachEvents();
                 // bind subscription
                 this.subscribeEvents();
-                // resize
-                this.resize();
             }
 
             , get: function(key) {
                 return this.data.get(key);
-            }
-
-            , resize: function() {
-                var pivotItems = $("#metro-pivot").find(".pivotItem");
-                // width
-                this.$info.width(pivotItems.width() - 43);
             }
 
             , updateElem: function() {

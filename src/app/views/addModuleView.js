@@ -33,7 +33,7 @@ define(function(require, exports) {
     // resize on add-module width
     $.subscribe("app:window:resize", function() {
         var width = $("#add-module").width();
-        $("#add-module").find("#mod-code").width(width - 74);
+        $("#add-module").find("#mod-code").width(width - 84);
     });
 
     // update the semester text

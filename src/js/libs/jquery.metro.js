@@ -118,7 +118,7 @@
             },
             setCurrentItem: function(item, index){
                 var pivot = this;
-                
+
                 // hide current item immediately
                 pivot.items.children(".pivotItem.current").hide().removeClass("current");
 
@@ -126,7 +126,7 @@
                 setTimeout(function () {
                     item.show().addClass("current");
                     pivot.currentItemChanged(index);
-                }, 200);                
+                }, 200);
             },
             currentItemChanged: function(index) {
                 this.animating = false;
@@ -134,8 +134,6 @@
                 if (this.selectedItemChanged) {
                     this.selectedItemChanged(index);
                 }
-
-                $(window).resize();
             },
             pivotHeader_Click : function (me) {
                 // ignore if already current

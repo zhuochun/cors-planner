@@ -32,14 +32,12 @@ define(function(require, exports) {
                 this.animate = true;
                 // select elem
                 this.$method = this.$elem.find(".method");
-                this.$load = this.$elem.find(".method i");
+                this.$load = this.$method.find("i");
                 this.$info = this.$elem.find(".info");
                 // attach animations
                 this.attachAnimations();
                 // subscribe events
                 this.subscribeEvents();
-                // resize
-                this.resize();
             }
 
             , attachAnimations: function() {
@@ -70,12 +68,6 @@ define(function(require, exports) {
                         self.$elem.remove();
                     });
                 });
-            }
-
-            , resize: function() {
-                var pivotItems = $("#metro-pivot").find(".pivotItem");
-                // width
-                this.$info.width(pivotItems.width() - 43);
             }
         };
 

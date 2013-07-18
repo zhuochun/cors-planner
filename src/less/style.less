@@ -270,6 +270,7 @@ a {
 #sidebar {
     background: @grey;
 
+    height: 654px;
     padding-left: 10px;
     margin-right: 20px;
 
@@ -477,5 +478,36 @@ a {
         td {
             min-width: 10px;
         }
+    }
+}
+
+/* print */
+@media print {
+    #secondary { display: none; }
+    #primary { width: 100%; }
+
+    #tt-grid {
+        .grid {
+            border: 1px solid @lightblack !important;
+        }
+
+        .grid.occupied {
+            background: @white !important;
+        }
+
+        .weekday {
+            &:nth-child(odd) .grid {
+                background: @grid-odd-bg;
+            }
+
+            &:nth-child(even) .grid {
+                background: @white;
+            }
+        }
+    }
+
+    .slot {
+        border: none;
+        opacity: 1;
     }
 }

@@ -159,7 +159,7 @@ define(function(require, exports) {
                 });
 
                 this.$elem.on("clash.remove", function(e, mod) {
-                    var idx = $.inArray(self.clash, mod);
+                    var idx = $.inArray(mod, self.clash);
 
                     if (idx >= 0) {
                         self.clash.splice(idx, 1);

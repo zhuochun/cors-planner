@@ -200,7 +200,9 @@ define(function(require, exports) {
                 // destroy the dragging helper elem
                 ui.helper.remove();
                 // remove all slots of this module + type
-                $grid.find(".slot[id^=" + this.code + "-" + this.type + "-]").remove();
+                // sould match id and data-type, e.g LAJ2001 has tutorial, tutorial-type-1
+                // match only id "tutorial" will remove "tutorial-type-1", etc
+                $grid.find(".slot[id^=" + this.code + "-" + this.type + "-][data-type=" + this.type + "]").remove();
                 // allocate the new slots
                 $.publish("grid:module:allocate", [this.slot, this.type, this.data]);
                 // clear rows

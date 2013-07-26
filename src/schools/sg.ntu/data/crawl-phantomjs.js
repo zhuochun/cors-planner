@@ -87,7 +87,7 @@ function visitPage(page, idx, max) {
         page.close();
 
         if (update)
-            updateFile(global);
+            updateFile(global, Object.keys(finalList).length);
 
         var totalTime = new Date() - timeStart;
         console.log("Spent " + (totalTime / 1000).toFixed(2) + "s using " + thread + " pages");
@@ -151,13 +151,15 @@ function outputFile(output, result) {
 }
 
 // update global information
-function updateFile(global) {
+function updateFile(global, length) {
     console.log("===> Update global Info [" + global + "]");
 
     var file = fs.open(global, "rw"), content = file.read();
 
     content = content.replace(/lastUpdate\s*:\s*(\".*\")/,
                               "lastUpdate: \"" + (new Date()) + "\"");
+    content = content.replace(/modules\s*:\s*(\d*)/,
+                              "modules: " + length);
 
     file.write(content);
     file.flush();

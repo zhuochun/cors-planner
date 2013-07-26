@@ -72,7 +72,7 @@ page.open(encodeURI(url), function (status) {
         outputFile(output, result);
 
         if (update) {
-            updateFile(global);
+            updateFile(global, result.length);
         }
 
         var totalTime = new Date() - timeStart;
@@ -91,13 +91,15 @@ page.open(encodeURI(url), function (status) {
     }
 
     // update global information
-    function updateFile(global) {
+    function updateFile(global, length) {
         console.log("===> Update global Info [" + global + "]");
 
         var file = fs.open(global, "rw"), content = file.read();
 
         content = content.replace(/lastUpdate\s*:\s*(\".*\")/,
                                   "lastUpdate: \"" + (new Date()) + "\"");
+        content = content.replace(/modules\s*:\s*(\d*)/,
+                                  "modules: " + length);
 
         file.write(content);
         file.flush();

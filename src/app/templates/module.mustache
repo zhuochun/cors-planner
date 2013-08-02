@@ -1,4 +1,4 @@
-<div id="{{id}}" class="module clearfix">
+<div id="{{id}}" class="module clearfix {{#onCORS}}on-cors{{/onCORS}}">
     <ul class="method unstyled" style="background-color:{{color}}">
         <li class="remove" title="Remove Module" rel="tooltip">
             <i class="icon-remove icon-white"></i></li>
@@ -8,7 +8,7 @@
             <i class="icon-eye-open icon-white"></i></li>
     </ul>
     <div class="info">
-        <div class="code">{{code}}</div>
+        <div class="code">{{code}} <i class="icon-on-cors"></i></div>
         <div class="title">{{title}}</div>
         <div class="examdate">{{examDate}}</div>
     </div>

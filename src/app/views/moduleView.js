@@ -30,6 +30,7 @@ define(function(require, exports) {
             , code : module.get("code")
             , title : module.get("title")
             , examDate : module.get("examDate")
+            , onCORS : module.is("onCORS")
         }, $module = $(template(context));
 
         $module.module({data: module});

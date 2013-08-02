@@ -89,7 +89,15 @@ define(function(require, exports) {
                     $grid.find(".slot[id^=" + self.id + "-]").removeClass("hover");
                 });
 
-                this.$elem.on("dblclick", viewDetail);
+                // info events
+                this.$info.on("click", ".icon-on-cors", function(e) {
+                    var onCORS = self.$elem.hasClass("on-cors");
+
+                    self.$elem.toggleClass("on-cors");
+                    self.data.set("onCORS", !onCORS);
+
+                    e.stopPropagation();
+                });
 
                 // method events
                 this.$method.on("click", ".detail", viewDetail);

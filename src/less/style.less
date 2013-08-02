@@ -374,21 +374,43 @@ a {
         }
     }
 
-    &:hover .info {
-        background: @blue;
-        color: @grey;
+    .icon-on-cors {
+        background-position: -192px -96px;
+        margin-top: 4px;
+        cursor: pointer;
     }
 
-    &.hover .info {
-        background: @blue;
-        color: @grey;
+    &:hover,
+    &.hover {
+        .info {
+            background-color: @blue;
+            color: @grey;
+        }
+
+        .icon-on-cors {
+            background-image: url(../img/glyphicons-halflings-white.png);
+        }
     }
 
     &.inactive {
         color: @lightblack;
 
         &:hover .info {
-            background: @blue + #003311;
+            background-color: @blue + #003311;
+        }
+    }
+
+    &.on-cors {
+        .icon-on-cors {
+            background-position: -72px -96px;
+        }
+
+        .remove,
+        .timetable,
+        .title,
+        .examdate {
+            display: none;
+            visibility: hidden;
         }
     }
 }

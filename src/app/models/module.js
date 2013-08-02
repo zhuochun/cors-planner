@@ -27,8 +27,8 @@ define(function(require, exports) {
         this.id = data.code.replace(/[_\s\'\"]/gi, "-");
         this.data = data;
         this.data.color = color.get();
-        
-        this.status = $.extend({}, {visible: true, allocated : {}}, status);
+
+        this.status = $.extend({}, {visible: true, allocated: {}, onCORS: false}, status);
     }
 
     /* MODULE STATIC METHODS

@@ -114,6 +114,8 @@ define(function(require, exports) {
                         self.data.set("visible", false);
                         // remove all the slots from timetable
                         $grid.find(".slot[id^=" + self.id + "-]").remove();
+                        // refresh timetable
+                        $.publish("grid:refresh");
                     } else {
                         // add slots to timetable
                         $this.removeClass("icon-eye-close").addClass("icon-eye-open");

@@ -75,6 +75,15 @@ define(function(require, exports) {
         }
     });
 
+    // refresh all days after some thing on timetable
+    $.subscribe("grid:refresh", function() {
+        var i, len = planner.weekDays.length;
+
+        for (i = 0; i < len; i++) {
+            weekdays[planner.weekDays[i]].compressRows();
+        }
+    });
+
     // allocate a single slot and its section slot
     $.subscribe("grid:module:allocate", function(e, slot, type, mod) {
         _allocateSlot(slot, type, mod);

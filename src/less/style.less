@@ -106,7 +106,7 @@ a {
         border-top: 1px solid @grid-border;
         border-right: 1px solid @grid-border;
         text-align: center;
-        height: 44px;
+        height: 45px;
     }
 
     .grid.occupied {
@@ -173,7 +173,7 @@ a {
     &.nomove { cursor: default; }
 
     p {
-        padding: 0 0 0 5px;
+        padding-left: 5px;
 
         text-align: left;
 
@@ -491,17 +491,21 @@ a {
             border: 1px solid @lightblack !important;
         }
 
-        .grid.occupied {
-            background: @white !important;
-        }
-
         .weekday {
             &:nth-child(odd) .grid {
-                background: @grid-odd-bg;
+                background-color: @grid-odd-bg;
+            }
+
+            &:nth-child(odd) .grid.occupied {
+                background-color: @grid-odd-bg !important;
             }
 
             &:nth-child(even) .grid {
-                background: @white;
+                background-color: @white;
+            }
+
+            &:nth-child(even) .grid.occupied {
+                background-color: @white !important;
             }
         }
     }

@@ -21,7 +21,7 @@ define(function(require, exports) {
       , $el = $("#basket-scroll");
 
     exports.init = function() {
-        $el.tooltip({placement:"right", selector:"span[rel=tooltip]"});
+        $el.tooltip({placement:"right", selector:"li[rel=tooltip]"});
         // sortable
         $el.sortable({
             containment: "parent"

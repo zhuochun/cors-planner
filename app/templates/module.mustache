@@ -1,11 +1,14 @@
-<div id="{{id}}" class="module clearfix">
-    <div class="method" style="background-color:{{color}}">
-        <span class="remove" title="Remove Module" rel="tooltip"><i class="icon-remove icon-white"></i></span>
-        <span class="detail" title="View Detail" rel="tooltip"><i class="icon-info-sign icon-white"></i></span>
-        <span class="timetable" title="Show/Hide in Timetable" rel="tooltip"><i class="icon-eye-open icon-white"></i></span>
-    </div>
+<div id="{{id}}" class="module clearfix {{#onCORS}}on-cors{{/onCORS}}">
+    <ul class="method unstyled" style="background-color:{{color}}">
+        <li class="remove" title="Remove Module" rel="tooltip">
+            <i class="icon-remove icon-white"></i></li>
+        <li class="detail" title="View Detail" rel="tooltip">
+            <i class="icon-info-sign icon-white"></i></li>
+        <li class="timetable" title="Show/Hide in Timetable" rel="tooltip">
+            <i class="icon-eye-open icon-white"></i></li>
+    </ul>
     <div class="info">
-        <div class="code">{{code}}</div>
+        <div class="code">{{code}} <i class="icon-on-cors"></i></div>
         <div class="title">{{title}}</div>
         <div class="examdate">{{examDate}}</div>
     </div>

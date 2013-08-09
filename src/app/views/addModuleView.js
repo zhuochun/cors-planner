@@ -40,9 +40,6 @@ define(function(require, exports) {
     function updateSemester() {
         $("#semester")
             .text("Year " + sem.acadYear + " SEM" + sem.semester)
-            .on("dblclick", function() {
-                $.publish("module:clean");
-            });
     }
 
     // term control buttons

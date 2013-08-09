@@ -17,6 +17,6 @@ echo "Start Building CORS-PLANNER"
     #create folder in release for css files
     mkdir -p release/css
     #build less to css file
-    lessc --yui-compress src/less/style.less > release\css\style.css
+    lessc --yui-compress src/less/style.less > release/css/style.css
 
 echo "Build Succeed"

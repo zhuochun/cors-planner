@@ -5,7 +5,7 @@ echo "Start Building CORS-PLANNER"
     #remove release
     rm -rf release/
 
-  echo "calling r.j to build using build.js"
+  echo "calling r.js to build using build.js"
     #build javascripts
     node build/r.js -o build/build.js
 

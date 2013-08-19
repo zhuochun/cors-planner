@@ -129,25 +129,25 @@ a {
             background: @grid-even-bg;
         }
 
-        &:hover .grid { background: @grid-hover; }
-
         .row-fluid {
             position: relative;
-        }
 
-        .row-fluid:nth-child(n+2) {
-            .grid { border-top: none; }
-            .slot { border-bottom: 1px solid @grid-border; }
-        }
+            &:nth-child(n+2) {
+                .grid { border-top: none; }
+                .slot { border-bottom: 1px solid @grid-border; }
+            }
 
-        .row-fluid:first-child .span1 .grid {
-            &:hover {
-                background-color: @lightblue;
-                cursor: pointer;
+            &:first-child {
+                .span1 .grid:hover {
+                    background-color: @lightblue;
+                    cursor: pointer;
+                }
+            }
+
+            &:last-child .slot {
+                border-bottom: none;
             }
         }
-
-        .row-fluid:last-child .slot { border-bottom: none; }
 
         .grid-head h4 {
             color: @grid-title-bg;

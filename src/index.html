@@ -9,16 +9,13 @@
   <title>CORS Planner - Unofficial NUS and NTU Timetable Builder</title>
   <meta name="description" content="CORS Planner is an unofficial web course timetable builder for National University of Singapore (NUS) and Nanyang Technological University (NTU) students.">
   <meta name="author" content="Wang Zhuochun">
-
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
   <!-- Le fav and touch icons -->
   <link href="favicon.ico" rel="shortcut icon">
-
   <!-- Le stylesheets -->
   <link rel="stylesheet/less" href="less/style.less">
   <script src="js/libs/less-1.3.3.min.js"></script>
-
   <!-- Le google analytics -->
   <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -94,7 +91,7 @@
               -->
               <li id="term-share" title="Share Your Timetable" rel="tooltip"><i class="icon-share"></i></li>
               <li id="term-clear" title="Clear All Modules Added" rel="tooltip"><i class="icon-trash"></i></li>
-              <li id="term-config" title="Configure Class Slot Display" rel="tooltip" data-placement="right" class="dropdown">
+              <li id="term-config" title="Configurations" rel="tooltip" data-placement="right" class="dropdown">
                 <span class="dropdown-toggle" data-toggle="dropdown" id="tt-config">
                   <i class="icon-cog"></i>
                 </span>
@@ -102,7 +99,8 @@
                   <li><a onclick="planner.set('slotType', 'location')" href="#">Display Location</a></li>
                   <li><a onclick="planner.set('slotType', 'group')" href="#">Display Group ID</a></li>
                   <li><a onclick="planner.set('slotType', 'week')" href="#">Display WeekType</a></li>
-				  <li><a onclick="planner.loadCss('css/style-portrait.css')" href="#">Vertical Timetable</a></li>
+                  <li class="divider"></li>
+                  <li><a onclick="planner.loadCss('css/style-portrait.css')" href="#">Vertical Timetable</a></li>
                 </ul>
               </li>
             </ul>
@@ -641,5 +639,6 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
 
+  <!-- <build-status> -->
 </body>
 </html>

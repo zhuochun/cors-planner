@@ -1,0 +1,259 @@
+/*!========================================
+ * Author: Wang Zhuochun
+ *
+ * Add vertical timetable layout (Experiment)
+ *
+ * Last Edit: 02/Jan/2014 10:26 PM
+ * ======================================== */
+#tt-header {
+  padding-bottom: 980px;
+}
+#tt-grid {
+  position: absolute;
+  width: 5000px;
+  margin-top: -980px;
+}
+#tt-grid #grid-title,
+#tt-grid .weekday {
+  float: left;
+  display: block;
+}
+#tt-grid #grid-title {
+  width: 50px;
+}
+#tt-grid #grid-title [class^=span] {
+  width: 50px;
+}
+#tt-grid .weekday {
+  min-width: 200px;
+}
+#tt-grid .weekday .row-fluid {
+  width: 100px;
+  float: left;
+  display: block;
+}
+#tt-grid .grid {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+#tt-grid [class*='span'] {
+  width: 100px;
+}
+#tt-grid .span1 {
+  height: 30px;
+}
+#tt-grid .span2 {
+  height: 60px;
+}
+#tt-grid .span3 {
+  height: 90px;
+}
+#tt-grid .span4 {
+  height: 120px;
+}
+#tt-grid .span5 {
+  height: 150px;
+}
+#tt-grid .span6 {
+  height: 180px;
+}
+#tt-grid .span7 {
+  height: 210px;
+}
+#tt-grid .span8 {
+  height: 240px;
+}
+#tt-grid .span9 {
+  height: 270px;
+}
+#tt-grid .span10 {
+  height: 300px;
+}
+#tt-grid .span11 {
+  height: 330px;
+}
+#tt-grid .span12 {
+  height: 360px;
+}
+#tt-grid .span13 {
+  height: 390px;
+}
+#tt-grid .span14 {
+  height: 420px;
+}
+#tt-grid .span15 {
+  height: 450px;
+}
+#tt-grid .span16 {
+  height: 480px;
+}
+#tt-grid .span17 {
+  height: 510px;
+}
+#tt-grid .span18 {
+  height: 540px;
+}
+#tt-grid .span19 {
+  height: 570px;
+}
+#tt-grid .span20 {
+  height: 600px;
+}
+#tt-grid .span21 {
+  height: 630px;
+}
+#tt-grid .span22 {
+  height: 660px;
+}
+#tt-grid .span23 {
+  height: 690px;
+}
+#tt-grid .span24 {
+  height: 720px;
+}
+#tt-grid .span25 {
+  height: 750px;
+}
+#tt-grid .span26 {
+  height: 780px;
+}
+#tt-grid .span27 {
+  height: 810px;
+}
+#tt-grid .span28 {
+  height: 840px;
+}
+#tt-grid .span29 {
+  height: 870px;
+}
+#tt-grid .span30 {
+  height: 900px;
+}
+#tt-grid .span31 {
+  height: 930px;
+}
+#tt-grid .span32 {
+  height: 960px;
+}
+#tt-grid .span33 {
+  height: 990px;
+}
+#tt-grid [class*='offset'] {
+  margin: 0;
+}
+#tt-grid .offset1 {
+  margin-top: 30px;
+}
+#tt-grid .offset2 {
+  margin-top: 60px;
+}
+#tt-grid .offset3 {
+  margin-top: 90px;
+}
+#tt-grid .offset4 {
+  margin-top: 120px;
+}
+#tt-grid .offset5 {
+  margin-top: 150px;
+}
+#tt-grid .offset6 {
+  margin-top: 180px;
+}
+#tt-grid .offset7 {
+  margin-top: 210px;
+}
+#tt-grid .offset8 {
+  margin-top: 240px;
+}
+#tt-grid .offset9 {
+  margin-top: 270px;
+}
+#tt-grid .offset10 {
+  margin-top: 300px;
+}
+#tt-grid .offset11 {
+  margin-top: 330px;
+}
+#tt-grid .offset12 {
+  margin-top: 360px;
+}
+#tt-grid .offset13 {
+  margin-top: 390px;
+}
+#tt-grid .offset14 {
+  margin-top: 420px;
+}
+#tt-grid .offset15 {
+  margin-top: 450px;
+}
+#tt-grid .offset16 {
+  margin-top: 480px;
+}
+#tt-grid .offset17 {
+  margin-top: 510px;
+}
+#tt-grid .offset18 {
+  margin-top: 540px;
+}
+#tt-grid .offset19 {
+  margin-top: 570px;
+}
+#tt-grid .offset20 {
+  margin-top: 600px;
+}
+#tt-grid .offset21 {
+  margin-top: 630px;
+}
+#tt-grid .offset22 {
+  margin-top: 660px;
+}
+#tt-grid .offset23 {
+  margin-top: 690px;
+}
+#tt-grid .offset24 {
+  margin-top: 720px;
+}
+#tt-grid .offset25 {
+  margin-top: 750px;
+}
+#tt-grid .offset26 {
+  margin-top: 780px;
+}
+#tt-grid .offset27 {
+  margin-top: 810px;
+}
+#tt-grid .offset28 {
+  margin-top: 840px;
+}
+#tt-grid .offset29 {
+  margin-top: 870px;
+}
+#tt-grid .offset30 {
+  margin-top: 900px;
+}
+#tt-grid .offset31 {
+  margin-top: 930px;
+}
+#tt-grid .offset32 {
+  margin-top: 960px;
+}
+#tt-grid .offset33 {
+  margin-top: 990px;
+}
+#tt-grid #grid-title h4 {
+  text-align: right;
+  margin-left: 0;
+  margin-top: 3px;
+  margin-right: 3px;
+}
+#tt-grid .grid-head {
+  border: none !important;
+}
+#tt-grid .weekday .grid-head h4 {
+  margin-top: 0;
+  padding-top: 20px;
+}
+#tt-grid .weekday .row-fluid:nth-child(n+2) .grid {
+  border-top: 1px solid #ffffff;
+}

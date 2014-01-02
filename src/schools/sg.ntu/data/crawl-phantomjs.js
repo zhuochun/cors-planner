@@ -12,7 +12,7 @@
 var webpage = require("webpage")
   , fs = require("fs")
   , sys = require("system")
-  , list = require("./degrees.sem1.2014").degrees;
+  , list = require("./degrees.sem2.2014").degrees;
 
 // Heading
 console.log("\n************* CORS PLANNER **************");

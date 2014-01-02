@@ -1,7 +1,7 @@
 // need to change list to `exports.codes = [];`
 
-var oList = require("./list.sem2.2013.js").codes
-  , nList = require("./list.sem1.2014.js").codes
+var oList = require("./list.old.js").codes
+  , nList = require("./list.new.js").codes
   , fs = require("fs");
 
 console.log("Old List Length:");
@@ -17,7 +17,7 @@ for (var i = 0, len = nList.length; i < len; i++) {
     }
 }
 
-console.log("Merged List Length:")
+console.log("Merged List Length:");
 console.log(oList.length);
 
 outputFile("./list.js", oList);

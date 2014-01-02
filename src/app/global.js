@@ -29,11 +29,8 @@ define(function(require, exports) {
             global.planner = {};
         }
 
-        /* Defaults Values
-        /* ======================================== */
-
         // assign CORS Planner Version number
-        planner.version = "0.7.5";
+        planner.version = "0.7.6";
         // CORS Planner for schools
         planner.school = store.get("app:school") || null;
         // default module lists
@@ -58,6 +55,14 @@ define(function(require, exports) {
                 // publish it
                 $.publish("app:" + key, [val]);
             }
+        };
+        // load css
+        planner.loadCss = function(href) {
+            var link = document.createElement("link");
+            link.type = "text/css";
+            link.rel = "stylesheet";
+            link.href = href;
+            document.getElementsByTagName("head")[0].appendChild(link);
         };
         // track usages and events using google analytics
         // https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide

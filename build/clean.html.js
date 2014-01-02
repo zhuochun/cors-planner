@@ -5,7 +5,7 @@ console.log("==> Start clean-up index.html");
 // replace rel attribute for less file with rel for css
 content = content.replace(/stylesheet\/less/gi, "stylesheet");
 // replace file name
-content = content.replace(/less\/style.less/gi, "css/style.css");
+content = content.replace(/less\/(.*).less/gi, "css/$1.css");
 // log
 console.log("Changed stylesheet style.less -> style.css");
 

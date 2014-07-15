@@ -16,8 +16,9 @@ define(function(require, exports) {
         name: "National University of Singapore"
       , abbr: "NUS"
       , url: "http://www.nus.edu.sg/"
-      , modules: 1846
-      , lastUpdate: "Thu Jan 02 2014 22:35:35 GMT+0800 (Malay Peninsula Standard Time)"
+      , courseUrl: "http://www.nus.edu.sg/cors/index.html"
+      , modules: 1843
+      , lastUpdate: "Tue Jul 15 2014 09:50:33 GMT+0800 (SGT)"
     };
 
 });

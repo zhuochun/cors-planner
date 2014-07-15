@@ -40,9 +40,9 @@ var sem = (function(today) {
             degree + "&boption=CLoad&ACADSEM=" + sem;
     }
   , school = "sg.ntu"
-  , thread = 45 
-  , output = "list.js"//"src/schools/" + school + "/data/list.js"
-  , update = true, global = "../info.js";//"src/schools/" + school + "/info.js";
+  , thread = 45
+  , output = "list.js"
+  , update = true, global = "../info.js";
 
 // Args
 if (sys.args.length > 1) {
@@ -86,8 +86,9 @@ function visitPage(page, idx, max) {
 
         page.close();
 
-        if (update)
+        if (update) {
             updateFile(global, Object.keys(finalList).length);
+        }
 
         var totalTime = new Date() - timeStart;
         console.log("Spent " + (totalTime / 1000).toFixed(2) + "s using " + thread + " pages");

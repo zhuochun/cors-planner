@@ -416,7 +416,7 @@ a:hover {
   box-sizing: border-box;
   float: left;
   margin-left: 0%;
-  *margin-left: -0.052246603970741906%;
+  *margin-left: -0.0522466%;
 }
 .row-fluid [class*="span"]:first-child {
   margin-left: 0;
@@ -2633,7 +2633,7 @@ button.close {
     box-sizing: border-box;
     float: left;
     margin-left: 0%;
-    *margin-left: -0.052246603970741906%;
+    *margin-left: -0.0522466%;
   }
   .row-fluid [class*="span"]:first-child {
     margin-left: 0;
@@ -3453,7 +3453,7 @@ button.close {
     box-sizing: border-box;
     float: left;
     margin-left: 0%;
-    *margin-left: -0.052246603970741906%;
+    *margin-left: -0.0522466%;
   }
   .row-fluid [class*="span"]:first-child {
     margin-left: 0;

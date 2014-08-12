@@ -47,6 +47,8 @@ define(function(require, exports) {
         });
 
         $el.modal("show");
+
+        planner.trackEvent("share", "bitly");
     }
 
     function attachEvents() {

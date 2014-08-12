@@ -4,7 +4,7 @@
  * View on Add Module
  *
  * Author: Wang Zhuochun
- * Last Edit: 23/Jul/2012 10:10 PM
+ * Last Edit: 12/Aug/2014 08:48 PM
  * ========================================
  * <License>
  * ======================================== */
@@ -39,7 +39,7 @@ define(function(require, exports) {
     // update the semester text
     function updateSemester() {
         $("#semester")
-            .text("Year " + sem.acadYear + " SEM" + sem.semester)
+            .text("Year " + sem.acadYear + " SEM" + sem.semester);
     }
 
     // term control buttons
@@ -53,14 +53,6 @@ define(function(require, exports) {
         // term share
         $("#term-share").on("click", function() {
             $.publish("module:share");
-        });
-        // term undo
-        $("#term-undo").on("click", function() {
-            $.publish("undo:pop");
-        });
-        // subscribe to undo title change
-        $.subscribe("undo:title", function(e, title) {
-            $("#term-undo").attr("data-original-title", title);
         });
     }
 
@@ -120,8 +112,10 @@ define(function(require, exports) {
             $input.val("");
             // callback decide what to do
             $.publish("module:add", [modCode.toUpperCase()]);
+            // track module code
+            planner.trackEvent('add-module', modCode.toUpperCase());
         } else {
-            $.publish("message:error", 
+            $.publish("message:error",
                 ["The Module Code '" + modCode.toUpperCase() + "' is not Valid!"]);
         }
     }

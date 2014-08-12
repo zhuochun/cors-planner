@@ -1,7 +1,7 @@
 {
   "name": "cors-planner",
   "description": "CORS Planner is an unofficial online web timetable builder for National University of Singapore (NUS) and Nanyang Technological University (NTU) students.",
-  "version": "0.7.7",
+  "version": "0.7.8",
   "homepage": "http://cors.bicrement.com/",
   "author": {
     "name": "Wang Zhuochun",

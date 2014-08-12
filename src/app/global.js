@@ -1,6 +1,6 @@
 /* ========================================
  * CORS Planner - App Main
- * 
+ *
  * Load all app components required
  *
  * Author: Wang Zhuochun
@@ -30,7 +30,7 @@ define(function(require, exports) {
         }
 
         // assign CORS Planner Version number
-        planner.version = "0.7.7";
+        planner.version = "0.7.8";
         // CORS Planner for schools
         planner.school = store.get("app:school") || null;
         // default module lists
@@ -39,7 +39,7 @@ define(function(require, exports) {
           , previews : "previews"
         };
         // week days
-        planner.weekDays = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"]; 
+        planner.weekDays = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
         // enable or disable popover on slot
         planner.slotPopover = store.get("app:slotPopover") || true;
         // slot type, e.g. location, week, group

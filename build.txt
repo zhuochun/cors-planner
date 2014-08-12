@@ -29,6 +29,7 @@ app/views/detailView.js
 js/utils/toastr.js
 app/views/messageView.js
 app/views/shareView.js
+hgn!template/addThisEvent
 app/helpers/jquery.slot.js
 hgn!template/timeSlot
 app/views/weekdayView.js

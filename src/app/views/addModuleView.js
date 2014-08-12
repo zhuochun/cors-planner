@@ -115,7 +115,7 @@ define(function(require, exports) {
     function addModule(modCode) {
         modCode = modCode.split(" ")[0];
         // test validity of the modCode
-        if (modCode && (/^[a-z]{2,4}\d{3,4}[a-z]{0,2}$/i).test(modCode)) {
+        if (modCode && (/^[a-z]{1,4}\d{3,4}[a-z]{0,2}$/i).test(modCode)) {
             // empty the input val
             $input.val("");
             // callback decide what to do

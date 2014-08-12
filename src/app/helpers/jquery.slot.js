@@ -15,6 +15,9 @@ define(function(require, exports) {
     /*jshint jquery:true, laxcomma:true, browser:true, maxerr:50*/
     /*global planner*/
 
+    var helper = require("util/helper"),
+        template = require("hgn!template/addThisEvent");
+
     (function($) {
 
         var _project = "planner_"
@@ -77,6 +80,13 @@ define(function(require, exports) {
 
                 $.subscribe("app:slotType", function() {
                     switchInfoType(planner.slotType, self.$info, self.slot);
+                    self.$elem.find(".addthisevent-drop").remove();
+                });
+
+                $.subscribe("module:calendar", function() {
+                    self.$elem.find(".addthisevent-drop").remove();
+                    self.$elem.find("p").prepend(
+                        addThisEventContent(self.slot, self.data));
                 });
             }
 
@@ -125,6 +135,10 @@ define(function(require, exports) {
 
                 // left click to toggle between module list and class detail
                 this.$elem.on("click", function(e) {
+                    if ($(e.target).hasClass("addthisevent-drop")) {
+                        return;
+                    }
+
                     var pivot = $("#metro-pivot").data("controller")
                       , current = pivot.headers.children(".current").text();
 
@@ -244,11 +258,11 @@ define(function(require, exports) {
             // push slots time
             for (i = 0; i < slots.length; i++) {
                 if (i === 0) {
-                    result.push("<b>TIME: </b>" + slots[i].weekDay +
+                    result.push("<b>TIME: </b>" + slots[i].weekDay.slice(0, 3) +
                         " " + slots[i].startTime + "-" + slots[i].endTime);
                 } else {
                     result.push("<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>" +
-                        slots[i].weekDay + " " + slots[i].startTime +
+                        slots[i].weekDay.slice(0, 3) + " " + slots[i].startTime +
                         "-" + slots[i].endTime);
                 }
             }
@@ -257,11 +271,36 @@ define(function(require, exports) {
             return result.join("<br>");
         }
 
+        function addThisEventContent(slot, mod) {
+            return template({ slot: slot,
+                              module: mod.data,
+                              time: getSlotDateTime(slot) });
+        }
+
+        function getSlotDateTime(slot) {
+            var weekday = helper.getWeekOneDateOfWeekday(slot.weekDay),
+                startTime = parseInt(slot.startTime, 10),
+                endTime = parseInt(slot.endTime, 10),
+                startDateTime = new Date(weekday),
+                endDateTime = new Date(weekday);
+
+            startDateTime.setHours(startTime / 100);
+            startDateTime.setMinutes(startTime % 100);
+
+            endDateTime.setHours(endTime / 100);
+            endDateTime.setMinutes(endTime % 100);
+
+            return {
+                startDateTime: helper.getDateFormatted(startDateTime),
+                endDateTime: helper.getDateFormatted(endDateTime)
+            };
+        }
+
         function switchInfoType(info, $elem, slot) {
             if (info === "location") {
                 $elem.text(slot.room);
             } else if (info === "group") {
-                $elem.text("[" + slot.classNo + "]");
+                $elem.text(slot.classNo);
             } else if (info === "week") {
                 $elem.text(slot.weekType);
             }

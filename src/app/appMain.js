@@ -45,6 +45,21 @@ define(function(require, exports) {
         });
     }
 
+    function _addThisEvent() {
+        addthisevent.settings({
+            mouse     : false,
+            css       : false,
+            dropdown  : false,
+            outlook   : {show:false, text:"Outlook Calendar"},
+            google    : {show:false, text:"Google Calendar"},
+            yahoo     : {show:false, text:"Yahoo Calendar"},
+            hotmail   : {show:false, text:"Hotmail Calendar"},
+            ical      : {show:false, text:"iCal Calendar"},
+            facebook  : {show:false, text:"Facebook Event"},
+            callback  : ""
+        });
+    }
+
     // exports module
     exports.init = function(v) {
         // init components
@@ -54,6 +69,8 @@ define(function(require, exports) {
         _versionCheck();
         // outbound link click
         _trackOutbound();
+        // init add this event
+        _addThisEvent();
     };
 
 });

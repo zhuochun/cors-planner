@@ -44,15 +44,9 @@ define(function(require, exports) {
 
     // term control buttons
     function attachTermControls() {
-        // typeahead
-        $("#term-ctrls").tooltip({placement:"bottom", selector:"li[rel=tooltip]"});
-        // term clean
-        $("#term-clear").on("click", function() {
-            $.publish("module:clean");
-        });
-        // term share
-        $("#term-share").on("click", function() {
-            $.publish("module:share");
+        $("#term-ctrls").tooltip({
+            placement:"bottom",
+            selector:"li[rel=tooltip]"
         });
     }
 

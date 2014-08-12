@@ -84,8 +84,18 @@
           <div class="span26">
             <h2 id="term-info">Timetable of <span id="semester"></span></h2>
             <ul id="term-ctrls" class="unstyled" data-intro="Share, Settings and More" data-position="bottom">
-              <li id="term-share" title="Share Your Timetable" rel="tooltip"><i class="icon-share"></i></li>
-              <li id="term-clear" title="Clear All Modules Added" rel="tooltip"><i class="icon-trash"></i></li>
+              <li id="term-share" title="Share Your Timetable" rel="tooltip" data-placement="right" class="dropdown">
+                <span class="dropdown-toggle" data-toggle="dropdown" id="tt-share">
+                  <i class="icon-share"></i>
+                </span>
+                <ul aria-labelledby="tt-share" role="menu" class="dropdown-menu">
+                  <li><a onclick="$.publish('module:share')" href="#">Share URL</a></li>
+                  <li><a onclick="$.publish('module:calendar');addthisevent.refresh()" href="#">Add To Calendar</a></li>
+                </ul>
+              </li>
+              <li id="term-clear" title="Clear All Modules Added" rel="tooltip" onclick="$.publish('module:clean')">
+                <i class="icon-trash"></i>
+              </li>
               <li id="term-config" title="Configurations" rel="tooltip" data-placement="right" class="dropdown">
                 <span class="dropdown-toggle" data-toggle="dropdown" id="tt-config">
                   <i class="icon-cog"></i>
@@ -621,8 +631,9 @@
   <!-- pre-load third party scripts that do not want be async loaded. -->
   <script src="js/libs/jquery-1.8.3.js"></script>
   <script src="js/libs/jquery-ui-1.8.23.custom.js"></script>
+  <script src="https://addthisevent.com/libs/1.5.8/ate.min.js"></script>
   <!-- all other application scripts are loaded through require.  -->
-  <script src="js/libs/require.js" data-main="js/main"></script>
+  <script src="js/libs/require.js" data-main="js/main" async></script>
 
   <!-- Le facebook -->
   <div id="fb-root"></div>

@@ -1,0 +1,11 @@
+<a href="http://cors.bicrement.com" title="Add to Google Calendar" class="addthisevent" data-direct="google">
+    <i class="icon-calendar icon-white"></i>
+    <span class="_start" style="display:none">{{ time.startDateTime }}</span>
+    <span class="_end" style="display:none">{{ time.endDateTime }}</span>
+    <span class="_zonecode" style="display:none">79</span>
+    <span class="_summary" style="display:none">{{ module.code }} ({{ slot.type }})</span>
+    <span class="_description" style="display:none">Module: {{ module.code }} - {{ module.title }}\nType: {{ slot.type }}\nClass Num: {{ slot.classNo }}\nTime: {{ slot.startTime }} - {{ slot.endTime }}\nWeek: {{ slot.weekType }}\nDay: {{ slot.weekDay }}\n</span>
+    <span class="_location" style="display:none">{{ slot.room }}</span>
+    <span class="_all_day_event" style="display:none">false</span>
+    <span class="_date_format" style="display:none">DD/MM/YYYY</span>
+</a>

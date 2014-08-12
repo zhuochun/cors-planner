@@ -1,0 +1,100 @@
+/*!========================================
+ * Author: Wang Zhuochun
+ *
+ * Add vertical timetable layout (Experiment)
+ *
+ * Last Edit: 02/Jan/2014 10:26 PM
+ * ======================================== */
+
+// mixins
+.make_spans(@index, @total) when (@index < @total) {
+    .span@{index} {
+        height: unit((30 * @index), px);
+    }
+
+    .make_spans((@index + 1), @total);
+}
+
+.make_offsets(@index, @total) when (@index < @total) {
+    .offset@{index} {
+        margin-top: unit((30 * @index), px);
+    }
+
+    .make_offsets((@index + 1), @total);
+}
+
+#tt-header {
+    padding-bottom: 980px;
+}
+
+#tt-grid {
+
+    position: absolute;
+    width: 5000px; // TODO: needs a better way to do it, js?
+    margin-top: -980px;
+
+    #grid-title, .weekday {
+        float: left;
+        display: block;
+    }
+
+    #grid-title {
+        width: 50px;
+
+        [class^=span] {
+            width: 50px;
+        }
+    }
+
+    .weekday {
+        min-width: 200px;
+
+        .row-fluid {
+            width: 100px;
+            float: left;
+            display: block;
+        }
+    }
+
+    .grid {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    // spans
+    [class*='span'] {
+        width: 100px;
+    }
+
+    .make_spans(1, 34);
+
+    // offsets
+    [class*='offset'] {
+        margin: 0;
+    }
+
+    .make_offsets(1, 34);
+
+    // ui
+    #grid-title h4 {
+        text-align: right;
+        margin-left: 0;
+        margin-top: 3px;
+        margin-right: 3px;
+    }
+
+    .grid-head {
+        border: none !important;
+    }
+
+    .weekday .grid-head h4 {
+        margin-top: 0;
+        padding-top: 20px;
+    }
+
+    .weekday .row-fluid:nth-child(n+2) .grid {
+        border-top: 1px solid #ffffff;
+    }
+
+}

@@ -22,5 +22,6 @@ echo == Start Building CORS-PLANNER
         mkdir release\css
         ::build less to css file
         call lessc --yui-compress src\less\style.less > release\css\style.css
+        call lessc --yui-compress src\less\style-portrait.less > release\css\style-portrait.css
 
 echo == Build Succeed

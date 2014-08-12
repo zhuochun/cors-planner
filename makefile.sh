@@ -1,5 +1,5 @@
 #Building
-echo "Start Building CORS-PLANNER" 
+echo "Start Building CORS-PLANNER"
 
   echo "removing release folder"
     #remove release
@@ -18,5 +18,6 @@ echo "Start Building CORS-PLANNER"
     mkdir -p release/css
     #build less to css file
     lessc --yui-compress src/less/style.less > release/css/style.css
+    lessc --yui-compress src/less/style-portrait.less > release/css/style-portrait.css
 
 echo "Build Succeed"

@@ -39,7 +39,7 @@ define(function(require, exports) {
         this.occupied  = [];
         this.$occupied = this.$rows[0];
         // listen toggle event
-        this.$occupied.on("click", ".span1", $.proxy(this.toggleOccupiedSpan, this));
+        this.$occupied.on("dblclick", ".span1", $.proxy(this.toggleOccupiedSpan, this));
         // subscribe some events
         $.subscribe("grid:rows:clearEmpty", $.proxy(this.compressRows, this));
     }

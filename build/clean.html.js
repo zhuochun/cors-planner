@@ -24,6 +24,8 @@ console.log("Changed jQuery to use Google CDN jQuery");
 // update build time in html for reference
 content = content.replace(/<build-status>/g, new Date());
 
+console.log("Build status date updated");
+
 // write file back
 fs.writeFileSync("release/index.html", content, "utf8");
 

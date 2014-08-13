@@ -21,16 +21,16 @@ define(function(require, exports) {
               , acadYear: "2012/2013", semester: 2
             }
           , year = today.getFullYear()
-          , month = today.getMonth(); // month is [0, 11]
+          , month = today.getMonth() + 1;
 
-        // Jan 0 - May 4 (this year sem 2)
-        // Jun 5 - Nov 10 (next year sem 1)
-        // Dec 11 (next year sem 2)
-        if (month <= 4) {
+        // Jan - May: this year sem 2
+        // Jun - Nov: next year sem 1
+        // Dec      : next year sem 2
+        if (month <= 5) {
             result.startYear = year - 1;
             result.endYear = year;
             result.semester = 2;
-        } else if (month >= 11) {
+        } else if (month >= 12) {
             result.startYear = year;
             result.endYear = year + 1;
             result.semester = 2;
@@ -50,25 +50,29 @@ define(function(require, exports) {
 
     // return current academic year and semester
     exports.getSemester = function(date) {
-        return getSemester(date || new Date());
+        return date ? exports.Semester : getSemester(date);
     };
 
     // get the date of the first week' monday
     // TODO: change this to be specifically defined in school
     function getWeekOneMondayDate(today) {
         var year = today.getFullYear(),
-            month = today.getMonth(),
-            result, week = 0;
+            month = today.getMonth() + 1,
+            result = new Date(), week = 0;
 
-        // Jan  0 - May  4, guess the 2nd week of Jan, this year
-        // Jun  5 - Nov 10, guess the 2nd week of Aug, this year
-        // Dec 11, guess the 2nd week of Jan, next year
-        if (month <= 4) {
-            result = new Date(year + "-01-01 00:00:00 GMT+0800");
-        } else if (month >= 11) {
-            result = new Date((year + 1) + "-01-01 00:00:00 GMT+0800");
+        // set default result date (this year, Jan 1st)
+        result.setMonth(0);
+        result.setDate(1);
+
+        // Jan - May: 2nd week of Jan, this year
+        // Jun - Nov: 2nd week of Aug, this year
+        // Dec      : 2nd week of Jan, next year
+        if (month <= 5) {
+            // default date
+        } else if (month >= 12) {
+            result.setMonth(0);
         } else {
-            result = new Date(year + "-08-01 00:00:00 GMT+0800");
+            result.setMonth(7);
         }
 
         // find first monday of the month
@@ -85,23 +89,21 @@ define(function(require, exports) {
         return result;
     }
 
+    exports.WeekOneDate = getWeekOneMondayDate(new Date());
+
     exports.getWeekOneDate = function(date) {
-        return getWeekOneMondayDate(date || new Date());
+        return date ? getWeekOneMondayDate(date) : exports.WeekOneDate;
     };
 
     // return semester starting date (approximate)
     exports.getWeekOneDateOfWeekday = function(weekday, date) {
-        var monday = getWeekOneMondayDate(date || new Date()),
-            idx = $.inArray(weekday.toUpperCase(), planner.weekDays);
+        var idx = $.inArray(weekday.toUpperCase(), planner.weekDays);
 
-        if (idx < 0) {
-            return monday;
-        }
+        date = date ? getWeekOneMondayDate(date) : exports.WeekOneDate;
+        if (idx < 0) { return date; }
 
-        // add weekday
-        monday.setDate(monday.getDate() + idx);
-
-        return monday;
+        date.setDate(date.getDate() + idx);
+        return date;
     };
 
     // format date time

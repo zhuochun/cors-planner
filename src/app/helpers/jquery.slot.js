@@ -84,9 +84,10 @@ define(function(require, exports) {
                 });
 
                 $.subscribe("module:calendar", function() {
-                    self.$elem.find(".addthisevent-drop").remove();
-                    self.$elem.find("p").prepend(
-                        addThisEventContent(self.slot, self.data));
+                    if (self.$elem.find(".addthisevent-drop").length === 0) {
+                        self.$elem.find("p").prepend(
+                            addThisEventContent(self.slot, self.data));
+                    }
                 });
             }
 

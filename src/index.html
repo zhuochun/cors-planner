@@ -93,8 +93,13 @@
                   <li><a onclick="$.publish('module:calendar');addthisevent.refresh()" href="#">Add To Calendar</a></li>
                 </ul>
               </li>
-              <li id="term-clear" title="Clear All Modules Added" rel="tooltip" onclick="$.publish('module:clean')">
-                <i class="icon-trash"></i>
+              <li id="term-clear" title="Clear Timetable" rel="tooltip" data-placement="right" class="dropdown">
+                <span class="dropdown-toggle" data-toggle="dropdown" id="tt-trash">
+                  <i class="icon-trash"></i>
+                </span>
+                <ul aria-labelledby="tt-trash" role="menu" class="dropdown-menu">
+                  <li><a onclick="$.publish('module:clean')" href="#">Confirm Clear Timetable</a></li>
+                </ul>
               </li>
               <li id="term-config" title="Configurations" rel="tooltip" data-placement="right" class="dropdown">
                 <span class="dropdown-toggle" data-toggle="dropdown" id="tt-config">
@@ -315,11 +320,11 @@
               <div class="span1"><div class="grid">&nbsp;</div></div>
               <div class="span1"><div class="grid">&nbsp;</div></div>
               <div class="span1"><div class="grid">&nbsp;</div></div>
-              <div class="span1"><div class="grid">&nbsp;</div></div>
-              <div class="span1"><div class="grid">&nbsp;</div></div>
-              <div class="span1"><div class="grid">&nbsp;</div></div>
-              <div class="span1"><div class="grid">&nbsp;</div></div>
               <div class="span1" data-intro="Double click to mark an occupied slot (e.g. Lunch Break)" data-position="left"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
+              <div class="span1"><div class="grid">&nbsp;</div></div>
               <div class="span1"><div class="grid">&nbsp;</div></div>
               <div class="span1"><div class="grid">&nbsp;</div></div>
               <div class="span1"><div class="grid">&nbsp;</div></div>

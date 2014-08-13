@@ -30,7 +30,7 @@ define(function(require, exports) {
         }
 
         // assign CORS Planner Version number
-        planner.version = "0.7.8";
+        planner.version = "0.7.9";
         // CORS Planner for schools
         planner.school = store.get("app:school") || null;
         // default module lists

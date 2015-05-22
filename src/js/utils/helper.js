@@ -23,14 +23,14 @@ define(function(require, exports) {
           , year = today.getFullYear()
           , month = today.getMonth() + 1;
 
-        // Jan - May: this year sem 2
-        // Jun - Nov: next year sem 1
+        // Jan - Apr: this year sem 2
+        // May - Nov: next year sem 1
         // Dec      : next year sem 2
-        if (month <= 5) {
+        if (month < 5) {
             result.startYear = year - 1;
             result.endYear = year;
             result.semester = 2;
-        } else if (month >= 12) {
+        } else if (month > 11) {
             result.startYear = year;
             result.endYear = year + 1;
             result.semester = 2;

@@ -17,9 +17,9 @@ define(function(require, exports) {
 
     var Module, GROUP = "group"
     , commFun = function(data) {
-        return data.strong ?
-                (data.strong.font ?
-                    data.strong.font.content : data.strong) : "-";
+        var text = data.strong || data.b
+        return text ?
+            (text.font ? (text.font.content || text.font) : text) : "-";
       }
     // for module detail parsing
     , details = {
@@ -76,7 +76,7 @@ define(function(require, exports) {
 
         // data[1] - prerequisite
         for (i = 1, k = data.length; i < k; i++) {
-            Module.prerequisite += commFun(data[i].td[1]) + " ";
+            Module.prerequisite += commFun(data[i].td[1]) || " ";
         }
     }
 
@@ -92,14 +92,14 @@ define(function(require, exports) {
              *
              * [0] -> index
              * [1] -> Type
-             * [2] -> ClassNo
+             * [2] -> ClassNo/Group
              * [3] -> WeekDay
-             * [4] -> Time-Time
-             * [5] -> Room
+             * [4] -> Time
+             * [5] -> Room/Venue
              * [6] -> Remarks (WeekType)
              * ======================================== */
 
-            index = td[0] ? commFun(td[0]) : index;
+            index = (td[0] && td[0].b) ? commFun(td[0]) : index;
 
             // create the index in group
             if (!addTo[index]) {
@@ -165,12 +165,12 @@ define(function(require, exports) {
         if (moduleIsAvailable(result)) {
             Module.isAvailable = true;
 
-            setModuleInfo(result[0].tr);
+            setModuleInfo(result[0].tbody.tr);
 
             Module.lessons = {};
             Module.lessons[GROUP] = {};
 
-            setModuleLesson(result[1].tr);
+            setModuleLesson(result[1].tbody.tr);
         } else {
             Module.isAvailable = false;
         }

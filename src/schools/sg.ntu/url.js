@@ -19,7 +19,7 @@ define(function(require, exports) {
 
     // return a valid ntu module url
     function corsUrl(mod) {
-        return "https://wish.wis.ntu.edu.sg/webexe/owa/AUS_SCHEDULE.main_display1?" +
+        return "http://wish.wis.ntu.edu.sg/webexe/owa/AUS_SCHEDULE.main_display1?" +
             "staff_access=false&acadsem=" + mod.startYear + ";" + mod.semester +
             "&r_subj_code=" + mod.modCode.toUpperCase() +
             "&boption=Search&r_search_type=F";

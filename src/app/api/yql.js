@@ -1,11 +1,11 @@
 /* ========================================
  * CORS Planner - YQL Query Ajax
- * 
+ *
  * Yahoo Query Language
  * http://developer.yahoo.com/yql/
  *
  * Author: Wang Zhuochun
- * Last Edit: 20/Apr/2013 04:27 PM
+ * Last Edit: 23/May/2015 11:21 AM
  * ========================================
  * <License>
  * ======================================== */
@@ -29,8 +29,9 @@ define(function(require, exports) {
         }
 
         // a select query
-      , querySelect: function(u) {
-            return "select * from html where url='" + u + "' and xpath='//table'";
+      , querySelect: function(url, xpath) {
+            xpath = xpath || "//table";
+            return "select * from html where url='" + url + "' and xpath='" + xpath + "'";
         }
 
         // a generalized request with a query
@@ -40,19 +41,22 @@ define(function(require, exports) {
 
         // a module request for yql, return a Module object
       , requestModule: function(mod, callback) {
-            var link = this.url(mod);
+            var link = this.url(mod); // { url, xpath }
 
-            return this.request(this.querySelect(link), (function(u, cb) {
-                // wrap users' callbacks and add the link
-                return function(result) {
-                    // add the query url to the JSON result
-                    result.url = u;
-                    // then call the actual user's callback
-                    cb(result);
-                };
-            })(link, callback));
+            return this.request(this.querySelect(link.url, link.xpath),
+                requestCallback(link.url, callback));
         }
     };
+
+    // wrap the callback, so to add link to the result
+    function requestCallback(url, cb) {
+        return function(result) {
+            // add the query url to the JSON result
+            result.url = url;
+            // then call the actual user's callback
+            cb(result);
+        }
+    }
 
     // cross domain jsonp
     function jsonp(url) {
@@ -66,5 +70,5 @@ define(function(require, exports) {
     }
 
     return YQL;
-    
+
 });

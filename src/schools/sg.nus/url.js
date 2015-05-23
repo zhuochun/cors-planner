@@ -1,8 +1,8 @@
 /* ========================================
  * CORS Planner - NUS Url APIs for YQL
- * 
+ *
  * Author: Wang Zhuochun
- * Last Edit: 20/Apr/2013 02:01 PM
+ * Last Edit: 23/May/2015 11:16 AM
  * ========================================
  * <License>
  * ======================================== */
@@ -29,7 +29,10 @@ define(function(require, exports) {
             mod = { modCode : mod };
         }
 
-        return corsUrl($.extend({}, defaults, mod));
+        return {
+            url: corsUrl($.extend({}, defaults, mod))
+          , xpath: "//table/tbody"
+        };
     };
 
 });

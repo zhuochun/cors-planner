@@ -23,14 +23,14 @@ define(function(require, exports) {
     // Taken from: (in case window is not the point to the global object)
     //   http://stackoverflow.com/questions/3277182/how-to-get-the-global-object-in-javascript
     (function _initGlobalPlanner() {
-        var Fn = Function, global = (new Fn('return this'))();
+        var Fn = Function, global = (new Fn("return this"))();
         // declare global
         if (!global.planner) {
             global.planner = {};
         }
 
         // assign CORS Planner Version number
-        planner.version = "0.7.9";
+        planner.version = "0.7.10";
         // CORS Planner for schools
         planner.school = store.get("app:school") || null;
         // default module lists

@@ -1,11 +1,11 @@
 /* ========================================
- * CORS Planner - Parser
- * 
+ * CORS Planner - Parser (NTU)
+ *
  * Parse result come from YQL query
  * Return an object contains all data, null if failed
  *
  * Author: Wang Zhuochun
- * Last Edit: 22/Mar/2013 08:42 PM
+ * Last Edit: 23/May/2015 11:23 AM
  * ========================================
  * <License>
  * ======================================== */
@@ -29,11 +29,11 @@ define(function(require, exports) {
       }
     // weekDay short -> full
     , WEEKDAY = {
-        MON: "MONDAY", 
-        TUE: "TUESDAY", 
-        WED: "WEDNESDAY", 
-        THU: "THURSDAY", 
-        FRI: "FRIDAY", 
+        MON: "MONDAY",
+        TUE: "TUESDAY",
+        WED: "WEDNESDAY",
+        THU: "THURSDAY",
+        FRI: "FRIDAY",
         SAT: "SATURDAY"
       };
 
@@ -136,7 +136,7 @@ define(function(require, exports) {
 
     // ========================================
     // Parse will return an formed Module object
-    // 
+    //
     // if yql data has no result
     //      -> return NULL
     // if module is not provided this semester
@@ -149,7 +149,7 @@ define(function(require, exports) {
             return null;
         }
 
-        // ready to parse data 
+        // ready to parse data
         var result = data.query.results.table;
 
         // ========================================

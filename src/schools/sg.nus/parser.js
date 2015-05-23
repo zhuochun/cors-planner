@@ -1,11 +1,11 @@
 /* ========================================
- * CORS Planner - Parser
- * 
+ * CORS Planner - Parser (NUS)
+ *
  * Parse result come from YQL query
  * Return an object contains all data, null if failed
  *
  * Author: Wang Zhuochun
- * Last Edit: 22/Mar/2013 08:42 PM
+ * Last Edit: 23/May/2015 11:23 AM
  * ========================================
  * <License>
  * ======================================== */
@@ -17,13 +17,13 @@ define(function(require, exports) {
 
     var Module
     , commFun = function(data) {
-        return data.p ? data.p : trim(data);
+        return trim(data.p ? data.p : data);
       }
     , contentFun = function(data) {
         var result = data.content || data.p;
 
         if (typeof result === "object") {
-            return contentFun(result); // do it recursive
+            return contentFun(result); // do recursively
         } else if (typeof result === "string") {
             return trim(result);
         } else {
@@ -32,26 +32,24 @@ define(function(require, exports) {
       }
     // for module detail parsing
     , details = {
-          "code" : function(data) {
-              return commFun(data).split(" ")[0];
-          }
-        , "title" : commFun
-        , "description" : commFun
-        , "examinable" : commFun
+          "code" : contentFun
+        , "title" : contentFun
+        , "description" : contentFun
+        , "examinable" : contentFun
         , "examDate" : contentFun
-        , "credits" : function(data) { 
-              return parseInt(data.p, 10); // eg. 4 (MC)
+        , "credits" : function(data) {
+              return parseInt(contentFun(data), 10); // eg. 4 (MC)
           }
-        , "prerequisite" : commFun
-        , "preclusion" : commFun
-        , "workload" : commFun
+        , "prerequisite" : contentFun
+        , "preclusion" : contentFun
+        , "workload" : contentFun
       }
     // for lecture/modules/labs info parsing
     , infoLen = 7
     , info = {
           "classNo" : commFun
         , "type" : function(data) {
-              return (data.p ? data.p : trim(data)).replace(/\s/g, "-");
+              return commFun(data).replace(/\s/g, "-");
           }
         , "weekType" : commFun
         , "weekDay" : commFun
@@ -73,10 +71,8 @@ define(function(require, exports) {
 
     // check whether data passed in is valid
     function isDataValid(data) {
-        return (data &&
-            data.query &&
-            data.query.results &&
-            data.query.results.table) ? true : false;
+        return data && data.query && data.query.results &&
+            data.query.results.tbody;
     }
 
     // check whether nus cors website is functioning
@@ -100,8 +96,9 @@ define(function(require, exports) {
         var i = 1, k; // starting from 2nd td
 
         for (k in details) {
-            if (details.hasOwnProperty(k))
+            if (details.hasOwnProperty(k)) {
                 Module[k] = details[k](data[i++].td[1]);
+            }
         }
     }
 
@@ -129,12 +126,13 @@ define(function(require, exports) {
                 if (!addTo[type]) {
                     addTo[type] = {};
                 }
-                    
+
                 klass = {}; j = 0;
                 // get klass values
                 for (k in info) {
-                    if (info.hasOwnProperty(k))
+                    if (info.hasOwnProperty(k)) {
                         klass[k] = info[k](data[i].td[j++]);
+                    }
                 }
 
                 // get klass group
@@ -164,7 +162,7 @@ define(function(require, exports) {
 
     // ========================================
     // Parse will return an formed Module object
-    // 
+    //
     // if yql data has no result
     //      -> return NULL
     // if module is not provided this semester
@@ -179,17 +177,18 @@ define(function(require, exports) {
             throw new Error("NUS CORS Module Website is Down.");
         }
 
-        // ready to parse data 
-        var result = data.query.results.table;
+        // ready to parse data
+        var result = data.query.results.tbody;
 
         // ========================================
         // result[0] - -
-        // result[1] - Module Head - Module's Availability
+        // result[1] - Module Availability
         // result[2] - Module Information
-        // result[3] - Lectures' Availibility + Workload Description
-        // result[4] - Lectures
-        // result[5] - Tutorials' Availibility
-        // result[6] - Tutorials/Labs
+        // result[3] - Lectures' Availibility
+        // result[4] - Lectures Header (ignored)
+        // result[5] - Lectures
+        // result[6] - Tutorials' Availibility
+        // result[7] - Tutorials/Labs
         // ========================================
 
         Module = {}; // initialize a new Module object
@@ -197,7 +196,7 @@ define(function(require, exports) {
         Module.url = data.url; // set the CORS url
 
         // check whether the module exists
-        if (moduleIsAvailable(result[1].tr[1])) {
+        if (moduleIsAvailable(result[1].tr[0])) {
             Module.isAvailable = true;
 
             setLatestUpdate(result[1].tr[0]);
@@ -206,12 +205,11 @@ define(function(require, exports) {
             Module.lessons = {};
 
             if (moduleHasLecture(result[3].tr)) {
-                setModuleLesson(result[4].tr);
+                setModuleLesson(result[5].tr);
             }
 
-            if (moduleHasTutorial(result[5].tr)) {
-                setModuleLesson(result[5].tr); // Design Lecture
-                setModuleLesson(result[6].tr);
+            if (moduleHasTutorial(result[6].tr)) {
+                setModuleLesson(result[7].tr);
             }
         } else {
             Module.isAvailable = false;

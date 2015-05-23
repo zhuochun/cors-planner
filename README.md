@@ -18,7 +18,7 @@ You will need [Node.js](http://nodejs.org).
 Following packages are required to build CORS Planner:
 
 ```bash
-$ npm install -g jshint uglify-js less
+$ npm install -g jshint uglify-js less less-plugin-clean-css
 ```
 
 To build, run `makefile.bat` (Windows) or `makefile.sh` (UNIX). Files will be generated in folder `/release`.

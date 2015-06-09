@@ -63,6 +63,7 @@ define(function(require, exports) {
             link.rel = "stylesheet";
             link.href = href;
             document.getElementsByTagName("head")[0].appendChild(link);
+            planner.trackEvent("load-css", href);
         };
         // track usages and events using google analytics
         // https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide
@@ -73,7 +74,7 @@ define(function(require, exports) {
         };
         // some help functions
         planner.trackEvent = function(category, action) {
-            planner.analytics("_trackEvent", category, action);
+            planner.analytics("_trackEvent", category, action, planner.school);
         };
         planner.trackPageView = function(url, prefix) {
             planner.analytics("_trackPageview", prefix ? prefix + "=" + url : url);

@@ -49,6 +49,8 @@ define(function(require, exports) {
         }
 
         $(window).resize();
+
+        planner.trackEvent("toggle-fullsize", fullsize);
     });
 
     // initial tooltips

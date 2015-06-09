@@ -34,6 +34,8 @@ define(function(require, exports) {
 
             $.publish("module:readFromShare", [share[1].split("&")]);
         }
+
+        planner.trackEvent("open-from-share", share && share.length === 3);
     }
 
     function generateBitly(e, mods) {
@@ -63,5 +65,10 @@ define(function(require, exports) {
     }
 
     $.subscribe("app:share:get", generateBitly);
+
+    // for tracking purpose
+    $.subscribe("module:calendar", function() {
+        planner.trackEvent("share", "calendar");
+    });
 
 });

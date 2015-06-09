@@ -20,14 +20,16 @@ define(function(require, exports) {
 
     $.subscribe("message:error", function(e, message) {
         toastr.error(message);
-    });
-
-    $.subscribe("message:info", function(e, message) {
-        toastr.info(message);
+        planner.trackEvent("message-error", message);
     });
 
     $.subscribe("message:warning", function(e , message) {
         toastr.warning(message);
+        planner.trackEvent("message-warn", message);
+    });
+
+    $.subscribe("message:info", function(e, message) {
+        toastr.info(message);
     });
 
     $.subscribe("message:success", function(e, message) {

@@ -107,7 +107,7 @@ define(function(require, exports) {
             // callback decide what to do
             $.publish("module:add", [modCode.toUpperCase()]);
             // track module code
-            planner.trackEvent('add-module', modCode.toUpperCase());
+            planner.trackEvent("add-module", modCode.toUpperCase());
         } else {
             $.publish("message:error",
                 ["The Module Code '" + modCode.toUpperCase() + "' is not Valid!"]);

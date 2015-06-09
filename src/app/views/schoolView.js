@@ -54,6 +54,8 @@ define(function(require, exports) {
             }
 
             $el.modal("hide");
+
+            planner.trackEvent("change-school", newSchool !== planner.school);
         });
     }
 

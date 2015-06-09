@@ -107,10 +107,11 @@ define(function(require, exports) {
     // clear all modules
     $.subscribe("module:clean", function() {
         modules.clean();
-        // notify module plugins
+
         $.publish("module:clean:all");
-        // message
         $.publish("message:success", "All modules are removed");
+
+        planner.trackEvent("clear-modules", "");
     });
 
 });

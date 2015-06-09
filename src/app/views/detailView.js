@@ -47,6 +47,8 @@ define(function(require, exports) {
         } else {
             $el.html("<p>Module's detail is not found. :(</p>");
         }
+
+        planner.trackEvent("view-module-detail", mod.get("code"));
     }
 
     // subscribe to module detail display event

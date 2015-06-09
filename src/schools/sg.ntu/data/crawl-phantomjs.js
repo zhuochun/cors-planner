@@ -12,12 +12,14 @@
 var webpage = require("webpage")
   , fs = require("fs")
   , sys = require("system")
-  , list = require("./degrees.sem2.2014").degrees;
+  , list = require("./degrees").degrees;
 
 // Heading
 console.log("\n************* CORS PLANNER **************");
 console.log("*** Crawl NTU Module Code and Titles ***");
 console.log("*****************************************\n");
+
+console.log("Remember to crawl-degrees.js first");
 
 // Variables
 var sem = (function(today) {
@@ -36,13 +38,15 @@ var sem = (function(today) {
         }
     })(new Date())
   , url = function(degree) {
-        return "https://wish.wis.ntu.edu.sg/webexe/owa/AUS_SCHEDULE.main_display1?staff_access=false&r_course_yr=" +
+        return "http://wish.wis.ntu.edu.sg/webexe/owa/AUS_SCHEDULE.main_display1?staff_access=false&r_course_yr=" +
             degree + "&boption=CLoad&ACADSEM=" + sem;
     }
   , school = "sg.ntu"
   , thread = 45
   , output = "list.js"
   , update = true, global = "../info.js";
+
+console.log("semester = " + sem);
 
 // Args
 if (sys.args.length > 1) {

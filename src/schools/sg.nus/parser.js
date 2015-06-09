@@ -196,7 +196,7 @@ define(function(require, exports) {
         Module.url = data.url; // set the CORS url
 
         // check whether the module exists
-        if (moduleIsAvailable(result[1].tr[0])) {
+        if (moduleIsAvailable(result[1].tr[1])) {
             Module.isAvailable = true;
 
             setLatestUpdate(result[1].tr[0]);

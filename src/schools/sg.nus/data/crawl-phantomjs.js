@@ -48,8 +48,6 @@ page.open(encodeURI(url), function (status) {
         console.log("===> Page Loaded");
 
         // Execute some DOM inspection within the page context
-        var timeEva = new Date();
-
         var result = page.evaluate(function() {
             var i, len, table, trs, tds, result = [];
 

@@ -51,7 +51,7 @@ Detailed Documentation is listed in [Wiki](https://github.com/zhuochun/cors-plan
 
 ## Testing
 
-All tests are written in [Jasmine](http://pivotal.github.com/jasmine/) under folder `/test`. (Waiting to be rewritten!)
+All tests are written in [Jasmine](https://jasmine.github.io/) under folder `/test`. (Waiting to be rewritten!)
 
 ## License
 
